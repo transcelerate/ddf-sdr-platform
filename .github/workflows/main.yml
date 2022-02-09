@@ -1,0 +1,119 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  Checkov_Check_And_TerraformValidation_Stage_Checkov_Check_And_TerraformValidation
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    
+    env:
+      group: Test
+    steps:
+    - uses: actions/checkout@v2
+    - # "Note: the 'AZURE_SP' secret is required to be added into GitHub Secrets. See this blog post for details: https://samlearnsazure.blog/2019/12/13/github-actions/"
+      name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_SP }}
+    - 
+    - name: Install Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install pip3
+      run: python -m pip install --upgrade pip setuptools wheel
+    - name: Install Checkov using pip3
+      run: pip3 install checkov
+    - name: Security test with Checkov
+      run: checkov -d '${{ github.workspace }}' -o junitxml -s >> checkov_sectests.xml
+    - # "Error: the step 'PublishTestResults@2' does not have a conversion path yet"
+      name: Publish Security Test Results (Checkov)
+      run: |
+        echo "Error: the step 'PublishTestResults@2' does not have a conversion path yet"
+        #task: PublishTestResults@2
+        #displayName: Publish Security Test Results (Checkov)
+        #condition: always()
+        #inputs:
+        #  testresultsformat: JUnit
+        #  testresultsfiles: '**sectests.xml'
+      if: always()
+    - name: Terraform Install
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.14.11
+    - name: Terraform Init
+      run: terraform init
+    - name: Terraform Validate
+      run: terraform validate
+  deploy_Test_Stage_deploy_terraformiac:
+    # 'Note: Azure DevOps strategy>runOnce does not have an equivalent in GitHub Actions yet, and only the deploy steps are transferred to steps'
+    environment:
+      name: ${{ env.Env }}
+    steps:
+    - # "Note: the 'AZURE_SP' secret is required to be added into GitHub Secrets. See this blog post for details: https://samlearnsazure.blog/2019/12/13/github-actions/"
+      name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_SP }}
+    - 
+    - 
+    - uses: actions/checkout@v2
+    - # "Error: the step 'replacetokens@5' does not have a conversion path yet"
+      run: |
+        echo "Error: the step 'replacetokens@5' does not have a conversion path yet"
+        #task: replacetokens@5
+        #inputs:
+        #  targetfiles: '**/parameters.yml'
+        #  encoding: auto
+        #  tokenpattern: default
+        #  writebom: true
+        #  actiononmissing: warn
+        #  keeptoken: false
+        #  actiononnofiles: continue
+        #  enabletransforms: false
+        #  uselegacypattern: false
+        #  enabletelemetry: true
+    - # "Error: the step 'replacetokens@5' does not have a conversion path yet"
+      run: |
+        echo "Error: the step 'replacetokens@5' does not have a conversion path yet"
+        #task: replacetokens@5
+        #inputs:
+        #  targetfiles: '**/variables.tf'
+        #  encoding: auto
+        #  tokenpattern: default
+        #  writebom: true
+        #  actiononmissing: warn
+        #  keeptoken: false
+        #  actiononnofiles: continue
+        #  enabletransforms: false
+        #  uselegacypattern: false
+        #  enabletelemetry: true
+    - run: |
+        cat ${{ github.workspace }}/variables.tf
+        cat ${{ github.workspace }}/pipelines/parameters.yml
+      shell: bash
+    - name: Terraform Install
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.14.11
+    - name: Terraform Init
+      run: terraform init
+    - name: Terraform Plan
+      run: terraform plan
+    - name: Terraform Apply
+      run: terraform apply
