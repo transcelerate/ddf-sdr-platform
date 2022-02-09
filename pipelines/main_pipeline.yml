@@ -3,5 +3,19 @@ on:
     branches:
     - none
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  Checkov_Check_And_TerraformValidation_Stage_Checkov_Check_And_TerraformValidation:
+    env:
+      group: Test
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install pip3
+      run: python -m pip install --upgrade pip setuptools wheel
+    - name: Install Checkov using pip3
+      run: pip3 install checkov
+    - name: Security test with Checkov
+      run: checkov -d '${{ github.workspace }}' -o junitxml -s >> checkov_sectests.xml
+                    
