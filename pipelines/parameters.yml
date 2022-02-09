@@ -1,0 +1,7 @@
+variables:
+  adoenvironment: '#{Env}#'
+  backendServiceArm: '#{BackendService-Arm}#'
+  backendAzureRmResourceGroupName: '#{Azure-ResourceGroup}#'
+  backendAzureRmStorageAccountName: '#{Azure-StorageAccount}#'
+  backendAzureRmContainerName: '#{Azure-ContainerName}#'
+  backendAzureRmKey: '#{Azure-RmKey}#'
