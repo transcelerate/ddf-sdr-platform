@@ -29,8 +29,8 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
         
-      - uses: actions/@Plan.yml
+#       - uses: actions/@Plan.yml
       
-      - name: Terraform Apply
-        run: terraform apply
+#       - name: Terraform Apply
+#         run: terraform apply
         
