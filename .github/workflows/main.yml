@@ -20,7 +20,7 @@ jobs:
     env:
       group: Test
     steps:
-#     - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 #     - # "Note: the 'AZURE_SP' secret is required to be added into GitHub Secrets. See this blog post for details: https://samlearnsazure.blog/2019/12/13/github-actions/"
 # #       name: Azure Login
 # #       uses: azure/login@v1
