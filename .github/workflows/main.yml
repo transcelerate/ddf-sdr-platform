@@ -25,4 +25,12 @@ jobs:
     steps:
       - uses: actions/@validate.yml
       - uses: actions/@Plan.yml
+      
+      - name: Terraform Plan
+        run: terraform plan
+        
+      - uses: actions/@Plan.yml
+      
+      - name: Terraform Apply
+        run: terraform apply
         
