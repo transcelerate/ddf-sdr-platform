@@ -1,5 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
+
 name: CI
 
 # Controls when the workflow will run
@@ -56,7 +57,7 @@ jobs:
     runs-on: windows-latest
     # 'Note: Azure DevOps strategy>runOnce does not have an equivalent in GitHub Actions yet, and only the deploy steps are transferred to steps'
     environment:
-      name: ${{ env.Env }}
+      name: Test   #Env_Variable
     steps:
     - uses: actions/checkout@v2
 
