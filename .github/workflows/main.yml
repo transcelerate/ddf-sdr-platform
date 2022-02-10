@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
 jobs:
   Check_Validation:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
   
     env:
       group: Test
