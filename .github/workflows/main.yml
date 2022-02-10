@@ -14,7 +14,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 jobs:
-  Checkov_Check_And_TerraformValidation_Stage_Checkov_Check_And_TerraformValidation:
+  Check_Validation:
     runs-on: windows-latest
   
     env:
@@ -53,7 +53,8 @@ jobs:
     - name: Terraform Validate
       run: terraform validate
       
-  deploy_Test_Stage_deploy_terraformiac:
+  Deploy:
+    needs: Check_Validation 
     runs-on: windows-latest
     # 'Note: Azure DevOps strategy>runOnce does not have an equivalent in GitHub Actions yet, and only the deploy steps are transferred to steps'
     environment:
