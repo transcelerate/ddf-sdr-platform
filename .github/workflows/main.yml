@@ -24,7 +24,7 @@ jobs:
       name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_SP }
+        creds: ${{ secrets.AZURE_SP }}
     - name: Install Python 3.7
       uses: actions/setup-python@v1
       with:
