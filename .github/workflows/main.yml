@@ -23,8 +23,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
  
     steps:
-      - uses: actions/@validate.yml
-      - uses: actions/@Plan.yml
+      - uses: validate/ddf-sdr-platform@v1.6
+      - uses: Plan/ddf-sdr-platform@v1.6
       
       - name: Terraform Plan
         run: terraform plan
