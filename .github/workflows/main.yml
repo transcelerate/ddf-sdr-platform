@@ -21,11 +21,15 @@ jobs:
       group: Test
     steps:
     - uses: actions/checkout@v2
-    - # "Note: the 'AZURE_SP' secret is required to be added into GitHub Secrets. See this blog post for details: https://samlearnsazure.blog/2019/12/13/github-actions/"
-      name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_SP }}
+#     - # "Note: the 'AZURE_SP' secret is required to be added into GitHub Secrets. See this blog post for details: https://samlearnsazure.blog/2019/12/13/github-actions/"
+# #       name: Azure Login
+# #       uses: azure/login@v1
+#       with:
+#         creds: ${{ secrets.AZURE_SP }}
+        
+    - name: 'Az CLI login'
+      uses: azure/login@v1with:client-id:${{ secrets.AZURE_CLIENT_ID }}tenant-id:${{ secrets.AZURE_TENANT_ID }}subscription-id:${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      
     - name: Install Python 3.7
       uses: actions/setup-python@v1
       with:
