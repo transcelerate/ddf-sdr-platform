@@ -55,7 +55,7 @@ jobs:
       
   Deploy:
     needs: Check_Validation 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     # 'Note: Azure DevOps strategy>runOnce does not have an equivalent in GitHub Actions yet, and only the deploy steps are transferred to steps'
     environment:
       name: Test   #Env_Variable
