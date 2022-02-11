@@ -38,7 +38,20 @@ jobs:
         with:
          tokenPrefix: '#{'
          tokenSuffix: '}#'
-         files: '["**/variables.tf"]'
+         files: '["${{ github.workspace }}/pipelines/parameters.yml"]'
+        env:
+         BackendService-Arm: ${{secrets.BackendService_Arm}}
+         Env: ${{secrets.Env}}
+         Azure-ResourceGroup: ${{secrets.Azure_ResourceGroup}}
+         Azure-StorageAccount: ${{secrets.Azure_StorageAccount}}
+         Azure-ContainerName: ${{secrets.Azure_ContainerName}}
+         Azure-RmKey: ${{secrets.Azure_RmKey}}
+          
+      - uses: cschleiden/replace-tokens@v1
+        with:
+         tokenPrefix: '#{'
+         tokenSuffix: '}#'
+         files: '["${{ github.workspace }}/variables.tf"]'
         env:
          Env-RBac: ${{secrets.Env_RBac}}
          Vnet-IP: ${{secrets.Vnet_IP}}
