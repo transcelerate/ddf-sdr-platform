@@ -33,6 +33,19 @@ jobs:
         run: |
           echo $DEBUG_PASSWORD >> secrets.txt
           echo $DEBUG_SECRET_KEY >> secrets.txt
+          
+      - uses: cschleiden/replace-tokens@v1
+        with:
+         tokenPrefix: '#{'
+         tokenSuffix: '}#'
+         files: '["**/variables.tf"]'
+        env:
+         Env-RBac: ${{secrets.Env_RBac}}
+         Vnet-IP: ${{secrets.Vnet_IP}}
+         Subnet-IP: ${{secrets.Subnet_IP}}
+         Subnet-Dsaddress1: ${{secrets.Subnet_Dsaddress1}}
+         Subnet-Dsaddress2: ${{secrets.Subnet_Dsaddress2}}
+         Publisher-Email: ${{secrets.Publisher_Email}}
 
       - name: Run tmate
         uses: mxschmitt/action-tmate@v2
