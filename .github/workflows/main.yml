@@ -47,8 +47,8 @@ jobs:
       
     - uses: cschleiden/replace-tokens@v1
       with:
-         tokenPrefix: '#{'
-         tokenSuffix: '}#'
+         tokenPrefix: '#$'
+         tokenSuffix: '$#'
          files: '["**/variables.tf"]'
       env:
          Env-RBac: ${{secrets.Env_RBac}}
@@ -128,8 +128,8 @@ jobs:
        
     - uses: cschleiden/replace-tokens@v1
       with:
-         tokenPrefix: '#{'
-         tokenSuffix: '}#'
+         tokenPrefix: '#$'
+         tokenSuffix: '$#'
          files: '["**/variables.tf"]'
       env:
          Env-RBac: ${{secrets.Env_RBac}}
