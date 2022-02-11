@@ -75,6 +75,9 @@ jobs:
         BackendService-Arm: ${{secrets.BackendService_Arm}}
         Env: ${{secrets.Env}}
         Azure-ResourceGroup: ${{secrets.Azure_ResourceGroup}}
+        Azure-StorageAccount: ${{secrets.Azure_StorageAccount}}
+        Azure-ContainerName: ${{secrets.Azure_ContainerName}}
+        Azure-RmKey: ${{secrets.Azure_RmKey}}
      
     - name: list
       run: |
@@ -85,11 +88,18 @@ jobs:
         
        
        
-#     - uses: cschleiden/replace-tokens@v1
-#       with:
-#          tokenPrefix: '#{'
-#          tokenSuffix: '}#'
-#          files: '["**/variables.tf"]'
+    - uses: cschleiden/replace-tokens@v1
+      with:
+         tokenPrefix: '#{'
+         tokenSuffix: '}#'
+         files: '["**/variables.tf"]'
+      env:
+         Env-RBac: ${{secrets.Env_RBac}}
+         Vnet-IP: ${{secrets.Vnet_IP}}
+         Subnet-IP: ${{secrets.Subnet_IP}}
+         Subnet-Dsaddress1: ${{secrets.Subnet_Dsaddress1}}
+         Subnet-Dsaddress2: ${{secrets.Subnet_Dsaddress2}}
+         Publisher-Email: ${{secrets.Publisher_Email}}
          
 #     - run: |
 #         cat ${{ github.workspace }}/variables.tf
