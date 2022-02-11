@@ -69,8 +69,8 @@ jobs:
          Publisher-Email: ${{secrets.Publisher_Email}}
        
        
-    - name: Run tmate
-      uses: mxschmitt/action-tmate@v2
+#     - name: Run tmate
+#       uses: mxschmitt/action-tmate@v2
          
     - run: |
         cat ${{ github.workspace }}/variables.tf
