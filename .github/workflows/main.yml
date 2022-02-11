@@ -75,6 +75,12 @@ jobs:
         BackendService-Arm: ${{secrets.BackendService_Arm}}
         Env: ${{secrets.Env}}
         Azure-ResourceGroup: ${{secrets.Azure_ResourceGroup}}
+     
+    - name: list
+      run: |
+       cat ${{ github.workspace }}/pipelines/parameters.yml
+      
+  
       
         
        
