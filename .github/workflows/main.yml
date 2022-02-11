@@ -37,7 +37,7 @@ jobs:
       with:
         tokenPrefix: '#{'
         tokenSuffix: '}#'
-        files: '["**/parameters.yml"]'
+        files: '["${{ github.workspace }}/pipelines/parameters.yml"]'
       env:
         BackendService-Arm: ${{secrets.BackendService_Arm}}
         Env: ${{secrets.Env}}
@@ -59,7 +59,7 @@ jobs:
       with:
          tokenPrefix: '#{'
          tokenSuffix: '}#'
-         files: '["**/variables.tf"]'
+         files: '["${{ github.workspace }}/variables.tf"]'
       env:
          Env-RBac: ${{secrets.Env_RBac}}
          Vnet-IP: ${{secrets.Vnet_IP}}
@@ -122,7 +122,7 @@ jobs:
       with:
         tokenPrefix: '#{'
         tokenSuffix: '}#'
-        files: '["**/parameters.yml"]'
+        files: '["${{ github.workspace }}/pipelines/parameters.yml"]'
       env:
         BackendService-Arm: ${{secrets.BackendService_Arm}}
         Env: ${{secrets.Env}}
@@ -144,7 +144,7 @@ jobs:
       with:
          tokenPrefix: '#{'
          tokenSuffix: '}#'
-         files: '["**/variables.tf"]'
+         files: '["${{ github.workspace }}/variables.tf"]'
       env:
          Env-RBac: ${{secrets.Env_RBac}}
          Vnet-IP: ${{secrets.Vnet_IP}}
