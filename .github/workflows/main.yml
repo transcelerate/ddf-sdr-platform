@@ -31,8 +31,37 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_SP }}
-        
-
+      
+    - uses: cschleiden/replace-tokens@v1
+      with:
+        tokenPrefix: '#{'
+        tokenSuffix: '}#'
+        files: '["**/parameters.yml"]'
+      env:
+        BackendService-Arm: ${{secrets.BackendService_Arm}}
+        Env: ${{secrets.Env}}
+        Azure-ResourceGroup: ${{secrets.Azure_ResourceGroup}}
+        Azure-StorageAccount: ${{secrets.Azure_StorageAccount}}
+        Azure-ContainerName: ${{secrets.Azure_ContainerName}}
+        Azure-RmKey: ${{secrets.Azure_RmKey}}
+      
+    - uses: cschleiden/replace-tokens@v1
+      with:
+         tokenPrefix: '#{'
+         tokenSuffix: '}#'
+         files: '["**/variables.tf"]'
+      env:
+         Env-RBac: ${{secrets.Env_RBac}}
+         Vnet-IP: ${{secrets.Vnet_IP}}
+         Subnet-IP: ${{secrets.Subnet_IP}}
+         Subnet-Dsaddress1: ${{secrets.Subnet_Dsaddress1}}
+         Subnet-Dsaddress2: ${{secrets.Subnet_Dsaddress2}}
+         Publisher-Email: ${{secrets.Publisher_Email}}
+         
+    - run: |
+        cat ${{ github.workspace }}/variables.tf
+        cat ${{ github.workspace }}/pipelines/parameters.yml
+      shell: bash
       
     - name: Install Python 3.7
       uses: actions/setup-python@v1
