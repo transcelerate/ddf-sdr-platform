@@ -60,7 +60,7 @@ variable disable_log {
 ####################### Vnet Begin #####################################################
 
 variable "address_space"{
-    default = [ "#{Vnet-IP}#" ]
+    default = "#{Vnet-IP}#"
 }
 
 ####################### Vnet End #####################################################
@@ -70,7 +70,7 @@ variable "address_space"{
 ####################### Subnet Begin #####################################################
 
 variable "address_prefix"{
-    default = [ "#{Subnet-IP}#" ]
+    default = "#{Subnet-IP}#"
 }
 
 ####################### Subnet End   #####################################################
@@ -79,7 +79,7 @@ variable "address_prefix"{
 
 variable "dsaddress_prefix" {
 
-    default = ["#{Subnet-Dsaddress1}#"]
+    default = "#{Subnet-Dsaddress1}#"
   
 }
 
@@ -105,7 +105,7 @@ variable "delegation_name" {
 
 variable "dsaddress_prefix2" {
 
-    default = ["#{Subnet-Dsaddress2}#"]
+    default = "#{Subnet-Dsaddress2}#"
   
 }
 
