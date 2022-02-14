@@ -53,7 +53,7 @@ jobs:
     - name: Find and Replace User Name - Using Build Variable
       run: |
         find variables.tf -type f -exec sed -i ''s/#{Env-RBac}#/${{ secrets.Env_RBac }}/g'' {} \;
-        find variables.tf -type f -exec sed -i ''s/#{Vnet-IP}#/${{ secrets.Vnet_IP }}/g'' {} \;
+        find variables.tf -type f -exec sed -i  s/#{Vnet-IP}#/'${{ secrets.Vnet_IP }}' {} \;
         find variables.tf -type f -exec sed -i ''s/#{Subnet-IP}#/${{ secrets.Subnet_IP }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress1}#/${{ secrets.Subnet_Dsaddress1 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress2}#/${{ secrets.Subnet_Dsaddress2 }}/g'' {} \;
