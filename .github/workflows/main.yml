@@ -59,8 +59,8 @@ jobs:
       run: |
         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Env}#/${{ secrets.Env }}/g'' {} \;
         find pipelines/parameters.yml -type f -exec sed -i ''s/#{BackendService-Arm}#/${{ secrets.BackendService_Arm }}/g'' {} \;
-        find pipelines/parameters.yml -type f -exec sed -i ''s/#{vAzure-ResourceGroup}#/${{ secrets.Azure_ResourceGroup }}/g'' {} \;
-        find pipelines/parameters.yml -type f -exec sed -i ''s/#{Subnet-Azure-StorageAccount}#/${{ secrets.Azure_StorageAccount }}/g'' {} \;
+        find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ResourceGroup}#/${{ secrets.Azure_ResourceGroup }}/g'' {} \;
+        find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-StorageAccount}#/${{ secrets.Azure_StorageAccount }}/g'' {} \;
         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ContainerName}#/${{ secrets.Azure_ContainerName }}/g'' {} \;
         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-RmKey}#/${{ secrets.Azure_RmKey }}/g'' {} \;
         
