@@ -25,6 +25,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      Blob_Key: ${{ secrets.AZURE_RMKEY}}
     
       group: Test
     steps:
@@ -47,7 +48,7 @@ jobs:
 #         Azure-ResourceGroup: ${{secrets.Azure_ResourceGroup}}
 #         Azure-StorageAccount: ${{secrets.Azure_StorageAccount}}
 #         Azure-ContainerName: ${{secrets.Azure_ContainerName}}
-#         Azure-RmKey: ${{secrets.Azure_RmKey}}
+#         Azure-RmKey: ${{secrets.AZURE_RMKEY}}
      
     - name: Find and Replace User Name - Using Build Variable
       run: |
@@ -113,7 +114,7 @@ jobs:
         terraform_version: 0.14.11
         
     - name: Terraform Init
-      run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP"
+      run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP"  -backend-config="Key=$Blob_Key" 
     
     - name: Terraform Validate
       run: terraform validate
