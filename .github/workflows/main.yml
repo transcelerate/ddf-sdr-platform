@@ -18,6 +18,9 @@ jobs:
   Check_Validation:
     runs-on: ubuntu-latest
     env:
+      RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCEGROUP }}
+      STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGEACCOUNT }}
+      CONTAINER_NAME: ${{ secrets.AZURE_CONTAINERNAME }}
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
