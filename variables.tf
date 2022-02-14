@@ -105,7 +105,7 @@ variable "delegation_name" {
 
 variable "dsaddress_prefix2" {
 
-    default = ["#{Subnet-Dsaddress}#"]
+    default = ["#{Subnet-Dsaddress2}#"]
   
 }
 
