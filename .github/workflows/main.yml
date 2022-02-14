@@ -33,44 +33,54 @@ jobs:
         creds: ${{ secrets.AZURE_SP }}
     
     
-    - uses: cschleiden/replace-tokens@v1
-      with:
-        tokenPrefix: '#{'
-        tokenSuffix: '}#'
-        files: '["${{ github.workspace }}/pipelines/parameters.yml"]'
-      env:
-        BackendService-Arm: ${{secrets.BackendService_Arm}}
-        Env: ${{secrets.Env}}
-        Azure-ResourceGroup: ${{secrets.Azure_ResourceGroup}}
-        Azure-StorageAccount: ${{secrets.Azure_StorageAccount}}
-        Azure-ContainerName: ${{secrets.Azure_ContainerName}}
-        Azure-RmKey: ${{secrets.Azure_RmKey}}
+#     - uses: cschleiden/replace-tokens@v1
+#       with:
+#         tokenPrefix: '#{'
+#         tokenSuffix: '}#'
+#         files: '["${{ github.workspace }}/pipelines/parameters.yml"]'
+#       env:
+#         BackendService-Arm: ${{secrets.BackendService_Arm}}
+#         Env: ${{secrets.Env}}
+#         Azure-ResourceGroup: ${{secrets.Azure_ResourceGroup}}
+#         Azure-StorageAccount: ${{secrets.Azure_StorageAccount}}
+#         Azure-ContainerName: ${{secrets.Azure_ContainerName}}
+#         Azure-RmKey: ${{secrets.Azure_RmKey}}
      
-#     - name: Find and Replace User Name - Using Build Variable
-#       run: |
-#         find variables.tf -type f -exec sed -i ''s/#{Env-RBac}#/${{ secrets.Env_RBac }}/g'' {} \;
-#         find variables.tf -type f -exec sed -i ''s/#{Vnet-IP}#/${{ secrets.Vnet_IP }}/g'' {} \;
-#         find variables.tf -type f -exec sed -i ''s/#{Subnet-IP}#/${{ secrets.Subnet_IP }}/g'' {} \;
-#         find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress1}#/${{ secrets.Subnet_Dsaddress1 }}/g'' {} \;
-#         find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress2}#/${{ secrets.Subnet_Dsaddress2 }}/g'' {} \;
-#         find variables.tf -type f -exec sed -i ''s/#{Publisher-Email}#/${{ secrets.Publisher_Email }}/g'' {} \;
+    - name: Find and Replace User Name - Using Build Variable
+      run: |
+        find variables.tf -type f -exec sed -i ''s/#{Env-RBac}#/${{ secrets.Env_RBac }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Vnet-IP}#/${{ secrets.Vnet_IP }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-IP}#/${{ secrets.Subnet_IP }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress1}#/${{ secrets.Subnet_Dsaddress1 }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress2}#/${{ secrets.Subnet_Dsaddress2 }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Publisher-Email}#/${{ secrets.Publisher_Email }}/g'' {} \;
+       
+    - name: Find and Replace User Name - Using Build Variable
+      run: |
+        find parameters.yml -type f -exec sed -i ''s/#{Env}#/${{ secrets.Env }}/g'' {} \;
+        find parameters.yml -type f -exec sed -i ''s/#{BackendService-Arm}#/${{ secrets.BackendService_Arm }}/g'' {} \;
+        find parameters.yml -type f -exec sed -i ''s/#{vAzure-ResourceGroup}#/${{ secrets.Azure_ResourceGroup }}/g'' {} \;
+        find parameters.yml -type f -exec sed -i ''s/#{Subnet-Azure-StorageAccount}#/${{ secrets.Azure_StorageAccount }}/g'' {} \;
+        find parameters.yml -type f -exec sed -i ''s/#{Azure-ContainerName}#/${{ secrets.Azure_ContainerName }}/g'' {} \;
+        find parameters.yml -type f -exec sed -i ''s/#{Azure-RmKey}#/${{ secrets.Azure_RmKey }}/g'' {} \;
         
-    - uses: cschleiden/replace-tokens@v1
-      with:
-         tokenPrefix: '#{'
-         tokenSuffix: '}#'
-         files: '["${{ github.workspace }}/variables.tf"]'
-      env:
-         Env-RBac: ${{secrets.Env_RBac}}
-         Vnet-IP: ${{secrets.Vnet_IP}}
-         Subnet-IP: ${{secrets.Subnet_IP}}
-         Subnet-Dsaddress1: ${{secrets.Subnet_Dsaddress1}}
-         Subnet-Dsaddress2: ${{secrets.Subnet_Dsaddress2}}
-         Publisher-Email: ${{secrets.Publisher_Email}}
+#     - uses: cschleiden/replace-tokens@v1
+#       with:
+#          tokenPrefix: '#{'
+#          tokenSuffix: '}#'
+#          files: '["${{ github.workspace }}/variables.tf"]'
+#       env:
+#          Env-RBac: ${{secrets.Env_RBac}}
+#          Vnet-IP: ${{secrets.Vnet_IP}}
+#          Subnet-IP: ${{secrets.Subnet_IP}}
+#          Subnet-Dsaddress1: ${{secrets.Subnet_Dsaddress1}}
+#          Subnet-Dsaddress2: ${{secrets.Subnet_Dsaddress2}}
+#          Publisher-Email: ${{secrets.Publisher_Email}}
+
        
        
-#     - name: Run tmate
-#       uses: mxschmitt/action-tmate@v2
+    - name: Run tmate
+      uses: mxschmitt/action-tmate@v2
          
     - run: |
         cat ${{ github.workspace }}/variables.tf
@@ -118,40 +128,55 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - uses: cschleiden/replace-tokens@v1
-      with:
-        tokenPrefix: '#{'
-        tokenSuffix: '}#'
-        files: '["${{ github.workspace }}/pipelines/parameters.yml"]'
-      env:
-        BackendService-Arm: ${{secrets.BackendService_Arm}}
-        Env: ${{secrets.Env}}
-        Azure-ResourceGroup: ${{secrets.Azure_ResourceGroup}}
-        Azure-StorageAccount: ${{secrets.Azure_StorageAccount}}
-        Azure-ContainerName: ${{secrets.Azure_ContainerName}}
-        Azure-RmKey: ${{secrets.Azure_RmKey}}
+#     - uses: cschleiden/replace-tokens@v1
+#       with:
+#         tokenPrefix: '#{'
+#         tokenSuffix: '}#'
+#         files: '["${{ github.workspace }}/pipelines/parameters.yml"]'
+#       env:
+#         BackendService-Arm: ${{secrets.BackendService_Arm}}
+#         Env: ${{secrets.Env}}
+#         Azure-ResourceGroup: ${{secrets.Azure_ResourceGroup}}
+#         Azure-StorageAccount: ${{secrets.Azure_StorageAccount}}
+#         Azure-ContainerName: ${{secrets.Azure_ContainerName}}
+#         Azure-RmKey: ${{secrets.Azure_RmKey}}
      
     - name: list
       run: |
        cat ${{ github.workspace }}/pipelines/parameters.yml
-      
+     
+    - name: Find and Replace User Name - Using Build Variable
+      run: |
+        find variables.tf -type f -exec sed -i ''s/#{Env-RBac}#/${{ secrets.Env_RBac }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Vnet-IP}#/${{ secrets.Vnet_IP }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-IP}#/${{ secrets.Subnet_IP }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress1}#/${{ secrets.Subnet_Dsaddress1 }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress2}#/${{ secrets.Subnet_Dsaddress2 }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Publisher-Email}#/${{ secrets.Publisher_Email }}/g'' {} \;
   
       
-        
+    - name: Find and Replace User Name - Using Build Variable
+      run: |
+        find parameters.yml -type f -exec sed -i ''s/#{Env}#/${{ secrets.Env }}/g'' {} \;
+        find parameters.yml -type f -exec sed -i ''s/#{BackendService-Arm}#/${{ secrets.BackendService_Arm }}/g'' {} \;
+        find parameters.yml -type f -exec sed -i ''s/#{vAzure-ResourceGroup}#/${{ secrets.Azure_ResourceGroup }}/g'' {} \;
+        find parameters.yml -type f -exec sed -i ''s/#{Subnet-Azure-StorageAccount}#/${{ secrets.Azure_StorageAccount }}/g'' {} \;
+        find parameters.yml -type f -exec sed -i ''s/#{Azure-ContainerName}#/${{ secrets.Azure_ContainerName }}/g'' {} \;
+        find parameters.yml -type f -exec sed -i ''s/#{Azure-RmKey}#/${{ secrets.PublAzure_RmKey }}/g'' {} \;    
        
        
-    - uses: cschleiden/replace-tokens@v1
-      with:
-         tokenPrefix: '#{'
-         tokenSuffix: '}#'
-         files: '["${{ github.workspace }}/variables.tf"]'
-      env:
-         Env-RBac: ${{secrets.Env_RBac}}
-         Vnet-IP: ${{secrets.Vnet_IP}}
-         Subnet-IP: ${{secrets.Subnet_IP}}
-         Subnet-Dsaddress1: ${{secrets.Subnet_Dsaddress1}}
-         Subnet-Dsaddress2: ${{secrets.Subnet_Dsaddress2}}
-         Publisher-Email: ${{secrets.Publisher_Email}}
+#     - uses: cschleiden/replace-tokens@v1
+#       with:
+#          tokenPrefix: '#{'
+#          tokenSuffix: '}#'
+#          files: '["${{ github.workspace }}/variables.tf"]'
+#       env:
+#          Env-RBac: ${{secrets.Env_RBac}}
+#          Vnet-IP: ${{secrets.Vnet_IP}}
+#          Subnet-IP: ${{secrets.Subnet_IP}}
+#          Subnet-Dsaddress1: ${{secrets.Subnet_Dsaddress1}}
+#          Subnet-Dsaddress2: ${{secrets.Subnet_Dsaddress2}}
+#          Publisher-Email: ${{secrets.Publisher_Email}}
          
     - run: |
         cat ${{ github.workspace }}/variables.tf
