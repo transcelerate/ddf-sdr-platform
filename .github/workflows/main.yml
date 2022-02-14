@@ -54,19 +54,19 @@ jobs:
       run: |
         find variables.tf -type f -exec sed -i ''s/#{Env-RBac}#/${{ secrets.Env_RBac }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{Vnet-IP}#/'${{ secrets.Vnet_IP }}'/g'' {} \;
-        find variables.tf -type f -exec sed -i ''s/#{Subnet-IP}#/${{ secrets.Subnet_IP }}/g'' {} \;
-        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress1}#/${{ secrets.Subnet_Dsaddress1 }}/g'' {} \;
-        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress2}#/${{ secrets.Subnet_Dsaddress2 }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-IP}#/'${{ secrets.Subnet_IP }}'/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress1}#/'${{ secrets.Subnet_Dsaddress1 }}'/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress2}#/'${{ secrets.Subnet_Dsaddress2 }}'/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{Publisher-Email}#/${{ secrets.Publisher_Email }}/g'' {} \;
        
-#     - name: Find and Replace User Name - Using Build Variable
-#       run: |
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Env}#/${{ secrets.Env }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{BackendService-Arm}#/${{ secrets.BackendService_Arm }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ResourceGroup}#/${{ secrets.Azure_ResourceGroup }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-StorageAccount}#/${{ secrets.Azure_StorageAccount }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ContainerName}#/${{ secrets.Azure_ContainerName }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-RmKey}#/${{ secrets.Azure_RmKey }}/g'' {} \;
+    - name: Find and Replace User Name - Using Build Variable
+      run: |
+        find pipelines/parameters.yml -type f -exec sed -i ''s/#{Env}#/${{ secrets.Env }}/g'' {} \;
+        find pipelines/parameters.yml -type f -exec sed -i ''s/#{BackendService-Arm}#/${{ secrets.BackendService_Arm }}/g'' {} \;
+        find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ResourceGroup}#/${{ secrets.Azure_ResourceGroup }}/g'' {} \;
+        find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-StorageAccount}#/${{ secrets.Azure_StorageAccount }}/g'' {} \;
+        find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ContainerName}#/${{ secrets.Azure_ContainerName }}/g'' {} \;
+        find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-RmKey}#/${{ secrets.Azure_RmKey }}/g'' {} \;
         
 #     - uses: cschleiden/replace-tokens@v1
 #       with:
@@ -153,11 +153,12 @@ jobs:
     - name: Find and Replace User Name - Using Build Variable
       run: |
         find variables.tf -type f -exec sed -i ''s/#{Env-RBac}#/${{ secrets.Env_RBac }}/g'' {} \;
-        find variables.tf -type f -exec sed -i ''s/#{Vnet-IP}#/${{ secrets.Vnet_IP }}/g'' {} \;
-        find variables.tf -type f -exec sed -i ''s/#{Subnet-IP}#/${{ secrets.Subnet_IP }}/g'' {} \;
-        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress1}#/${{ secrets.Subnet_Dsaddress1 }}/g'' {} \;
-        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress2}#/${{ secrets.Subnet_Dsaddress2 }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Vnet-IP}#/'${{ secrets.Vnet_IP }}'/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-IP}#/'${{ secrets.Subnet_IP }}'/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress1}#/'${{ secrets.Subnet_Dsaddress1 }}'/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress2}#/'${{ secrets.Subnet_Dsaddress2 }}'/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{Publisher-Email}#/${{ secrets.Publisher_Email }}/g'' {} \;
+       
   
       
     - name: Find and Replace User Name - Using Build Variable
@@ -170,18 +171,6 @@ jobs:
         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-RmKey}#/${{ secrets.Azure_RmKey }}/g'' {} \;
        
        
-#     - uses: cschleiden/replace-tokens@v1
-#       with:
-#          tokenPrefix: '#{'
-#          tokenSuffix: '}#'
-#          files: '["${{ github.workspace }}/variables.tf"]'
-#       env:
-#          Env-RBac: ${{secrets.Env_RBac}}
-#          Vnet-IP: ${{secrets.Vnet_IP}}
-#          Subnet-IP: ${{secrets.Subnet_IP}}
-#          Subnet-Dsaddress1: ${{secrets.Subnet_Dsaddress1}}
-#          Subnet-Dsaddress2: ${{secrets.Subnet_Dsaddress2}}
-#          Publisher-Email: ${{secrets.Publisher_Email}}
          
     - run: |
         cat ${{ github.workspace }}/variables.tf
