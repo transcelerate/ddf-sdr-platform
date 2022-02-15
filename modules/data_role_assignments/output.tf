@@ -1,6 +1,8 @@
-output "adgroup_id" {
-
-    value = data.azuread_group.ADGroupName.object_id
-  
+output "spobject_id" 
+{    
+    value = data.azuread_service_principal.SPName.object_id  
 }
+
+
+
 
