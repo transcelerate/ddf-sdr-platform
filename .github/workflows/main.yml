@@ -36,19 +36,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_SP }}
     
-    
-#     - uses: cschleiden/replace-tokens@v1
-#       with:
-#         tokenPrefix: '#{'
-#         tokenSuffix: '}#'
-#         files: '["${{ github.workspace }}/pipelines/parameters.yml"]'
-#       env:
-#         BackendService-Arm: ${{secrets.BackendService_Arm}}
-#         Env: ${{secrets.Env}}
-#         Azure-ResourceGroup: ${{secrets.Azure_ResourceGroup}}
-#         Azure-StorageAccount: ${{secrets.Azure_StorageAccount}}
-#         Azure-ContainerName: ${{secrets.Azure_ContainerName}}
-#         Azure-RmKey: ${{secrets.AZURE_RMKEY}}
+
      
     - name: Find and Replace User Name - Using Build Variable
       run: |
@@ -137,18 +125,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-#     - uses: cschleiden/replace-tokens@v1
-#       with:
-#         tokenPrefix: '#{'
-#         tokenSuffix: '}#'
-#         files: '["${{ github.workspace }}/pipelines/parameters.yml"]'
-#       env:
-#         BackendService-Arm: ${{secrets.BackendService_Arm}}
-#         Env: ${{secrets.Env}}
-#         Azure-ResourceGroup: ${{secrets.Azure_ResourceGroup}}
-#         Azure-StorageAccount: ${{secrets.Azure_StorageAccount}}
-#         Azure-ContainerName: ${{secrets.Azure_ContainerName}}
-#         Azure-RmKey: ${{secrets.Azure_RmKey}}
+
      
     - name: list
       run: |
@@ -190,8 +167,8 @@ jobs:
     - name: Terraform Plan
       run: terraform plan
        
-#     - name: Terraform Apply
-#       run: terraform apply
+    - name: Terraform Apply
+      run: terraform apply
                     
    
                     
