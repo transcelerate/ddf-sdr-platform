@@ -591,6 +591,44 @@ variable "role2" {
     default = "Reader"
   
 }
+variable "keyvault_role" {
+
+default = "Key Vault Secrets User"
+}
+
+
+
+variable "display_name" {
+
+
+
+default = "spn_sdr_cicd"
+
+}
+
+
+
+variable "key_permissions" {
+
+
+
+default = ["Get","List", "Update"]
+
+}
+
+
+
+variable "secret_permissions" {
+
+default = ["Get","List","Set"]
+}
+
+
+
+variable "certificate_permissions" {
+
+default = ["Get","List","Update"]
+}
 
 ###################### RBAC roles variables End  ###################################################
 
