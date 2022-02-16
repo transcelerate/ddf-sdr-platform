@@ -83,54 +83,6 @@ module "module_deligatedsubnet2" {
     depends_on                  = [module.module_virtualnetwork]      
 }
 
-################################## Storage Account #######################################################
-module "module_storage_account_creation" {
-  source                      = "./modules/storage_account"
-  storage_account_name        = "sa${var.subscription_acronym}${var.env_acronym}${var.location}" 
-  rg_name                     =  module.module_resource_group_2.rg_name
-  storage_location            =  var.storage_location
-  storage_account_type        =  var.storage_account_type
-  storage_account_kind        =  var.storage_account_kind
-  storage_account_access_tier =  var.storage_account_access_tier
-  storage_account_tags = {
-          Environment = var.env_acronym
-           App_Layer = var.App_Layer_BE
-  }
-  secure_transfer                     =  var.secure_transfer 
-  enable_blob_public_access           =  var.enable_blob_public_access
-  storage_account_key_access          =  var.storage_account_key_access
-  tls_version                         =  var.tls_version
-  enable_hierarchical_namespace       =  var.enable_hierarchical_namespace
-  enable_network_file_system_v3       =  var.enable_network_file_system_v3
-  large_file_share_enabled            =  var.large_file_share_enabled
-  virtual_network_subnet_ids          =  [module.module_deligatedsubnet2.Dsubnet_ID]
-  default_action                      =  var.default_action
-  enable_publish_microsoft_endpoints  =  var.enable_publish_microsoft_endpoints
-  retention_days                      =  var.retention_days
-  versioning_enabled                  =  var.versioning_enabled
-  change_feed_enabled                 =  var.change_feed_enabled
-}
-
-################################## Storage Account Diagnostic Settings ################################################
-
-module "module_storage_account_diagsettings"{
-    source                         = "./modules/storage_account_diag_settings"
-    storage_diag_name              = "diags-sa-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-    target_resource_id             = module.module_storage_account_creation.storage_account_id
-    log_analytics_workspace_id     = module.module_loganalytics_workspace.log_analytics_id
-    enable_log                     = var.enable_log
-
-}
-
-################################## Storage Account/Blob Diagnostic Settings ################################################
-
-module "module_storage_account_blob_diagsettings"{
-    source                         = "./modules/storage_account_blob_diag_settings"
-    storage_diag_name              = "diags-blob-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-    target_resource_id             = "${module.module_storage_account_creation.storage_account_id}/blobServices/default"
-    log_analytics_workspace_id     = module.module_loganalytics_workspace.log_analytics_id
-    enable_log                     = var.enable_log
-}
 
 ################################## Log Analytics Workspace ################################################
 
@@ -362,6 +314,7 @@ module "module_appservice"{
     apparname                               = var.apparname
     priority                                = var.priority
     action                                  = var.action
+    depends_on                     = [module.module_deligatedsubnet1]
     app_service_tags                = {
         Environment = var.env_acronym
         App_Layer   = var.App_Layer_FE
@@ -387,7 +340,8 @@ module "module_appservice2"{
     ip_address                              = var.ip_address2
     apparname                               = var.apparname2
     priority                                = var.priority2
-    action                                  = var.action2   
+    action                                  = var.action2
+    depends_on =            [module.module_deligatedsubnet2]
     app_service_tags                = {
 
         Environment = var.env_acronym
