@@ -1,6 +1,5 @@
 # This is a basic workflow to help you get started with Actions
 
-
 name: CI
 
 # Controls when the workflow will run
@@ -16,7 +15,9 @@ on:
 jobs:
   
   Check_Validation:
+    # The agent type used to build and deploy
     runs-on: ubuntu-latest
+    # Environment variables used in different stages, all are defined globally to be used
     env:
       RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCEGROUP }}
       STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGEACCOUNT }}
@@ -29,6 +30,7 @@ jobs:
     
       group: Test
     steps:
+      # Step to Login to Azure Portal
     - uses: actions/checkout@v2
     - # "Note: the 'AZURE_SP' secret is required to be added into GitHub Secrets. See this blog post for details: https://samlearnsazure.blog/2019/12/13/github-actions/"
       name: Azure Login
@@ -39,6 +41,7 @@ jobs:
 
      
     - name: Find and Replace User Name - Using Build Variable
+      # This step will replace all the variables in file while fetching the value from secrets
       run: |
         find variables.tf -type f -exec sed -i ''s/#{Env-RBac}#/${{ secrets.Env_RBac }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{Vnet-IP}#/'${{ secrets.Vnet_IP }}'/g'' {} \;
@@ -48,6 +51,8 @@ jobs:
         find variables.tf -type f -exec sed -i ''s/#{Publisher-Email}#/${{ secrets.Publisher_Email }}/g'' {} \;
        
     - name: Find and Replace User Name - Using Build Variable
+      # This step will replace all the variables in file while fetching the value from secrets
+
       run: |
         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Env}#/${{ secrets.Env }}/g'' {} \;
         find pipelines/parameters.yml -type f -exec sed -i ''s/#{BackendService-Arm}#/${{ secrets.BackendService_Arm }}/g'' {} \;
@@ -55,24 +60,9 @@ jobs:
         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-StorageAccount}#/${{ secrets.Azure_StorageAccount }}/g'' {} \;
         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ContainerName}#/${{ secrets.Azure_ContainerName }}/g'' {} \;
         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-RmKey}#/${{ secrets.Azure_RmKey }}/g'' {} \;
-        
-#     - uses: cschleiden/replace-tokens@v1
-#       with:
-#          tokenPrefix: '#{'
-#          tokenSuffix: '}#'
-#          files: '["${{ github.workspace }}/variables.tf"]'
-#       env:
-#          Env-RBac: ${{secrets.Env_RBac}}
-#          Vnet-IP: ${{secrets.Vnet_IP}}
-#          Subnet-IP: ${{secrets.Subnet_IP}}
-#          Subnet-Dsaddress1: ${{secrets.Subnet_Dsaddress1}}
-#          Subnet-Dsaddress2: ${{secrets.Subnet_Dsaddress2}}
-#          Publisher-Email: ${{secrets.Publisher_Email}}
 
        
-       
-#     - name: Run tmate
-#       uses: mxschmitt/action-tmate@v2
+
          
     - run: |
         cat ${{ github.workspace }}/variables.tf
