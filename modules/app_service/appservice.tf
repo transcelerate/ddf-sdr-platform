@@ -23,11 +23,11 @@ resource "azurerm_app_service" "appservice" {
   site_config {
     windows_fx_version        = var.runtime_stack
     dotnet_framework_version  = "v6.0"
-#    scm_type                  = "LocalGit"
     use_32_bit_worker_process = var.use_32_bit_worker_process
     ftps_state                = var.ftps_state
     http2_enabled             = var.http2_enabled
     vnet_route_all_enabled    = "true"
+    default_documents         = [ "index.html" ]
     ip_restriction {
       
       ip_address                = var.ip_address
@@ -37,7 +37,7 @@ resource "azurerm_app_service" "appservice" {
       action                    = var.action
         
     }
-
+    
   }
   app_settings = {
     

@@ -6,6 +6,6 @@ resource "azurerm_application_insights" "app_insights" {
     workspace_id = var.log_analytics_workspace_id
     application_type = var.application_type
     tags = var.app_insights_tags
-    
+    disable_ip_masking = true
 }
 

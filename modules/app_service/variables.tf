@@ -6,14 +6,7 @@ variable "app_service_plan_id"{
     description = "App Service Plan ID"
     type        = string
 }
-# variable "dotnet_framework_version"{
-#     description = "dotnet framework version"
-#     type        = string
-# }
-# variable "scm_type"{
-#     description = "scm type"
-#     type        = string
-# }
+
 variable "rg_name"{
     description = "Resource Group name"
     type        = string

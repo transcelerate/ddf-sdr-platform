@@ -4,7 +4,7 @@ variable "alias_name"{
 }
 variable "env_acronym" {
 
-    default = "#{Env-RBac}#"
+    default = "#{Env}#"
   
 }
 
@@ -45,7 +45,7 @@ variable "App_Layer_NA" {
 }
 
 variable "subscription_acronym"{
-    default = "sdr"
+    default = "#{subscription}#"
 }
 
 variable enable_log {
@@ -79,7 +79,7 @@ variable "address_prefix"{
 
 variable "dsaddress_prefix" {
 
-    default = [ "#{Subnet-Dsaddress1}#" ]
+    default = ["#{Subnet-Dsaddress1}#"]
   
 }
 
@@ -105,7 +105,7 @@ variable "delegation_name" {
 
 variable "dsaddress_prefix2" {
 
-    default = [ "#{Subnet-Dsaddress2}#" ]
+    default = ["#{Subnet-Dsaddress2}#"]
   
 }
 
@@ -117,98 +117,6 @@ variable "service_endpoints2" {
 }
 
 ####################### Delegated Subnet 2 Variable Begin   #####################################################
-
-
-
-####################### Storage Account Begin #####################################################
-
-variable "storage_account_type"{
-    default = "Standard_GRS"
-}
-variable "storage_account_kind"{
-    default = "StorageV2"
-}
-variable "storage_account_access_tier"{
-    default = "Hot"
-}
-
-variable "storage_location" {
-
-    default = "eastus"
-  
-}
-
-
-variable "secure_transfer" {
-
-    default = "true"
-  
-}
-
-variable "enable_blob_public_access" {
-
-    default = "false"
-  
-}
-variable "storage_account_key_access" {
-
-    default = "true"
-  
-}
-
-variable "tls_version" {
-
-    default = "TLS1_2"
-  
-}
-variable "enable_hierarchical_namespace" {
-
-    default = "false"
-  
-}
-variable "enable_network_file_system_v3" {
-
-    default = "false"
-  
-} 
-variable "large_file_share_enabled" {
-
-    default = "false"
-  
-}
-
-variable "default_action" {
-
-    default = "Deny"
-  
-}
-variable "retention_days"{
-       default = "7"
-}
-
-
-variable "enable_publish_microsoft_endpoints" {
-
-    default = "true"
-  
-}
-variable "versioning_enabled" {
-
-    default = "false"
-  
-}
-
-variable "change_feed_enabled" {
-
-    default = "false"
-  
-}
-
-
-####################### Storage Account End   #####################################################
-
-
-
 
 ####################### Resource Group Begin #####################################################
 
@@ -224,7 +132,7 @@ variable "rg_location"{
 ######################API Management Variables Begin #############################################
 
 variable "publisher_name"{
-    default     = "Transcelerate-Test"
+    default     = "#{Publisher-Name}#"
 }
 variable "publisher_email"{
     default     = "#{Publisher-Email}#"
@@ -331,7 +239,8 @@ variable "ftps_state" {
 
 variable "runtime_stack2" {
 
-    default = "DOTNETCORE|3.1"
+    default = "dotnet|6"
+    
   
 }
 
@@ -567,18 +476,18 @@ variable "appservice2_role" {
 
 variable "group1" {
 
-    default = "TRAN_AZ_sub_SDR_DDFEng_Admin"
+    default = "#{ADgroup1}#"
 
   }
 
 variable "group2" {
   
-    default = "TRAN_AZ_sub_SDR_DDFEng"
+    default = "#{ADgroup2}#"
 }
 
 variable "group3" {
   
-  default = "TRAN_AZ_sub_SDR_Test"
+  default = "#{ADgroup3}#"
 }
 
 variable "role1" {
@@ -591,44 +500,34 @@ variable "role2" {
     default = "Reader"
   
 }
+
 variable "keyvault_role" {
-
-default = "Key Vault Secrets User"
+  
+  default = "Key Vault Secrets User"
 }
-
-
 
 variable "display_name" {
 
-
-
-default = "spn_sdr_cicd"
-
+    default = "#{ServicePrinciple}#"
+  
 }
-
-
 
 variable "key_permissions" {
 
-
-
-default = ["Get","List", "Update"]
-
+    default = ["Get","List", "Update"]
+  
 }
-
-
 
 variable "secret_permissions" {
-
-default = ["Get","List","Set"]
+  
+    default = ["Get","List","Set"]
 }
-
-
 
 variable "certificate_permissions" {
-
-default = ["Get","List","Update"]
+  
+    default = ["Get","List","Update"]
 }
+
 
 ###################### RBAC roles variables End  ###################################################
 

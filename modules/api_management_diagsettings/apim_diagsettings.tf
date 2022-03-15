@@ -11,7 +11,5 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set" {
     category = "WebSocketConnectionLogs"
     enabled  = var.enable_log
   }
-     metric {
-    category = "AllMetrics"
-  }
+  
 }

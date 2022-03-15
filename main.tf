@@ -83,7 +83,6 @@ module "module_deligatedsubnet2" {
     depends_on                  = [module.module_virtualnetwork]      
 }
 
-
 ################################## Log Analytics Workspace ################################################
 
 module "module_loganalytics_workspace"{
@@ -114,7 +113,7 @@ module "module_keyvault"{
     source                          = "./modules/key_vault"
     rg_name                         = module.module_resource_group_2.rg_name
     rg_location                     = module.module_resource_group_2.rg_location
-    keyvault_name                   = "kv-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+    keyvault_name                   = "kv-${var.subscription_acronym}-${var.env_acronym}-${var.location}-1"
     sku_name                        = var.sku_name
     enabled_for_disk_encryption     = var.enabled_for_disk_encryption
     enabled_for_template_deployment = var.enabled_for_template_deployment
@@ -232,15 +231,7 @@ module "module_app_insights"{
         App_Layer = var.App_Layer_NA
     }
 }
-################################ App Insights Diagonostic Settings ############################
-module "module_app_insights_diagsettings"{
-    source                         = "./modules/appin_diag_settings"
-    appinsights_diag_name          = "diags-appin-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-    target_resource_id             = module.module_app_insights.app_insights_id
-    log_analytics_workspace_id     = module.module_loganalytics_workspace.log_analytics_id
-    enable_log                 = var.enable_log
 
-}
 ##################################  App Service Plan ########################################
 module "module_appserviceplan" {
   source              = "./modules/app_service_plan"
@@ -314,7 +305,7 @@ module "module_appservice"{
     apparname                               = var.apparname
     priority                                = var.priority
     action                                  = var.action
-    depends_on                     = [module.module_deligatedsubnet1]
+    depends_on                              = [module.module_deligatedsubnet1]
     app_service_tags                = {
         Environment = var.env_acronym
         App_Layer   = var.App_Layer_FE
@@ -322,11 +313,11 @@ module "module_appservice"{
 }
 
 module "module_appservice2"{
-    source                       = "./modules/app_service"
-    app_service_name             = "apps-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-002"
-    rg_name                      = module.module_resource_group.rg_name
-    rg_location                  = module.module_resource_group.rg_location
-    app_service_plan_id          = module.module_appserviceplan2.app_service_plan_id
+    source                                  = "./modules/app_service"
+    app_service_name                        = "apps-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-002"
+    rg_name                                 = module.module_resource_group.rg_name
+    rg_location                             = module.module_resource_group.rg_location
+    app_service_plan_id                     = module.module_appserviceplan2.app_service_plan_id
     runtime_stack                           = var.runtime_stack2
     APPINSIGHTS_INSTRUMENTATIONKEY          = module.module_app_insights.instrumentation_key
     APPLICATIONINSIGHTS_CONNECTION_STRING   = module.module_app_insights.connection_string
@@ -341,7 +332,7 @@ module "module_appservice2"{
     apparname                               = var.apparname2
     priority                                = var.priority2
     action                                  = var.action2
-    depends_on =            [module.module_deligatedsubnet2]
+    depends_on                              = [module.module_deligatedsubnet2]   
     app_service_tags                = {
 
         Environment = var.env_acronym
@@ -367,18 +358,18 @@ module "module_appservice02_diagsettings"{
 }
 
 ########################### RBAC role assignments ####################################
-/* module "module_adgroup_data_rgapp"{
+module "module_adgroup_data_rgapp"{
     
     for_each = toset( [var.group1, var.group2, var.group3] )
-    source = "./modules/data_role_assignments"
-    display_name = format("%s", each.key)
+    source = "./modules/data_adgrouprole_assignments"
+    groupdisplay_name = format("%s", each.key)
 
 }
 
 module "module_adgroup_data_rgcore"{
     
-    source = "./modules/data_role_assignments"
-    display_name = var.group3
+    source = "./modules/data_adgrouprole_assignments"
+    groupdisplay_name = var.group3
 }
 
  module "module_rbac_cosmosdb" {
@@ -434,11 +425,11 @@ module "module_rbac_rgcore" {
     role          = var.role2
     principal_id  = module.module_adgroup_data_rgcore.adgroup_id
     
-} */
+}
 
 
 module "module_data_spdata"  {
-    source          = "./modules/data_role_assignments"
+    source          = "./modules/data_sprole_assignments"
     display_name    = var.display_name
 }
 
