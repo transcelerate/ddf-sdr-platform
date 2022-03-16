@@ -106,7 +106,7 @@ jobs:
       # task validates the terraform configuration files and displays the errors if any
       run: terraform validate -var "display_name=name"
       
-#############################-------------------Deployment Stage----------------###############################3      
+#############################-------------------Deployment Stage----------------##################################   
       
   Deploy:
     needs: Check_Validation 
