@@ -14,6 +14,8 @@ on:
   workflow_dispatch:
 jobs:
   
+  ############################-----------------Validation Stage--------------------##################################
+  
   Check_Validation:
     runs-on: ubuntu-latest
     # The agent type used to build and deploy
@@ -103,6 +105,8 @@ jobs:
     - name: Terraform Validate
       # task validates the terraform configuration files and displays the errors if any
       run: terraform validate -var "display_name=name"
+      
+#############################-------------------Deployment Stage----------------###############################3      
       
   Deploy:
     needs: Check_Validation 
