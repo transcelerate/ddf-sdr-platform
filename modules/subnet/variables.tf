@@ -21,3 +21,9 @@ variable "subnet_depends_on" {
   type    = any
   default = []
 }
+
+variable "service_endpoints" {
+  
+  type = list(string)
+  
+}

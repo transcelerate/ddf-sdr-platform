@@ -55,7 +55,8 @@ module "module_subnet"{
     vnet_name         = module.module_virtualnetwork.vnet_name
     address_prefix    = var.address_prefix
     rg_name           = module.module_resource_group_2.rg_name
-    rg_location       = module.module_resource_group_2.rg_location 
+    rg_location       = module.module_resource_group_2.rg_location
+    service_endpoints = var.sub_service_endpoints 
     depends_on        = [module.module_virtualnetwork]
 }
 
@@ -327,7 +328,7 @@ module "module_appservice2"{
     identity                                = var.identity
     http2_enabled                           = var.http2_enabled
     subnet_id                               = module.module_deligatedsubnet2.Dsubnet_ID
-    virtual_network_subnet_id               = module.module_deligatedsubnet2.Dsubnet_ID
+    virtual_network_subnet_id               = module.module_subnet.subnet_id
     ip_address                              = var.ip_address2
     apparname                               = var.apparname2
     priority                                = var.priority2

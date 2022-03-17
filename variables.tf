@@ -73,6 +73,12 @@ variable "address_prefix"{
     default = [ "#{Subnet-IP}#" ]
 }
 
+variable "sub_service_endpoints" {
+
+    default = ["Microsoft.Web"]
+  
+}
+
 ####################### Subnet End   #####################################################
 
 ####################### Delegated Subnet 1 Variable Begin   #####################################################
