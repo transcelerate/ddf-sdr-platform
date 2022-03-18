@@ -114,7 +114,7 @@ module "module_keyvault"{
     source                          = "./modules/key_vault"
     rg_name                         = module.module_resource_group_2.rg_name
     rg_location                     = module.module_resource_group_2.rg_location
-    keyvault_name                   = "kv-${var.subscription_acronym}-${var.env_acronym}-${var.location}-1"
+    keyvault_name                   = "kv-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
     sku_name                        = var.sku_name
     enabled_for_disk_encryption     = var.enabled_for_disk_encryption
     enabled_for_template_deployment = var.enabled_for_template_deployment
