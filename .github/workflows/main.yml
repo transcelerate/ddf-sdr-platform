@@ -51,9 +51,9 @@ jobs:
         find variables.tf -type f -exec sed -i ''s/#{Subnet-IP}#/'${{ secrets.Subnet_IP }}'/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress1}#/'${{ secrets.Subnet_Dsaddress1 }}'/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{Subnet-Dsaddress2}#/'${{ secrets.Subnet_Dsaddress2 }}'/g'' {} \;
-        find variables.tf -type f -exec sed -i ''s/#{Publisher_Email}#/${{ secrets.Publisher_Email }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Publisher-Email}#/${{ secrets.Publisher_Email }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{Serviceprincipal}#/${{ secrets.Serviceprincipal }}/g'' {} \;
-        find variables.tf -type f -exec sed -i ''s/#{Publisher_Name}#/${{ secrets.Publisher_Name }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Publisher-Name}#/${{ secrets.Publisher_Name }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADgroup1}#/${{ secrets.ADgroup1 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADgroup2}#/${{ secrets.ADgroup2 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADgroup3}#/${{ secrets.ADgroup3 }}/g'' {} \;
