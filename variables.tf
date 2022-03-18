@@ -514,7 +514,7 @@ variable "keyvault_role" {
 
 variable "display_name" {
 
-    default = "#{ServicePrinciple}#"
+    default = "#{Serviceprincipal}#"
   
 }
 
