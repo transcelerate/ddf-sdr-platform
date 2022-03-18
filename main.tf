@@ -186,7 +186,7 @@ module "module_apimanagement"{
       rg_name                           = module.module_resource_group.rg_name
       rg_location                       = module.module_resource_group.rg_location
       publisher_name                    = var.publisher_name
-      publisher_email                   = "mani.chaitanya.kante@accenture.com" 
+      publisher_email                   = var.publisher_email 
       sku_name                          = var.sku_name_api 
       virtual_network_type              = var.virtual_network_type      
       subnet_id                         = module.module_subnet.subnet_id
