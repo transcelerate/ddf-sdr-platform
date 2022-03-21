@@ -10,7 +10,7 @@ resource "azurerm_cosmosdb_account" "acc" {
   enable_free_tier                    = var.enable_free_tier
   tags                                = var.cosmosdb_tags
   access_key_metadata_writes_enabled  = var.access_key_metadata_writes_enabled
-  public_network_access_enabled       = false
+  public_network_access_enabled       = true
   
 
 #checkov:skip=CKV_AZURE_100: Using Microsoft-managed keys for Cosmos DB Account encryption
