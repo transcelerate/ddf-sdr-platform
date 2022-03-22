@@ -14,12 +14,7 @@ resource "azurerm_app_service" "appservice" {
       type = var.identity
 
   }
-
-  auth_settings {
-    
-    enabled          = true
-  }
-
+  
   site_config {
     windows_fx_version        = var.runtime_stack
     dotnet_framework_version  = "v6.0"
