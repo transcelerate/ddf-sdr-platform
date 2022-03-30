@@ -39,6 +39,6 @@ variable "key_vault_tags" {
    type = map(string)
 }
 
-variable "soft_delete_enabled" {
+# variable "soft_delete_enabled" {
   
-}
+# }
