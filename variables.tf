@@ -428,10 +428,10 @@ variable "purge_protection_enabled"{
 
 }
 
-variable "soft_delete_enabled" {
+# variable "soft_delete_enabled" {
 
-    default = "true"
-}
+#     default = "true"
+# }
 
 variable "soft_delete_retention_days"{
 
