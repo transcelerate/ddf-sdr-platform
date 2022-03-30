@@ -197,11 +197,11 @@ variable "enable_frontend_tls11" {
   
 }
 
-variable "enable_triple_des_ciphers" {
+# variable "enable_triple_des_ciphers" {
 
-    default = "false"
+#     default = "false"
   
-}
+# }
 
 variable "apimanagement_log" {
 
