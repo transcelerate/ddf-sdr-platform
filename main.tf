@@ -120,7 +120,7 @@ module "module_keyvault"{
     enabled_for_template_deployment = var.enabled_for_template_deployment
     enabled_for_deployment          = var.enabled_for_deployment
     purge_protection_enabled        = var.purge_protection_enabled
-    soft_delete_enabled             = var.soft_delete_enabled
+#     soft_delete_enabled             = var.soft_delete_enabled
     soft_delete_retention_days      = var.soft_delete_retention_days
     key_vault_tags                  = {
 
