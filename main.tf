@@ -197,7 +197,7 @@ module "module_apimanagement"{
       enable_frontend_ssl30             = var.enable_frontend_ssl30
       enable_frontend_tls10             = var.enable_frontend_tls10
       enable_frontend_tls11             = var.enable_frontend_tls11
-      enable_triple_des_ciphers         = var.enable_triple_des_ciphers
+#       enable_triple_des_ciphers         = var.enable_triple_des_ciphers
       apimanagement_log                 = var.apimanagement_log
       azurerm_application_insights_id   = module.module_app_insights.app_insights_id
       appinsights_instrumentation_key   = module.module_app_insights.instrumentation_key  
