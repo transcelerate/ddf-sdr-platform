@@ -1,10 +1,12 @@
-   # SDR Infrastructure IaC
+- [Introduction](#introduction)
+- [Pre-requisites](#pre-requisites)
+- [Code setup and debugging](#code-setup-and-debugging)
+- [Base solution structure](#base-solution-structure)
+- [Commit changes to repository](#commit-changes-to-repository)
+- [List of Endpoints](#list-of-endpoints)
+- [Nuget packages](#nuget-packages)
 
-# Authors
-
-    Name    : Mani Chaitanya
-    Version : 1.0
-    Date    : 12/14/2021
+# SDR Infrastructure IaC
 
 # Introduction
 
@@ -136,54 +138,3 @@ The folder .github/workflows contains the GitHub Actions yaml script (main.yml) 
  **Step 3 :** Once the workflow completes successfully, refer to the "**DDF SDR Azure Platform Setup and Deployment Guide**" for additional manual configuration updates to the deployed resources and further deploy SDR Reference Implementation (RI) Application Code. 
 
 **Important Note :** GitHub Actions does not allow multi-environment deployment setup with Free Pricing Plan. To Deploy to different environments, the GitHub secret values have to be updated with values of the target Azure Environment.
-
-
-     
-
-   
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-   
-   
-
