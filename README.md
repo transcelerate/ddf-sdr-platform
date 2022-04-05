@@ -2,7 +2,7 @@
 - [Introduction](#introduction)
 - [Intended Audience](#intended-audience)
 - [Overview](#overview)
-- [[Modules](#modules)
+- [Modules](#modules)
 - [main.tf](#maintf)
 - [Variables.tf](#variablestf)
 - [Deployment Process](#deployment-process)
