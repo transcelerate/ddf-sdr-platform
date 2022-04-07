@@ -13,23 +13,27 @@
 - [Deployment Actions](#deployment-actions)
 - [main.yml](#mainyml)
 
-## Introduction
+# Introduction
 
 Study Definition Repository (SDR) Reference Implementation is TransCelerate’s vision to catalyze industry-level transformation, enabling digital exchange of study definition information by collaborating with technology providers and standards bodies to create a sustainable open-source Study Definition Repository.
 
 NOTE: As of May 2022, the DDF initiative is still the process of setting up operations, and any pull requests submitted will not be triaged at this point in time.
 
-## Intended Audience
+# Intended Audience
 
-This document assumes a good understanding of Azure concepts and services. The audience for this document is:
+The content in this repository assumes a good understanding of Azure concepts and services. The audience for this document is:
 
 - User should have basic understanding of Terraform
 - User should be aware of how to use Azure portal and basic understanding of Microsoft Azure Platform
 - User should have basic understanding of GitHub Actions & Yaml
 
-## Overview
+There are documents to provide a high level overview of the SDR Reference Implementation.
+- [Azure Solution Architecture Document](documents/ddf-sdr-azure-solution-architecture.pdf)
+- [Process Flows Document](documents/MVP%20Process%20Flows%20(final).pdf)
 
- This Repo contains Terraform IaC code and configuration for Deploying SDR Infrastructure resources to Microsoft Azure Platform.
+# Overview
+
+ This repository contains Terraform IaC code and configuration for Deploying SDR Infrastructure resources to Microsoft Azure Platform.
 
  Terraform : Terraform is an infrastructure-as-code tool that greatly reduces the amount of time needed to implement and scale the infrastructure. It is provider agnostic.
 
@@ -68,9 +72,16 @@ This folder contains all the modularized code for the resources listed below.
 
 - Variables that are repeated / parameterized / environment specific, can be declared in variables.tf.
 
-## Deployment Process
+# Deployment Process
 
-**Important Note:** Refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](https://github.com/transcelerate/ddf-sdr-platform/raw/main/documents/ddf-sdr-azure-platform-setup-and-deployment-guide.pdf)** document before following the below steps. This guide is located [here.
+**Important Note:** Refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](https://github.com/transcelerate/ddf-sdr-platform/raw/main/documents/ddf-sdr-azure-platform-setup-and-deployment-guide.pdf)** document before following the below steps. 
+
+Several videos have been created to show steps a user would need to go through to provision a new instance of the SDR in their organization's local Azure environment.
+1. Environment Creation for SDR on Azure
+2. Deploying SDR code on Azure DevOps
+3. Azure PaaS Configurations
+4. Application Data Setup and Smoke Test
+5. SonarQube Integration with Azure
 
 ## Pre-Requisites
 
