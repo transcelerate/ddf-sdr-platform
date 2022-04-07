@@ -74,7 +74,7 @@ This folder contains all the modularized code for the resources listed below.
 
 # Deployment Process
 
-**Important Note:** Refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](https://github.com/transcelerate/ddf-sdr-platform/raw/main/documents/ddf-sdr-azure-platform-setup-and-deployment-guide.pdf)** document before following the below steps. 
+**Important Note:** Refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](documents/ddf-sdr-azure-platform-setup-and-deployment-guide.pdf)** and **[DDF SDR Azure Platform Design and Implementation Guide](documents/ddf-sdr-azure-platform-design-and-implementation.pdf)** documents before following the below steps. 
 
 Several videos have been created to show steps a user would need to go through to provision a new instance of the SDR in their organization's local Azure environment.
 1. Environment Creation for SDR on Azure
