@@ -6,6 +6,7 @@
 - [main.tf](#maintf)
 - [Variables.tf](#variablestf)
 - [Deployment Process](#deployment-process)
+- [Instructional Videos](#instructional-vidoes)
 - [Pre-Requisites](#pre-requisites)
 - [Secrets](#secrets)
 - [main.yml Secret Variables](#mainyml-secret-variables)
