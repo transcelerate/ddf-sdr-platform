@@ -1,18 +1,19 @@
 
 - [Introduction](#introduction)
+  - [Requirements to Contribute and Propose Changes](#requirements-to-contribute-and-propose-changes)
 - [Intended Audience](#intended-audience)
 - [Overview](#overview)
-- [Modules](#modules)
-- [main.tf](#maintf)
-- [Variables.tf](#variablestf)
+  - [Modules](#modules)
+    - [main.tf](#maintf)
+    - [Variables.tf](#variablestf)
 - [Deployment Process](#deployment-process)
-- [Instructional Videos](#instructional-vidoes)
-- [Pre-Requisites](#pre-requisites)
-- [Secrets](#secrets)
-- [main.yml Secret Variables](#mainyml-secret-variables)
-- [Variables.tf Secret Variables](#variablestf-secret-variables)
-- [Deployment Actions](#deployment-actions)
-- [main.yml](#mainyml)
+  - [Instructional Videos](#instructional-vidoes)
+  - [Pre-Requisites](#pre-requisites)
+  - [Secrets](#secrets)
+    - [main.yml Secret Variables](#mainyml-secret-variables)
+    - [Variables.tf Secret Variables](#variablestf-secret-variables)
+  - [Deployment Actions](#deployment-actions)
+    - [main.yml](#mainyml)
 
 # Introduction
 
@@ -22,6 +23,17 @@ Study Definition Repository (SDR) Reference Implementation is TransCelerate’s 
 - These materials and information are provided by TransCelerate Biopharma Inc. AS IS.  Any party using or relying on this information and these materials do so entirely at their own risk.  Neither TransCelerate nor its members will bear any responsibility or liability for any harm, including indirect or consequential harm, that a user may incur from use or misuse of this information or materials.
 - Please be aware that any information you put into the provided tools (including the UI or API) will be visible to all users, so we recommend not using commercially sensitive or confidential information.  You and/or your employer bear all responsibility for anything you share with this project.  TransCelerate, its member companies and any vendors affiliated with the DDF project are not responsible for any harm or loss you occur as a result of uploading any information or code: commercially sensitive, confidential or otherwise.  
 - As of May 2022, the DDF initiative is still the process of setting up operations, and any pull requests submitted will not be triaged at this point in time.
+
+## Requirements to Contribute and Propose Changes
+Before participating, you must acknowledge the Contribution License Agreement (CLA).
+
+To acknowledge the CLA, follow these instructions:
+
+- Click [here](https://github.com/transcelerate/ddf-home/blob/main/documents/DDF_CLA_2022MAR28_FINAL.pdf) to download and carefully read the CLA.
+- Print the document.
+- Complete and sign the document.
+- Scan and email a PDF version of the completed and signed document to [DDF@transceleratebiopharmainc.com](mailto:DDF@transceleratebiopharmainc.com?subject=Signed%20CLA).
+NOTE: Keep a copy for your records.
 
 # Intended Audience
 
@@ -67,12 +79,12 @@ This folder contains all the modularized code for the resources listed below.
 | data_adgrouprole_assignments data_sprole_assignments |                               |       Code for reading **Azure AD Groups** and **Service Principal** for RBAC       |
 |                   role_assignment                    |                               |           Code for granting access and RBAC role assignment to resources            |
 
-## main.tf
+##3 main.tf
 
 - This file contains the resource configuration code. This file invokes the modules for the specific resources to be deployed on the Microsoft Azure Platform.
 - Single module can be called multiple times to create the same set of resources with different naming conventions and configurations.
 
-## Variables.tf
+##3 Variables.tf
 
 - Variables that are repeated / parameterized / environment specific, can be declared in variables.tf.
 
