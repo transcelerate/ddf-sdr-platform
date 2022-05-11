@@ -33,6 +33,7 @@ To acknowledge the CLA, follow these instructions:
 - Print the document.
 - Complete and sign the document.
 - Scan and email a PDF version of the completed and signed document to [DDF@transceleratebiopharmainc.com](mailto:DDF@transceleratebiopharmainc.com?subject=Signed%20CLA).
+
 NOTE: Keep a copy for your records.
 
 # Intended Audience
