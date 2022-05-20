@@ -22,7 +22,7 @@ variable "app_service_tags" {
 
 }
 
-variable "runtime_stack" {
+variable "current_stack" {
 
   
 }
@@ -43,7 +43,7 @@ variable "ftps_state" {
   
 }
 
-variable "use_32_bit_worker_process" {
+variable "use_32_bit_worker" {
   
 }
 

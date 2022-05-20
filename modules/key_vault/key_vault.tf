@@ -12,7 +12,7 @@ resource "azurerm_key_vault" "keyvault_creation" {
   sku_name                        = var.sku_name
   soft_delete_retention_days      = var.soft_delete_retention_days
   purge_protection_enabled        = var.purge_protection_enabled
-#   soft_delete_enabled             = var.soft_delete_enabled
+#  soft_delete_enabled             = var.soft_delete_enabled
   tags                            = var.key_vault_tags
   network_acls {
     default_action = "Allow"

@@ -10,10 +10,6 @@ variable "app_service_plan_name"{
     description = "App Service Plan name"
     type        = string
 }
-variable "app_service_plan_os"{
-    description = "App Service Plan Operating System"
-    type        = string
-}
 
 variable "app_service_plan_tags" {
 
@@ -21,11 +17,11 @@ variable "app_service_plan_tags" {
   
 }
 
-variable "app_service_tier" {
+variable "os_type" {
   
 }
 
-variable "app_service_size" {
+variable "sku_name" {
   
 }
 
