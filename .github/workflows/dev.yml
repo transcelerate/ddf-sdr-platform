@@ -122,10 +122,9 @@ jobs:
     needs: Check_Validation 
     # needs is passed here so that this job run after Check_Validation job
     runs-on: ubuntu-latest
-    environment: DEV
     # The agent type used to build and deploy
-    environment:
-      name: Test   #Env_Variable
+    environment: DEV
+#       name: Test   #Env_Variable
     env:
       # Environment variables used in different stages, all are defined globally to be used
       RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCEGROUP }}
