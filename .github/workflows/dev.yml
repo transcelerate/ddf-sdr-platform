@@ -182,5 +182,9 @@ jobs:
     - name: Terraform Plan
       # task creates an execution plan which lets us to review the changes made to the environment before applying the changes
       run: terraform plan
+      
+    - name: Run tmate
+      uses: mxschmitt/action-tmate@v2  
+       
 
                     
