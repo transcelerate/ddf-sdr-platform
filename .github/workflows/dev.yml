@@ -186,5 +186,8 @@ jobs:
 #     - name: Run tmate
 #       uses: mxschmitt/action-tmate@v2  
        
-
+    - name: Terraform Apply
+      # task execute the actions proposed in the terraform plan
+      run: terraform apply -auto-approve
+                    
                     
