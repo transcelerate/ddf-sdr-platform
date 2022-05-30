@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
    inputs:
       tag:
-        description: 'Dev Build'
+        description: 'QA Build'
 jobs:
   
   ############################-----------------Validation Stage--------------------##################################
