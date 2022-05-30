@@ -62,17 +62,6 @@ jobs:
         find variables.tf -type f -exec sed -i ''s/#{ADgroup2}#/${{ secrets.ADgroup2 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADgroup3}#/${{ secrets.ADgroup3 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{subscription}#/${{ secrets.subscription  }}/g'' {} \;
-        
-#     - name: Find and Replace User Name - Using Build Variable
-#       # This step will replace all the variables in parameters.yml file while fetching the value from secrets
-
-#       run: |
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Env}#/${{ secrets.Env }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{BackendService-Arm}#/${{ secrets.BackendService_Arm }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ResourceGroup}#/${{ secrets.Azure_ResourceGroup }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-StorageAccount}#/${{ secrets.Azure_StorageAccount }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ContainerName}#/${{ secrets.Azure_ContainerName }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-RmKey}#/${{ secrets.Azure_RmKey }}/g'' {} \;
 
     
       
@@ -124,7 +113,7 @@ jobs:
     runs-on: ubuntu-latest
     # The agent type used to build and deploy
     environment: QA
-#       name: Test   #Env_Variable
+
     env:
       # Environment variables used in different stages, all are defined globally to be used
       RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCEGROUP }}
@@ -154,19 +143,7 @@ jobs:
         find variables.tf -type f -exec sed -i ''s/#{ADgroup2}#/${{ secrets.ADgroup2 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADgroup3}#/${{ secrets.ADgroup3 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{subscription}#/${{ secrets.subscription  }}/g'' {} \;
-       
-  
-      
-#     - name: Find and Replace User Name - Using Build Variable
-#      # This step will replace all the variables in parameters.yml file while fetching the value from secrets
-#       run: |
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Env}#/${{ secrets.Env }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{BackendService-Arm}#/${{ secrets.BackendService_Arm }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ResourceGroup}#/${{ secrets.Azure_ResourceGroup }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-StorageAccount}#/${{ secrets.Azure_StorageAccount }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ContainerName}#/${{ secrets.Azure_ContainerName }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-RmKey}#/${{ secrets.Azure_RmKey }}/g'' {} \;
-       
+     
        
      
     - name: Terraform Install
@@ -183,8 +160,11 @@ jobs:
       # task creates an execution plan which lets us to review the changes made to the environment before applying the changes
       run: terraform plan
       
-#     - name: Run tmate
-#       uses: mxschmitt/action-tmate@v2  
+#     - name: Terraform Apply
+#       # task execute the actions proposed in the terraform plan
+#       run: terraform apply -auto-approve
+                    
+                    
        
 
                     
