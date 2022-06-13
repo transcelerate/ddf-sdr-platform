@@ -160,9 +160,9 @@ jobs:
       # task creates an execution plan which lets us to review the changes made to the environment before applying the changes
       run: terraform plan
       
-#     - name: Terraform Apply
-#       # task execute the actions proposed in the terraform plan
-#       run: terraform apply -auto-approve
+    - name: Terraform Apply
+      # task execute the actions proposed in the terraform plan
+      run: terraform apply -auto-approve
                     
                     
        
