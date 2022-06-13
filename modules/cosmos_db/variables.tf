@@ -85,6 +85,10 @@ variable "collectionname" {
   
 }
 
+variable "collectionname2" {
+  
+}
+
 variable "index1" {
   
 }
