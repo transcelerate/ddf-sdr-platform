@@ -428,6 +428,14 @@ variable "index4" {
     default =  ["auditTrail.entryDateTime"]
 }
 
+variable "collectionname2" {
+
+
+
+    default = "Groups"
+
+}
+
 
 ###################### Cosmos DB End  ########################################################
 
