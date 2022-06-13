@@ -65,9 +65,9 @@ variable "enable_frontend_tls11" {
   
 }
 
-# variable "enable_triple_des_ciphers" {
+/* variable "enable_triple_des_ciphers" {
   
-# }
+} */
 
 variable "apimanagement_log" {
   
@@ -82,5 +82,25 @@ variable "appinsights_instrumentation_key" {
 }
 
 variable "identity_type" {
+  
+}
+
+variable "host_name" {
+  
+}
+
+variable "service_url" {
+  
+}
+
+variable "apiendpointname" {
+  
+}
+
+variable "apiendpointdisplayname" {
+  
+}
+
+variable "apiendpointpath" {
   
 }

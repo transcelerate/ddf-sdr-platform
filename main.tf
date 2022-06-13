@@ -2,7 +2,7 @@
 terraform {  
   backend "azurerm" {}
   required_providers {
-      azurerm = ">=2.74.0"  
+      azurerm = "=3.1.0"  
   }
 } 
 locals{
@@ -120,7 +120,7 @@ module "module_keyvault"{
     enabled_for_template_deployment = var.enabled_for_template_deployment
     enabled_for_deployment          = var.enabled_for_deployment
     purge_protection_enabled        = var.purge_protection_enabled
-#     soft_delete_enabled             = var.soft_delete_enabled
+#    soft_delete_enabled             = var.soft_delete_enabled
     soft_delete_retention_days      = var.soft_delete_retention_days
     key_vault_tags                  = {
 
@@ -162,12 +162,19 @@ module "module_cosmosdb"{
     enable_automatic_failover           = var.enable_automatic_failover
     enable_free_tier                    = var.enable_free_tier
     access_key_metadata_writes_enabled  = var.access_key_metadata_writes_enabled
+    collectionname                      = var.collectionname
+    collectionname2                     = var.collectionname2
+    index1                              = var.index1
+    index2                              = var.index2
+    index3                              = var.index3
+    index4                              = var.index4
     cosmosdb_tags                  = {
 
         Environment = var.env_acronym
         App_Layer   = var.App_Layer_BE
 
     }
+      
       
 }
 #################################### CosmosDB Diagonostic settings ##################################
@@ -197,11 +204,16 @@ module "module_apimanagement"{
       enable_frontend_ssl30             = var.enable_frontend_ssl30
       enable_frontend_tls10             = var.enable_frontend_tls10
       enable_frontend_tls11             = var.enable_frontend_tls11
-#       enable_triple_des_ciphers         = var.enable_triple_des_ciphers
+#      enable_triple_des_ciphers         = var.enable_triple_des_ciphers
       apimanagement_log                 = var.apimanagement_log
       azurerm_application_insights_id   = module.module_app_insights.app_insights_id
       appinsights_instrumentation_key   = module.module_app_insights.instrumentation_key  
       identity_type                     = var.identity_type
+      host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
+      service_url                       = "https://${module.module_appservice2.appservice_name}"
+      apiendpointname                   = var.apiendpointname
+      apiendpointdisplayname            = var.apiendpointdisplayname
+      apiendpointpath                   = var.apiendpointpath    
       apimanagement_tags           = {
 
          Environment = var.env_acronym
@@ -239,9 +251,8 @@ module "module_appserviceplan" {
   app_service_plan_name  = "asp-${var.subscription_acronym}${var.fe_acronym}-${var.env_acronym}-${var.location}-001"
   rg_name                = module.module_resource_group.rg_name
   rg_location            = module.module_resource_group.rg_location
-  app_service_plan_os    = var.app_service_plan_os
-  app_service_tier       = var.app_service_tier
-  app_service_size       = var.app_service_size  
+  os_type                = var.os_type 
+  sku_name               = var.sku_name_asp   
     app_service_plan_tags  = {
 
             Environment = var.env_acronym
@@ -255,9 +266,8 @@ module "module_appserviceplan2" {
   app_service_plan_name  = "asp-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-002"
   rg_name                = module.module_resource_group.rg_name
   rg_location            = module.module_resource_group.rg_location
-  app_service_plan_os    = var.app_service_plan_os
-  app_service_tier       = var.app_service_tier
-  app_service_size       = var.app_service_size  
+  os_type                = var.os_type 
+  sku_name               = var.sku_name_asp  
     app_service_plan_tags  = {
 
             Environment = var.env_acronym
@@ -292,12 +302,12 @@ module "module_appservice"{
     rg_name                      = module.module_resource_group.rg_name
     rg_location                  = module.module_resource_group.rg_location
     app_service_plan_id          = module.module_appserviceplan.app_service_plan_id
-    runtime_stack                           = var.runtime_stack
     APPINSIGHTS_INSTRUMENTATIONKEY          = module.module_app_insights.instrumentation_key
     APPLICATIONINSIGHTS_CONNECTION_STRING   = module.module_app_insights.connection_string
     https_only                              = var.https_only
     ftps_state                              = var.ftps_state
-    use_32_bit_worker_process               = var.use_32_bit_worker_process
+    use_32_bit_worker                       = var.use_32_bit_worker
+    current_stack                           = var.current_stack
     identity                                = var.identity
     http2_enabled                           = var.http2_enabled
     subnet_id                               = module.module_deligatedsubnet1.Dsubnet_ID
@@ -319,12 +329,12 @@ module "module_appservice2"{
     rg_name                                 = module.module_resource_group.rg_name
     rg_location                             = module.module_resource_group.rg_location
     app_service_plan_id                     = module.module_appserviceplan2.app_service_plan_id
-    runtime_stack                           = var.runtime_stack2
     APPINSIGHTS_INSTRUMENTATIONKEY          = module.module_app_insights.instrumentation_key
     APPLICATIONINSIGHTS_CONNECTION_STRING   = module.module_app_insights.connection_string
     https_only                              = var.https_only
     ftps_state                              = var.ftps_state
-    use_32_bit_worker_process               = var.use_32_bit_worker_process
+    use_32_bit_worker                       = var.use_32_bit_worker
+    current_stack                           = var.current_stack2
     identity                                = var.identity
     http2_enabled                           = var.http2_enabled
     subnet_id                               = module.module_deligatedsubnet2.Dsubnet_ID
@@ -333,7 +343,7 @@ module "module_appservice2"{
     apparname                               = var.apparname2
     priority                                = var.priority2
     action                                  = var.action2
-    depends_on                              = ["module.module_deligatedsubnet2","module.module_subnet"]   
+    depends_on                              = [module.module_deligatedsubnet2,module.module_subnet]   
     app_service_tags                = {
 
         Environment = var.env_acronym
@@ -448,6 +458,7 @@ module "module_rbac_keyvault_ui" {
      principal_id  = module.module_appservice2.appservice_identity
 }
 
+########################### Key Vault Access Policies ####################################
  module "module_keyvault_access_policy_devops" {
 
      source                 = "./modules/key_vault_accesspolicy"
@@ -480,3 +491,17 @@ module "module_keyvault_access_policy_appservice_api" {
     certificate_permissions= var.certificate_permissions    
 } 
 
+########################### Azure AD UI App Registration ####################################
+
+module "module_app_registration" {
+  source                        = "./modules/azuread_appregistration"
+  display_name                  = "spn_${var.subscription_acronym}_${var.env_acronym}_${var.fe_acronym}"
+  identifier_uris               = ["api://spn_${var.subscription_acronym}_${var.env_acronym}_${var.fe_acronym}"]
+  sign_in_audience              = var.sign_in_audience
+  admin_consent_display_name    = var.admin_consent_display_name
+  oauthvalue                    = var.oauthvalue
+  claimname                     = var.claimname    
+  redirect_uris                 = ["https://${module.module_appservice.appservice_name}/"]
+  depends_on                    = [module.module_appservice]  
+  
+}
