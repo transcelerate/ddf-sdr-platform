@@ -163,6 +163,7 @@ module "module_cosmosdb"{
     enable_free_tier                    = var.enable_free_tier
     access_key_metadata_writes_enabled  = var.access_key_metadata_writes_enabled
     collectionname                      = var.collectionname
+    collectionname2                     = var.collectionname2
     index1                              = var.index1
     index2                              = var.index2
     index3                              = var.index3
@@ -173,6 +174,7 @@ module "module_cosmosdb"{
         App_Layer   = var.App_Layer_BE
 
     }
+      
       
 }
 #################################### CosmosDB Diagonostic settings ##################################
