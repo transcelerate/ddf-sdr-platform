@@ -428,11 +428,40 @@ variable "index4" {
     default =  ["auditTrail.entryDateTime"]
 }
 
+variable "index5" {
+
+    default =  ["clinicalStudy.uuid"]
+}
+
+variable "index6" {
+
+    default =  ["clinicalStudy.studyPhase.decode"]
+}
+
+variable "index7" {
+
+    default =  ["clinicalStudy.studyDesign.interventionModel.decode"]
+}
+
+variable "index8" {
+
+    default =  ["clinicalStudy.studyDesign.studyIndications.indicationDesc"]
+}
+
+variable "index9" {
+
+    default =  ["clinicalStudy.studyIdentifiers.studyIdentifierScope.organisationType.decode"]
+}
+
 variable "collectionname2" {
 
-
-
     default = "Groups"
+
+}
+
+variable "collectionname3" {
+
+    default = "StudyDefinitionsV1"
 
 }
 
@@ -586,18 +615,6 @@ variable "certificate_permissions" {
 variable "sign_in_audience" {
 
     default = "AzureADMultipleOrgs"
-}
-
-variable "admin_consent_display_name" {
-
-    default = "ui-access"
-
-}
-
-variable "oauthvalue" {
-
-    default = "ui-access"
-
 }
 
 variable "claimname" {

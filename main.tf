@@ -164,10 +164,16 @@ module "module_cosmosdb"{
     access_key_metadata_writes_enabled  = var.access_key_metadata_writes_enabled
     collectionname                      = var.collectionname
     collectionname2                     = var.collectionname2
+    collectionname3                     = var.collectionname3
     index1                              = var.index1
     index2                              = var.index2
     index3                              = var.index3
     index4                              = var.index4
+    index5                              = var.index5
+    index6                              = var.index6
+    index7                              = var.index7
+    index8                              = var.index8
+    index9                              = var.index9
     cosmosdb_tags                  = {
 
         Environment = var.env_acronym
@@ -496,10 +502,7 @@ module "module_keyvault_access_policy_appservice_api" {
 module "module_app_registration" {
   source                        = "./modules/azuread_appregistration"
   display_name                  = "spn_${var.subscription_acronym}_${var.env_acronym}_${var.fe_acronym}"
-  identifier_uris               = ["api://spn_${var.subscription_acronym}_${var.env_acronym}_${var.fe_acronym}"]
   sign_in_audience              = var.sign_in_audience
-  admin_consent_display_name    = var.admin_consent_display_name
-  oauthvalue                    = var.oauthvalue
   claimname                     = var.claimname    
   redirect_uris                 = ["https://${module.module_appservice.appservice_name}/"]
   depends_on                    = [module.module_appservice]  
