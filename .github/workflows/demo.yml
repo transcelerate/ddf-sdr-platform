@@ -1,23 +1,27 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CICD_Destroy_Env
+name: CICD_develop_Demo
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events but only for the develop branch
   push:
-    branches: [ main ]
+    branches: [ develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ develop ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+   inputs:
+      tag:
+        description: 'Demo Build'
 jobs:
   
   ############################-----------------Validation Stage--------------------##################################
   
   Check_Validation:
     runs-on: ubuntu-latest
+    environment: DEMO
     # The agent type used to build and deploy
     env:
       # Environment variables used in different stages, all are defined globally to be used
@@ -31,7 +35,7 @@ jobs:
       Blob_Key: ${{ secrets.AZURE_RMKEY}}
       
       # group refers to the name of the env which we need to create in azure portal
-      group: Test
+      group: demo
     steps:
       # Step to Login to Azure Portal
     - uses: actions/checkout@v2
@@ -119,8 +123,8 @@ jobs:
     # needs is passed here so that this job run after Check_Validation job
     runs-on: ubuntu-latest
     # The agent type used to build and deploy
-    environment:
-      name: Test   #Env_Variable
+    environment: DEMO
+
     env:
       # Environment variables used in different stages, all are defined globally to be used
       RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCEGROUP }}
@@ -178,10 +182,12 @@ jobs:
     - name: Terraform Plan
       # task creates an execution plan which lets us to review the changes made to the environment before applying the changes
       run: terraform plan
+      
+#     - name: Run tmate
+#       uses: mxschmitt/action-tmate@v2  
        
-    - name: Terraform Destroy
+    - name: Terraform Apply
       # task execute the actions proposed in the terraform plan
-      run: terraform destroy -auto-approve
+      run: terraform apply -auto-approve
                     
-   
                     

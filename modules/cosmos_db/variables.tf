@@ -80,3 +80,52 @@ variable "cosmosdb_tags" {
 variable "access_key_metadata_writes_enabled" {
   
 }
+
+variable "collectionname" {
+  
+}
+
+variable "collectionname2" {
+  
+}
+
+variable "collectionname3" {
+  
+}
+
+variable "index1" {
+  
+}
+
+variable "index2" {
+  
+}
+
+variable "index3" {
+  
+}
+
+variable "index4" {
+  
+}
+
+variable "index5" {
+  
+}
+
+variable "index6" {
+  
+}
+
+variable "index7" {
+  
+}
+
+variable "index8" {
+  
+}
+
+variable "index9" {
+  
+}
+

@@ -1,8 +1,8 @@
-resource "azurerm_app_service" "appservice" {
+resource "azurerm_windows_web_app" "appservice" {
   name                = var.app_service_name
   location            = var.rg_location
   resource_group_name = var.rg_name
-  app_service_plan_id = var.app_service_plan_id
+  service_plan_id     = var.app_service_plan_id
   tags                = var.app_service_tags
   https_only          = var.https_only
   
@@ -14,14 +14,18 @@ resource "azurerm_app_service" "appservice" {
       type = var.identity
 
   }
-  
+
   site_config {
-    windows_fx_version        = var.runtime_stack
-    dotnet_framework_version  = "v6.0"
-    use_32_bit_worker_process = var.use_32_bit_worker_process
+
+    application_stack  {
+
+    current_stack = var.current_stack
+
+  }
+  
+    use_32_bit_worker         = var.use_32_bit_worker
     ftps_state                = var.ftps_state
     http2_enabled             = var.http2_enabled
-    vnet_route_all_enabled    = "true"
     default_documents         = [ "index.html" ]
     ip_restriction {
       
@@ -43,8 +47,8 @@ resource "azurerm_app_service" "appservice" {
 
   logs {
     
-    failed_request_tracing_enabled = true
-    detailed_error_messages_enabled = true
+    failed_request_tracing  = true
+    detailed_error_messages = true
     http_logs {
       
       file_system {
@@ -61,6 +65,6 @@ resource "azurerm_app_service" "appservice" {
 }
 
 resource "azurerm_app_service_virtual_network_swift_connection" "Vnet_Integration" {
-  app_service_id = azurerm_app_service.appservice.id
+  app_service_id = azurerm_windows_web_app.appservice.id
   subnet_id      = var.subnet_id
 }

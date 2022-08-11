@@ -197,11 +197,11 @@ variable "enable_frontend_tls11" {
   
 }
 
-# variable "enable_triple_des_ciphers" {
+/* variable "enable_triple_des_ciphers" {
 
-#     default = "false"
+    default = "false"
   
-# }
+} */
 
 variable "apimanagement_log" {
 
@@ -211,6 +211,23 @@ variable "apimanagement_log" {
 
 variable "identity_type" {
   default = "SystemAssigned"
+}
+
+variable "apiendpointname" {
+
+    default = "clinical-study"
+}
+
+variable "apiendpointdisplayname" {
+
+    default = "Clinical Study"
+
+}
+
+variable "apiendpointpath" {
+
+    default = "studydefinitionrepository/v1"
+    
 }
 
 ######################API Management Variables End #############################################
@@ -226,10 +243,16 @@ variable "application_type" {
 
 
 ######################APP Service Begin  ###################################################
-variable "runtime_stack" {
+variable "current_stack" {
 
-    default     = "node|14-lts"
+    default = "node"
 }
+
+variable "current_stack2" {
+
+    default = "dotnet"
+}
+
 
 variable "https_only" {
 
@@ -243,14 +266,8 @@ variable "ftps_state" {
   
 }
 
-variable "runtime_stack2" {
 
-    default = "dotnet|6"
-    
-  
-}
-
-variable "use_32_bit_worker_process" {
+variable "use_32_bit_worker" {
   default = "true"
 }
 
@@ -320,17 +337,11 @@ variable "action2" {
 
 ######################APP Service Plan Begin  ###################################################
 
-variable "app_service_plan_os"{
+variable "os_type"{
     default        = "Windows"
 }
 
-variable "app_service_tier" {
-
-    default = "Standard"
-  
-}
-
-variable "app_service_size" {
+variable "sku_name_asp" {
 
     default = "S1"
   
@@ -365,7 +376,7 @@ variable "interval_hours" {
   default = "48"
 }
 variable "container_name" {
-  default = "test-cosmos-mongo-db"
+  default = "SDR"
 }
 variable "throughput" {
   default = "400"
@@ -390,6 +401,68 @@ variable "enable_free_tier" {
 variable "access_key_metadata_writes_enabled" {
 
     default = "false"
+}
+
+variable "collectionname" {
+
+    default = "study"
+}
+
+variable "index1" {
+
+    default = ["_id"]
+}
+
+variable "index2" {
+
+    default = ["clinicalStudy.studyId"]
+}
+
+variable "index3" {
+
+    default =  ["clinicalStudy.studyTitle"]
+}
+
+variable "index4" {
+
+    default =  ["auditTrail.entryDateTime"]
+}
+
+variable "index5" {
+
+    default =  ["clinicalStudy.uuid"]
+}
+
+variable "index6" {
+
+    default =  ["clinicalStudy.studyPhase.decode"]
+}
+
+variable "index7" {
+
+    default =  ["clinicalStudy.studyDesign.interventionModel.decode"]
+}
+
+variable "index8" {
+
+    default =  ["clinicalStudy.studyDesign.studyIndications.indicationDesc"]
+}
+
+variable "index9" {
+
+    default =  ["clinicalStudy.studyIdentifiers.studyIdentifierScope.organisationType.decode"]
+}
+
+variable "collectionname2" {
+
+    default = "Groups"
+
+}
+
+variable "collectionname3" {
+
+    default = "StudyDefinitionsV1"
+
 }
 
 
@@ -428,10 +501,10 @@ variable "purge_protection_enabled"{
 
 }
 
-# variable "soft_delete_enabled" {
+/* variable "soft_delete_enabled" {
 
-#     default = "true"
-# }
+    default = "true"
+} */
 
 variable "soft_delete_retention_days"{
 
@@ -537,3 +610,17 @@ variable "certificate_permissions" {
 
 ###################### RBAC roles variables End  ###################################################
 
+########################### Azure AD UI App Registration variables Begin ####################################
+
+variable "sign_in_audience" {
+
+    default = "AzureADMultipleOrgs"
+}
+
+variable "claimname" {
+
+    default = "login_hint"
+
+}
+
+########################### Azure AD UI App Registration variables End ####################################
