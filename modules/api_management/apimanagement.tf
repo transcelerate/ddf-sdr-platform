@@ -51,15 +51,56 @@ resource "azurerm_api_management_custom_domain" "example" {
 }
 
 resource "azurerm_api_management_api" "apiendpoint" {
-  name                  = var.apiendpointname
+  for_each              = {for endpoint in var.apiendpoints : endpoint.name => endpoint}
+  name                  = each.value.name
   resource_group_name   = var.rg_name
   api_management_name   = azurerm_api_management.apimanagement.name
   revision              = "1"
-  display_name          = var.apiendpointdisplayname
-  path                  = var.apiendpointpath
+  display_name          = each.value.display_name
+  path                  = each.value.path
   protocols             = ["https"]
   subscription_required = false
   service_url           = var.service_url
+}
+
+resource "azurerm_api_management_api_operation" "apioperations" {
+  for_each            = {for api in var.apioperations : api.operation_id => api}
+  operation_id        = each.value.operation_id
+  api_name            = each.value.api_name
+  api_management_name = azurerm_api_management.apimanagement.name
+  resource_group_name = var.rg_name
+  display_name        = each.value.display_name
+  method              = each.value.method
+  url_template        = each.value.url_template
+  description         = "SDR API's"
+  depends_on          = [azurerm_api_management_api.apiendpoint]
+
+  response {
+    status_code = 200
+  }
+}
+
+resource "azurerm_api_management_api_operation" "apioperations_tp" {
+  for_each            = {for api in var.apioperations_tp : api.operation_id => api}
+  operation_id        = each.value.operation_id
+  api_name            = each.value.api_name
+  api_management_name = azurerm_api_management.apimanagement.name
+  resource_group_name = var.rg_name
+  display_name        = each.value.display_name
+  method              = each.value.method
+  url_template        = each.value.url_template
+  description         = "SDR API's"
+  depends_on          = [azurerm_api_management_api.apiendpoint]
+
+  template_parameter {
+    name    = each.value.tempname
+    type    = "string"
+    required = false
+  }
+
+  response {
+    status_code = 200
+  }
 }
 
 resource "azurerm_api_management_logger" "apimanagement_log" {
@@ -74,4 +115,21 @@ resource "azurerm_api_management_logger" "apimanagement_log" {
     instrumentation_key = var.appinsights_instrumentation_key
 
   }
+}
+
+resource "azurerm_api_management_api_diagnostic" "example" {
+  for_each                 = {for api in var.apiname : api.api_name => api}
+  identifier               = "applicationinsights"
+  resource_group_name      = var.rg_name
+  api_management_name      = azurerm_api_management.apimanagement.name
+  api_name                 = each.value.api_name
+  api_management_logger_id = azurerm_api_management_logger.apimanagement_log.id
+  depends_on               = [azurerm_api_management_api.apiendpoint]
+
+  sampling_percentage       = 100.0
+  always_log_errors         = true
+  log_client_ip             = true
+  verbosity                 = "information"
+  http_correlation_protocol = "W3C"
+
 }
