@@ -79,7 +79,8 @@ This folder contains all the modularized code for the resources listed below.
 |                     app_insights                     |                               | Code for creating **Application Insights** resource for collecting Application logs |
 | data_adgrouprole_assignments data_sprole_assignments |                               |       Code for reading **Azure AD Groups** and **Service Principal** for RBAC       |
 |                   role_assignment                    |                               |           Code for granting access and RBAC role assignment to resources            |
-| azuread_appregistration |             |  Code for creating **App Registration** to enable authentication for SDR Application |
+| azuread_appregistration |             |  Code for creating **App Registration** to enable authentication for SDR Application
+
 ##3 main.tf
 
 - This file contains the resource configuration code. This file invokes the modules for the specific resources to be deployed on the Microsoft Azure Platform.
