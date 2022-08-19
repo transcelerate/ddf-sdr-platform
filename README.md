@@ -81,12 +81,12 @@ This folder contains all the modularized code for the resources listed below.
 |                   role_assignment                    |                               |           Code for granting access and RBAC role assignment to resources            |
 | azuread_appregistration |             |  Code for creating **App Registration** to enable authentication for SDR Application
 
-##3 main.tf
+## main.tf
 
 - This file contains the resource configuration code. This file invokes the modules for the specific resources to be deployed on the Microsoft Azure Platform.
 - Single module can be called multiple times to create the same set of resources with different naming conventions and configurations.
 
-##3 Variables.tf
+## Variables.tf
 
 - Variables that are repeated / parameterized / environment specific, can be declared in variables.tf.
 
