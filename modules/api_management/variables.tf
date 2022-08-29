@@ -93,14 +93,43 @@ variable "service_url" {
   
 }
 
-variable "apiendpointname" {
+variable "apiendpoints" {
+
+    type = list(object({
+        name         = string
+        display_name = string
+        path         = string
+    }))
   
 }
 
-variable "apiendpointdisplayname" {
+variable "apioperations" {
+
+    type = list(object({
+        operation_id = string
+        api_name     = string   
+        display_name = string
+        method       = string
+        url_template = string  
+    }))
   
 }
 
-variable "apiendpointpath" {
+variable "apioperations_tp" {
+
+    type = list(object({
+        operation_id = string
+        api_name     = string   
+        display_name = string
+        method       = string
+        url_template = string
+        tempname     = string
+    }))
+  
+}
+
+variable "apiname" {
+
+    type = list(object({api_name = string}))
   
 }
