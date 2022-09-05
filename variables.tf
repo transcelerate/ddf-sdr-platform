@@ -213,21 +213,212 @@ variable "identity_type" {
   default = "SystemAssigned"
 }
 
-variable "apiendpointname" {
+variable "apiendpoints" {
 
-    default = "clinical-study"
+    default = [{
+        name         = "clinical-study"
+        display_name = "Clinical Study"
+        path         = "studydefinitionrepository/v1"
+    },
+    {
+        name         = "sdr-api"
+        display_name = "SDR API"
+        path         = "api"  
+    },
+    {
+        name         = "sdr-ui-admin"
+        display_name = "SDR UI Admin"
+        path         = "api/ui/admin"
+    },
+    {
+        name         = "sdr-ui-api"
+        display_name = "SDR UI API"
+        path         = "api/ui"
+    }]
+  
 }
 
-variable "apiendpointdisplayname" {
+variable "apioperations" {
 
-    default = "Clinical Study"
+    default = [
+    {
+        operation_id = "search-clinical-study"
+        api_name     = "clinical-study"
+        display_name = "Search Clinical Study"
+        method       = "POST"
+        url_template = "/search"
+    },
+    {
+        operation_id = "study-history-post"
+        api_name     = "clinical-study"
+        display_name = "Study History Post"
+        method       = "POST"
+        url_template = "/studyhistory"
+    },
+    {
+        operation_id = "token"
+        api_name     = "sdr-api"
+        display_name = "Token"
+        method       = "POST"
+        url_template = "/v1/auth/token"
+    },
+    {
+        operation_id = "post-study-definition"
+        api_name     = "sdr-api"
+        display_name = "Post Study Definition"
+        method       = "POST"
+        url_template = "/v1/studydefinitions"
+    },
+    {
+        operation_id = "study-designs"
+        api_name     = "sdr-api"
+        display_name = "Study Designs"
+        method       = "GET"
+        url_template = "/v1/studydesigns"
+    },
+    {
+        operation_id = "study-history"
+        api_name     = "sdr-api"
+        display_name = "Study History"
+        method       = "GET"
+        url_template = "/v1/studydefinitions/history"
+    },
+    {
+        operation_id = "check-group-name"
+        api_name     = "sdr-ui-admin"
+        display_name = "Check Group Name"
+        method       = "GET"
+        url_template = "/v1/usergroups/checkgroupname"
+    },
+    {
+        operation_id = "get-group-list"
+        api_name     = "sdr-ui-admin"
+        display_name = "Get Group List"
+        method       = "GET"
+        url_template = "/v1/usergroups/getgrouplist"
+    },
+    {
+        operation_id = "get-groups"
+        api_name     = "sdr-ui-admin"
+        display_name = "Get Groups"
+        method       = "POST"
+        url_template = "/v1/usergroups/getgroups"
+    },
+    {
+        operation_id = "get-users"
+        api_name     = "sdr-ui-admin"
+        display_name = "Get Users"
+        method       = "POST"
+        url_template = "/v1/usergroups/getusers"
+    },
+    {
+        operation_id = "list-users"
+        api_name     = "sdr-ui-admin"
+        display_name = "List Users"
+        method       = "GET"
+        url_template = "/v1/usergroups/listusers"
+    },
+    {
+        operation_id = "post-group"
+        api_name     = "sdr-ui-admin"
+        display_name = "Post Group"
+        method       = "POST"
+        url_template = "/v1/usergroups/postgroup"
+    },
+    {
+        operation_id = "post-user"
+        api_name     = "sdr-ui-admin"
+        display_name = "Post User"
+        method       = "POST"
+        url_template = "/v1/usergroups/postuser"
+    },
+    {
+        operation_id = "search-api"
+        api_name     = "sdr-ui-api"
+        display_name = "Search API"
+        method       = "POST"
+        url_template = "/v1/search"
+    },
+    {
+        operation_id = "search-study-title"
+        api_name     = "sdr-ui-api"
+        display_name = "Search Study Title"
+        method       = "POST"
+        url_template = "/v1/searchstudytitle"
+    },
+    {
+        operation_id = "usage-reports"
+        api_name     = "sdr-ui-api"
+        display_name = "Usage Reports"
+        method       = "POST"
+        url_template = "/v1/reports/usage"
+    }]
+  
+}
+
+variable "apioperations_tp" {
+
+    default = [
+    {
+        operation_id = "all-study-elements"
+        api_name     = "clinical-study"   
+        display_name = "All Study Elements"
+        method       = "GET"
+        url_template = "/study/{studyId}"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "audit-trail-get"
+        api_name     = "clinical-study"
+        display_name = "Audit Trail Get"
+        method       = "GET"
+        url_template = "/audittrail/{studyId}"
+        tempname     = "studyId"
+    },
+    # {
+    #     operation_id = "study-design-sections"
+    #     api_name     = "clinical-study"
+    #     display_name = "Study Design Sections"
+    #     method       = "GET"
+    #     url_template = "/{studyId}/studydesign/{studydesignId}"
+    #     tempname     = "studyId"
+    # },
+    {
+        operation_id = "audit-trail"
+        api_name     = "sdr-api"
+        display_name = "Audit Trail"
+        method       = "GET"
+        url_template = "/v1/audittrail/{studyId}"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "get-study-definition"
+        api_name     = "sdr-api"
+        display_name = "Get Study Definition"
+        method       = "GET"
+        url_template = "/v1/studydefinitions/{studyid}"
+        tempname     = "studyid"
+    }
+    ]
 
 }
 
-variable "apiendpointpath" {
-
-    default = "studydefinitionrepository/v1"
-    
+variable "apiname" {
+  
+  default = [
+    {
+        api_name = "clinical-study"
+    },
+    {
+        api_name = "sdr-api"
+    },
+    {
+        api_name = "sdr-ui-admin"
+    },
+    {
+        api_name = "sdr-ui-api"
+    }
+ ]
 }
 
 ######################API Management Variables End #############################################
