@@ -217,9 +217,10 @@ module "module_apimanagement"{
       identity_type                     = var.identity_type
       host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
       service_url                       = "https://${module.module_appservice2.appservice_name}"
-      apiendpointname                   = var.apiendpointname
-      apiendpointdisplayname            = var.apiendpointdisplayname
-      apiendpointpath                   = var.apiendpointpath    
+      apiendpoints                      = var.apiendpoints
+      apioperations                     = var.apioperations
+      apioperations_tp                  = var.apioperations_tp
+      apiname                           = var.apiname   
       apimanagement_tags           = {
 
          Environment = var.env_acronym
