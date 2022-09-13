@@ -45,8 +45,8 @@ The content in this repository assumes a good understanding of Azure concepts an
 - User should have basic understanding of GitHub Actions & Yaml
 
 There are documents to provide a high level overview of the SDR Reference Implementation.
-- [Azure Solution Architecture Document](documents/ddf-sdr-azure-solution-architecture.pdf)
-- [Process Flows Document](documents/MVP%20Process%20Flows%20(final).pdf)
+- [Azure Solution Architecture Document](documents/ddf-sdr-azure-solution-architecture-v2.0.pdf)
+- [Process Flows Document](documents/ddf-sdr-process-flows-v3.0.pdf)
 
 # Overview
 
@@ -92,7 +92,7 @@ This folder contains all the modularized code for the resources listed below.
 
 # Deployment Process
 
-**Important Note:** Refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v2.0.pdf)** and **[DDF SDR Azure Platform Design and Implementation Guide](documents/ddf-sdr-azure-platform-design-and-implementation.pdf)** documents before following the below steps. 
+**Important Note:** Refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v3.0.pdf)** and **[DDF SDR Azure Platform Design and Implementation Guide](documents/ddf-sdr-azure-platform-design-and-implementation-v2.0.pdf)** documents before following the below steps. 
 
 ## Instructional Vidoes
 
@@ -166,6 +166,6 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 
 - **Step 1 :** Go to GitHub Actions and under the list of workflows click on CI
 - **Step 2 :** In this workflow click Run Workflow to trigger the Deployment Action
-- **Step 3 :** Once the workflow completes successfully, refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](https://github.com/transcelerate/ddf-sdr-platform/raw/main/documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v2.0.pdf)** for additional manual configuration updates to the deployed resources and further deploy SDR Reference Implementation (RI) Application Code
+- **Step 3 :** Once the workflow completes successfully, refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](https://github.com/transcelerate/ddf-sdr-platform/raw/main/documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v3.0.pdf)** for additional manual configuration updates to the deployed resources and further deploy SDR Reference Implementation (RI) Application Code
 
 **Important Note :** GitHub Actions does not allow multi-environment deployment setup with Free Pricing Plan. To Deploy to different environments, the GitHub secret values have to be updated with values of the target Azure Environment.
