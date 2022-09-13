@@ -97,10 +97,10 @@ This folder contains all the modularized code for the resources listed below.
 ## Instructional Vidoes
 
 Several videos have been created to show steps a user would need to go through to provision a new instance of the SDR in their organization's local Azure environment.
-1. [Environment Creation for SDR on Azure](https://www.youtube.com/watch?v=okYXCo256fc&list=PLMXS-Xt7Ou1KNUF-HQKQRRzqfPQEXWb1u&index=1)
+1. [Environment Creation for SDR on Azure](https://www.youtube.com/watch?v=z_W-sOW7Kdk)
 2. [Deploying SDR code on Azure DevOps](https://www.youtube.com/watch?v=nsYb33Jq6Qo&list=PLMXS-Xt7Ou1KNUF-HQKQRRzqfPQEXWb1u&index=2)
-3. [Azure PaaS Configurations](https://www.youtube.com/watch?v=FWLi6ww9HUU&list=PLMXS-Xt7Ou1KNUF-HQKQRRzqfPQEXWb1u&index=3)
-4. [Application Data Setup and Smoke Test](https://www.youtube.com/watch?v=pnA-ubWx1Is&list=PLMXS-Xt7Ou1KNUF-HQKQRRzqfPQEXWb1u&index=4)
+3. [Azure PaaS Configurations](https://www.youtube.com/watch?v=koYWS-DikIY)
+4. [Application Data Setup and Smoke Test](https://www.youtube.com/watch?v=q0eg_Xji9RQ)
 5. [SonarQube Integration with Azure](https://www.youtube.com/watch?v=WF42UIxhSd0&list=PLMXS-Xt7Ou1KNUF-HQKQRRzqfPQEXWb1u&index=5)
 
 ## Pre-Requisites
