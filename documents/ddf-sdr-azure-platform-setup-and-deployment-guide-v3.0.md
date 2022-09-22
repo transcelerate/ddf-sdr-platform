@@ -82,17 +82,17 @@ ii.	On the Azure portal menu<br>
 •	Search for Subscriptions.<br> 
 •	Select it from the available options as shown below.
 
-Figure 1 Select Subscriptions in Azure Portal
+<p align="center"> <img width="382" alt="select-subscriptions-in-azure-portal"  src="images-for-azure-platform-setup-and-deployment-guide-v3.0/select-subscriptions-in-azure-portal.png">
 
 iii.	Select the subscription you want to view.
 
-Figure 2 Select Subscription
+<p align="center"> <img width="382" alt="select-subscription"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/select-subscription.png">
 
 iv.	On the left menu<br>
     Under Settings<br>
     select Resource providers.
     
-Figure 3 Resource Providers in a Subscription
+<p align="center"> <img width="382" alt="resource-providers-in-a-subscription"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/resource-providers-in-a-subscription.png">
  
 v.	Find the resource provider you want to register and select Register. To maintain least privileges in your subscription, only register the additional resource providers (other than default) that are required as listed below.<br>
 The Providers to be registered are:<br>
@@ -101,7 +101,7 @@ The Providers to be registered are:<br>
 •	Microsoft.ApiManagement<br>
 •	Microsoft.DocumentDB
 
-Figure 4 Registering Resource Providers
+<p align="center"> <img width="382" alt="registering-resource-providers"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/registering-resource-providers.png">
  
 ## Create Azure AD Groups
 ### GOAL:
@@ -134,10 +134,10 @@ ii.	Search for Azure Active Directory<br>
 iii.	Click on the Groups on the left panel in AAD.<br>
 iv.	Click on New group tab on the top as shown below, add the security group and save the changes by adding the members to the group.
 
-Figure 5 Adding new groups
+<p align="center"> <img width="382" alt="adding-new-groups"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/adding-new-groups.png">
  
 
-Figure 6 Add New Group
+<p align="center"> <img width="382" alt="add-new-group"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/add-new-group.png">
  
 ## Create Users
 ### GOAL:
@@ -150,7 +150,7 @@ ii.	Search for Azure Active Directory (AAD)<br>
 iii.	Click on the users on the left panel in AAD.<br>
 iv.	Click on New User tab on the top, add the user and save the changes.
 
-Figure 7 Create New User
+<p align="center"> <img width="382" alt="create-new-user"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/create-new-user.png">
  
 ## Role Based Access Controls (RBAC)
 ### GOAL:
@@ -163,21 +163,21 @@ At subscription level<br>
 i.	Go to the subscription.<br>
 ii.	On the left pane select Access control (IAM) as shown in below screenshot.
 
-Figure 8 Access Control (IAM)
+<p align="center"> <img width="382" alt="access-control-(iam)"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/access-control-(iam).png">
  
 iii.	Click on + Add and add the role assignment
 
-Figure 9 Add Role Assignment
+<p align="center"> <img width="382" alt="add-role-assignment"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/add-role-assignment.png">
  
 iv.	Select the required role (ex: reader, contributor etc., Refer Table 1) for the members and assign the role to the created groups as shown in the screenshot below and save the changes.
 
-Figure 10 Select Roles
+<p align="center"> <img width="382" alt="select-roles"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/select-roles.png">
  
-Figure 11 Select Members for Role Assignment
+<p align="center"> <img width="382" alt="select-members-for-role-assignment"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/select-members-for-role-assignment.png">
  
 v.	To view the roles assigned to a particular group navigate to Role assignments tabs as shown below:
 
-Figure 12 View Role Assignments
+<p align="center"> <img width="382" alt="view-role-assignments"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/view-role-assignments.png">
  
 The same procedure should be followed to provide access/assign roles to any resource in the Azure portal.
 
@@ -266,11 +266,11 @@ ii.	On the lower left-hand side of the screen, click on Secrets.<br>
 iii.	Under that click on Actions.<br>
 iv.	Then click on New Repository Secret.
 
-Figure 13 GitHub Actions Secrets
+<p align="center"> <img width="382" alt="github-actions-secrets"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/github-actions-secrets.png">
  
 v.	After clicking New Repository Secret, fill the details of the secret (name and value) in the boxes
  
-Figure 14 Add new GitHub Action Secret
+<p align="center"> <img width="382" alt="add-new-github-action-secret"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/add-new-github-action-secret.png">
  
 ## Execute GitHub Action for IaC deployment 
 ### GOAL:
@@ -300,33 +300,33 @@ Azure AD Client Application Registration and OAuth 2.0 configuration for SDR UI 
 #### SDR UI APP REGISTRATION:
 i.	Go To Azure AD → App Registrations→→Select UI App Registration
 
-Figure 15 Azure AD - App Registration
+<p align="center"> <img width="382" alt="azure-ad-app-registration"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/azure-ad-app-registration.png">
 
 ii.	Go to Authentication blade, add additional Redirect URL as needed. Add localhost URL's for testing the application from development machine.
 
-Figure 16 Azure AD - App Registration - Redirect URI
+<p align="center"> <img width="382" alt="azure-ad-app-registration-redirect-uri"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/azure-ad-app-registration-redirect-uri.png">
  
 iii.	Go to `Expose an API` blade and click on `Add a Scope`. Provide scope name, select `Admins and users` in `Who can consent`, provide admin consent display name and finally click on `Add Scope`.
 
-Figure 17 Azure AD - App Registration - Expose an API
+<p align="center"> <img width="382" alt="azure-ad-app-registration-expose-an-api"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/azure-ad-app-registration-expose-an-api.png">
  
 iv.	Go to API Permissions → Click on Add a permission →Select My Api’s → Select Backend app registration exposed Api on step 4. → select Api (ui-access) → click Add Permission.
 
-Figure 18 Azure AD - App Registration - API Permission
+<p align="center"> <img width="382" alt="azure-ad-app-registration-api-permission"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/azure-ad-app-registration-api-permission.png">
  
-Figure 19 Azure AD - App Registration - Add API Permission
+<p align="center"> <img width="382" alt="azure-ad-app-registration-add-api-permission"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/azure-ad-app-registration-add-api-permission.png">
  
 v.	Grant Admin consent.
 
-Figure 20 Azure AD - App Registration - API Permission - Grant Admin Consent 
+<p align="center"> <img width="382" alt="azure-ad-app-registration-api-permission-grant-admin-consent"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/azure-ad-app-registration-api-permission-grant-admin-consent.png">
 
 vi.	Go to certificates & secrets → click on client secrets → click new client secret and copy the value and add it on Key Vault secrets.
 
-Figure 21 Azure AD - App Registration - Certificates & Secrets
+<p align="center"> <img width="382" alt="azure-ad-app-registration-certificates&secrets"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/azure-ad-app-registration-certificates&secrets.png">
  
 vii.	Capture the client id and tenant id and add it on Key Vault secrets. We must generate tokens for authenticating to the SDR UI Application using the client app registration details (client ID, Tenant ID, and Secret value). Refer Section 2.8.3 for Key Vault secrets.
 
-Figure 22  Azure AD - App Registration - Essential Secrets
+<p align="center"> <img width="382" alt="azure-ad-app-registration-essential-secrets"  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/azure-ad-app-registration-essential-secrets.png">
  
 The Azure AD App registration for UI has been created successfully.
 ```
@@ -342,7 +342,7 @@ i.	Navigate to UI App Service instance in App resource group.<br>
 ii.	Go to Configuration → Path Mappings<br>
 iii.	Change the Physical Path from site\wwwroot to site\wwwroot\SDR-WebApp for accessing the app URL.
 
-Figure 23  App Service Path Mapping
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/app-service-path-mapping.png">
  
 ## Key Vault
 ### GOAL:
@@ -379,25 +379,25 @@ Figure 23  App Service Path Mapping
 The steps for adding Key Vault Administrator to Key Vault access policies for creating secrets are listed below.
 i.	Go to → Key Vault → Select Access Policies → Click on Add Access Policy
 
-Figure 24 Add Key Vault Access Policy
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/add-key-vault-access-policy.png">
  
 ii.	Select Secret Management → select Secret Permissions (Get, List, Set)
 
-Figure 25 Select Secret Permissions in Access Policy in Key Vault
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/select-secret-permissions-in-access-policy-in-key-vault.png">
  
 iii.	Select Principal → Add Azure Key Vault Administrator User (select the username) → Click Add
 
-Figure 26 Select Principal (List of users) In Key Vault Access Policy
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/select-principal-(list-of-users)in-key-vault-access-policy.png">
  
 ### STEPS FOR ADDING KEY VAULT SECRETS:
 Add Key Vault entries for all the secrets captured in the pre-requisites.<br>
 i.	Go to → Key Vault → Select Secrets → Click Generate/Import
 
-Figure 27 Create Secrets in Key Vault
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/create-secrets-in-key-vault.png">
  
 ii.	Provide Secret Name and Value → Select Create
 
-Figure 28 Add Secrets values in Key Vault
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/add-secrets-values-in-key-vault.png">
  
 # Resource Validation
 Validate all resources from Azure Portal to ensure that the resource configurations have been deployed in accordance with the low-level design document (LLD).
@@ -410,9 +410,9 @@ Naming Convention followed for all the resources is as below -<br>
 •	Environment: dev, preprod etc.<br>
 •	Region: eastus, westus, etc.
 
-Figure 29 Resource Naming Convention
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/resource-naming-convention.png">
 
-Figure 30 SDR Resource Naming Convention
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/sdr-resource-naming-convention.png">
  
 ```
 Note: For Resource Naming Convention best practices please refer Azure Resource Naming Conventions
@@ -420,7 +420,7 @@ Note: For Resource Naming Convention best practices please refer Azure Resource 
 ## Virtual Network
  Validation of Virtual Network (VNet) configuration
  
-Figure 31 VNet Configurations
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/vnet-configurations.png">
  
 ### PRE-REQUISITES: 
 •	Reader access at Resource group level
@@ -432,17 +432,17 @@ iii.	Select the Resource group for VNet configuration<br>
 iv.	Verify that the Basic details like Subscription, Resource Group, Name and Region is as per the LLD<br>
 v.	Verify that the IPv4 Address Space is as per the LLD
 
-Figure 32 Virtual Network
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/virtual-network.png">
  
 vi.	Go to Security tab and verify that Bastion Host is set as per the LLD<br>
 vii.	Go to DDoS Protection tab and verify that it is set as per the LLD
 
-Figure 33 Virtual Network - DDoS protection
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/virtual-network-ddos-protection.png">
  
 viii.	Go to Firewall tab and verify that it is set as per the LLD<br>
 ix.	Go to the Tags tab and verify that the Environment and App Layer should be as per the LLD
 
-Figure 34 Virtual Network - Tags
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/virtual-network-tags.png">
  
 x.	Go to the Diagnostic Settings Tab and verify that the below settings are as per LLD<br>
 •	Diagnostic setting name<br> 
@@ -457,7 +457,7 @@ x.	Go to the Diagnostic Settings Tab and verify that the below settings are as p
 •	Subscription Name<br> 
 •	Log Analytics Workspace name
 
-Figure 35 Virtual Network - Diagnostic Setting
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/virtual-network-diagnostic-setting.png">
  
 ## Subnet 
 Validation of Virtual Subnet configuration.
@@ -478,9 +478,9 @@ iv.	Verify that the below basic details are as per the LLD<br>
 •	Services<br> 
 •	Delegate subnet to a service
 
-Figure 36 Subnet Details
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/subnet-details.png">
  
-Figure 37 Subnet Details
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/subnet-details-2.png">
  
 ## Delegated Subnet
 Validation of Delegated Subnet configuration.        	
@@ -500,13 +500,13 @@ iv.	Verify that the below basic details are as per the LLD<br>
 •	Services<br> 
 •	Delegate subnet to a service
 
-Figure 38 Delegated Subnet-001 Details
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/delegated-subnet-001-details.png">
  
-Figure 39 Delegated Subnet-001 Service Endpoints Details 
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/delegated-subnet-001-service-endpoints-details.png"> 
  
-Figure 40 Delegated Subnet-002 Details
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/delegated-subnet-002-details.png">
  
-Figure 41 Delegated Subnet-002 Service Endpoints Details 
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/delegated-subnet-002-service-endpoints-details.png"> 
  
 
 ## Other Resources
@@ -542,28 +542,28 @@ The similar steps mentioned in previous sections for VNet & Subnet resources ver
 ### DEPLOYMENT STEPS:
 i.	Go to https://github.com/transceleratebiopharmainc, GitHub URL.
 
-Figure 42 TransCelerate GitHub Project
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/transcelerate-github-project.png">
  
 ii.	Select the required repository, here ddf-sdr-ui.URL – 
 https://github.com/transceleratebiopharmainc/ddf-sdr-ui
        
-Figure 43 TransCelerate GitHub SDR UI Repo
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/transcelerate-github-sdr-ui-repo.png">
  
 iii.	Click on Actions tab.
 
-Figure 44 SDR UI Repo - GitHub Actions
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/sdr-ui-repo-github-actions.png">
  
 iv.	Click on the workflow CI under All workflow.
 
-Figure 45 GitHub Actions - CI Workflow
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/github-actions-ci-workflow.png">
  
 v.	Click on Run Workflow on the right-hand side. Then the action will be triggered.
 
-Figure 46 GitHub - CI Workflow Run
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/github-ci-workflow-run.png">
  
 vi.	The build logs can be seen on clicking the active/running action.
 
-Figure 47 GitHub CI Workflow Output
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/github-ci-workflow-output.png">
  
 vii.	On completion of the workflow, the UI application will be deployed to Azure App Service.                           
 
@@ -573,29 +573,28 @@ vii.	On completion of the workflow, the UI application will be deployed to Azure
 ### DEPLOYMENT STEPS: 
 i.	Go to https://github.com/transceleratebiopharmainc, GitHub URL.
 
-Figure 48 TransCelerate GitHub Project
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/transcelerate-github-project-1.png">
  
 ii.	Select the required repository, here ddf-sdr-api. 
 URL -  https://github.com/transceleratebiopharmainc/ddf-sdr-api 
    
-Figure 49 TransCelerate GitHub SDR API Repo
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/transcelerate-github-sdr-api-repo.png">
  
 iii.	Click on Actions tab.
           
-Figure 50 GitHub Actions CI Worklfow
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/github-actions-ci-worklfow.png">
  
 iv.	 Click on the workflow CI under All workflow.
 
-Figure 51 GitHub CI Workflow Run
- 
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/github-ci-workflow-run-2.png"> 
 
 v.	Click on Run Workflow on the right-hand side. Then the action will be triggered.
 
-Figure 52 GitHub CI Workflow Run
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/github-ci-workflow-run-3.png">
 
 vi.	The build logs can be viewed on clicking the active/running action.
 
-Figure 53 GitHub CI Workflow Output
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/github-ci-workflow-output-2.png">
  
 vii.	On completion of the workflow, the back-end API will be deployed to Azure App Service.
 
@@ -604,27 +603,27 @@ vii.	On completion of the workflow, the back-end API will be deployed to Azure A
 This is to verify the UI Application deployment was successful.
 i.	Go to portal.azure.com. Click on resource group
 
-Figure 54 Azure Portal
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/azure-portal-2.png">
 
 ii.	Select the required resource group and select the UI App Service instance.
 
-Figure 55 Azure Portal - SDR UI App Service
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/azure-portal-sdr-ui-app-service.png">
 
 iii.	In search box, search for Advanced tools.
 
-Figure 56 SDR UI App Service - Advanced Tools
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/sdr-ui-app-service-advanced-tools.png">
 
 iv.	Click on Go.
 
-Figure 57 SDR UI App Service Advanced Tools - Go
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/sdr-ui-app-service-advanced-tools-go.png">
 
 v.	Go to Debug console and select CMD/Power Shell
 
-Figure 58 Azure Kudu Tool
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/azure-kudu-tool.png">
 
 vi.	Go to, Site -> wwwroot -> Check that the latest code files are deployed.
     
-Figure 59 SDR UI Deployed Files
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/sdr-ui-deployed-files.png">
 
 #### FOR SDR API BACK-END APP VERIFICATION:
 The same steps as mentioned above for SDR UI Application verification can be followed for SDR API deployment verification as well, in the corresponding App Service instance.
@@ -642,29 +641,29 @@ New-SelfSignedCertificate -certstorelocation cert:\CurrentUser\my -dnsname apim-
 
 ii.	Once the certificate is created it should now be available to access under your local system snap-in where you can view the metadata of the certificate. 
 
-Figure 60 Client Certificate
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/client-certificate.png">
  
 iii.	Export the certificate in .pfx format and set password when prompted.
 
 #### UPLOAD THE CLIENT CERTIFICATE TO APIM:
 i.	In Azure Portal, Go to the Certificates option under the “Security” section of APIM. Go to “Certificates” option and click on “Add” option  
 
-Figure 61 APIM Certificates
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/apim-certificates.png">
 
 ii.	Upload the password protected Client certificate (.pfx) format as shown below.
 
-Figure 62 APIM Certificates - Client Certificates
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/apim-certificates-client-certificates.png">
  
 iii.	Once the certificate is uploaded it should be visible on the API Management certificates blade as below  
 
 Client Certificate  
 
-Figure 63 APIM Certificates - Client Certificate
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/apim-certificates-client-certificate.png">
 
 iv.	Configure the policy to validate one or more attributes of a client certificate used to access APIs hosted in API Management instance.<br>
 v.	Go to APIs -> Select the SDR API -> Select “All Operations” -> Inbound processing -> Select Policies 
 
-Figure 64 APIM Inbound Processing
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/apim-inbound-processing.png">
  
 vi.	Add the policy code below to check the thumbprint of a client certificate against certificates uploaded to API Management
 ```
@@ -739,4 +738,4 @@ vi.	Add the policy code below to check the thumbprint of a client certificate ag
 </policies>
 ```
 
-Figure 65 APIM - Inbound Policy
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/apim-inbound-policy.png">
