@@ -367,7 +367,7 @@ Figure 23  App Service Path Mapping
 |AzureAd-Authority|	Provide the Azure Ad authority value (https://login.microsoftonline.com/(Provide Azure AD Tenant ID))|
 |AzureAd-ClientId|	Provide the App Registration client ID, refer to Section 2.8.1 App Registration step 7 for client ID|
 |AzureAd-LoginUrl|	Provide the Front End (UI) App Service URL.|
-|AzureAd-RedirectUrl|	Provide the Redirect URL (E.g.: https://Front End App service URL (UI)/home)|
+|AzureAd-RedirectUrl|	Provide the Redirect URL (E.g.:https://Front End App service URL (UI)/home)|
 |AzureAd-TenantId|	Provide the Azure AD Tenant ID, refer to Section 2.8.1 App Registration step 7 for Tenant ID|
 |ConnectionStrings--DatabaseName	|Provide the Cosmos DB Database Name.|
 |ConnectionStrings--ServerName	|Provide the Cosmos DB connection string.|
@@ -379,3 +379,34 @@ Figure 23  App Service Path Mapping
 ### STEPS FOR ADDING ACCESS POLICY:
 The steps for adding Key Vault Administrator to Key Vault access policies for creating secrets are listed below.
 i.	Go to → Key Vault → Select Access Policies → Click on Add Access Policy
+
+Figure 24 Add Key Vault Access Policy
+ 
+ii.	Select Secret Management → select Secret Permissions (Get, List, Set)
+
+Figure 25 Select Secret Permissions in Access Policy in Key Vault
+ 
+iii.	Select Principal → Add Azure Key Vault Administrator User (select the username) → Click Add
+
+Figure 26 Select Principal (List of users) In Key Vault Access Policy
+ 
+### STEPS FOR ADDING KEY VAULT SECRETS:
+Add Key Vault entries for all the secrets captured in the pre-requisites.<br>
+i.	Go to → Key Vault → Select Secrets → Click Generate/Import
+
+Figure 27 Create Secrets in Key Vault
+ 
+ii.	Provide Secret Name and Value → Select Create
+
+Figure 28 Add Secrets values in Key Vault
+ 
+# Resource Validation
+Validate all resources from Azure Portal to ensure that the resource configurations have been deployed in accordance with the low-level design document (LLD).
+## Low-Level Design Document
+The low-level design document contains all the settings and configurations that have been configured on Terraform IaC code.
+ 
+Naming Convention followed for all the resources is as below -<br> 
+•	Resource type: vnet, subnet, rg, etc.<br>
+•	App/Svc: Subscription name<br>
+•	Environment: dev, preprod etc.<br>
+•	Region: eastus, westus, etc.
