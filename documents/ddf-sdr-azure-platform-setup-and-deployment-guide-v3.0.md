@@ -500,3 +500,58 @@ iv.	Verify that the below basic details are as per the LLD<br>
 •	 Route table<br>
 •	Services<br> 
 •	Delegate subnet to a service
+
+Figure 38 Delegated Subnet-001 Details
+ 
+Figure 39 Delegated Subnet-001 Service Endpoints Details 
+ 
+Figure 40 Delegated Subnet-002 Details
+ 
+Figure 41 Delegated Subnet-002 Service Endpoints Details 
+ 
+
+## Other Resources
+The similar steps mentioned in previous sections for VNet & Subnet resources verifications should be followed to ensure that all the below resources deployed in the Azure Platform are configured in accordance with the LLD.<br> 
+•	Resource Groups<br>
+•	App Services<br>
+•	App Service Plans<br>
+•	API Management<br>
+•	Application Insights<br>
+•	Cosmos DB<br>
+•	Log Analytics Workspace<br>
+•	Key Vault
+
+# Application Code Deployment 
+## GitHub Secrets used in WorkFlow
+### PRE-REQUISITES
+•	Read access to fetch Key Vault secrets in Azure Portal<br>
+•	User Should have access policies set to read/retrieve secrets from Azure Key Vault in Azure Portal<br>
+•	User Should have Repo Admin level of access to add/replace the GitHub secrets in GitHub<br>
+#### Step to be followed:
+•	Login to azure portal, select resource group section<br>
+•	Navigate to the deployed KeyVault resource and copy the KeyVault URL from Overview blade<br>
+•	This will be the KEYVAULT_NAME secret value. It will be the same for both UI and API<br>
+•	Navigate to the deployed App Service for SDR API and copy the name from Overview blade. This will be the AZURE_WEBAPP_NAME for ddf-sdr-api repo secrets.<br>
+•	Navigate to the deployed App Service for SDR UI and copy the name from Overview blade. This will be the AZURE_WEBAPP_NAME for ddf-sdr-ui repo secrets.<br>
+•	The value to be added in AZURE_SP secret is generated during Infra Deployment during App Registration and is available in Key Vault secret with name Azure-SP. Retrieve this value to add to GitHub.<br>
+•	Login to GitHub and navigate to ddf-sdr-api → Settings → Secrets → Actions and add/replace values for AZURE_SP, AZURE_WEBAPP_NAME and KEYVAULT_NAME by clicking on update.<br>
+•	Login to GitHub and navigate to ddf-sdr-ui → Settings → Secrets → Actions and add/replace values for AZURE_SP, AZURE_WEBAPP_NAME and KEYVAULT_NAME by clicking on Update.
+
+## Deploy the UI Application
+### PRE-REQUISITES
+•	Contributor level of access at Resource Group level. 
+### DEPLOYMENT STEPS:
+i.	Go to https://github.com/transceleratebiopharmainc, GitHub URL.
+
+Figure 42 TransCelerate GitHub Project
+ 
+ii.	Select the required repository, here ddf-sdr-ui.URL – 
+https://github.com/transceleratebiopharmainc/ddf-sdr-ui
+       
+Figure 43 TransCelerate GitHub SDR UI Repo
+ 
+iii.	Click on Actions tab.
+
+Figure 44 SDR UI Repo - GitHub Actions
+ 
+iv.	Click on the workflow CI under All workflow.
