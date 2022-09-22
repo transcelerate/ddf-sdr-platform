@@ -228,3 +228,66 @@ Service Principal Sample JSON output:
 "managementEndpointUrl": "https://management.core.windows.net/"
 }
 ```
+## Adding Secrets in GitHub
+### GOAL:
+Configure secrets in GitHub used by GitHub Actions during deployment workflow execution.
+### PRE-REQUISITES:
+•	Repo Admin level of access on GitHub Repository<br>
+•	Capture below secret values based on environment design decisions and storage account, service principal details from Section (Storage Account and Service Principal Configuration in Azure)
+
+#### Table 4 GitHub Secrets
+|Secret Name|	Values|
+|-----|-----|
+|AZURE_SP	|The Service Principal details in JSON format.|
+|AZURE_RESOURCEGROUP	|The name of the Resource Group that contains the storage account.|
+|AZURE_STORAGEACCOUNT|	The Storage Account name|
+|AZURE_CONTAINERNAME|	The name of the blob container wherein the Terraform State file will be stored.|
+|AZURE_CLIENT_ID	|The Client Id of the service principal.|
+|AZURE_CLIENT_SECRET	|The Client Secret value of the service principal.|
+|AZURE_SUBSCRIPTION_ID	|The Azure Subscription ID|
+|AZURE_TENANT_ID|	The Azure Tenant ID|
+|AZURE_RMKEY|	Terraform state file name for each environment. (Eg: xxxxdev.tfstate).|
+|Env	|Provide the name of the environment (for example, Dev or QA), which will be added to the resource naming convention.|
+|VNet-IP|	Provide the VNet Address Space|
+|Subnet-IP|	Provide the Subnet Address Space|
+|Subnet-Dsaddress1|	Provide the Delegated Subnet1 Address Space|
+|Subnet-Dsaddress2	|Provide the Delegated Subnet2 Address Space|
+|subscription|	Provide the short form of the subscription name; this will be added to the resource naming convention.|
+|Publisher-Name|	Provide the Publisher name for API Management Resource.|
+|Publisher-Email|	Provide the publisher email id for API Management Resource.|
+|ADgroup1|	Provide the name of the Azure AD Group for contributor access to the App Resource Group (Admin Group).|
+|ADgroup2|	Provide the name of the Azure AD Group for contributor access to the App Resource Group (DevelopmentTeam_Group).|
+|ADgroup3|	Provide the name of the Azure AD Group for Reader access on App & Core Resource Groups.|
+|Serviceprincipal|Provide the name of the Service principal that was created for the Git connection;it will provide key vault secret user access and access policies for secrets on Key Vault for the Service Principal.|
+
+### STEPS:
+Add GitHub Secrets entries for all the secrets captured in the pre-requisites.<br>
+i.	Go to repository settings.<br>
+ii.	On the lower left-hand side of the screen, click on Secrets.<br>
+iii.	Under that click on Actions.<br>
+iv.	Then click on New Repository Secret.
+
+Figure 13 GitHub Actions Secrets
+ 
+v.	After clicking New Repository Secret, fill the details of the secret (name and value) in the boxes
+ 
+Figure 14 Add new GitHub Action Secret
+ 
+## Execute GitHub Action for IaC deployment 
+### GOAL:
+Execute the GitHub actions to deploy the Azure resources using IaC code.
+### PRE-REQUISITES:
+•	Repo Admin level of access on GitHub Repository<br>
+•	For setting up the actions in GitHub, user must have Write permission on repos
+### DEPLOYMENT:
+The folder `.github/workflows` in the IaC Repository on GitHub contains the GitHub Actions yaml script (main.yml) for deploying the Terraform IaC code on Microsoft Azure Platform.
+
+### main.yml:
+
+The yaml file is a multi-job script that will perform security checks on IaC code as well as the deployment of resources to the target environment on Microsoft Azure Platform.
+
+### STEPS:
+i.	Go to GitHub Actions and under the list of workflows click on CI.<br>
+ii.	In this workflow click Run Workflow to trigger the Deployment Action.<br>
+iii.	Once the workflow completes successfully, the SDR Solution resources should have been deployed to Azure platform.
+
