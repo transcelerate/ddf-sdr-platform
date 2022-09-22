@@ -117,11 +117,11 @@ Below are the groups and role assignments created and managed for SDR Reference 
 |Contributor_Group|	Contributor|	Subscription|	Grants full access to manage all resources but does not allow you to assign roles in Azure RBAC, manage assignments in Azure Blueprints, share image galleries, or perform Azure Policy operations.| 
 |Owner_Subscription_Group|	Owner	|Subscription|	Grants full access to manage all resources, including the ability to assign roles in Azure RBAC.|
 |Infra_Group|	Contributor|	Subscription|	Grants full access to manage all resources but does not allow you to assign roles in Azure RBAC, manage assignments in Azure Blueprints, share image galleries, or perform Azure Policy operations.|
-|X|	Global Reader|	Azure Active Directory|	Can be able to read all users and groups information in Azure AD.|
-|X|	User Administrator|	Azure Active Directory|	Can manage all aspects of users and groups, including resetting passwords for limited admins.|
-|X|User Access Administrator|	Subscription|	Let's you manage user access to Azure resources. |
+|<br>|	Global Reader|	Azure Active Directory|	Can be able to read all users and groups information in Azure AD.|
+|<br>|	User Administrator|	Azure Active Directory|	Can manage all aspects of users and groups, including resetting passwords for limited admins.|
+|<br>|User Access Administrator|	Subscription|	Let's you manage user access to Azure resources. |
 DevelopmentTeam_Group	|Reader|	Subscription|	Grants Reader access for all the resources in the Subscription but does not allow you to manage them.|
-|X|	Contributor|	Resource Group	|Grants full access to manage all resources in the Resource Group.|
+|<br>|	Contributor|	Resource Group	|Grants full access to manage all resources in the Resource Group.|
 |TestingTeam_Group|	Reader|	Resource Group|	Grants Reader access for all the resources in the Subscription but does not allow you to manage them.|
 |AppRegistration_Group	|Application administrator|	Azure Active Directory|	Can create and manage all aspects of app registrations and enterprise apps.|
 
