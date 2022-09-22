@@ -410,3 +410,93 @@ Naming Convention followed for all the resources is as below -<br>
 •	App/Svc: Subscription name<br>
 •	Environment: dev, preprod etc.<br>
 •	Region: eastus, westus, etc.
+
+Figure 29 Resource Naming Convention
+
+Figure 30 SDR Resource Naming Convention
+ 
+```
+Note: For Resource Naming Convention best practices please refer Azure Resource Naming Conventions
+```
+## Virtual Network
+ Validation of Virtual Network (VNet) configuration
+ 
+Figure 31 VNet Configurations
+ 
+### PRE-REQUISITES: 
+•	Reader access at Resource group level
+•	SDR Reference Implementation Low Level Design Document (LLD) document 
+ ### STEPS: 
+i.	Login to Azure Portal<br>
+ii.	Click on the Resource Groups tab<br>
+iii.	Select the Resource group for VNet configuration<br>
+iv.	Verify that the Basic details like Subscription, Resource Group, Name and Region is as per the LLD<br>
+v.	Verify that the IPv4 Address Space is as per the LLD
+
+Figure 32 Virtual Network
+ 
+vi.	Go to Security tab and verify that Bastion Host is set as per the LLD<br>
+vii.	Go to DDoS Protection tab and verify that it is set as per the LLD
+
+Figure 33 Virtual Network - DDoS protection
+ 
+viii.	Go to Firewall tab and verify that it is set as per the LLD<br>
+ix.	Go to the Tags tab and verify that the Environment and App Layer should be as per the LLD
+
+Figure 34 Virtual Network - Tags
+ 
+x.	Go to the Diagnostic Settings Tab and verify that the below settings are as per LLD<br>
+•	Diagnostic setting name<br> 
+•	Configuration for<br>
+    o	Logs<br>
+    o	VM Protection Alerts<br>
+    o	All Metrics<br>
+    o	Send to Log Analytics Workspace<br>
+    o	Archive to a Storage Account<br> 
+    o	Stream to an Event Hub<br>
+    o	Send to Partner Solution<br>
+•	Subscription Name<br> 
+•	Log Analytics Workspace name
+
+Figure 35 Virtual Network - Diagnostic Setting
+ 
+## Subnet 
+Validation of Virtual Subnet configuration.
+### PRE-REQUISITES: 
+•	Reader level of access at Resource group level<br>
+•	SDR Reference Implementation Low Level Design Document (LLD) document 
+### STEPS:
+i.	Login to Azure Portal<br>
+ii.	Click on the Resource Groups tab<br>
+iii.	Select the Resource group for VNet configuration<br>
+iv.	Verify that the below basic details are as per the LLD<br>
+•	Name<br>
+•	Subnet address range<br>
+•	Add IPv6 address space<br>
+•	NAT gateway<br>
+•	Network Security Group<br> 
+•	Route table<br>
+•	Services<br> 
+•	Delegate subnet to a service
+
+Figure 36 Subnet Details
+ 
+Figure 37 Subnet Details
+ 
+## Delegated Subnet
+Validation of Delegated Subnet configuration.        	
+### PRE-REQUISITES: 
+•	Reader level of access at Resource group Level. 
+### STEPS:
+i.	Login to Azure Portal<br>
+ii.	Click on the Resource Groups tab<br>
+iii.	Select the Resource group for VNet configuration<br>
+iv.	Verify that the below basic details are as per the LLD<br>
+•	Name<br>
+•	Subnet address range<br>
+•	Add IPv6 address space<br>
+•	NAT gateway<br>
+•	Network Security Group<br>
+•	 Route table<br>
+•	Services<br> 
+•	Delegate subnet to a service
