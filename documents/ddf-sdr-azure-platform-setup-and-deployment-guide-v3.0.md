@@ -555,3 +555,189 @@ iii.	Click on Actions tab.
 Figure 44 SDR UI Repo - GitHub Actions
  
 iv.	Click on the workflow CI under All workflow.
+
+Figure 45 GitHub Actions - CI Workflow
+ 
+v.	Click on Run Workflow on the right-hand side. Then the action will be triggered.
+
+Figure 46 GitHub - CI Workflow Run
+ 
+vi.	The build logs can be seen on clicking the active/running action.
+
+Figure 47 GitHub CI Workflow Output
+ 
+vii.	On completion of the workflow, the UI application will be deployed to Azure App Service.                           
+
+## Deploy Back-End API
+### PRE-REQUISITES
+•	Contributor access at Resource group Level. 
+### DEPLOYMENT STEPS: 
+i.	Go to https://github.com/transceleratebiopharmainc, GitHub URL.
+
+Figure 48 TransCelerate GitHub Project
+ 
+ii.	Select the required repository, here ddf-sdr-api. 
+URL -  https://github.com/transceleratebiopharmainc/ddf-sdr-api 
+   
+Figure 49 TransCelerate GitHub SDR API Repo
+ 
+iii.	Click on Actions tab.
+          
+Figure 50 GitHub Actions CI Worklfow
+ 
+iv.	 Click on the workflow CI under All workflow.
+
+Figure 51 GitHub CI Workflow Run
+ 
+
+v.	Click on Run Workflow on the right-hand side. Then the action will be triggered.
+
+Figure 52 GitHub CI Workflow Run
+
+vi.	The build logs can be viewed on clicking the active/running action.
+
+Figure 53 GitHub CI Workflow Output
+ 
+vii.	On completion of the workflow, the back-end API will be deployed to Azure App Service.
+
+## Deployment Verification
+#### UI APPLICATION VERIFICATION STEPS:
+This is to verify the UI Application deployment was successful.
+i.	Go to portal.azure.com. Click on resource group
+
+Figure 54 Azure Portal
+
+ii.	Select the required resource group and select the UI App Service instance.
+
+Figure 55 Azure Portal - SDR UI App Service
+
+iii.	In search box, search for Advanced tools.
+
+Figure 56 SDR UI App Service - Advanced Tools
+
+iv.	Click on Go.
+
+Figure 57 SDR UI App Service Advanced Tools - Go
+
+v.	Go to Debug console and select CMD/Power Shell
+
+Figure 58 Azure Kudu Tool
+
+vi.	Go to, Site -> wwwroot -> Check that the latest code files are deployed.
+    
+Figure 59 SDR UI Deployed Files
+
+#### FOR SDR API BACK-END APP VERIFICATION:
+The same steps as mentioned above for SDR UI Application verification can be followed for SDR API deployment verification as well, in the corresponding App Service instance.
+
+# PaaS Setup
+## PaaS Setup for APIM
+### GOAL: 
+•	Secure APIs using client certificate authentication in API Management<br>
+•	.API Management uses client certificates to secure API access (i.e., client to API Management). It will validate certificates presented by the connecting client and compare certificate properties to desired values using policy expressions.
+### PRE-REQUISITES: 
+•	Contributor access at Resource Group level.
+#### CREATE CLIENT CERTIFICATE:
+i.	Create self-signed certificate for authentication.<br>
+New-SelfSignedCertificate -certstorelocation cert:\CurrentUser\my -dnsname apim-envname-eastus-001.azure-api.net
+
+ii.	Once the certificate is created it should now be available to access under your local system snap-in where you can view the metadata of the certificate. 
+
+Figure 60 Client Certificate
+ 
+iii.	Export the certificate in .pfx format and set password when prompted.
+
+#### UPLOAD THE CLIENT CERTIFICATE TO APIM:
+i.	In Azure Portal, Go to the Certificates option under the “Security” section of APIM. Go to “Certificates” option and click on “Add” option  
+
+Figure 61 APIM Certificates
+
+ii.	Upload the password protected Client certificate (.pfx) format as shown below.
+
+Figure 62 APIM Certificates - Client Certificates
+ 
+iii.	Once the certificate is uploaded it should be visible on the API Management certificates blade as below  
+
+Client Certificate  
+
+Figure 63 APIM Certificates - Client Certificate
+
+iv.	Configure the policy to validate one or more attributes of a client certificate used to access APIs hosted in API Management instance.<br>
+v.	Go to APIs -> Select the SDR API -> Select “All Operations” -> Inbound processing -> Select Policies 
+
+Figure 64 APIM Inbound Processing
+ 
+vi.	Add the policy code below to check the thumbprint of a client certificate against certificates uploaded to API Management
+```
+<policies>
+    <inbound>
+     <set-variable name="EmailAddress" value="@{
+        string name = "EmptyAuthToken";
+        var authHeader = context.Request.Headers.GetValueOrDefault("Authorization", "EmptyAuthToken");
+        return authHeader.AsJwt()?.Claims.GetValueOrDefault("email", "EmptyAuthToken");
+        }" />
+        <set-variable name="UserName" value="@{
+        string name = "EmptyAuthToken";
+        var authHeader = context.Request.Headers.GetValueOrDefault("Authorization", "EmptyAuthToken");
+        return authHeader.AsJwt()?.Claims.GetValueOrDefault("name", "EmptyAuthToken");
+        }" />
+        <choose>
+            <when condition="@((context.Variables["EmailAddress"]) != null)">
+                <trace source="My Global APIM Policy" severity="information">
+                    <message>@(String.Format("{0} | {1}", context.Api.Name, context.Operation.Name))</message>
+                    <metadata name="EmailAddress" value="@((string)context.Variables["EmailAddress"])" />
+                    <metadata name="UserName" value="@((string)context.Variables["UserName"])" />
+                </trace>
+            </when>
+            <otherwise>
+                <trace source="My Global APIM Policy" severity="information">
+                    <message>@(String.Format("{0} | {1}", context.Api.Name, context.Operation.Name))</message>
+                    <metadata name="EmailAddress" value="Not Available" />
+                    <metadata name="UserName" value="Not Available" />
+                </trace>
+            </otherwise>
+        </choose>
+        <base />
+        <choose>
+            <when condition="@(context.Request.Certificate == null || !context.Deployment.Certificates.Any(c => c.Value.Thumbprint == context.Request.Certificate.Thumbprint)
+       || context.Request.Certificate.NotAfter<DateTime.Now)">
+                <return-response>
+                    <set-status code="403" reason="Invalid client certificate" />
+                </return-response>
+            </when>
+        </choose>
+        <cors allow-credentials="true">
+            <allowed-origins>
+                <origin>Add Backend APP Service URL</origin>
+                <origin>http://localhost:4200</origin>
+                <origin>https://localhost:4200</origin>
+                <origin>Add API Management URL</origin>
+                <origin>Add Frontend (UI) URL</origin>
+            </allowed-origins>
+            <allowed-methods preflight-result-max-age="300">
+                <method>GET</method>
+                <method>POST</method>
+                <method>PATCH</method>
+                <method>DELETE</method>
+            </allowed-methods>
+            <allowed-headers>
+                <header>*</header>
+            </allowed-headers>
+            <expose-headers>
+                <header>*</header>
+            </expose-headers>
+        </cors>
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>
+```
+
+Figure 65 APIM - Inbound Policy
