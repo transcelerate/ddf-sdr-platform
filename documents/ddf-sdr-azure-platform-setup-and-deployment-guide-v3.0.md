@@ -111,7 +111,7 @@ Create Azure AD groups to manage Role Based Access Controls (RBAC) on resources 
 •	Global administrator/Owner/User Administrator level of access at Active Directory Level.<br> 
 Below are the groups and role assignments created and managed for SDR Reference Implementation.
 
-### Table 1: Group and Role Assignments
+#### Table 1: Group and Role Assignments
 |RBAC Group Name| 	Azure Built-In Role| 	Scope| 	Usage|
 |-----|-----|-----|-----|
 |GlobalAdmin_Group|	Global Administrator|	Azure Active Directory|	Can manage all aspects of Azure AD and Microsoft services that use Azure AD identities.| 
@@ -163,3 +163,68 @@ Access Control (IAM) is to limit access and assign roles to groups at the subscr
 At subscription level<br>
 i.	Go to the subscription.<br>
 ii.	On the left pane select Access control (IAM) as shown in below screenshot.
+
+Figure 8 Access Control (IAM)
+ 
+iii.	Click on + Add and add the role assignment
+
+Figure 9 Add Role Assignment
+ 
+iv.	Select the required role (ex: reader, contributor etc., Refer Table 1) for the members and assign the role to the created groups as shown in the screenshot below and save the changes.
+
+Figure 10 Select Roles
+ 
+Figure 11 Select Members for Role Assignment
+ 
+v.	To view the roles assigned to a particular group navigate to Role assignments tabs as shown below:
+
+Figure 12 View Role Assignments
+ 
+The same procedure should be followed to provide access/assign roles to any resource in the Azure portal.
+
+## Storage Account and Service Principal Configuration in Azure
+### GOAL:
+Setup storage account and service principal in Azure to enable deployment from GitHub.
+### PRE-REQUISITES:
+•	Contributor level of access at Active Directory Level. 
+#### STORING THE TERRAFORM STATE FILE REMOTELY:
+When deploying resources with Terraform, a state file must be stored; this file is used by Terraform to map Azure Resources to the configuration that you want to deploy, keeps track of meta data, and can also help with improving performance for larger Azure Resource deployments.<br>
+i.	Create Storage Account and Blob Container for storing State file remotely.<br>
+ii.	Perform the below commands on Azure CLI for storage Account creation.
+
+#### Table 2: Azure CLI Code Snippet - Create Storage Account
+```
+# Create Resource Group
+az group create -n ResourceGroupName -l eastus2
+
+# Create Storage Account
+az storage account create -n StorageAccountName -g ResourceGroupName -l eastus2 --sku Standard_LRS
+
+ # Create Storage Account Container
+az storage container create -n StorageBlobContainerName --account-name StorageAccountName --auth-mode login
+```
+# AZURE SERVICE PRINCIPAL:
+Create a service principal that will be used by Terraform to authenticate to Azure and assign role to this newly created service principal (RBAC) to the required subscription.<br>
+i.	Perform the below command on Azure CLI and capture the JSON output and create an AZURE_SP secret on GitHub and provide the captured output as value for the secret.<br>
+ii.	Provide User Administrator access on Azure AD and User Access administrator access on Azure Subscription.
+
+#### Table 3: Azure CLI Code Snippet - Create Azure Service Principal
+```
+# Create Service Principal 
+
+az ad sp create-for-rbac --name "ServicePrincipal" --role contributor --scopes /subscriptions/[enter subscription id] --sdk-auth
+
+Service Principal Sample JSON output:
+{
+"clientId": "***Client-Id***",
+"clientSecret": "***Client-Secret***",
+"subscriptionId": "***SusbscriptionId***",
+"tenantId": "***TenantID***",
+"activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+"resourceManagerEndpointUrl": "https://management.azure.com/",
+"activeDirectoryGraphResourceId": "https://graph.windows.net/",
+"sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+"galleryEndpointUrl": "https://gallery.azure.com/",
+"managementEndpointUrl": "https://management.core.windows.net/"
+}
+```
