@@ -291,3 +291,91 @@ i.	Go to GitHub Actions and under the list of workflows click on CI.<br>
 ii.	In this workflow click Run Workflow to trigger the Deployment Action.<br>
 iii.	Once the workflow completes successfully, the SDR Solution resources should have been deployed to Azure platform.
 
+# Manual Configuration Changes on Azure Platform
+## PaaS Setup – OAuth 2.0 Configuration for SDR UI Application
+### GOAL:
+Azure AD Client Application Registration and OAuth 2.0 configuration for SDR UI application. 
+### PRE-REQUISITES: 
+•	Global Administrator level of access at Active Directory level.
+### STEPS:
+#### SDR UI APP REGISTRATION:
+i.	Go To Azure AD → App Registrations→→Select UI App Registration
+
+Figure 15 Azure AD - App Registration
+
+ii.	Go to Authentication blade, add additional Redirect URL as needed. Add localhost URL's for testing the application from development machine.
+
+Figure 16 Azure AD - App Registration - Redirect URI
+ 
+iii.	Go to `Expose an API` blade and click on `Add a Scope`. Provide scope name, select `Admins and users` in `Who can consent`, provide admin consent display name and finally click on `Add Scope`.
+
+Figure 17 Azure AD - App Registration - Expose an API
+ 
+iv.	Go to API Permissions → Click on Add a permission →Select My Api’s → Select Backend app registration exposed Api on step 4. → select Api (ui-access) → click Add Permission.
+
+Figure 18 Azure AD - App Registration - API Permission
+ 
+Figure 19 Azure AD - App Registration - Add API Permission
+ 
+v.	Grant Admin consent.
+
+Figure 20 Azure AD - App Registration - API Permission - Grant Admin Consent 
+
+vi.	Go to certificates & secrets → click on client secrets → click new client secret and copy the value and add it on Key Vault secrets.
+
+Figure 21 Azure AD - App Registration - Certificates & Secrets
+ 
+vii.	Capture the client id and tenant id and add it on Key Vault secrets. We must generate tokens for authenticating to the SDR UI Application using the client app registration details (client ID, Tenant ID, and Secret value). Refer Section 2.8.3 for Key Vault secrets.
+
+Figure 22  Azure AD - App Registration - Essential Secrets
+ 
+The Azure AD App registration for UI has been created successfully.
+```
+Note: All the users added at AD level will have access to the SDR UI Application by default.
+```
+## UI App Path Mapping
+### GOAL:
+Update the Path Mapping of UI Azure App Service.
+### PRE-REQUISITES: 
+•	Contributor access at Resource Group level.
+### STEPS:
+i.	Navigate to UI App Service instance in App resource group.<br>
+ii.	Go to Configuration → Path Mappings<br>
+iii.	Change the Physical Path from site\wwwroot to site\wwwroot\SDR-WebApp for accessing the app URL.
+
+Figure 23  App Service Path Mapping
+ 
+## Key Vault
+### GOAL:
+•	Add access policy and enable Azure Key Vault Administrator User to manage secrets.<br>
+•	To create secrets in Azure Key Vault
+### PRE-REQUISITES: 
+•	Contributor level of access for Resource Group.<br>
+•	Capture below secret values from the deployed resources.
+
+#### Table 5 KeyVault Secrets
+|Secret Name	|Secret Value|
+|-----|-----|
+|Apim-BaseUrl|	Provide API Management URL as key value (E.g., https://apim-sdr-qa-eastus.azure-api.net/studydefinitionrepository/v1/)|
+|ApplicationInsights--InstrumentationKey	|Provide Application Insights Instrumentation key |
+|AzureAd-Audience|	Provide the Azure App Registration Scope URL, Refer to Section 2.8.1  step 3 for scope URL (E.g.: api://0000-0000-000-000/ui-access)|
+|AzureAd--Audience	|Provide the UI app registration Application ID URI (E.g.:  api://0000-0000-000-000)|
+|AzureAd-ClientSecret	|Provide App Registration Client secret value.|
+|AppInsights-ApiKey|	Provide Application Insights Api Key Value|
+|AppInsights-AppId	|Provide Application Insights AppId|
+|AppInsights-RESTApiUrl|	Provide Default URL https://api.applicationinsights.io/v1/apps |
+|AzureAd-Authority|	Provide the Azure Ad authority value (https://login.microsoftonline.com/(Provide Azure AD Tenant ID))|
+|AzureAd-ClientId|	Provide the App Registration client ID, refer to Section 2.8.1 App Registration step 7 for client ID|
+|AzureAd-LoginUrl|	Provide the Front End (UI) App Service URL.|
+|AzureAd-RedirectUrl|	Provide the Redirect URL (E.g.: https://Front End App service URL (UI)/home)|
+|AzureAd-TenantId|	Provide the Azure AD Tenant ID, refer to Section 2.8.1 App Registration step 7 for Tenant ID|
+|ConnectionStrings--DatabaseName	|Provide the Cosmos DB Database Name.|
+|ConnectionStrings--ServerName	|Provide the Cosmos DB connection string.|
+|Azure-SP	|Store the Azure Service Principal JSON to utilize for API and UI deployments.|
+|isAuthEnabled	|true|
+|isGroupFilterEnabled|	true|
+|StudyHistory--DateRange	|30|
+
+### STEPS FOR ADDING ACCESS POLICY:
+The steps for adding Key Vault Administrator to Key Vault access policies for creating secrets are listed below.
+i.	Go to → Key Vault → Select Access Policies → Click on Add Access Policy
