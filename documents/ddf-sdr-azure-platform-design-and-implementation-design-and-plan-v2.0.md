@@ -268,15 +268,10 @@ There are some exceptions to this naming convention where the resource names sho
 |Application Insights|<br>|<br>&nbsp;&nbsp;&nbsp;appin-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;appin-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;appin-sdr-qa-eastus<br>|<br>|
 	
 For more information on this and a list of the recommendations and best practice for naming conventions, please see Appendix A.1. For more information on this and a list of the naming restrictions per resource in Azure, please see Appendix A.2.
-
-4.6.	Governance Decision Summary
-Table 6 Governance Decision Summary
-Design	Decision
-Infrastructure Resource Groups Strategy
-Separate Resource Groups for Core and Application related resources have been created
-Resource Tags
-Resource tagging has been done
-Log Analytics Workspace Deployment
-One Log Analytics Workspace Instance per environment has been used
-
-
+## Governance Decision Summary
+#### Table 6 Governance Decision Summary
+|Design|Decision|
+|---|---|	
+|Infrastructure Resource Groups Strategy|Separate Resource Groups for Core and Application related resources have been created|
+|Resource Tags|Resource tagging has been done|
+|Log Analytics Workspace Deployment|One Log Analytics Workspace Instance per environment has been used|
