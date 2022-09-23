@@ -225,4 +225,3 @@ The most recommended and critical standard to implement while deploying to cloud
 As well, including relevant and key information in the name of a service can go a long way in minimizing troubleshooting time when an issue arises. Strong naming used in conjunction with tags can provide a breadth of information for users looking up workloads and services.
 
 There are many ways to go about creating a naming convention that is universal across all services, but it makes more sense to create a convention per service or resource. The reason being is that not all services have the same requirements for names. As an example, all storage accounts must be lowercase alphanumeric values up between 3-24 characters in length whereas a VM resource is between 1- 64 characters but can use uppercase letters and special characters.
-
