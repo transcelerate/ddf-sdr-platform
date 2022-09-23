@@ -399,3 +399,54 @@ SDR Reference Implementation has used API Management as the API Gateway for acce
 Azure Active Directory (Azure AD) is Microsoft’s multi-tenant, cloud-based directory, and identity management service. Please refer Appendix A.5 for more detail on AAD versions. 
 
 Azure services at the enterprise level require the configuration of an Azure AD Tenant for the synchronization of enterprise IDs. While Live IDs are also an option for many Azure services, they are not recommended for large enterprises when compared to a centrally managed Active Directory infrastructure (that already follows many organizations best practices regarding security, management, and user lifecycle) that can be synchronized into Azure. Additionally, there are some Azure services that will not permit logins at all using Live IDs (such as PowerBI).
+
+### AAD Tenant
+```
+ 	Design Decision
+SDR Reference implementation has leveraged  single  Azure Active Directory (AAD) Tenant (
+```
+	
+### Azure Active Directory License
+There are several license plans available for the Azure AD service, including:<br>
+• Azure AD Free<br>
+• Azure AD Premium P1<br>
+• Azure AD Premium P2<br>
+Detailed offerings for Azure AD across different tiers are available on Azure AD Tier Comparision
+
+```
+	Design Decision
+SDR Reference implementation has leveraged Free Tier of Azure AD Tenant
+```
+
+## Account Security
+### Multi Factor Authentication 
+Multi-Factor Authentication (MFA) is available at both P1 and P2 premium levels and is recommended for all administrative access at a minimum. 
+
+	```
+ 	Recommendation
+SDR Technical team recommends leveraging Multi-Factor Authentication for all Administrative accounts as a minimum level of security. It is recommended that all users have their accounts secured with MFA to improve overall security and access to the Azure Tenant.
+```
+	
+## Administrative Scope
+### Owner Permissions
+As mentioned, it is recommended that no more than 3 accounts have Owner permissions over Subscriptions. Two (2) of those accounts can belong to specific individuals (system administrators), and the final account can be configured as a `break-glass` account (application owner) in the event those individual owners are unavailable to perform the required actions. If Privileged Identity Management (PIM) is being utilized within AAD, then a break-glass account will not be necessary since the privileges can be raised when necessary to perform the tasks the user would with the break-glass account with Owner permissions.
+
+## Managed Identity
+Managed identities provide an identity for applications to use when connecting to resources that support Azure Active Directory (Azure AD) authentication. Applications may use the managed identity to obtain Azure AD tokens. For example, an application may use a managed identity to access resources like Azure Key Vault where developers can store credentials in a secure manner or to access storage accounts.
+
+#### Some of the benefits of using Managed identities:
+• You don't need to manage credentials. Credentials are not even accessible to you.<br>
+• You can use managed identities to authenticate to any resource that supports Azure Active Directory authentication including your own applications.<br>
+• Managed identities can be used without any additional cost.
+
+#### There are two types of managed identities:
+• System-assigned Some Azure services allow you to enable a managed identity directly on a service instance. When you enable a system-assigned managed identity an identity is created in Azure AD that is tied to the lifecycle of that service instance. So, when the resource is deleted, Azure automatically deletes the identity for you. By design, only that Azure resource can use this identity to request tokens from Azure AD.<br>
+• User-assigned You may also create a managed identity as a standalone Azure resource. You can create a user-assigned managed identity and assign it to one or more instances of an Azure service. In the case of user-assigned managed identities, the identity is managed separately from the resources that use it.
+
+```
+ 	Design Decision
+SDR Reference Implementation has leveraged system assigned managed identity for accessing the secrets from KeyVault via AppService
+```
+	
+## Service Principal
+An Azure Service principal is an identity created for use with applications, hosted services, and automated tools to access Azure resources. This access is restricted by the roles assigned to the service principal, giving you control over which resources can be accessed and at which level.
