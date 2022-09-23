@@ -449,3 +449,26 @@ SDR Reference Implementation has leveraged system assigned managed identity for 
 	
 ## Service Principal
 An Azure Service principal is an identity created for use with applications, hosted services, and automated tools to access Azure resources. This access is restricted by the roles assigned to the service principal, giving you control over which resources can be accessed and at which level.
+
+## Role Based Access Control
+Azure Role-Based Access Control (RBAC) manages user access and interaction with Azure resources. Azure RBAC is an authorization system built on Azure Resource Manager (ARM) which provides fine-grained access management of Azure resources. The fine-grain access approach provides the ability for separation of duties. Permissions are enforced by the creation of role assignments which control access to resources. Role assignments consist of three elements: security principal, role definition (role), and scope. Permissions can be restricted at the scope and in the role definition.
+
+• Security Principal is an object which represents a user, group, service principal, or managed identity which is requesting access to Azure resources (e.g. – serviceprincipal01@contoso.com)<br>
+• A role is set of permissions (create, read, update, delete) mapped to an account. Within the scope, access can be more restrictive by assigning accounts different roles. Roles can be high-level (Owner) or more specific (Network Contributor)<br>
+• RBAC role assignments are scoped to a specific management group, subscription, resource group, or resource. A user given access to a single resource cannot access any other resources in the same subscription
+
+It is recommended to follow starter RBAC strategy and best practices:
+
+```
+ 	Recommendation
+• Principle of least privilege access should always be adhered to. Only grant the minimal permissions needed to accomplish the task<br>
+• Least privilege is an end state – it requires a process to achieve it and this process must be established and followed<br>
+• It requires a combination of approaches:<br>
+o Limiting the count of administrators or members of privileged groups<br>
+o Delegating lesser privileges to accounts<br>
+o Provide privileges on-demand and revoke them once the task is completed<br>
+o Providing a process for emergency access and rare-use scenarios<br>
+• Periodic access reviews should be performed to ensure user who no longer require certain roles have those permissions revoked<br>
+• Users should generally not be given access to resources directly, but instead be added to Groups that have assigned roles (and later be removed from those Groups)<br>
+• Utilization of Privileged Identity Management (PIM) to provide time-based and approval-based role activation is very useful to avoid unnecessary and excessive permissions to users or groups for periods longer than necessary. Just-In-Time (JIT) access is a feature of PIM
+```
