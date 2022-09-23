@@ -422,11 +422,10 @@ SDR Reference implementation has leveraged Free Tier of Azure AD Tenant
 ### Multi Factor Authentication 
 Multi-Factor Authentication (MFA) is available at both P1 and P2 premium levels and is recommended for all administrative access at a minimum. 
 
-	```
- 	Recommendation
+```
+Recommendation
 SDR Technical team recommends leveraging Multi-Factor Authentication for all Administrative accounts as a minimum level of security. It is recommended that all users have their accounts secured with MFA to improve overall security and access to the Azure Tenant.
 ```
-	
 ## Administrative Scope
 ### Owner Permissions
 As mentioned, it is recommended that no more than 3 accounts have Owner permissions over Subscriptions. Two (2) of those accounts can belong to specific individuals (system administrators), and the final account can be configured as a `break-glass` account (application owner) in the event those individual owners are unavailable to perform the required actions. If Privileged Identity Management (PIM) is being utilized within AAD, then a break-glass account will not be necessary since the privileges can be raised when necessary to perform the tasks the user would with the break-glass account with Owner permissions.
