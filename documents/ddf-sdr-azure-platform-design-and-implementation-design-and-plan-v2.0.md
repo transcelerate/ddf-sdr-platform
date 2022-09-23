@@ -275,3 +275,127 @@ For more information on this and a list of the recommendations and best practice
 |Infrastructure Resource Groups Strategy|Separate Resource Groups for Core and Application related resources have been created|
 |Resource Tags|Resource tagging has been done|
 |Log Analytics Workspace Deployment|One Log Analytics Workspace Instance per environment has been used|
+
+# Subscriptions and Regions
+## Subscriptions
+### Subscription Overview
+Historically, Azure Subscriptions were used as boundaries for several different aspects of Azure services:
+
+• As a security and administrative boundary where users can be granted co-administrator access which grants them administrative access to every resource in the Subscription. More granular RBAC can be granted at the resource and Resource Group level. However, using a Subscription in this fashion in the new Azure Resource Manager (ARM) model is no longer the recommended best practice.<br>
+• As a billing unit of granularity where usage and consumption reports can be viewed for all resources in the Subscription. Further granularity can be achieved with the use of tags at the resource and Resource Group level which is why using multiple Subscriptions in this fashion is no longer a best practice.<br>
+• As a logical unit of scale by which the number of specific types of Azure resources can be limited on a per-Azure region basis. For example, 10,000 compute cores per Subscription per region, etc. Azure continues to increase Subscription limits as services mature. For Current Subscription and service-specific limits please see Appendix A.3.
+
+```
+Design Decision
+SDR Reference implementation has one subscription
+•Study Definition Repository – Pre-Prod<br>
+A separate subscription has been used for SDR development and testing.
+```
+
+#### Subscription Scale Limitations
+Azure Subscriptions have some scale limitations that in terms of the number of specific resources of specific types that can be created in a per Subscription (or per Subscription and region combination). It is therefore important to consider when planning count of Subscription and other resources as outlined in this link.
+
+#### Azure Active Directory (AD) Associated with Subscriptions
+Each Azure Subscription has a trust relationship with an Azure Active Directory (AD) tenant instance which is used to authenticate users, services, and devices. Multiple Subscriptions can trust the same directory, but a Subscription can only trust one directory. All Subscription service administrator (and co-administrator) accounts reside within this Azure AD instance. Additionally, RBAC permissions are granted to a user or group from the associated Azure AD tenant. 
+
+#### Subscription Management Roles
+Subscriptions are defined with several roles including Owner which should be handled with care. A recommendation to have a maximum of 3 subscription owners to reduce the potential for breach by a compromised owner.
+
+## Azure Regions
+Azure operates in multiple datacenters around the world. These datacenters are grouped into geographic regions, giving flexibility in choosing where to build and locate applications.
+
+The infrastructure team create Azure resources in defined geographic regions like 'East US', 'North Europe', or 'Southeast Asia'. 
+
+To see list of regions available in Azure please see Appendix A.4. Within each region, multiple datacenters exist to provide for redundancy and availability. This approach gives the infrastructure team flexibility as they design applications to create VMs closest to the users and in order to meet any legal, compliance, or tax purposes.
+
+```
+Design Decision
+SDR reference Implementation has used “East US” region to deploy all the infrastructure resources. 
+```
+## Decision Summary
+#### Table 7 Subscriptions and Regions Decision Summary
+|Design|Decision|
+|---|---|
+|Select Azure Regions|One Azure region “East US” has been used to deploy all the infrastructure resources |
+
+# Networking
+## VNets and Subnets
+Azure Virtual Network (VNet) is the fundamental building block for a private network in Azure. VNet enables many types of Azure resources, such as Azure Virtual Machines (VM), to securely communicate with each other, through internet, and on-premises networks. Specifically, VNet is similar to a traditional network that operators would use in their current/own data centers but brings additional benefits of employing Azure's infrastructure such as scale, availability, and isolation.
+
+VNet could be divided into multiple ranges of IP addresses (subnets) for organization and security. Subnet delegation enables designation of a specific subnet for an Azure PaaS service of choice that needs to be injected into virtual network. Subnet delegation provides full control to the customer on managing the integration of Azure services into their virtual networks.
+
+```
+Design Decision
+SDR Reference Implementation has used 1 VNet, 1 Subnet and 2 Delegated Subnets per environment/region.
+```
+	
+### Networking Design Considerations 
+The figure below shows the information flow between different Azure Services and components for SDR Reference Implementation
+
+Figure 2 SDR Reference Implementation  Azure Networking
+ 
+#### Key Networking Design Information: 
+• The Inbound access policies on App Service 1 that hosts UI, allows it to be accessed directly over the internet.<br>
+• The Outbound policies on App Service 1 allows it to communicate with other PaaS services through VNet Integration.<br>
+• The Inbound access policies on App Service 2 that hosts the API, prevent it from being accessed directly over the internet and is limited to VNet through Access Restriction.<br> 
+• Outbound access policies on App Service 2 allow it to communicate with Cosmos DB through a VNet Integration<br> 
+• API Management is the API Gateway for the Upstream and Downstream APIs. It is deployed in the VNet and allows the APIs hosted in App Service 2 to be accessed over the internet.
+
+### DDoS Protection
+
+Azure has built in distributed denial-of-service (DDoS) protection to protect against distributed denial of service attacks on the public IPs resources within a VNet.
+
+Figure 3 Azure DDoS Protection Plans
+ 
+Basic is on by default with no additional charges. Standard is optional with additional monthly and data usage charges. The difference between the two tiers is outlined above.
+
+### Basic DDoS Protection
+
+The environment has leveraged the native platform-level DDoS protection options that are offered at no additional charge in Azure.
+
+```
+Design Decision
+SDR reference Implementation has leveraged the basic protection offered on each VNet by default. 
+```
+	
+## Service Endpoints
+### Azure VNet Service Endpoints
+VNet service endpoint provides secure and direct communication between Azure services over an optimized route using the Azure backbone network. Endpoints allow the user to secure their critical Azure service resources to only their virtual networks. Service Endpoints enables private IP addresses in the VNet to reach the endpoint of an Azure service without needing a public IP address on the VNet.<br>  
+Service endpoints have been configured for App Service 1 (UI), App Service 2 (API) and Cosmos DB to enable communication between these services without having to route the communication outside the Azure backbone.
+
+## Decision Summary
+#### Table 8 Networking Design Decisions
+|Design|Decision|
+|---|---|
+|VNet and Subnets|1 VNet, 1 Subnet and 2 Delegated Subnets per environment/region.|
+|DDoS|Basic DDoS protection|
+|VNet Service Endpoints|One for each App service and one for Cosmos DB|
+
+# Connectivity
+Following is illustration of how VNet, Subnet, Delegated Subnets, API Management, App Services and CosmosDB has been configured as part of the SDR Solution to allow connectivity between different systems & components.
+	
+Figure 5  SDR Reference Implementation Connectivity
+ 
+ Communication Flow:
+• Communication from Internet to User interface (UI) I App Service is allowed through Hypertext Transfer Protocol Secure (https) Protocol <br> 
+• Upstream communication through the internet is handled by APIM which in turn communicates with API App Service. The API App Service forwards the call further to Cosmos DB.<br>
+• Downstream communication is also handled by APIM via Internet. APIM handles the calls to UI App Service and API App Service.<br>
+• API App Service and CosmosDB Mongo API App cannot be reached directly from the internet. All the calls to these resources are handled by APIM.<br>
+• The shared services in azure handle the requests from UI App Service, APIM, API App Service using OAuth2.0 authentication method
+
+```
+Design Decision
+SDR Reference Implementation has used API Management as the API Gateway for accessing SDR API endpoints over t he internet.
+```
+
+## Decision Summary
+#### Table 9  Connectivity Decision Summary
+|Design	|Decision|
+|---|---|
+ |API Connectivity|API Management as API Gateway |
+	
+# Identity
+## Azure Active Directory and Federation
+Azure Active Directory (Azure AD) is Microsoft’s multi-tenant, cloud-based directory, and identity management service. Please refer Appendix A.5 for more detail on AAD versions. 
+
+Azure services at the enterprise level require the configuration of an Azure AD Tenant for the synchronization of enterprise IDs. While Live IDs are also an option for many Azure services, they are not recommended for large enterprises when compared to a centrally managed Active Directory infrastructure (that already follows many organizations best practices regarding security, management, and user lifecycle) that can be synchronized into Azure. Additionally, there are some Azure services that will not permit logins at all using Live IDs (such as PowerBI).
