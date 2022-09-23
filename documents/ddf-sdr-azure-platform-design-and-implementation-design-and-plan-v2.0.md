@@ -225,3 +225,58 @@ The most recommended and critical standard to implement while deploying to cloud
 As well, including relevant and key information in the name of a service can go a long way in minimizing troubleshooting time when an issue arises. Strong naming used in conjunction with tags can provide a breadth of information for users looking up workloads and services.
 
 There are many ways to go about creating a naming convention that is universal across all services, but it makes more sense to create a convention per service or resource. The reason being is that not all services have the same requirements for names. As an example, all storage accounts must be lowercase alphanumeric values up between 3-24 characters in length whereas a VM resource is between 1- 64 characters but can use uppercase letters and special characters.
+
+### Cloud Foundation Naming Standards
+As mentioned in the section above, the best practice when developing a naming convention in the Cloud is to do it on a per resource level.. 
+
+```
+Design Decision
+SDR reference implementation has the following naming convention for Azure resources:
+
+<ResourceType>-<App/Svc>-<Purpose/Segment/Environment>-<region>-<Instance Number or Level>
+```
+
+The Meta data details for the Naming Convention is captured below:
+
+#### Table 4 Naming convention metadata
+|Meta Data|	Field Required	|Field Length*|
+|---|---|---|
+|<ResourceType>|Mandatory|Upto 4 characters|
+|<App/Svc>|Optional|	Upto 5 characters|
+|<Purpose/Segment/Environment>|	Mandatory|Upto 20 characters|
+|<Region>|Optional|Upto 6 characters|
+|<Instance Number or Level>|Optional|Upto 3 characters|
+
+```
+ 	Important Note
+There are some exceptions to this naming convention where the resource names should be globally unique (like Azure Key Vault, Log Analytic Workspace, Storage Accounts etc.), some which do not allow any special characters (like Storage Accounts) and some have *character limitation.
+```
+
+#### Table 5 SDR RI Naming Convention
+|Resource Type|	Naming Scope|	Sample	|Restrictions|	Comments|
+|---|---|---|---|---|	
+|Resource Group|Subscription|<br>&nbsp;&nbsp;&nbsp;rg-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;rg-sdrcore-dev-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrapp-dev-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrcore-qa-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrapp-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;1 – 90 Characters<br>&nbsp;&nbsp;&nbsp; Alphanumeric, underscores, parentheses, hyphens, periods, and unicode characters<br>&nbsp;&nbsp;&nbsp; Can’t end with a period<br>|<br>|
+|Virtual Network|Resource Group|<br>&nbsp;&nbsp;&nbsp;vnet-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;vnet-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;vnet-sdr-qa-eastus|<br>&nbsp;&nbsp;&nbsp;2 – 64 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric, underscores, periods, hyphens<br>&nbsp;&nbsp;&nbsp;Start with alphanumeric, end with alphanumeric or underscore<br>|<br>|
+|Subnets|Virtual Network|<br>&nbsp;&nbsp;&nbsp;snet-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;snet-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;snet-sdr-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;1 – 80 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric, underscores, periods, hyphens<br>&nbsp;&nbsp;&nbsp;Start with alphanumeric, end with alphanumeric or underscore<br>|<br>|
+|Delegated Subnets|Virtual Network|<br>&nbsp;&nbsp;&nbsp;dsnet-<app/svc>-<environment>-<region>-<instance number or level><br>&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-dev-eastus-001<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-dev-eastus-002<br>&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-qa-eastus-001<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-qa-eastus-002<br>|<br>&nbsp;&nbsp;&nbsp;1 – 80 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric, underscores, periods, hyphens<br>&nbsp;&nbsp;&nbsp;Start with alphanumeric, end with alphanumeric or underscore<br>|<br>|	
+|Azure Key Vault (KV)|Global|<br>&nbsp;&nbsp;&nbsp;kv-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;kv-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;kv-sdr-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;3 – 24 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric and hyphens<br>&nbsp;&nbsp;&nbsp;Start with letter. End with letter or digit.<br>&nbsp;&nbsp;&nbsp;Can't contain consecutive hyphens<br>|<br>|	
+|Log Analytics Workspace|Global|<br>&nbsp;&nbsp;&nbsp;law-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;law-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;law-sdr-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;4 – 63 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric and hyphens.<br>&nbsp;&nbsp;&nbsp;Start and end with alphanumeric<br>|<br>|
+|App Services|<br>|<br>&nbsp;&nbsp;&nbsp;apps-<app/svc>-<environment>-<region>-<instance number or level><br>&nbsp;&nbsp;&nbsp;apps-sdr-dev-eastus-001<br>&nbsp;&nbsp;&nbsp;apps-sdr-dev-eastus-002<br>&nbsp;&nbsp;&nbsp;apps-sdr-qa-eastus-001<br>&nbsp;&nbsp;&nbsp;apps-sdr-qa-eastus-002 |<br>|<br>|                                		
+|App Service Plans|<br>|<br>&nbsp;&nbsp;&nbsp;asp-<app/svc>-<environment>-<region>-<instance number or level><br>&nbsp;&nbsp;&nbsp;asp-sdr-dev-eastus-001<br>&nbsp;&nbsp;&nbsp;asp-sdr-dev-eastus-002<br>&nbsp;&nbsp;&nbsp;asp-sdr-qa-eastus-001<br>&nbsp;&nbsp;&nbsp;asp-sdr-qa-eastus-002<br>|<br>|                  		
+|API Management (APIM)|	Global|<br>&nbsp;&nbsp;&nbsp;apim-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;apim-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;apim-sdr-qa-eastus<br>|<br>|		
+|CosmosDB|Global|<br>&nbsp;&nbsp;&nbsp;cdb-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;cdb-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;cdb-sdr-qa-eastus<br>|<br>|	
+|Application Insights|<br>|<br>&nbsp;&nbsp;&nbsp;appin-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;appin-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;appin-sdr-qa-eastus<br>|<br>|
+	
+For more information on this and a list of the recommendations and best practice for naming conventions, please see Appendix A.1. For more information on this and a list of the naming restrictions per resource in Azure, please see Appendix A.2.
+
+4.6.	Governance Decision Summary
+Table 6 Governance Decision Summary
+Design	Decision
+Infrastructure Resource Groups Strategy
+Separate Resource Groups for Core and Application related resources have been created
+Resource Tags
+Resource tagging has been done
+Log Analytics Workspace Deployment
+One Log Analytics Workspace Instance per environment has been used
+
+
