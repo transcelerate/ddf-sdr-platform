@@ -178,3 +178,38 @@ Below is the list of different Azure components and services utilized in the ref
 |Operations	|Logging|	 Application Insights|
 ||	Monitoring 	| Azure Monitor|
 
+## Environment Strategy for SDR
+For SDR Reference Architecture, 3-tier environment model is recommended as mentioned in below. 
+#### Table 4 - Environment Details
+|Environment	|Details|
+|---|---|
+|Dev|	Development of SDR (This env is only accessible to SDR development/testing teams)|
+|QA/UAT|	For handling UAT, tickets, bugs, fixes. (This env is only accessible to SDR development/testing teams)|
+|Pre-Prod|With QA cleared code applied on with almost production ready data (this environment is accessible to Member companies)|
+
+## Deployment Models
+The Deployment Models section describes different ways of deploying the Azure Platform Resources.
+Deployment Models:<br>
+•	Manual Deployment – All the Azure resources are manually deployed using Azure Portal.<br> 
+•	Pipeline Deployment – The deployment of Azure resources through terraform code using a YAML Pipeline. 
+
+Figure 7 - Deployment Models
+ 
+
+# Appendix A - Key Terms
+Table A below provides definitions and explanations for terms and acronyms relevant to the content presented within this document.
+#### Table 5 - Appendix A: Key Terms
+|Term	|Definition|
+|---|---|
+|DDF	|Digital Data Flow|
+|MVP	|Minimum Viable Product|
+|SDR	|Study Definition Repository|
+|API	|Application Programming Interface|
+|EDC	|Electronic Data Capture|
+|SB	|Study Builder|
+|AAD	|Azure Active Directory|
+|USDM	|Unified Study Definition Model|
+|AWS	|Amazon Webservices Cloud|
+|GCP|	Google Cloud Platform|
+|PAAS	|Platform as a Service|
+
