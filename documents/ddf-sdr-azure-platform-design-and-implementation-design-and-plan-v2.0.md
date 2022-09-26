@@ -603,9 +603,9 @@ Below are the different integration options available based on the Log Categoriz
 |---|---|---|---|
 |Activity logs|	Control plane events on Azure Resource Manager resources|Provides insight into the operations that were performed on resources in your subscription.|Rest API, Azure Monitor|
 |Resource logs|	Frequent data about the operation of Azure Resource Manager resources in subscription|Provides insight into operations that your resource itself performed.|Azure Monitor|
-|AAD (Azure Active Directory) Logs and Reporting|Logs and reports	Reports user sign-in activities and system activity information about users and group management.	Graph API
-Virtual machines and cloud services	Windows Event Log service and Linux Syslog	Captures system data and logging data on the virtual machines and transfers that data into a storage account of your choice.	Windows (using Windows Azure Diagnostics [WAD] storage) and Linux in Azure Monitor
-Azure Storage Analytics	Storage logging provides metrics data for a storage account	Provides insight into trace requests, analyzes usage trends, and diagnoses issues with your storage account.	REST API or the client library
-Application insight Logs	Logs, exceptions, and custom diagnostics	Provides an application performance monitoring (APM) service for web developers on multiple platforms.	REST API, Power BI
-Process data / security alerts	Azure Security Center alerts, Azure Monitor logs alerts	Provides security information and alerts.	REST APIs
+|AAD (Azure Active Directory) Logs and Reporting|Logs and reports|Reports user sign-in activities and system activity information about users and group management.|Graph API|
+|Virtual machines and cloud services|Windows Event Log service and Linux Syslog	|Captures system data and logging data on the virtual machines and transfers that data into a storage account of your choice.|Windows (using Windows Azure Diagnostics [WAD] storage) and Linux in Azure Monitor|
+|Azure Storage Analytics|Storage logging provides metrics data for a storage account|Provides insight into trace requests, analyzes usage trends, and diagnoses issues with your storage account.|REST API or the client library|
+|Application insight Logs|Logs, exceptions, and custom diagnostics|Provides an application performance monitoring (APM) service for web developers on multiple platforms.|REST API, Power BI|
+|Process data / security alerts|Azure Security Center alerts, Azure Monitor logs alerts|Provides security information and alerts.|REST APIs|
 
