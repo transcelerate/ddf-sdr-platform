@@ -637,28 +637,95 @@ With Azure diagnostic logs, you can view core analytics and save them into one o
 ||Metrics|All Metrics|Log Analytics Workspace|
 |KeyVault|Logs|AuditEvent<br>&nbsp;&nbsp;&nbsp; AuditPolicyEvaluationDetails<br>|Log Analytics Workspace|
 ||Metrics|All Metrics|Log Analytics Workspace|
-  
-
- 	Design Decision
+	
+```
+	Design Decision
 SDR Reference Implementation has used one Log Analytics Workspace per environment/region. All the Diagnostic Setting logs and metrics collected for all the infrastructure resources are sent to this shared Log Analytics Workspace.
-11.3.	Log Analytics Workspace    
+```
+	
+## Log Analytics Workspace    
 Log Analytics Workspace is a tool in the Azure portal used to edit and run log queries with data in Azure Monitor Logs. You may write a simple query that returns a set of records and then use features of Log Analytics to sort, filter, and analyze them. Or you may write a more advanced query to perform statistical analysis and visualize the results in a chart to identify a particular trend. Whether you work with the results of your queries interactively or use them with other Azure Monitor features such as log query alerts or workbooks, Log Analytics is the tool that you're going to use write and test them. 
 
 The Diagnostic Setting logs and metrics collected for all the infrastructure resources will be sent to Log Analytics Workspace.
 
- 	Design Decision
+```
+	Design Decision
 SDR Reference Implementation has deployed one Log Analytics Workspace per environment/region.
+```
 
-
-11.4.	Application Insights	
+## Application Insights	
 Application Insights, a feature of Azure Monitor, is an extensible Application Performance Management (APM) service for developers and DevOps professionals. Use it to monitor your live applications. It will automatically detect performance anomalies, and includes powerful analytics tools to help you diagnose issues and to understand what users actually do with your app. It's designed to help you continuously improve performance and usability. It works for apps on a wide variety of platforms including .NET, Node.js, Java, and Python hosted on-premises, hybrid, or any public cloud. It integrates with your DevOps process and has connection points to a variety of development tools. 
 
 Application Insights deployed is being used by App Services and API Management.
 
 Figure 9 Application Insights
  
-
+```
  	Design Decision
 SDR Reference Implementation has one Application Insights deployed per environment/region.
+```
+## Application Insights	
+Application Insights, a feature of Azure Monitor, is an extensible Application Performance Management (APM) service for developers and DevOps professionals. Use it to monitor your live applications. It will automatically detect performance anomalies, and includes powerful analytics tools to help you diagnose issues and to understand what users actually do with your app. It's designed to help you continuously improve performance and usability. It works for apps on a wide variety of platforms including .NET, Node.js, Java, and Python hosted on-premises, hybrid, or any public cloud. It integrates with your DevOps process and has connection points to a variety of development tools. 
 
+Application Insights deployed is being used by App Services and API Management.
 
+Figure 9 Application Insights
+ 
+```
+ 	Design Decision
+SDR Reference Implementation has one Application Insights deployed per environment/region.
+```
+
+## Monitoring  
+### Azure Monitor
+Azure Monitor delivers a comprehensive solution for collecting, analyzing, and acting on telemetry from your cloud and on-premises environments. It helps you understand how your applications are performing and proactively identifies issues affecting them and the resources they depend on. Azure Monitor enables you to:
+
+• Detect and diagnose issues across applications and dependencies with Application Insights.<br>
+• Correlate infrastructure issues with Azure Monitor for VMs and Azure Monitor for Containers.<br>
+• Drill into your monitoring data with Log Analytics for troubleshooting and deep diagnostics.<br>
+• Support operations at scale with smart alerts and automated actions.<br>
+• Create visualizations with Azure dashboards and workbooks.<br>
+• All data collected by Azure Monitor fits into one of two fundamental types, metrics, and logs.<br> 
+
+Metrics are numerical values that describe some aspect of a system at a particular point in time. They are lightweight and capable of supporting near real-time scenarios. Logs contain different kinds of data organized into records with different sets of properties for each type. Telemetry such as events and traces are stored as logs in addition to performance data so that it can all be combined for analysis.
+
+#### Capabilities:
+• Continuous monitoring: Azure Monitor collects performance statistics from the Windows performance counter and sends it to the portal.<br>
+• Custom alert configuration.<br>
+• Availability testing — in the form of URL-based ping and web-based tests.<br>
+• Data visualization for a visual representation of various data, including that of user flows.<br>
+• Tracking and logging of user sessions: the function enables the analysis of the user journey, which contributes to a better understanding of the application’s pain points.<br>
+• Smart detection — a recommendation functionality that is powered by machine learning algorithms.<br>
+• Performance testing based on web tests.<br>
+• Application map that visualizes system components, such as the server, the database, and other resources.<br>
+• Snapshot debugger — a component that saves code status at the time of an exception for further check<br>
+
+Figure 10 Azure Monitor
+ 
+```
+	Design Decision
+SDR Reference Implementation has leveraged Azure native tool for monitoring. In this case, it is Azure Monitor.
+```
+
+### Azure Network Watcher
+Azure Network Watcher provides the capabilities to diagnose, view metrics, monitor and enable or disable logs for resources in an Azure VNet. It is designed to monitor and repair the network health of IaaS (Infrastructure-as-a-Service) resources such as VMs, VNet, Load balancers, Application Gateways, Network Interfaces, Public IPs.
+
+Network Watcher will be automatically enabled when the VNet is created in a particular region. There is no impact to the resources or associated charge for automatically enabling Network Watcher. 
+
+```
+ 	Design Decision
+SDR Reference Implementation has leveraged Azure Network Watcher for Network flow diagnostics. 
+```
+	
+## Decision Summary
+
+#### Table 16 Operations Decision Summary
+|Design|Decision|
+|---|---|
+|Infrastructure Logging & Monitoring|Cloud native tools for logging and Infrastructure Monitoring (Log Analytics & Azure Monitor) have been used|
+
+## References
+
+• Define your naming convention - Cloud Adoption Framework | Microsoft Docs<br>
+• Recommended abbreviations for Azure resource types - Cloud Adoption Framework | Microsoft Docs
+ 
