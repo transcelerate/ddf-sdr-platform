@@ -85,11 +85,11 @@ This document is not a deployment document, it does not discuss or include deplo
 
 ## Audience
 This document assumes a 300-level knowledge of Azure concepts, components, and services. The audience for this document is:<br>
-•	Able to understand the technical details associated with the Azure concepts and components<br> 
-•	Able to understand the company’s future IT needs and direction, and correlate the needs with the SDR current design elements<br>
-•	Is a decision maker or influencer
+• Able to understand the technical details associated with the Azure concepts and components<br> 
+• Able to understand the company’s future IT needs and direction, and correlate the needs with the SDR current design elements<br>
+• Is a decision maker or influencer
 
-### Level 300:
+#### Level 300:
 Advanced material. In-depth understanding of features in a real-world environment, and strong coding skills. Provides a detailed technical overview of a subset of product/technology features, covering architecture, performance, migration, deployment, and development.
 
 ## Design Decision Point Matrix
@@ -148,9 +148,9 @@ Figure 1 SDR Reference Implementation Solution Architecture Design
 A resource group is a container that holds related resources for an Azure solution. The resource group can include all the resources for the solution, or only those resources that will be managed as a group. The operator decides the method to add resources to resource groups based on current needs for an organization. Generally, resources that share the same lifecycle are added to the same resource group for easier and more efficient deployment, update, and/or delete.
 
 Resource Groups are a critical concept in Azure Resource Management. A Resource Group is:<br>
-•	A logical grouping of resources<br>
-•	A container for delegation of administration (current recommended best practice)<br>
-•	A target for RBAC
+• A logical grouping of resources<br>
+• A container for delegation of administration (current recommended best practice)<br>
+• A target for RBAC
 
 ### Resource Group Strategy
 For SDR reference implementation separate Resource Groups for core (VNet, Subnets, Key Vault etc.) and app related (App Services, API Management, Application Insights etc.) infrastructure resources were used.
@@ -174,16 +174,16 @@ Additional Resource Groups can be created for additional services as needed usin
 ## Tagging
 Tags provide a way to logically organize resources with custom properties and can be applied to Resource Groups and/or directly to individual resources. Tags can be used to refine the selection criteria for resources or Resource Groups from the console, web portal, PowerShell, or the Azure resource API.
 
-•	Tags are particularly useful when you need to organize resources for billing or management<br>
-•	Tags can be applied to Resource Groups and to resources that support Azure Resource Manager (ARM) operations. All resources deployed into the SDR environment will be deployed using the ARM model and not the legacy model see as referenced in the ARM section<br>
-•	Each resource or Resource Group can have a maximum of 50 tags<br>
-•	Tags are key/value pairs, name is limited to 512 characters, value is limited to 256 characters<br>
-•	Tags are free-form text so consistent, correct spelling and case-sensitivity is very important<br>
-•	Tags defined on Resource Groups exist only on the Resource Group object; resources do not inherit the Resource Group’s tags<br>
-•	Each tag is automatically added to the Subscription-wide taxonomy<br>
-•	It’s important to develop a tag taxonomy early on and apply it consistently to all deployed resources<br>
-•	Tags appear in billing and consumption reports<br>
-•	Tags should not be used as a replacement for a proper CMDB. The information stored in tags has no inherent validation or relationship. Instead, the data in tags should reflect information that is contained within other systems such as the in-house developed CMDB for Application/Business Unit/Client information or a financial system for a tag such as a Cost Center
+• Tags are particularly useful when you need to organize resources for billing or management<br>
+• Tags can be applied to Resource Groups and to resources that support Azure Resource Manager (ARM) operations. All resources deployed into the SDR environment will be deployed using the ARM model and not the legacy model see as referenced in the ARM section<br>
+• Each resource or Resource Group can have a maximum of 50 tags<br>
+• Tags are key/value pairs, name is limited to 512 characters, value is limited to 256 characters<br>
+• Tags are free-form text so consistent, correct spelling and case-sensitivity is very important<br>
+• Tags defined on Resource Groups exist only on the Resource Group object; resources do not inherit the Resource Group’s tags<br>
+• Each tag is automatically added to the Subscription-wide taxonomy<br>
+• It’s important to develop a tag taxonomy early on and apply it consistently to all deployed resources<br>
+• Tags appear in billing and consumption reports<br>
+• Tags should not be used as a replacement for a proper CMDB. The information stored in tags has no inherent validation or relationship. Instead, the data in tags should reflect information that is contained within other systems such as the in-house developed CMDB for Application/Business Unit/Client information or a financial system for a tag such as a Cost Center
 
  ```
  Design Decision
@@ -200,10 +200,10 @@ SDR reference Implementation has used a standardized metadata taxonomy for all r
 |App Layer|	This tag is show which application layer the resource belongs to. |	Required|	Frontend / Backend / N/A|Resource Groups, VNet, API Management, App Services, App Service Plans, Storage Account, CosmosDB, Application Insights, Log Analytics Workspace & Key Vault|
 
 ## Resource Locks
-Resource Locks allow administrators to lock Subscriptions, Resource Groups, or individual resources to prevent accidental (or malicious) deletion or modification of critical resources. Unlike Role-based access control (RBAC) management, locks apply a restriction across all users and roles. A lock on a parent scope applies to all child resources. Resource Locks use the least privilege model, meaning the most restrictive lock in the inheritance takes precedence. There are two types of locks:
-##### •	Delete (CanNotDelete) – 
-Authorized users can still read and modify a resource, but they can’t delete it.
-##### •	Read-only (ReadOnly) –
+Resource Locks allow administrators to lock Subscriptions, Resource Groups, or individual resources to prevent accidental (or malicious) deletion or modification of critical resources. Unlike Role-based access control (RBAC) management, locks apply a restriction across all users and roles. A lock on a parent scope applies to all child resources. Resource Locks use the least privilege model, meaning the most restrictive lock in the inheritance takes precedence. There are two types of locks:<br>
+• **Delete (CanNotDelete)** – 
+Authorized users can still read and modify a resource, but they can’t delete it.<br>
+• **Read-only (ReadOnly)** –
 Authorized users can read a resource, but they can’t delete or perform any actions on it.
 
 ### Resource Locks for Critical Resources
@@ -376,7 +376,7 @@ Following is illustration of how VNet, Subnet, Delegated Subnets, API Management
 	
 Figure 5  SDR Reference Implementation Connectivity
  
- Communication Flow:
+#### Communication Flow:
 • Communication from Internet to User interface (UI) I App Service is allowed through Hypertext Transfer Protocol Secure (https) Protocol <br> 
 • Upstream communication through the internet is handled by APIM which in turn communicates with API App Service. The API App Service forwards the call further to Cosmos DB.<br>
 • Downstream communication is also handled by APIM via Internet. APIM handles the calls to UI App Service and API App Service.<br>
@@ -433,12 +433,12 @@ As mentioned, it is recommended that no more than 3 accounts have Owner permissi
 ## Managed Identity
 Managed identities provide an identity for applications to use when connecting to resources that support Azure Active Directory (Azure AD) authentication. Applications may use the managed identity to obtain Azure AD tokens. For example, an application may use a managed identity to access resources like Azure Key Vault where developers can store credentials in a secure manner or to access storage accounts.
 
-#### Some of the benefits of using Managed identities:
+Some of the benefits of using Managed identities:<br>
 • You don't need to manage credentials. Credentials are not even accessible to you.<br>
 • You can use managed identities to authenticate to any resource that supports Azure Active Directory authentication including your own applications.<br>
 • Managed identities can be used without any additional cost.
 
-#### There are two types of managed identities:
+There are two types of managed identities:<br>
 • System-assigned Some Azure services allow you to enable a managed identity directly on a service instance. When you enable a system-assigned managed identity an identity is created in Azure AD that is tied to the lifecycle of that service instance. So, when the resource is deleted, Azure automatically deletes the identity for you. By design, only that Azure resource can use this identity to request tokens from Azure AD.<br>
 • User-assigned You may also create a managed identity as a standalone Azure resource. You can create a user-assigned managed identity and assign it to one or more instances of an Azure service. In the case of user-assigned managed identities, the identity is managed separately from the resources that use it.
 
@@ -560,9 +560,9 @@ When you create an App Service plan in a certain region (for example, West Europ
 
 The pricing tier of an App Service plan determines what App Service features you get and how much you pay for the plan. The pricing tiers available to your App Service plan depend on the operating system selected at creation time. There are a few categories of pricing tiers:
 
-• Shared compute: Free and Shared, the two base tiers, runs an app on the same Azure VM as other App Service apps, including apps of other customers. These tiers allocate CPU quotas to each app that runs on the shared resources, and the resources cannot scale out.<br>
-• Dedicated compute: Basic, Standard, Premium, PremiumV2, and PremiumV3 tiers run apps on dedicated Azure VMs. Only apps in the same App Service plan share the same compute resources. The higher the tier, the more VM instances are available to you for scale-out.<br>
-• Isolated: This Isolated and IsolatedV2 tiers run dedicated Azure VMs on dedicated Azure Virtual Networks. It provides network isolation on top of compute isolation to your apps. It provides the maximum scale-out capabilities.
+• **Shared compute:** Free and Shared, the two base tiers, runs an app on the same Azure VM as other App Service apps, including apps of other customers. These tiers allocate CPU quotas to each app that runs on the shared resources, and the resources cannot scale out.<br>
+• **Dedicated compute:** Basic, Standard, Premium, PremiumV2, and PremiumV3 tiers run apps on dedicated Azure VMs. Only apps in the same App Service plan share the same compute resources. The higher the tier, the more VM instances are available to you for scale-out.<br>
+• **Isolated:** This Isolated and IsolatedV2 tiers run dedicated Azure VMs on dedicated Azure Virtual Networks. It provides network isolation on top of compute isolation to your apps. It provides the maximum scale-out capabilities.
 
 ```
 	Design Decision
@@ -589,12 +589,12 @@ SDR Reference Implementation has used 1 API Management per environment/region.
 	
 # Operations
 ## Logging
-Log analytics platform can gather different types of logs. Following log types can be collected and exported to different destination stores.<br> 
-• Azure Resource Logs: Resource Logs provide information and insight into operations that were performed within an Azure resource (the data plane). Resource log content varies by the Azure resource type.  These logs are made visible by sending them to a destination that can be a Log Analytics workspace, Azure Storage account or Azure Event Hub, and this is setup in the Diagnostic Settings of that resource.<br>  
-• Azure Activity Log: There is a single log that provides insight into operations on each Azure resource in a subscription from the outside (the management plane). These are what, who and when of any write operation taken on the resources in a Subscription. Activity Log of a Subscription can be exported to a Log Analytics workspace, Azure Storage account or Azure Event Hub as setup in the Diagnostic Setting.<br>  
-• Azure Active Directory Logs: These logs contain the history of sign-in activity and audit trail of changes made in the Azure Active Directory for a tenant. This is a tenant level export and can be setup using Diagnostic setting of AAD and data collected will include data for all subscriptions in the AAD tenant.<br>    
-• Azure Flow Logs: These logs contain the history of the ingress and egress traffic flow. Flow logs can be collected from Network Security Groups <br>
-
+Log analytics platform can gather different types of logs. Following log types can be collected and exported to different destination stores.<br>
+• **Azure Resource Logs:** Resource Logs provide information and insight into operations that were performed within an Azure resource (the data plane). Resource log content varies by the Azure resource type.  These logs are made visible by sending them to a destination that can be a Log Analytics workspace, Azure Storage account or Azure Event Hub, and this is setup in the Diagnostic Settings of that resource.<br>
+• **Azure Activity Log:** There is a single log that provides insight into operations on each Azure resource in a subscription from the outside (the management plane). These are what, who and when of any write operation taken on the resources in a Subscription. Activity Log of a Subscription can be exported to a Log Analytics workspace, Azure Storage account or Azure Event Hub as setup in the Diagnostic Setting.<br>
+• **Azure Active Directory Logs:** These logs contain the history of sign-in activity and audit trail of changes made in the Azure Active Directory for a tenant. This is a tenant level export and can be setup using Diagnostic setting of AAD and data collected will include data for all subscriptions in the AAD tenant.<br>
+• **Azure Flow Logs:** These logs contain the history of the ingress and egress traffic flow. Flow logs can be collected from Network Security Groups <br>
+	
 Figure 8 Azure Platform Data Types
  
 Below are the different integration options available based on the Log Categorization. 
