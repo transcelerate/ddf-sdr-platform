@@ -690,15 +690,15 @@ Azure Monitor delivers a comprehensive solution for collecting, analyzing, and a
 Metrics are numerical values that describe some aspect of a system at a particular point in time. They are lightweight and capable of supporting near real-time scenarios. Logs contain different kinds of data organized into records with different sets of properties for each type. Telemetry such as events and traces are stored as logs in addition to performance data so that it can all be combined for analysis.
 
 #### Capabilities:
-• Continuous monitoring: Azure Monitor collects performance statistics from the Windows performance counter and sends it to the portal.<br>
+• **Continuous monitoring:** Azure Monitor collects performance statistics from the Windows performance counter and sends it to the portal.<br>
 • Custom alert configuration.<br>
-• Availability testing — in the form of URL-based ping and web-based tests.<br>
+• **Availability testing —** in the form of URL-based ping and web-based tests.<br>
 • Data visualization for a visual representation of various data, including that of user flows.<br>
-• Tracking and logging of user sessions: the function enables the analysis of the user journey, which contributes to a better understanding of the application’s pain points.<br>
-• Smart detection — a recommendation functionality that is powered by machine learning algorithms.<br>
+• **Tracking and logging of user sessions:** the function enables the analysis of the user journey, which contributes to a better understanding of the application’s pain points.<br>
+• **Smart detection —** a recommendation functionality that is powered by machine learning algorithms.<br>
 • Performance testing based on web tests.<br>
 • Application map that visualizes system components, such as the server, the database, and other resources.<br>
-• Snapshot debugger — a component that saves code status at the time of an exception for further check<br>
+• **Snapshot debugger —** a component that saves code status at the time of an exception for further check<br>
 
 Figure 10 Azure Monitor
  
