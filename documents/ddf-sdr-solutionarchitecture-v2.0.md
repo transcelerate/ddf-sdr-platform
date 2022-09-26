@@ -1,7 +1,7 @@
 - [Solution Overview](#solution-overview)
 - [High Level Solution Architecture](#high-level-solution-architecture)
 - [Architecture Goals and Constraints](#architecture-goals-and-constraints)
-- [Architecture Goals/Objectives](#architecture-goals/objectives)
+- [Architecture Goals/Objectives](#architecture-goalsobjectives)
 - [Architectural Assumptions and Decisions](#architectural-assumptions-and-decisions)
 - [Solution Architecture Attributes](#solution-architecture-attributes)
 - [Tools and Technologies](#tools-and-technologies)
@@ -17,7 +17,7 @@
 - [API Architectural Style](#api-architectural-style)
 - [API Component Model](#api-component-model)
 - [Data Architecture](#data-architecture)
-- [Conceptual/Logical Data Model](#conceptual/logical-data-model)
+- [Conceptual/Logical Data Model](#conceptuallogical-data-model)
 - [Data Sources](#data-sources)
 - [Data Dictionary](#data-dictionary)
 - [Security Architecture](#security-architecture)
@@ -26,7 +26,7 @@
 - [Azure Platform Components](#azure-platform-components)
 - [Environment Strategy for SDR](#environment-strategy-for-sdr)
 - [Deployment Models](#deployment-models)
-- [Appendix A - Key Terms](#appendix-a-key-terms)
+- [Appendix A - Key Terms](#appendix-a---key-terms)
 
 # Solution Overview
 Digital Data Flow (DDF) is TransCelerate’s vision to catalyze an industry-level transformation, enabling digital exchange of study definitions (e.g., protocol) by collaborating with standards bodies to create a sustainable open-source Study Definition Repository (SDR) Reference Implementation based upon a standardized model – the Unified Study Definitions Model (USDM). The SDR Reference Implementation seeks to transform the drug development process by enabling a digital workflow to move from a current state of manual asset creation to a future state of fully automated and dynamic readiness to support clinical study execution. 
