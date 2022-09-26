@@ -523,3 +523,48 @@ API Management gateway enforces TLS authentication, and it can inspect the certi
 2. Thumbprint: Allow certificates containing a specified thumbprint<br>
 3. Subject: Only allow certificates with a specified subject<br>
 4. Expiration Date: Only allow certificates that have not expired
+
+```
+	Design Decision
+SDR Reference Implementation has leveraged Certificates for both Upstream and Downstream communication through API Management and these Certificates are stored in APIM certificates.
+```
+	
+## Decision Summary
+#### Table 12 Security Decision Summary
+|Design|Decision|
+|---|---|
+|Key Vault Usage|One Key Vault per Environment|
+|Key Vault Features|Key Vault CanNotDelete locks, purge protection, and soft delete has been used to avoid accidental or malicious deletion of vaults, keys, secrets, and other credentials|
+|Certificate|Client Certificates with public key for API authentication|
+
+# Resources
+## PaaS Components
+### 	App Services
+ Azure App Service is an HTTP-based service for hosting web applications, REST APIs, and mobile back ends. You can develop in your favorite language, be it .NET, .NET Core, Java, Ruby, Node.js, PHP, or Python. Applications run and scale with ease on both Windows and Linux-based environments. App Service not only adds the power of Microsoft Azure to your application, such as security, load balancing, autoscaling, and automated management. You can also take advantage of its DevOps capabilities, such as continuous deployment from Azure DevOps, GitHub, Docker Hub, and other sources, package management, staging environments, custom domain, and TLS/SSL certificates.
+
+With App Service, you pay for the Azure compute resources you use. The compute resources you use are determined by the App Service plan that you run your apps on. For more details on App Service refer https://azure.microsoft.com/en-us/services/app-service/ 
+
+```
+	Design Decision
+SDR Reference Implementation has used 2 App Services per environment/region - 1 for Frontend UI Apps and the other for Backend APIs.
+```
+
+### App Service Plans
+ In App Service (Web Apps, API Apps, or Mobile Apps), an app always runs in an App Service plan. In addition, Azure Functions also has the option of running in an App Service plan. An App Service plan defines a set of compute resources for a web app to run. These compute resources are analogous to the server farm in conventional web hosting. One or more apps can be configured to run on the same computing resources (or in the same App Service plan).
+When you create an App Service plan in a certain region (for example, West Europe), a set of compute resources is created for that plan in that region. Whatever apps you put into this App Service plan run on these compute resources as defined by your App Service plan. Each App Service plan defines:<br>
+• Operating System (Windows, Linux)<br>
+• Region (West US, East US, etc.)<br>
+• Number of VM instances<br>
+• Size of VM instances (Small, Medium, Large)<br>
+• Pricing tier (Free, Shared, Basic, Standard, Premium, PremiumV2, PremiumV3, Isolated, IsolatedV2)
+
+The pricing tier of an App Service plan determines what App Service features you get and how much you pay for the plan. The pricing tiers available to your App Service plan depend on the operating system selected at creation time. There are a few categories of pricing tiers:
+
+• Shared compute: Free and Shared, the two base tiers, runs an app on the same Azure VM as other App Service apps, including apps of other customers. These tiers allocate CPU quotas to each app that runs on the shared resources, and the resources cannot scale out.<br>
+• Dedicated compute: Basic, Standard, Premium, PremiumV2, and PremiumV3 tiers run apps on dedicated Azure VMs. Only apps in the same App Service plan share the same compute resources. The higher the tier, the more VM instances are available to you for scale-out.<br>
+• Isolated: This Isolated and IsolatedV2 tiers run dedicated Azure VMs on dedicated Azure Virtual Networks. It provides network isolation on top of compute isolation to your apps. It provides the maximum scale-out capabilities.
+
+```
+	Design Decision
+SDR Reference Implementation has used 2 App Service Plans per environment/region, 1 for Frontend App Service and the other for Backend App Service. The service plans are at individual resource level and are distinct for each App Service.
+```
