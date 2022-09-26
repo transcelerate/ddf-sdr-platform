@@ -724,8 +724,21 @@ SDR Reference Implementation has leveraged Azure Network Watcher for Network flo
 |---|---|
 |Infrastructure Logging & Monitoring|Cloud native tools for logging and Infrastructure Monitoring (Log Analytics & Azure Monitor) have been used|
 
-## References
+# References
 
 • Define your naming convention - Cloud Adoption Framework | Microsoft Docs<br>
 • Recommended abbreviations for Azure resource types - Cloud Adoption Framework | Microsoft Docs
- 
+	
+# Appendix- A
+
+This section lists the links to documentation sources referred during design discussions and decisions made for the SDR Reference Implementation Infrastructure Platform Design.
+
+|S. No.|Topic|	Link|
+|---|---|---|
+|A.1|Azure Best Practices for Resource Naming Convention|https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming|
+|A.2|Naming rules and restrictions for Azure resources|https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules#:~:text=Azure%20virtual%20machines%20have%20two%20distinct%20names%3A%20resource,to%2064%20characters.%20Lowercase%20letters%2C%20numbers%2C%20and%20hyphens.| 
+|A.3|Azure subscription and service limits, quotas, and constraints|https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits |
+|A.4|Azure geographies|https://azure.microsoft.com/regions/|
+|A.5|What is Azure Active Directory?|https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis |
+|A.6|Virtual network service endpoints for Azure Key Vault – Trusted Services|https://docs.microsoft.com/en-us/azure/key-vault/general/overview-vnet-service-endpoints#trusted-services |
+|A.7|Cloud Adoption Framework|Microsoft Cloud Adoption Framework for Azure - Cloud Adoption Framework | Microsoft Docs|
