@@ -568,3 +568,44 @@ The pricing tier of an App Service plan determines what App Service features you
 	Design Decision
 SDR Reference Implementation has used 2 App Service Plans per environment/region, 1 for Frontend App Service and the other for Backend App Service. The service plans are at individual resource level and are distinct for each App Service.
 ```
+	
+### Azure CosmosDB 
+Azure Cosmos DB is a fully managed NoSQL database for modern app development. Single-digit millisecond response times, and automatic and instant scalability, guarantee speed at any scale. Business continuity is assured with SLA-backed availability and enterprise-grade security. App development is faster and more productive thanks to turnkey multi region data distribution anywhere in the world, open-source APIs and SDKs for popular languages. As a fully managed service, Azure Cosmos DB takes database administration off your hands with automatic management, updates, and patching. It also handles capacity management with cost-effective serverless and automatic scaling options that respond to application needs to match capacity with demand.
+
+```
+	Design Decision
+SDR Reference Implementation has used 1 Azure CosmosDB API for MongoDB per environment/region.
+```
+	
+### API Management
+API Management (APIM) is a way to create consistent and modern API gateways for existing back-end services. API Management helps organizations publish APIs to external, partner, and internal developers to unlock the potential of their data and services. Businesses everywhere are looking to extend their operations as a digital platform, creating new channels, finding new customers, and driving deeper engagement with existing ones. API Management provides the core competencies to ensure a successful API program through developer engagement, business insights, analytics, security, and protection. You can use Azure API Management to take any backend and launch a full-fledged API program based on it. 
+
+Figure 7 API Management
+ 
+```
+	Design Decision
+SDR Reference Implementation has used 1 API Management per environment/region.
+```
+	
+# Operations
+## Logging
+Log analytics platform can gather different types of logs. Following log types can be collected and exported to different destination stores.<br> 
+• Azure Resource Logs: Resource Logs provide information and insight into operations that were performed within an Azure resource (the data plane). Resource log content varies by the Azure resource type.  These logs are made visible by sending them to a destination that can be a Log Analytics workspace, Azure Storage account or Azure Event Hub, and this is setup in the Diagnostic Settings of that resource.<br>  
+• Azure Activity Log: There is a single log that provides insight into operations on each Azure resource in a subscription from the outside (the management plane). These are what, who and when of any write operation taken on the resources in a Subscription. Activity Log of a Subscription can be exported to a Log Analytics workspace, Azure Storage account or Azure Event Hub as setup in the Diagnostic Setting.<br>  
+• Azure Active Directory Logs: These logs contain the history of sign-in activity and audit trail of changes made in the Azure Active Directory for a tenant. This is a tenant level export and can be setup using Diagnostic setting of AAD and data collected will include data for all subscriptions in the AAD tenant.<br>    
+• Azure Flow Logs: These logs contain the history of the ingress and egress traffic flow. Flow logs can be collected from Network Security Groups <br>
+
+Figure 8 Azure Platform Data Types
+ 
+Below are the different integration options available based on the Log Categorization. 
+#### Table 14 Log Categories
+|Log Category|Log Type|	Usage|	Integration|
+|---|---|---|---|
+|Activity logs|	Control plane events on Azure Resource Manager resources|Provides insight into the operations that were performed on resources in your subscription.|Rest API, Azure Monitor|
+|Resource logs|	Frequent data about the operation of Azure Resource Manager resources in subscription|Provides insight into operations that your resource itself performed.|Azure Monitor|
+|AAD (Azure Active Directory) Logs and Reporting|Logs and reports	Reports user sign-in activities and system activity information about users and group management.	Graph API
+Virtual machines and cloud services	Windows Event Log service and Linux Syslog	Captures system data and logging data on the virtual machines and transfers that data into a storage account of your choice.	Windows (using Windows Azure Diagnostics [WAD] storage) and Linux in Azure Monitor
+Azure Storage Analytics	Storage logging provides metrics data for a storage account	Provides insight into trace requests, analyzes usage trends, and diagnoses issues with your storage account.	REST API or the client library
+Application insight Logs	Logs, exceptions, and custom diagnostics	Provides an application performance monitoring (APM) service for web developers on multiple platforms.	REST API, Power BI
+Process data / security alerts	Azure Security Center alerts, Azure Monitor logs alerts	Provides security information and alerts.	REST APIs
+
