@@ -608,4 +608,57 @@ Below are the different integration options available based on the Log Categoriz
 |Azure Storage Analytics|Storage logging provides metrics data for a storage account|Provides insight into trace requests, analyzes usage trends, and diagnoses issues with your storage account.|REST API or the client library|
 |Application insight Logs|Logs, exceptions, and custom diagnostics|Provides an application performance monitoring (APM) service for web developers on multiple platforms.|REST API, Power BI|
 |Process data / security alerts|Azure Security Center alerts, Azure Monitor logs alerts|Provides security information and alerts.|REST APIs|
+	
+## Diagnostic Settings
+Platform metrics are sent automatically to Azure Monitor Metrics by default and without configuration.
+Platform logs, including the Azure Activity log and resource logs, provide detailed diagnostic and auditing information for Azure resources and the Azure platform they depend on. The Activity Log exists on it own but can be routed to other locations. Resource logs are not collected until they are routed to a destination.
+
+Each Azure resource requires its own diagnostic setting, which defines the following criteria:<br>
+• Sources - The type of metric and log data to send to the destinations defined in the setting. The available types vary by resource type<br>
+• Destinations - One or more destinations to send to
+
+With Azure diagnostic logs, you can view core analytics and save them into one or more destinations including:<br>
+• Azure Storage account<br>
+• Log Analytics workspace<br>
+• Azure Event Hubs
+	
+#### Table 15 Diagnostic Settings
+|Resource Name|Type|Category|Destination|
+|---|---|---|---|
+|VNet|Metrics|AllMetrics|Log Analytics Workspace|
+|Application Insights|Logs |AppAvailabilityResults <br>&nbsp;&nbsp;&nbsp; AppBrowserTimings<br>&nbsp;&nbsp;&nbsp; AppEvents<br>&nbsp;&nbsp;&nbsp; AppMetrics<br>&nbsp;&nbsp;&nbsp; AppDependencies<br>&nbsp;&nbsp;&nbsp; AppExceptions<br>&nbsp;&nbsp;&nbsp; AppPageViews<br>&nbsp;&nbsp;&nbsp; AppPerformanceCounters<br>&nbsp;&nbsp;&nbsp; AppRequests<br>&nbsp;&nbsp;&nbsp; AppSystemEvents<br>&nbsp;&nbsp;&nbsp; AppTraces<br>|Log Analytics Workspace|
+||Metrics|AllMetrics|Log Analytics Workspace|
+|API Management|Logs| GatewayLogs<br>&nbsp;&nbsp;&nbsp;WebSocketConnectionLogs<br>|Log Analytics Workspace|
+||Metrics|AllMetrics|Log Analytics Workspace|
+|Cosmosdb|Logs|DataPlaneRequests<br>&nbsp;&nbsp;&nbsp;MongoRequests<br>&nbsp;&nbsp;&nbsp; QueryRuntimeStatistics<br>&nbsp;&nbsp;&nbsp;PartitionKeyStatistics<br>&nbsp;&nbsp;&nbsp;PartitionKeyRUConsumption<br>&nbsp;&nbsp;&nbsp;ControlPlaneRequests<br>&nbsp;&nbsp;&nbsp;TableAPIRequests<br>|Log Analytics Workspace|
+||Metrics|Requests|Log Analytics Workspace|
+|App Service Plan|Metrics|AllMetrics|Log Analytics Workspace|
+|App Service|Logs|AppServiceHTTPLogs<br>&nbsp;&nbsp;&nbsp; AppServiceConsoleLogs<br>&nbsp;&nbsp;&nbsp; AppServiceAppLogs<br>&nbsp;&nbsp;&nbsp; AppServiceAuditLogs<br>&nbsp;&nbsp;&nbsp; AppServiceIPSecAuditLogs<br>&nbsp;&nbsp;&nbsp; AppServicePlatformLogs<br>|Log Analytics Workspace|
+||Metrics|All Metrics|Log Analytics Workspace|
+|KeyVault|Logs|AuditEvent<br>&nbsp;&nbsp;&nbsp; AuditPolicyEvaluationDetails<br>|Log Analytics Workspace|
+||Metrics|All Metrics|Log Analytics Workspace|
+  
+
+ 	Design Decision
+SDR Reference Implementation has used one Log Analytics Workspace per environment/region. All the Diagnostic Setting logs and metrics collected for all the infrastructure resources are sent to this shared Log Analytics Workspace.
+11.3.	Log Analytics Workspace    
+Log Analytics Workspace is a tool in the Azure portal used to edit and run log queries with data in Azure Monitor Logs. You may write a simple query that returns a set of records and then use features of Log Analytics to sort, filter, and analyze them. Or you may write a more advanced query to perform statistical analysis and visualize the results in a chart to identify a particular trend. Whether you work with the results of your queries interactively or use them with other Azure Monitor features such as log query alerts or workbooks, Log Analytics is the tool that you're going to use write and test them. 
+
+The Diagnostic Setting logs and metrics collected for all the infrastructure resources will be sent to Log Analytics Workspace.
+
+ 	Design Decision
+SDR Reference Implementation has deployed one Log Analytics Workspace per environment/region.
+
+
+11.4.	Application Insights	
+Application Insights, a feature of Azure Monitor, is an extensible Application Performance Management (APM) service for developers and DevOps professionals. Use it to monitor your live applications. It will automatically detect performance anomalies, and includes powerful analytics tools to help you diagnose issues and to understand what users actually do with your app. It's designed to help you continuously improve performance and usability. It works for apps on a wide variety of platforms including .NET, Node.js, Java, and Python hosted on-premises, hybrid, or any public cloud. It integrates with your DevOps process and has connection points to a variety of development tools. 
+
+Application Insights deployed is being used by App Services and API Management.
+
+Figure 9 Application Insights
+ 
+
+ 	Design Decision
+SDR Reference Implementation has one Application Insights deployed per environment/region.
+
 
