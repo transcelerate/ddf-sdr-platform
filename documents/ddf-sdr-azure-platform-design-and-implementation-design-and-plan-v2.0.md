@@ -472,3 +472,54 @@ o Providing a process for emergency access and rare-use scenarios<br>
 • Users should generally not be given access to resources directly, but instead be added to Groups that have assigned roles (and later be removed from those Groups)<br>
 • Utilization of Privileged Identity Management (PIM) to provide time-based and approval-based role activation is very useful to avoid unnecessary and excessive permissions to users or groups for periods longer than necessary. Just-In-Time (JIT) access is a feature of PIM
 ```
+	
+The below table shows some of the commonly utilized built-in Roles that are utilized within Azure, and what actions users/identities can take when assigned that role (either directly or through Groups). For this reason, it is important to limit Owners and Security Admins and utilize PIM and/or JIT:
+#### Table 10 Identity Decision Summary
+|Azure Role Name|Create|Rename|Move|Delete|Assign Access|Assign Policy|	Read|
+|---|---|---|---|---|---|---|---|	
+|Owner|	X|X|X|X|X|X|X|
+|Contributor|X|	X|X|X|||X|
+|Reader|||||||X|
+|User Access Administrator|||||X|||		
+|User Administrator|||||X|||		
+|Directory Reader|||||||X|
+	
+## Decision Summary
+#### Table 11 Identity Decision Summary
+|Design	|Decision|
+|-----|----|
+|Azure Active Directory Tenant|AAD tenant is used|
+|Azure Active Directory Edition|Azure Active Directory Free tier is used|
+|Admins and Administrative role Assignment|Number of accounts with Owner rights is limited to need basis only|
+|Role-based access control (RBAC) Strategy|Best practice recommendations/guidance provided|
+	
+# Security
+## Azure Key Vault
+Azure Key Vault is a service that is used to create, maintain, and store keys, secrets, and certificates that are leveraged by cloud resources, apps, and solutions. Key Vault supports the following features:
+	
+• Secure Key Management<br>
+• Encrypt and store keys / passwords (secrets)<br>
+• Certificate Management and automatic renewals
+
+An Azure Key Vault provides native integration with a variety of Azure services and is deeply connected to Azure AD for authentication and authorization using RBAC.
+SDR has leveraged Azure Key Vault to store client secrets which are utilized by UI and API  application to connect with other PaaS services that are replaced (in application configuration files) during deployment instead of hard-coding of secrets in application code.
+```
+•
+```
+	
+```
+ 	Design Decision
+SDR Reference Implementation has leveraged the native Azure Key Vault for application secrets management. 
+```
+
+## Certificates 
+Azure Active Directory (Azure AD) supports two types of authentications for service principals: password-based authentication (app secret) and certificate-based authentication. While app secrets can easily be created in the Azure portal, it's recommended that your application uses a certificate.
+
+Certificates provide TLS client authentication to the API gateway. The API Management gateway can be configured to allow only requests with certificates containing a specific thumbprint. The authorization at the gateway level is handled through inbound policies.
+
+API Management gateway enforces TLS authentication, and it can inspect the certificate contained within the client request and check for properties like below
+
+1. Certificate Authority (CA): Only allow certificates signed by a particular CA<br>
+2. Thumbprint: Allow certificates containing a specified thumbprint<br>
+3. Subject: Only allow certificates with a specified subject<br>
+4. Expiration Date: Only allow certificates that have not expired
