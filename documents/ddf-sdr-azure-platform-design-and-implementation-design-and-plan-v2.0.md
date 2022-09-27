@@ -49,9 +49,6 @@
 - [Decision Summary](#decision-summary)
 - [Security](#security)
 - [Azure Key Vault](#azure-key-vault)
-- [Key Vault Per Subscription](#key-vault-per-subscription)
-- [Key Vault Security](#key-vault-security)
-- [Key Vault Resiliency](#key-vault-resiliency)
 - [Decision Summary](#decision-summary)
 - [Certificates](#certificates)
 - [Resources](#resources)
@@ -70,7 +67,7 @@
 - [Azure Network Watcher](#azure-network-watcher)
 - [Decision Summary](#decision-summary)
 - [References](#references)
-- [Appendix- A](#appendix-a)
+- [Appendix- A](#appendix--a)
 
 # Introduction
 This document details the infrastructure design for Azure environment utilized to deploy the Study Definition Repository (SDR) Reference Implementation. 
@@ -239,11 +236,11 @@ SDR reference implementation has the following naming convention for Azure resou
 The Meta data details for the Naming Convention is captured below:
 
 #### Table 4 Naming convention metadata
-|Meta Data|	Field Required	|Field Length*|
-|---|---|---|
+|Meta Data|Field Required|Field Length|
+|:------:|-----|-----|
 |<ResourceType>|Mandatory|Upto 4 characters|
-|<App/Svc>|Optional|	Upto 5 characters|
-|<Purpose/Segment/Environment>|	Mandatory|Upto 20 characters|
+|<App/Svc>|Optional |	Upto 5 characters|
+|<Purpose/Segment/Environment> |Mandatory|Upto 20 characters|
 |<Region>|Optional|Upto 6 characters|
 |<Instance Number or Level>|Optional|Upto 3 characters|
 
