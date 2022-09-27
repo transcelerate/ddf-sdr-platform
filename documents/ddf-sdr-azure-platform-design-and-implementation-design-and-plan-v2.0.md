@@ -309,7 +309,7 @@ To see list of regions available in Azure please see Appendix A.4. Within each r
 Design Decision
 SDR reference Implementation has used “East US” region to deploy all the infrastructure resources. 
 ```
-## Decision Summary
+## Azure Regions Decision Summary
 #### Table 7 Subscriptions and Regions Decision Summary
 |Design|Decision|
 |---|---|
@@ -360,7 +360,7 @@ SDR reference Implementation has leveraged the basic protection offered on each 
 VNet service endpoint provides secure and direct communication between Azure services over an optimized route using the Azure backbone network. Endpoints allow the user to secure their critical Azure service resources to only their virtual networks. Service Endpoints enables private IP addresses in the VNet to reach the endpoint of an Azure service without needing a public IP address on the VNet.<br>  
 Service endpoints have been configured for App Service 1 (UI), App Service 2 (API) and Cosmos DB to enable communication between these services without having to route the communication outside the Azure backbone.
 
-## Decision Summary
+## Azure VNet Service Endpoints Decision Summary
 #### Table 8 Networking Design Decisions
 |Design|Decision|
 |---|---|
@@ -385,7 +385,7 @@ Design Decision
 SDR Reference Implementation has used API Management as the API Gateway for accessing SDR API endpoints over t he internet.
 ```
 
-## Decision Summary
+## Connectivity Decision Summary
 #### Table 9  Connectivity Decision Summary
 |Design	|Decision|
 |---|---|
@@ -458,15 +458,15 @@ It is recommended to follow starter RBAC strategy and best practices:
 
 ```
  	Recommendation
-• Principle of least privilege access should always be adhered to. Only grant the minimal permissions needed to accomplish the task<br>
-• Least privilege is an end state – it requires a process to achieve it and this process must be established and followed<br>
-• It requires a combination of approaches:<br>
-o Limiting the count of administrators or members of privileged groups<br>
-o Delegating lesser privileges to accounts<br>
-o Provide privileges on-demand and revoke them once the task is completed<br>
-o Providing a process for emergency access and rare-use scenarios<br>
-• Periodic access reviews should be performed to ensure user who no longer require certain roles have those permissions revoked<br>
-• Users should generally not be given access to resources directly, but instead be added to Groups that have assigned roles (and later be removed from those Groups)<br>
+• Principle of least privilege access should always be adhered to. Only grant the minimal permissions needed to accomplish the task
+• Least privilege is an end state – it requires a process to achieve it and this process must be established and followed
+• It requires a combination of approaches:
+o Limiting the count of administrators or members of privileged groups
+o Delegating lesser privileges to accounts
+o Provide privileges on-demand and revoke them once the task is completed
+o Providing a process for emergency access and rare-use scenarios
+• Periodic access reviews should be performed to ensure user who no longer require certain roles have those permissions revoked
+• Users should generally not be given access to resources directly, but instead be added to Groups that have assigned roles (and later be removed from those Groups)
 • Utilization of Privileged Identity Management (PIM) to provide time-based and approval-based role activation is very useful to avoid unnecessary and excessive permissions to users or groups for periods longer than necessary. Just-In-Time (JIT) access is a feature of PIM
 ```
 	
@@ -481,7 +481,7 @@ The below table shows some of the commonly utilized built-in Roles that are util
 |User Administrator|||||X|||		
 |Directory Reader|||||||X|
 	
-## Decision Summary
+## Role Based Access Control Decision Summary
 #### Table 11 Identity Decision Summary
 |Design	|Decision|
 |-----|----|
@@ -526,7 +526,7 @@ API Management gateway enforces TLS authentication, and it can inspect the certi
 SDR Reference Implementation has leveraged Certificates for both Upstream and Downstream communication through API Management and these Certificates are stored in APIM certificates.
 ```
 	
-## Decision Summary
+## Azure Key Vault Decision Summary
 #### Table 12 Security Decision Summary
 |Design|Decision|
 |---|---|
@@ -703,7 +703,7 @@ Network Watcher will be automatically enabled when the VNet is created in a part
 SDR Reference Implementation has leveraged Azure Network Watcher for Network flow diagnostics. 
 ```
 	
-## Decision Summary
+## Azure Network Watcher Decision Summary
 
 #### Table 16 Operations Decision Summary
 |Design|Decision|
