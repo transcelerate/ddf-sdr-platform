@@ -31,14 +31,14 @@
 # Solution Overview
 Digital Data Flow (DDF) is TransCelerate’s vision to catalyze an industry-level transformation, enabling digital exchange of study definitions (e.g., protocol) by collaborating with standards bodies to create a sustainable open-source Study Definition Repository (SDR) Reference Implementation based upon a standardized model – the Unified Study Definitions Model (USDM). The SDR Reference Implementation seeks to transform the drug development process by enabling a digital workflow to move from a current state of manual asset creation to a future state of fully automated and dynamic readiness to support clinical study execution. 
 
-Figure 1 - Solution Overview Diagram
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-solutionarchitecture-v2.0/solution-overview-diagram.png">
  
 ## High Level Solution Architecture
 Figure:High Level Solution Architecture Diagram, below depicts high level architecture of the SDR Reference Implementation which is built using Angular Front End and.NET 6 Backend and deployed in Microsoft Azure Cloud. The solution architecture components are chosen in a way to support TransCelerate’s objectives of making the future releases cloud and vendor agnostic and support portability and deployment of the reference implementation to other environments such Amazon Web Services Cloud (AWS).
 For the Reference Implementation, the vision is to leverage the USDM provided by CDISC by building a repository to house the USDM complying study data, establishing inbound APIs to enable **upstream systems (e.g., study builders (SB), protocol authors)** to input data, and outbound API to enable outward flow of data to **downstream systems (e.g., Electronic Data Capture systems (EDC)** to automate study start-up activities.
 
-Figure 2 - High Level Solution Architecture Diagram
- 
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-solutionarchitecture-v2.0/high-level-solution-architecture-diagram.png">
+ 
 # Architecture Goals and Constraints
 This section provides a description of goals and constraints of Solution Architecture. 
 ## Architecture Goals/Objectives
@@ -80,7 +80,7 @@ The following principles define how APIs, and the Integration services are built
 ### Authentication and Authorization
 The Solution Architecture for SDR Reference Implementation adopts Microsoft’s cloud-based identity and access management service Azure Active Directory for authenticating the users as well as authorization. Azure AD is to be the identity provider for generating access tokens using OAuth2.0 standards which are the main method of authentication. Additionally, certificate-based authentication is enabled on APIM service. Managed Identities (MSI) is the primary method of authentication between APIM and backend Azure services. Authorization is implemented using the App roles on Azure App Registrations. 
 
-Figure 3 - Authentication and Authorization Workflow
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-solutionarchitecture-v2.0/authentication-and-authorization-workflow.png">
  
 ### Portability 
 The architecture of SDR Reference Implementation has been designed, keeping in mind portability. Which is defined as the ability to move and suitably adapt the applications and data between systems and cloud services (from one cloud service/system provider to different cloud providers and/or systems and services). Specifically:
@@ -92,7 +92,7 @@ The architecture of SDR Reference Implementation has been designed, keeping in m
 
 ### Diagnostics and Logging
 
-Figure 4 - Azure Monitor
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-solutionarchitecture-v2.0/azure-monitor.png">
 
 Diagnostic logs provide rich information about operations and errors that are important for auditing as well as troubleshooting purposes. Diagnostic logs differ from activity logs, as activity logs mainly provide insights into the operations performed on Azure resources. Diagnostic logs provide insight into operations performed by resources. The SDR Reference architecture utilizes Application Insights for Diagnostic Logging and Application Logging.
 
@@ -128,14 +128,14 @@ Data architecture is dependent on multiple factors mainly associated with how da
 
 ## Conceptual/Logical Data Model
 
-Figure 5 - UML Diagram for Clinical Study
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-solutionarchitecture-v2.0/uml-diagram-for-clinical-study.png">
  
 Open attached object for better viewing experience of UML Diagram.
  
 ## Data Sources 
-Figure 6 - Up-stream and Down-stream systems for SDR
- 
 
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-solutionarchitecture-v2.0/up-stream-and-down-stream-systems-for-sdr.png">
+ 
 ## Data Dictionary
 The Data Dictionary captures the USDM conformance rules and relationships for all the data elements of Study Definition. The simplified version of Data Dictionary used for SDR Application available in GitHub [link](https://github.com/transcelerate/ddf-sdr-api/blob/main/DataModel/USDM_ConformanceRules_SDR_Reference_ImplementationV1.xlsx).
 For more details, refer CDISC portal [here](https://www.cdisc.org/ddf).
@@ -193,7 +193,7 @@ The Deployment Models section describes different ways of deploying the Azure Pl
 •	**Manual Deployment** – All the Azure resources are manually deployed using Azure Portal.<br> 
 •	**Pipeline Deployment** – The deployment of Azure resources through terraform code using a YAML Pipeline. 
 
-Figure 7 - Deployment Models
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-solutionarchitecture-v2.0/deployment-models.png">
  
 
 # Appendix A - Key Terms
