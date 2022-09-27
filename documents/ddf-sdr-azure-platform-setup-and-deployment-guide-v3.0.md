@@ -403,6 +403,8 @@ Validate all resources from Azure Portal to ensure that the resource configurati
 ## Low-Level Design Document
 The low-level design document contains all the settings and configurations that have been configured on Terraform IaC code.
  
+ [ddf-sdr-azure-platform-setup-and-depolment-guide-v3.0.xlsx](https://github.com/transcelerate/ddf-sdr-platform/blob/platform-user-guide-markdownfile/documents/ddf-sdr-azure-platform-setup-and-depolment-guide-v3.0.xlsx)
+ 
 Naming Convention followed for all the resources is as below -<br> 
 •	Resource type: vnet, subnet, rg, etc.<br>
 •	App/Svc: Subscription name<br>
