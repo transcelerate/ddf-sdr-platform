@@ -65,10 +65,10 @@ This document is organized sequentially including Infrastructure, PaaS, UI and A
 This document assumes a good understanding of Azure concepts and services. The audience for this document includes Azure Administrators, DevOps Engineers, Developers with experience in Angular and .NET development.
 ## Pre-Requisites
 •	Access to the low-level design document and basic understanding on how to use it.<br> 
-•	Access to the azure portal with required permissions (detailed in upcoming sections).<br> 
-•	Azure CLI Refer to Install CLI<br> 
+•	Access to the [azure portal](https://portal.azure.com/#home) with required permissions (detailed in upcoming sections).<br> 
+•	Azure CLI Refer to [Install CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)<br> 
 •	An Active Azure Tenant and Subscription. To setup Azure subscription please follow the below Microsoft Documentation<br> 
-Create your initial Azure subscriptions - Cloud Adoption Framework | Microsoft Docs
+[Create your initial Azure subscriptions - Cloud Adoption Framework | Microsoft Docs](https://urldefense.proofpoint.com/v2/url?u=https-3A__docs.microsoft.com_en-2Dus_azure_cloud-2Dadoption-2Dframework_ready_azure-2Dbest-2Dpractices_initial-2Dsubscriptions&d=DwMFAg&c=eIGjsITfXP_y-DLLX0uEHXJvU8nOHrUK8IrwNKOtkVU&r=ymlYAgLatobOHqDseh52aLn4thnuuisuycD8yBsPG5-wMw4-VtvvXLUcUwJ4p0kY&m=b4Hw4tRqR53jf9l9cLauC04FAB2DhUu2z71iVWDXao1jCdAxvGkVN-rl_RPyxEIJ&s=RZzDYj4Ra_Gtb9Gou6aWnTwF_Krr1l-dpKP6si39Y1Q&e=)
 
 # Azure Infrastructure
 ## Resource Provider Registration
@@ -117,17 +117,16 @@ Below are the groups and role assignments created and managed for SDR Reference 
 |Contributor_Group|	Contributor|	Subscription|	Grants full access to manage all resources but does not allow you to assign roles in Azure RBAC, manage assignments in Azure Blueprints, share image galleries, or perform Azure Policy operations.| 
 |Owner_Subscription_Group|	Owner	|Subscription|	Grants full access to manage all resources, including the ability to assign roles in Azure RBAC.|
 |Infra_Group|	Contributor|	Subscription|	Grants full access to manage all resources but does not allow you to assign roles in Azure RBAC, manage assignments in Azure Blueprints, share image galleries, or perform Azure Policy operations.|
-|<br>|	Global Reader|	Azure Active Directory|	Can be able to read all users and groups information in Azure AD.|
-|<br>|	User Administrator|	Azure Active Directory|	Can manage all aspects of users and groups, including resetting passwords for limited admins.|
-|<br>|User Access Administrator|	Subscription|	Let's you manage user access to Azure resources. |
-DevelopmentTeam_Group	|Reader|	Subscription|	Grants Reader access for all the resources in the Subscription but does not allow you to manage them.|
-|<br>|	Contributor|	Resource Group	|Grants full access to manage all resources in the Resource Group.|
+|Infra_Group|	Global Reader|	Azure Active Directory|	Can be able to read all users and groups information in Azure AD.|
+|Infra_Group|	User Administrator|	Azure Active Directory|	Can manage all aspects of users and groups, including resetting passwords for limited admins.|
+|Infra_Group|User Access Administrator|	Subscription|	Let's you manage user access to Azure resources. |
+|DevelopmentTeam_Group	|Reader|	Subscription|	Grants Reader access for all the resources in the Subscription but does not allow you to manage them.|
+|DevelopmentTeam_Group	|	Contributor|	Resource Group	|Grants full access to manage all resources in the Resource Group.|
 |TestingTeam_Group|	Reader|	Resource Group|	Grants Reader access for all the resources in the Subscription but does not allow you to manage them.|
 |AppRegistration_Group	|Application administrator|	Azure Active Directory|	Can create and manage all aspects of app registrations and enterprise apps.|
 
-```
-Note: To assign Azure AD roles to groups required Azure AD Premium P1 or P2 license, since this solution is part of MVP leveraged Azure AD Free plan. Follow the Microsoft Doc to assign Azure AD role to groups.
-```
+**Note:**  To assign Azure AD roles to groups required Azure AD Premium P1 or P2 license, since this solution is part of MVP leveraged Azure AD Free plan. Follow the [Microsoft](https://docs.microsoft.com/en-us/azure/active-directory/roles/groups-assign-role) Doc to assign Azure AD role to groups.
+
 ### STEPS:
 i.	Login to Azure portal<br>
 ii.	Search for Azure Active Directory<br>
@@ -357,17 +356,17 @@ iii.	Change the Physical Path from site\wwwroot to site\wwwroot\SDR-WebApp for a
 |-----|-----|
 |Apim-BaseUrl|	Provide API Management URL as key value (E.g., https://apim-sdr-qa-eastus.azure-api.net/studydefinitionrepository/v1/)|
 |ApplicationInsights--InstrumentationKey	|Provide Application Insights Instrumentation key |
-|AzureAd-Audience|	Provide the Azure App Registration Scope URL, Refer to Section 2.8.1  step 3 for scope URL (E.g.: api://0000-0000-000-000/ui-access)|
+|AzureAd-Audience|	Provide the Azure App Registration Scope URL, Refer to Section [UI App Path Mapping](#ui-app-path-mapping)  step 3 for scope URL (E.g.: api://0000-0000-000-000/ui-access)|
 |AzureAd--Audience	|Provide the UI app registration Application ID URI (E.g.:  api://0000-0000-000-000)|
 |AzureAd-ClientSecret	|Provide App Registration Client secret value.|
 |AppInsights-ApiKey|	Provide Application Insights Api Key Value|
 |AppInsights-AppId	|Provide Application Insights AppId|
 |AppInsights-RESTApiUrl|	Provide Default URL https://api.applicationinsights.io/v1/apps |
 |AzureAd-Authority|	Provide the Azure Ad authority value (https://login.microsoftonline.com/(Provide Azure AD Tenant ID))|
-|AzureAd-ClientId|	Provide the App Registration client ID, refer to Section 2.8.1 App Registration step 7 for client ID|
+|AzureAd-ClientId|	Provide the App Registration client ID, refer to Section [UI App Path Mapping](#ui-app-path-mapping) App Registration step 7 for client ID|
 |AzureAd-LoginUrl|	Provide the Front End (UI) App Service URL.|
 |AzureAd-RedirectUrl|	Provide the Redirect URL (E.g.:https://Front End App service URL (UI)/home)|
-|AzureAd-TenantId|	Provide the Azure AD Tenant ID, refer to Section 2.8.1 App Registration step 7 for Tenant ID|
+|AzureAd-TenantId|	Provide the Azure AD Tenant ID, refer to Section [UI App Path Mapping](#ui-app-path-mapping) App Registration step 7 for Tenant ID|
 |ConnectionStrings--DatabaseName	|Provide the Cosmos DB Database Name.|
 |ConnectionStrings--ServerName	|Provide the Cosmos DB connection string.|
 |Azure-SP	|Store the Azure Service Principal JSON to utilize for API and UI deployments.|
@@ -415,7 +414,7 @@ Naming Convention followed for all the resources is as below -<br>
 <p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-setup-and-deployment-guide-v3.0/sdr-resource-naming-convention.png">
  
 ```
-Note: For Resource Naming Convention best practices please refer Azure Resource Naming Conventions
+Note: For Resource Naming Convention best practices please refer [Azure Resource Naming Conventions](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming)
 ```
 ## Virtual Network
  Validation of Virtual Network (VNet) configuration
@@ -637,7 +636,9 @@ The same steps as mentioned above for SDR UI Application verification can be fol
 •	Contributor access at Resource Group level.
 #### CREATE CLIENT CERTIFICATE:
 i.	Create self-signed certificate for authentication.<br>
-New-SelfSignedCertificate -certstorelocation cert:\CurrentUser\my -dnsname apim-envname-eastus-001.azure-api.net
+```
+ New-SelfSignedCertificate -certstorelocation cert:\CurrentUser\my -dnsname apim-envname-eastus-001.azure-api.net
+ ```
 
 ii.	Once the certificate is created it should now be available to access under your local system snap-in where you can view the metadata of the certificate. 
 
