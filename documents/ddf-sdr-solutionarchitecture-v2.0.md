@@ -137,8 +137,8 @@ Figure 6 - Up-stream and Down-stream systems for SDR
  
 
 ## Data Dictionary
-The Data Dictionary captures the USDM conformance rules and relationships for all the data elements of Study Definition. The simplified version of Data Dictionary used for SDR Application available in GitHub link.
-For more details, refer CDISC portal here.
+The Data Dictionary captures the USDM conformance rules and relationships for all the data elements of Study Definition. The simplified version of Data Dictionary used for SDR Application available in GitHub [link](https://github.com/transcelerate/ddf-sdr-api/blob/main/DataModel/USDM_ConformanceRules_SDR_Reference_ImplementationV1.xlsx).
+For more details, refer CDISC portal [here](https://www.cdisc.org/ddf).
 
 # Security Architecture
 ## Security Solution Overview
@@ -189,9 +189,9 @@ For SDR Reference Architecture, 3-tier environment model is recommended as menti
 
 ## Deployment Models
 The Deployment Models section describes different ways of deploying the Azure Platform Resources.
-Deployment Models:<br>
-•	Manual Deployment – All the Azure resources are manually deployed using Azure Portal.<br> 
-•	Pipeline Deployment – The deployment of Azure resources through terraform code using a YAML Pipeline. 
+#### Deployment Models:
+•	**Manual Deployment** – All the Azure resources are manually deployed using Azure Portal.<br> 
+•	**Pipeline Deployment** – The deployment of Azure resources through terraform code using a YAML Pipeline. 
 
 Figure 7 - Deployment Models
  
