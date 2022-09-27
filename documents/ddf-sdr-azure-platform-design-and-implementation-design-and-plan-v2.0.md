@@ -138,7 +138,7 @@ Please find below the summary of design decisions and recommendations for DDF SD
 # SDR Reference Implementation Solution Architecture
 The following diagram depicts SDR Reference Implementation Architecture. Key Design points are listed below: (Further details of the solution architecture are provided in supporting documentation).
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0 /.png">Figure 1 SDR Reference Implementation Solution Architecture Design
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/sdr-reference-implementation-solution-architecture-design.png">
 
 # Governance
 ## Resource Groups 
@@ -329,8 +329,8 @@ SDR Reference Implementation has used 1 VNet, 1 Subnet and 2 Delegated Subnets p
 ### Networking Design Considerations 
 The figure below shows the information flow between different Azure Services and components for SDR Reference Implementation
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0 /.png">Figure 2 SDR Reference Implementation  Azure Networking
- 
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/sdr-reference-implementation-azure-networking.png">
+	
 #### Key Networking Design Information: 
 • The Inbound access policies on App Service 1 that hosts UI, allows it to be accessed directly over the internet.<br>
 • The Outbound policies on App Service 1 allows it to communicate with other PaaS services through VNet Integration.<br>
@@ -342,7 +342,7 @@ The figure below shows the information flow between different Azure Services and
 
 Azure has built in distributed denial-of-service (DDoS) protection to protect against distributed denial of service attacks on the public IPs resources within a VNet.
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0 /.png">Figure 3 Azure DDoS Protection Plans
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/azure-ddos-protection-plans.png">
  
 Basic is on by default with no additional charges. Standard is optional with additional monthly and data usage charges. The difference between the two tiers is outlined above.
 
@@ -371,7 +371,7 @@ Service endpoints have been configured for App Service 1 (UI), App Service 2 (AP
 # Connectivity
 Following is illustration of how VNet, Subnet, Delegated Subnets, API Management, App Services and CosmosDB has been configured as part of the SDR Solution to allow connectivity between different systems & components.
 	
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0 /.png">Figure 5  SDR Reference Implementation Connectivity
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/sdr-reference-implementation-connectivity.png">
  
 #### Communication Flow:
 • Communication from Internet to User interface (UI) I App Service is allowed through Hypertext Transfer Protocol Secure (https) Protocol <br> 
@@ -577,7 +577,7 @@ SDR Reference Implementation has used 1 Azure CosmosDB API for MongoDB per envir
 ### API Management
 API Management (APIM) is a way to create consistent and modern API gateways for existing back-end services. API Management helps organizations publish APIs to external, partner, and internal developers to unlock the potential of their data and services. Businesses everywhere are looking to extend their operations as a digital platform, creating new channels, finding new customers, and driving deeper engagement with existing ones. API Management provides the core competencies to ensure a successful API program through developer engagement, business insights, analytics, security, and protection. You can use Azure API Management to take any backend and launch a full-fledged API program based on it. 
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0 /.png">Figure 7 API Management
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/api-management.png">
  
 ```
 	Design Decision
@@ -592,7 +592,7 @@ Log analytics platform can gather different types of logs. Following log types c
 • **Azure Active Directory Logs:** These logs contain the history of sign-in activity and audit trail of changes made in the Azure Active Directory for a tenant. This is a tenant level export and can be setup using Diagnostic setting of AAD and data collected will include data for all subscriptions in the AAD tenant.<br>
 • **Azure Flow Logs:** These logs contain the history of the ingress and egress traffic flow. Flow logs can be collected from Network Security Groups <br>
 	
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0 /.png">Figure 8 Azure Platform Data Types
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/azure-platform-data-types.png">
  
 Below are the different integration options available based on the Log Categorization. 
 #### Table 14 Log Categories
@@ -655,7 +655,7 @@ Application Insights, a feature of Azure Monitor, is an extensible Application P
 
 Application Insights deployed is being used by App Services and API Management.
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0 /.png">Figure 9 Application Insights
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/application-insights.png">
  
 ```
  	Design Decision
@@ -686,7 +686,7 @@ Metrics are numerical values that describe some aspect of a system at a particul
 • Application map that visualizes system components, such as the server, the database, and other resources.<br>
 • **Snapshot debugger —** a component that saves code status at the time of an exception for further check<br>
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0 /.png">Figure 10 Azure Monitor
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/azure-monitor.png">
  
 ```
 	Design Decision
