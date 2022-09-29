@@ -499,9 +499,6 @@ Azure Key Vault is a service that is used to create, maintain, and store keys, s
 
 An Azure Key Vault provides native integration with a variety of Azure services and is deeply connected to Azure AD for authentication and authorization using RBAC.
 SDR has leveraged Azure Key Vault to store client secrets which are utilized by UI and API  application to connect with other PaaS services that are replaced (in application configuration files) during deployment instead of hard-coding of secrets in application code.
-```
-•
-```
 	
 ```
  	Design Decision
