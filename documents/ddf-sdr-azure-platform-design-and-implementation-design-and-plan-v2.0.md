@@ -204,7 +204,7 @@ There are many ways to go about creating a naming convention that is universal a
 As mentioned in the section above, the best practice when developing a naming convention in the Cloud is to do it on a per resource level.. 
 
 **Design Decision**<br>
-SDR reference implementation has the following naming convention for Azure resources: <br>
+SDR reference implementation has the following naming convention for Azure resources:-<br>
 <ResourceType>-<App/Svc>-<Purpose/Segment/Environment>-<region>-<Instance Number or Level>
 
 The Meta data details for the Naming Convention is captured below:
