@@ -167,7 +167,7 @@ Tags provide a way to logically organize resources with custom properties and ca
 • Tags appear in billing and consumption reports<br>
 • Tags should not be used as a replacement for a proper CMDB. The information stored in tags has no inherent validation or relationship. Instead, the data in tags should reflect information that is contained within other systems such as the in-house developed CMDB for Application/Business Unit/Client information or a financial system for a tag such as a Cost Center
 
-**Design Decision** : SDR reference Implementation has used a standardized metadata taxonomy for all resources based on the table in the next section 4.2.1 (Table 3: SDR reference Implementation Azure Tags), that is applied to the resource at the time of resource creation using Terraform code deployment for consistency and an easily repeatable process.
+**Design Decision** : SDR reference Implementation has used a standardized metadata taxonomy for all resources based on the table in the next section **Resource Tag Taxonomy**, that is applied to the resource at the time of resource creation using Terraform code deployment for consistency and an easily repeatable process.
 
 ### Resource Tag Taxonomy
 SDR reference Implementation has used a standardized metadata taxonomy for all resources based on the following table, that is applied to the resource at the time of resource creation using Terraform code deployment for consistency and a repeatable, secure process.
@@ -205,33 +205,33 @@ As mentioned in the section above, the best practice when developing a naming co
 
 **Design Decision**<br>
 SDR reference implementation has the following naming convention for Azure resources:-<br>
-<ResourceType>-<App/Svc>-<Purpose/Segment/Environment>-<region>-<Instance Number or Level>
+\<ResourceType>-\<App/Svc>-\<Purpose/Segment/Environment>-\<region>-\<Instance Number or Level>
 
 The Meta data details for the Naming Convention is captured below:
 
 |Meta Data|Field Required|Field Length|
-|:------:|-----|-----|
-|<ResourceType>|Mandatory|Upto 4 characters|
-|<App/Svc>|Optional |	Upto 5 characters|
-|<Purpose/Segment/Environment> |Mandatory|Upto 20 characters|
-|<Region>|Optional|Upto 6 characters|
-|<Instance Number or Level>|Optional|Upto 3 characters|
+|:------|-----|-----|
+|\<ResourceType>|Mandatory|Upto 4 characters|
+|\<App/Svc>|Optional |	Upto 5 characters|
+|\<Purpose/Segment/Environment> |Mandatory|Upto 20 characters|
+|\<Region>|Optional|Upto 6 characters|
+|\<Instance Number or Level>|Optional|Upto 3 characters|
 
 **Important Note** : There are some exceptions to this naming convention where the resource names should be globally unique (like Azure Key Vault, Log Analytic Workspace, Storage Accounts etc.), some which do not allow any special characters (like Storage Accounts) and some have *character limitation.
 
 |Resource Type|	Naming Scope|	Sample	|Restrictions|	Comments|
-|---|---|---|---|---|	
-|Resource Group|Subscription|<br>&nbsp;&nbsp;&nbsp;rg-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;rg-sdrcore-dev-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrapp-dev-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrcore-qa-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrapp-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;1 – 90 Characters<br>&nbsp;&nbsp;&nbsp; Alphanumeric, underscores, parentheses, hyphens, periods, and unicode characters<br>&nbsp;&nbsp;&nbsp; Can’t end with a period<br>|<br>|
-|Virtual Network|Resource Group|<br>&nbsp;&nbsp;&nbsp;vnet-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;vnet-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;vnet-sdr-qa-eastus|<br>&nbsp;&nbsp;&nbsp;2 – 64 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric, underscores, periods, hyphens<br>&nbsp;&nbsp;&nbsp;Start with alphanumeric, end with alphanumeric or underscore<br>|<br>|
-|Subnets|Virtual Network|<br>&nbsp;&nbsp;&nbsp;snet-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;snet-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;snet-sdr-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;1 – 80 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric, underscores, periods, hyphens<br>&nbsp;&nbsp;&nbsp;Start with alphanumeric, end with alphanumeric or underscore<br>|<br>|
-|Delegated Subnets|Virtual Network|<br>&nbsp;&nbsp;&nbsp;dsnet-<app/svc>-<environment>-<region>-<instance number or level><br>&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-dev-eastus-001<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-dev-eastus-002<br>&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-qa-eastus-001<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-qa-eastus-002<br>|<br>&nbsp;&nbsp;&nbsp;1 – 80 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric, underscores, periods, hyphens<br>&nbsp;&nbsp;&nbsp;Start with alphanumeric, end with alphanumeric or underscore<br>|<br>|	
-|Azure Key Vault (KV)|Global|<br>&nbsp;&nbsp;&nbsp;kv-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;kv-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;kv-sdr-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;3 – 24 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric and hyphens<br>&nbsp;&nbsp;&nbsp;Start with letter. End with letter or digit.<br>&nbsp;&nbsp;&nbsp;Can't contain consecutive hyphens<br>|<br>|	
-|Log Analytics Workspace|Global|<br>&nbsp;&nbsp;&nbsp;law-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;law-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;law-sdr-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;4 – 63 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric and hyphens.<br>&nbsp;&nbsp;&nbsp;Start and end with alphanumeric<br>|<br>|
-|App Services|<br>|<br>&nbsp;&nbsp;&nbsp;apps-<app/svc>-<environment>-<region>-<instance number or level><br>&nbsp;&nbsp;&nbsp;apps-sdr-dev-eastus-001<br>&nbsp;&nbsp;&nbsp;apps-sdr-dev-eastus-002<br>&nbsp;&nbsp;&nbsp;apps-sdr-qa-eastus-001<br>&nbsp;&nbsp;&nbsp;apps-sdr-qa-eastus-002 |<br>|<br>|                                		
-|App Service Plans|<br>|<br>&nbsp;&nbsp;&nbsp;asp-<app/svc>-<environment>-<region>-<instance number or level><br>&nbsp;&nbsp;&nbsp;asp-sdr-dev-eastus-001<br>&nbsp;&nbsp;&nbsp;asp-sdr-dev-eastus-002<br>&nbsp;&nbsp;&nbsp;asp-sdr-qa-eastus-001<br>&nbsp;&nbsp;&nbsp;asp-sdr-qa-eastus-002<br>|<br>|                  		
-|API Management (APIM)|	Global|<br>&nbsp;&nbsp;&nbsp;apim-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;apim-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;apim-sdr-qa-eastus<br>|<br>|		
-|CosmosDB|Global|<br>&nbsp;&nbsp;&nbsp;cdb-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;cdb-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;cdb-sdr-qa-eastus<br>|<br>|	
-|Application Insights|<br>|<br>&nbsp;&nbsp;&nbsp;appin-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;appin-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;appin-sdr-qa-eastus<br>|<br>|
+|:---|:---|:---|:---|---|	
+|Resource Group|Subscription|<br>&nbsp;&nbsp;&nbsp;rg-\<app/svc>-\<environment>-\<region><br>&nbsp;&nbsp;&nbsp;rg-sdrcore-dev-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrapp-dev-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrcore-qa-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrapp-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;1 – 90 Characters<br>&nbsp;&nbsp;&nbsp; Alphanumeric, underscores, parentheses, hyphens, periods, and unicode characters<br>&nbsp;&nbsp;&nbsp; Can’t end with a period<br>|<br>|
+|Virtual Network|Resource Group|<br>&nbsp;&nbsp;&nbsp;vnet-\<app/svc>-\<environment>-\<region><br>&nbsp;&nbsp;&nbsp;vnet-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;vnet-sdr-qa-eastus|<br>&nbsp;&nbsp;&nbsp;2 – 64 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric, underscores, periods, hyphens<br>&nbsp;&nbsp;&nbsp;Start with alphanumeric, end with alphanumeric or underscore<br>|<br>|
+|Subnets|Virtual Network|<br>&nbsp;&nbsp;&nbsp;snet-\<app/svc>-\<environment>-\<region><br>&nbsp;&nbsp;&nbsp;snet-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;snet-sdr-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;1 – 80 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric, underscores, periods, hyphens<br>&nbsp;&nbsp;&nbsp;Start with alphanumeric, end with alphanumeric or underscore<br>|<br>|
+|Delegated Subnets|Virtual Network|<br>&nbsp;&nbsp;&nbsp;dsnet-\<app/svc>-\<environment>-\<region>-\<instance number or level><br>&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-dev-eastus-001<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-dev-eastus-002<br>&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-qa-eastus-001<br>&nbsp;&nbsp;&nbsp;dsnet-sdr-qa-eastus-002<br>|<br>&nbsp;&nbsp;&nbsp;1 – 80 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric, underscores, periods, hyphens<br>&nbsp;&nbsp;&nbsp;Start with alphanumeric, end with alphanumeric or underscore<br>|<br>|	
+|Azure Key Vault (KV)|Global|<br>&nbsp;&nbsp;&nbsp;kv-\<app/svc>-\<environment>-\<region><br>&nbsp;&nbsp;&nbsp;kv-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;kv-sdr-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;3 – 24 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric and hyphens<br>&nbsp;&nbsp;&nbsp;Start with letter. End with letter or digit.<br>&nbsp;&nbsp;&nbsp;Can't contain consecutive hyphens<br>|<br>|	
+|Log Analytics Workspace|Global|<br>&nbsp;&nbsp;&nbsp;law-\<app/svc>-\<environment>-<region><br>&nbsp;&nbsp;&nbsp;law-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;law-sdr-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;4 – 63 Characters<br>&nbsp;&nbsp;&nbsp;Alphanumeric and hyphens.<br>&nbsp;&nbsp;&nbsp;Start and end with alphanumeric<br>|<br>|
+|App Services|<br>|<br>&nbsp;&nbsp;&nbsp;apps-\<app/svc>-\<environment>-\<region>-\<instance number or level><br>&nbsp;&nbsp;&nbsp;apps-sdr-dev-eastus-001<br>&nbsp;&nbsp;&nbsp;apps-sdr-dev-eastus-002<br>&nbsp;&nbsp;&nbsp;apps-sdr-qa-eastus-001<br>&nbsp;&nbsp;&nbsp;apps-sdr-qa-eastus-002 |<br>|<br>|                                		
+|App Service Plans|<br>|<br>&nbsp;&nbsp;&nbsp;asp-\<app/svc>-\<environment>-\<region>-\<instance number or level><br>&nbsp;&nbsp;&nbsp;asp-sdr-dev-eastus-001<br>&nbsp;&nbsp;&nbsp;asp-sdr-dev-eastus-002<br>&nbsp;&nbsp;&nbsp;asp-sdr-qa-eastus-001<br>&nbsp;&nbsp;&nbsp;asp-sdr-qa-eastus-002<br>|<br>|                  		
+|API Management (APIM)|	Global|<br>&nbsp;&nbsp;&nbsp;apim-\<app/svc>-\<environment>-\<region><br>&nbsp;&nbsp;&nbsp;apim-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;apim-sdr-qa-eastus<br>|<br>|		
+|CosmosDB|Global|<br>&nbsp;&nbsp;&nbsp;cdb-\<app/svc>-\<environment>-\<region><br>&nbsp;&nbsp;&nbsp;cdb-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;cdb-sdr-qa-eastus<br>|<br>|	
+|Application Insights|<br>|<br>&nbsp;&nbsp;&nbsp;appin-\<app/svc>-\<environment>-\<region><br>&nbsp;&nbsp;&nbsp;appin-sdr-dev-eastus<br>&nbsp;&nbsp;&nbsp;appin-sdr-qa-eastus<br>|<br>|
 	
 For more information on this and a list of the recommendations and best practice for naming conventions, please see Appendix A.1. For more information on this and a list of the naming restrictions per resource in Azure, please see Appendix A.2.
 ## Governance Decision Summary
