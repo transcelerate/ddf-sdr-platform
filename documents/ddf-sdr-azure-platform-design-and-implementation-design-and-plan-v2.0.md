@@ -104,7 +104,6 @@ Throughout the document several outputs are summarized in each section. These ou
 # Consolidated Design Decisions and Recommendations
 Please find below the summary of design decisions and recommendations for DDF SDR Azure infrastructure.
 
-### Table 1 Design Decisions & Recommendations
 |Module|	Design	|Decisions & Recommendations|
 |---|---|---|
 |Governance|Application Resource Group Strategy|Use separate Resource Groups for applications to enable independent Life Cycle|
@@ -145,7 +144,6 @@ Generally, any centrally managed resources were grouped into separate Resource G
 
 RBAC is natively a part of Azure's management platform and is used to control access to resource groups. There are 3 core roles (Owner, Contributor, Reader) that can be applied to Resource Groups and users can be placed into one of those roles or custom roles can be created. The table below details the following initial resource groups, based on the above guidance. Within the Subscription the following Resource Groups have been created:
 
-### Table 2 Resource Group Breakdown
 |Resource Group|	Description|
 |---|---|
 |Core|A Resource Group containing the network infrastructure including the VNets/Subnets, Storage Account, etc. that are core to the entire infrastructure.This Resource Group should be locked with a “Delete” lock to prevent accidental deletion.|
@@ -174,7 +172,6 @@ Tags provide a way to logically organize resources with custom properties and ca
 ### Resource Tag Taxonomy
 SDR reference Implementation has used a standardized metadata taxonomy for all resources based on the following table, that is applied to the resource at the time of resource creation using Terraform code deployment for consistency and a repeatable, secure process.
 
-### Table 3 SDR reference Implementation Azure Tags
 |Tag Name|	Description|	Required/ Optional|	Value	|Resources|
 |---|---|---|---|---|
 |Environment|	This tag is to show which environment the resources are being deployed into.|	Required|	Dev/QA/Pre-Prod	|Resource Groups, VNet, API Management, App Services, App Service Plans, Storage Account, CosmosDB, Application Insights, Log Analytics Workspace & Key Vault|
@@ -206,13 +203,12 @@ There are many ways to go about creating a naming convention that is universal a
 ### Cloud Foundation Naming Standards
 As mentioned in the section above, the best practice when developing a naming convention in the Cloud is to do it on a per resource level.. 
 
-**Design Decision** 
-SDR reference implementation has the following naming convention for Azure resources:
+**Design Decision**<br>
+SDR reference implementation has the following naming convention for Azure resources: <br>
 <ResourceType>-<App/Svc>-<Purpose/Segment/Environment>-<region>-<Instance Number or Level>
 
 The Meta data details for the Naming Convention is captured below:
 
-#### Table 4 Naming convention metadata
 |Meta Data|Field Required|Field Length|
 |:------:|-----|-----|
 |<ResourceType>|Mandatory|Upto 4 characters|
@@ -223,7 +219,6 @@ The Meta data details for the Naming Convention is captured below:
 
 **Important Note** : There are some exceptions to this naming convention where the resource names should be globally unique (like Azure Key Vault, Log Analytic Workspace, Storage Accounts etc.), some which do not allow any special characters (like Storage Accounts) and some have *character limitation.
 
-#### Table 5 SDR RI Naming Convention
 |Resource Type|	Naming Scope|	Sample	|Restrictions|	Comments|
 |---|---|---|---|---|	
 |Resource Group|Subscription|<br>&nbsp;&nbsp;&nbsp;rg-<app/svc>-<environment>-<region><br>&nbsp;&nbsp;&nbsp;rg-sdrcore-dev-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrapp-dev-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrcore-qa-eastus<br>&nbsp;&nbsp;&nbsp;rg-sdrapp-qa-eastus<br>|<br>&nbsp;&nbsp;&nbsp;1 – 90 Characters<br>&nbsp;&nbsp;&nbsp; Alphanumeric, underscores, parentheses, hyphens, periods, and unicode characters<br>&nbsp;&nbsp;&nbsp; Can’t end with a period<br>|<br>|
@@ -240,7 +235,6 @@ The Meta data details for the Naming Convention is captured below:
 	
 For more information on this and a list of the recommendations and best practice for naming conventions, please see Appendix A.1. For more information on this and a list of the naming restrictions per resource in Azure, please see Appendix A.2.
 ## Governance Decision Summary
-#### Table 6 Governance Decision Summary
 |Design|Decision|
 |---|---|	
 |Infrastructure Resource Groups Strategy|Separate Resource Groups for Core and Application related resources have been created|
@@ -281,7 +275,6 @@ To see list of regions available in Azure please see Appendix A.4. Within each r
 **Design Decision** : SDR reference Implementation has used “East US” region to deploy all the infrastructure resources. 
 
 ## Azure Regions Decision Summary
-#### Table 7 Subscriptions and Regions Decision Summary
 |Design|Decision|
 |---|---|
 |Select Azure Regions|One Azure region “East US” has been used to deploy all the infrastructure resources |
@@ -326,7 +319,6 @@ VNet service endpoint provides secure and direct communication between Azure ser
 Service endpoints have been configured for App Service 1 (UI), App Service 2 (API) and Cosmos DB to enable communication between these services without having to route the communication outside the Azure backbone.
 
 ## Azure VNet Service Endpoints Decision Summary
-#### Table 8 Networking Design Decisions
 |Design|Decision|
 |---|---|
 |VNet and Subnets|1 VNet, 1 Subnet and 2 Delegated Subnets per environment/region.|
@@ -348,7 +340,6 @@ Following is illustration of how VNet, Subnet, Delegated Subnets, API Management
 **Design Decision** : SDR Reference Implementation has used API Management as the API Gateway for accessing SDR API endpoints over t he internet.
 
 ## Connectivity Decision Summary
-#### Table 9  Connectivity Decision Summary
 |Design	|Decision|
 |---|---|
  |API Connectivity|API Management as API Gateway |
@@ -421,7 +412,7 @@ o Providing a process for emergency access and rare-use scenarios
 • Utilization of Privileged Identity Management (PIM) to provide time-based and approval-based role activation is very useful to avoid unnecessary and excessive permissions to users or groups for periods longer than necessary. Just-In-Time (JIT) access is a feature of PIM
 	
 The below table shows some of the commonly utilized built-in Roles that are utilized within Azure, and what actions users/identities can take when assigned that role (either directly or through Groups). For this reason, it is important to limit Owners and Security Admins and utilize PIM and/or JIT:
-#### Table 10 Identity Decision Summary
+
 |Azure Role Name|Create|Rename|Move|Delete|Assign Access|Assign Policy|	Read|
 |---|---|---|---|---|---|---|---|	
 |Owner|	X|X|X|X|X|X|X|
@@ -432,7 +423,6 @@ The below table shows some of the commonly utilized built-in Roles that are util
 |Directory Reader|||||||X|
 	
 ## Role Based Access Control Decision Summary
-#### Table 11 Identity Decision Summary
 |Design	|Decision|
 |-----|----|
 |Azure Active Directory Tenant|AAD tenant is used|
@@ -468,7 +458,6 @@ API Management gateway enforces TLS authentication, and it can inspect the certi
 **Design Decision** : SDR Reference Implementation has leveraged Certificates for both Upstream and Downstream communication through API Management and these Certificates are stored in APIM certificates.
 	
 ## Azure Key Vault Decision Summary
-#### Table 12 Security Decision Summary
 |Design|Decision|
 |---|---|
 |Key Vault Usage|One Key Vault per Environment|
@@ -524,7 +513,6 @@ Log analytics platform can gather different types of logs. Following log types c
 <p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/azure-platform-data-types.png">
  
 Below are the different integration options available based on the Log Categorization. 
-#### Table 14 Log Categories
 |Log Category|Log Type|	Usage|	Integration|
 |---|---|---|---|
 |Activity logs|	Control plane events on Azure Resource Manager resources|Provides insight into the operations that were performed on resources in your subscription.|Rest API, Azure Monitor|
@@ -548,7 +536,6 @@ With Azure diagnostic logs, you can view core analytics and save them into one o
 • Log Analytics workspace<br>
 • Azure Event Hubs
 	
-#### Table 15 Diagnostic Settings
 |Resource Name|Type|Category|Destination|
 |---|---|---|---|
 |VNet|Metrics|AllMetrics|Log Analytics Workspace|
@@ -619,7 +606,6 @@ Network Watcher will be automatically enabled when the VNet is created in a part
 	
 ## Azure Network Watcher Decision Summary
 
-#### Table 16 Operations Decision Summary
 |Design|Decision|
 |---|---|
 |Infrastructure Logging & Monitoring|Cloud native tools for logging and Infrastructure Monitoring (Log Analytics & Azure Monitor) have been used|
