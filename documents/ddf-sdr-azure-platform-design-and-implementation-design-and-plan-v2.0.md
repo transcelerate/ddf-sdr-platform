@@ -403,10 +403,10 @@ It is recommended to follow starter RBAC strategy and best practices:
 • Principle of least privilege access should always be adhered to. Only grant the minimal permissions needed to accomplish the task <br>
 • Least privilege is an end state – it requires a process to achieve it and this process must be established and followed <br>
 • It requires a combination of approaches: <br>
-o Limiting the count of administrators or members of privileged groups <br>
-o Delegating lesser privileges to accounts <br>
-o Provide privileges on-demand and revoke them once the task is completed <br>
-o Providing a process for emergency access and rare-use scenarios <br>
+&nbsp;&nbsp;&nbsp;o Limiting the count of administrators or members of privileged groups <br>
+&nbsp;&nbsp;&nbsp;o Delegating lesser privileges to accounts <br>
+&nbsp;&nbsp;&nbsp;o Provide privileges on-demand and revoke them once the task is completed <br>
+&nbsp;&nbsp;&nbsp;o Providing a process for emergency access and rare-use scenarios <br>
 • Periodic access reviews should be performed to ensure user who no longer require certain roles have those permissions revoked <br>
 • Users should generally not be given access to resources directly, but instead be added to Groups that have assigned roles (and later be removed from those Groups) <br>
 • Utilization of Privileged Identity Management (PIM) to provide time-based and approval-based role activation is very useful to avoid unnecessary and excessive permissions to users or groups for periods longer than necessary. Just-In-Time (JIT) access is a feature of PIM
@@ -537,7 +537,7 @@ With Azure diagnostic logs, you can view core analytics and save them into one o
 • Azure Event Hubs
 	
 |Resource Name|Type|Category|Destination|
-|---|---|---|---|
+|:---|:---|:---|:---|
 |VNet|Metrics|AllMetrics|Log Analytics Workspace|
 |Application Insights|Logs |AppAvailabilityResults<br>AppBrowserTimings<br>AppEvents<br>AppMetrics<br>AppDependencies<br>AppExceptions<br>AppPageViews<br>AppPerformanceCounters<br>AppRequests<br>AppSystemEvents<br>AppTraces<br>|Log Analytics Workspace|
 ||Metrics|AllMetrics|Log Analytics Workspace|
