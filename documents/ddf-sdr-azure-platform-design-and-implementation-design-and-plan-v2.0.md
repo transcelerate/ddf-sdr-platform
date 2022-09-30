@@ -585,13 +585,13 @@ Metrics are numerical values that describe some aspect of a system at a particul
 #### Capabilities:
 • **Continuous monitoring:** Azure Monitor collects performance statistics from the Windows performance counter and sends it to the portal.<br>
 • Custom alert configuration.<br>
-• **Availability testing —** in the form of URL-based ping and web-based tests.<br>
+• **Availability testing -** in the form of URL-based ping and web-based tests.<br>
 • Data visualization for a visual representation of various data, including that of user flows.<br>
 • **Tracking and logging of user sessions:** the function enables the analysis of the user journey, which contributes to a better understanding of the application’s pain points.<br>
-• **Smart detection —** a recommendation functionality that is powered by machine learning algorithms.<br>
+• **Smart detection -** a recommendation functionality that is powered by machine learning algorithms.<br>
 • Performance testing based on web tests.<br>
 • Application map that visualizes system components, such as the server, the database, and other resources.<br>
-• **Snapshot debugger —** a component that saves code status at the time of an exception for further check<br>
+• **Snapshot debugger -** a component that saves code status at the time of an exception for further check<br>
 
 <p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/azure-monitor.png">
 
@@ -621,10 +621,10 @@ This section lists the links to documentation sources referred during design dis
 
 |S. No.|Topic|	Link|
 |---|---|---|
-|A.1|Azure Best Practices for Resource Naming Convention|https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming|
-|A.2|Naming rules and restrictions for Azure resources|https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules#:~:text=Azure%20virtual%20machines%20have%20two%20distinct%20names%3A%20resource,to%2064%20characters.%20Lowercase%20letters%2C%20numbers%2C%20and%20hyphens.| 
-|A.3|Azure subscription and service limits, quotas, and constraints|https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits |
-|A.4|Azure geographies|https://azure.microsoft.com/regions/|
-|A.5|What is Azure Active Directory?|https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis |
-|A.6|Virtual network service endpoints for Azure Key Vault – Trusted Services|https://docs.microsoft.com/en-us/azure/key-vault/general/overview-vnet-service-endpoints#trusted-services |
-|A.7|Cloud Adoption Framework|Microsoft Cloud Adoption Framework for Azure - Cloud Adoption Framework | Microsoft Docs|
+|A.1|Azure Best Practices for Resource Naming Convention|[Define your naming convention] (https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming)|
+|A.2|Naming rules and restrictions for Azure resources|[Naming rules and restrictions] (https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules#:~:text=Azure%20virtual%20machines%20have%20two%20distinct%20names%3A%20resource,to%2064%20characters.%20Lowercase%20letters%2C%20numbers%2C%20and%20hyphens)| 
+|A.3|Azure subscription and service limits, quotas, and constraints|[Azure Subscription Service Limits] (https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) |
+|A.4|Azure geographies|[Regions] (https://azure.microsoft.com/regions/)|
+|A.5|What is Azure Active Directory?|[Azure Active Directory] (https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis) |
+|A.6|Virtual network service endpoints for Azure Key Vault – Trusted Services|[Virtual network service endpoints for Azure Key Vault] (https://docs.microsoft.com/en-us/azure/key-vault/general/overview-vnet-service-endpoints#trusted-services) |
+|A.7|Cloud Adoption Framework|[Microsoft Cloud Adoption Framework] (https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Fcloud-adoption-framework%2F&data=04%7C01%7Cdipendra.bantawa%40avanade.com%7Cd6f8de788c2846444adc08d90b3e77ec%7Ccf36141cddd745a7b073111f66d0b30c%7C0%7C0%7C637553185199195856%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&sdata=gGhb5%2BK7MQXGrEKaoAvF1WOV89o5afQi%2BDBILCr1Wsc%3D&reserved=0)|
