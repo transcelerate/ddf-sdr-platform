@@ -399,16 +399,16 @@ Azure Role-Based Access Control (RBAC) manages user access and interaction with 
 
 It is recommended to follow starter RBAC strategy and best practices:
 
-**Recommendation** :
-• Principle of least privilege access should always be adhered to. Only grant the minimal permissions needed to accomplish the task
-• Least privilege is an end state – it requires a process to achieve it and this process must be established and followed
-• It requires a combination of approaches:
-o Limiting the count of administrators or members of privileged groups
-o Delegating lesser privileges to accounts
-o Provide privileges on-demand and revoke them once the task is completed
-o Providing a process for emergency access and rare-use scenarios
-• Periodic access reviews should be performed to ensure user who no longer require certain roles have those permissions revoked
-• Users should generally not be given access to resources directly, but instead be added to Groups that have assigned roles (and later be removed from those Groups)
+**Recommendation** : <br>
+• Principle of least privilege access should always be adhered to. Only grant the minimal permissions needed to accomplish the task <br>
+• Least privilege is an end state – it requires a process to achieve it and this process must be established and followed <br>
+• It requires a combination of approaches: <br>
+o Limiting the count of administrators or members of privileged groups <br>
+o Delegating lesser privileges to accounts <br>
+o Provide privileges on-demand and revoke them once the task is completed <br>
+o Providing a process for emergency access and rare-use scenarios <br>
+• Periodic access reviews should be performed to ensure user who no longer require certain roles have those permissions revoked <br>
+• Users should generally not be given access to resources directly, but instead be added to Groups that have assigned roles (and later be removed from those Groups) <br>
 • Utilization of Privileged Identity Management (PIM) to provide time-based and approval-based role activation is very useful to avoid unnecessary and excessive permissions to users or groups for periods longer than necessary. Just-In-Time (JIT) access is a feature of PIM
 	
 The below table shows some of the commonly utilized built-in Roles that are utilized within Azure, and what actions users/identities can take when assigned that role (either directly or through Groups). For this reason, it is important to limit Owners and Security Admins and utilize PIM and/or JIT:
@@ -539,16 +539,16 @@ With Azure diagnostic logs, you can view core analytics and save them into one o
 |Resource Name|Type|Category|Destination|
 |---|---|---|---|
 |VNet|Metrics|AllMetrics|Log Analytics Workspace|
-|Application Insights|Logs |AppAvailabilityResults <br>&nbsp;&nbsp;&nbsp; AppBrowserTimings<br>&nbsp;&nbsp;&nbsp; AppEvents<br>&nbsp;&nbsp;&nbsp; AppMetrics<br>&nbsp;&nbsp;&nbsp; AppDependencies<br>&nbsp;&nbsp;&nbsp; AppExceptions<br>&nbsp;&nbsp;&nbsp; AppPageViews<br>&nbsp;&nbsp;&nbsp; AppPerformanceCounters<br>&nbsp;&nbsp;&nbsp; AppRequests<br>&nbsp;&nbsp;&nbsp; AppSystemEvents<br>&nbsp;&nbsp;&nbsp; AppTraces<br>|Log Analytics Workspace|
+|Application Insights|Logs |AppAvailabilityResults<br>AppBrowserTimings<br>AppEvents<br>AppMetrics<br>AppDependencies<br>AppExceptions<br>AppPageViews<br>AppPerformanceCounters<br>AppRequests<br>AppSystemEvents<br>AppTraces<br>|Log Analytics Workspace|
 ||Metrics|AllMetrics|Log Analytics Workspace|
-|API Management|Logs| GatewayLogs<br>&nbsp;&nbsp;&nbsp;WebSocketConnectionLogs<br>|Log Analytics Workspace|
+|API Management|Logs| GatewayLogs<br>WebSocketConnectionLogs<br>|Log Analytics Workspace|
 ||Metrics|AllMetrics|Log Analytics Workspace|
-|Cosmosdb|Logs|DataPlaneRequests<br>&nbsp;&nbsp;&nbsp;MongoRequests<br>&nbsp;&nbsp;&nbsp; QueryRuntimeStatistics<br>&nbsp;&nbsp;&nbsp;PartitionKeyStatistics<br>&nbsp;&nbsp;&nbsp;PartitionKeyRUConsumption<br>&nbsp;&nbsp;&nbsp;ControlPlaneRequests<br>&nbsp;&nbsp;&nbsp;TableAPIRequests<br>|Log Analytics Workspace|
+|Cosmosdb|Logs|DataPlaneRequests<br>MongoRequests<br>QueryRuntimeStatistics<br>PartitionKeyStatistics<br>PartitionKeyRUConsumption<br>ControlPlaneRequests<br>TableAPIRequests<br>|Log Analytics Workspace|
 ||Metrics|Requests|Log Analytics Workspace|
 |App Service Plan|Metrics|AllMetrics|Log Analytics Workspace|
-|App Service|Logs|AppServiceHTTPLogs<br>&nbsp;&nbsp;&nbsp; AppServiceConsoleLogs<br>&nbsp;&nbsp;&nbsp; AppServiceAppLogs<br>&nbsp;&nbsp;&nbsp; AppServiceAuditLogs<br>&nbsp;&nbsp;&nbsp; AppServiceIPSecAuditLogs<br>&nbsp;&nbsp;&nbsp; AppServicePlatformLogs<br>|Log Analytics Workspace|
+|App Service|Logs|AppServiceHTTPLogs<br>AppServiceConsoleLogs<br>AppServiceAppLogs<br>AppServiceAuditLogs<br>AppServiceIPSecAuditLogs<br>AppServicePlatformLogs<br>|Log Analytics Workspace|
 ||Metrics|All Metrics|Log Analytics Workspace|
-|KeyVault|Logs|AuditEvent<br>&nbsp;&nbsp;&nbsp; AuditPolicyEvaluationDetails<br>|Log Analytics Workspace|
+|KeyVault|Logs|AuditEvent<br>AuditPolicyEvaluationDetails<br>|Log Analytics Workspace|
 ||Metrics|All Metrics|Log Analytics Workspace|
 	
 **Design Decision** : SDR Reference Implementation has used one Log Analytics Workspace per environment/region. All the Diagnostic Setting logs and metrics collected for all the infrastructure resources are sent to this shared Log Analytics Workspace.
