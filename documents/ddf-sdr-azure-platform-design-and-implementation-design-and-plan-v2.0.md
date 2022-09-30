@@ -90,10 +90,9 @@ Advanced material. In-depth understanding of features in a real-world environmen
 
 ## Design Decision Point Matrix
 Throughout the document several outputs are summarized in each section. These outputs are categorized under the following headings:
-
-```
-**Note** : This header is to make the reader aware of something specific in the document and will give some additional context to the section.
-```
+<pre>
+<b>Note :</b> This header is to make the reader aware of something specific in the document and will give some additional context to the section.
+</pre>
 ```
 **Important Note** : This header is to ensure the reader is fully aware of the point being highlighted. The information provided should be fully considered when understanding the context of the section.
 ```
