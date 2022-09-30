@@ -328,7 +328,7 @@ Service endpoints have been configured for App Service 1 (UI), App Service 2 (AP
 # Connectivity
 Following is illustration of how VNet, Subnet, Delegated Subnets, API Management, App Services and CosmosDB has been configured as part of the SDR Solution to allow connectivity between different systems & components.
 	
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/sdr-reference-implementation-connectivity.png">
+<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/sdr-reference-implementation-connectivity.jpg">
  
 #### Communication Flow:
 • Communication from Internet to User interface (UI) I App Service is allowed through Hypertext Transfer Protocol Secure (https) Protocol <br> 
