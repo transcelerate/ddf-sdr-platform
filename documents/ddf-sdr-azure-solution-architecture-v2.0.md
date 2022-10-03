@@ -130,7 +130,7 @@ Data architecture is dependent on multiple factors mainly associated with how da
 
 <p align="center"> <img width="382" alt=""  src="images/azure-solution-architecture/uml-diagram-for-clinical-study.png">
  
-Open attached object for better viewing experience of UML Diagram.
+Open attached link(https://github.com/transcelerate/ddf-sdr-platform/blob/platform-user-guide-markdownfile/documents/images/azure-solution-architecture/sdr-cdisc-uml-v1.0.png) for better viewing experience of UML Diagram.
  
 ## Data Sources 
 
