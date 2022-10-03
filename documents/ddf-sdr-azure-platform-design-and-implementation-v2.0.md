@@ -126,7 +126,7 @@ Please find below the summary of design decisions and recommendations for DDF SD
 # SDR Reference Implementation Solution Architecture
 The following diagram depicts SDR Reference Implementation Architecture. Key Design points are listed below: (Further details of the solution architecture are provided in supporting documentation).
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/sdr-reference-implementation-solution-architecture-design.png">
+<p align="center"> <img width="382" alt=""  src=" images/azure-platform-design-and-implementation/sdr-reference-implementation-solution-architecture-design.png">
 
 # Governance
 ## Resource Groups 
@@ -290,7 +290,7 @@ VNet could be divided into multiple ranges of IP addresses (subnets) for organiz
 ### Networking Design Considerations 
 The figure below shows the information flow between different Azure Services and components for SDR Reference Implementation
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/sdr-reference-implementation-azure-networking.png">
+<p align="center"> <img width="382" alt=""  src=" images/azure-platform-design-and-implementation/sdr-reference-implementation-azure-networking.png">
 	
 #### Key Networking Design Information: 
 • The Inbound access policies on App Service 1 that hosts UI, allows it to be accessed directly over the internet.<br>
@@ -303,7 +303,7 @@ The figure below shows the information flow between different Azure Services and
 
 Azure has built in distributed denial-of-service (DDoS) protection to protect against distributed denial of service attacks on the public IPs resources within a VNet.
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/azure-ddos-protection-plans.png">
+<p align="center"> <img width="382" alt=""  src=" images/azure-platform-design-and-implementation/azure-ddos-protection-plans.png">
  
 Basic is on by default with no additional charges. Standard is optional with additional monthly and data usage charges. The difference between the two tiers is outlined above.
 
@@ -328,7 +328,7 @@ Service endpoints have been configured for App Service 1 (UI), App Service 2 (AP
 # Connectivity
 Following is illustration of how VNet, Subnet, Delegated Subnets, API Management, App Services and CosmosDB has been configured as part of the SDR Solution to allow connectivity between different systems & components.
 	
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/sdr-reference-implementation-connectivity.jpg">
+<p align="center"> <img width="382" alt=""  src=" images/azure-platform-design-and-implementation/sdr-reference-implementation-connectivity.jpg">
  
 #### Communication Flow:
 • Communication from Internet to User interface (UI) I App Service is allowed through Hypertext Transfer Protocol Secure (https) Protocol <br> 
@@ -498,7 +498,7 @@ Azure Cosmos DB is a fully managed NoSQL database for modern app development. Si
 ### API Management
 API Management (APIM) is a way to create consistent and modern API gateways for existing back-end services. API Management helps organizations publish APIs to external, partner, and internal developers to unlock the potential of their data and services. Businesses everywhere are looking to extend their operations as a digital platform, creating new channels, finding new customers, and driving deeper engagement with existing ones. API Management provides the core competencies to ensure a successful API program through developer engagement, business insights, analytics, security, and protection. You can use Azure API Management to take any backend and launch a full-fledged API program based on it. 
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/api-management.png">
+<p align="center"> <img width="382" alt=""  src=" images/azure-platform-design-and-implementation/api-management.png">
 
 **Design Decision** : SDR Reference Implementation has used 1 API Management per environment/region.
 	
@@ -510,7 +510,7 @@ Log analytics platform can gather different types of logs. Following log types c
 • **Azure Active Directory Logs:** These logs contain the history of sign-in activity and audit trail of changes made in the Azure Active Directory for a tenant. This is a tenant level export and can be setup using Diagnostic setting of AAD and data collected will include data for all subscriptions in the AAD tenant.<br>
 • **Azure Flow Logs:** These logs contain the history of the ingress and egress traffic flow. Flow logs can be collected from Network Security Groups <br>
 	
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/azure-platform-data-types.png">
+<p align="center"> <img width="382" alt=""  src=" images/azure-platform-design-and-implementation/azure-platform-data-types.png">
  
 Below are the different integration options available based on the Log Categorization. 
 |Log Category|Log Type|	Usage|	Integration|
@@ -565,7 +565,7 @@ Application Insights, a feature of Azure Monitor, is an extensible Application P
 
 Application Insights deployed is being used by App Services and API Management.
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/application-insights.png">
+<p align="center"> <img width="382" alt=""  src=" images/azure-platform-design-and-implementation/application-insights.png">
 
 **Design Decision** : SDR Reference Implementation has one Application Insights deployed per environment/region.
 
@@ -593,7 +593,7 @@ Metrics are numerical values that describe some aspect of a system at a particul
 • Application map that visualizes system components, such as the server, the database, and other resources.<br>
 • **Snapshot debugger -** a component that saves code status at the time of an exception for further check<br>
 
-<p align="center"> <img width="382" alt=""  src=" images-for-azure-platform-design-and-implementation-design-and-plan-v2.0/azure-monitor.png">
+<p align="center"> <img width="382" alt=""  src=" images/azure-platform-design-and-implementation/azure-monitor.png">
 
 **Design Decision** : SDR Reference Implementation has leveraged Azure native tool for monitoring. In this case, it is Azure Monitor.
 
