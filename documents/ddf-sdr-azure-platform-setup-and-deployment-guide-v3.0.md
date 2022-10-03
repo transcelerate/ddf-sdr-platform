@@ -305,7 +305,7 @@ ii.	Go to Authentication blade, add additional Redirect URL as needed. Add local
 
 <p align="center"> <img width="382" alt="azure-ad-app-registration-redirect-uri"  src=" images/azure-platform-setup-and-deployment-guide/azure-ad-app-registration-redirect-uri.png">
  
-iii.	Go to `Expose an API` blade and click on `Add a Scope`. Provide scope name, select `Admins and users` in `Who can consent`, provide admin consent display name and finally click on `Add Scope`.
+iii.	Go to "Expose an API" blade and click on "Add a Scope". Provide scope name, select "Admins and users" in "Who can consent", provide admin consent display name and finally click on "Add Scope".
 
 <p align="center"> <img width="382" alt="azure-ad-app-registration-expose-an-api"  src=" images/azure-platform-setup-and-deployment-guide/azure-ad-app-registration-expose-an-api.png">
  
