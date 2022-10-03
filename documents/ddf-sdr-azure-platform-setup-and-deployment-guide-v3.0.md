@@ -414,10 +414,9 @@ Naming Convention followed for all the resources is as below -<br>
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/resource-naming-convention.png">
 
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/sdr-resource-naming-convention.png">
- 
-```
-Note: For Resource Naming Convention best practices please refer [Azure Resource Naming Conventions](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming)
-```
+
+**Note:** For Resource Naming Convention best practices please refer [Azure Resource Naming Conventions](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming)
+
 ## Virtual Network
  Validation of Virtual Network (VNet) configuration
  
@@ -659,7 +658,7 @@ ii.	Upload the password protected Client certificate (.pfx) format as shown belo
  
 iii.	Once the certificate is uploaded it should be visible on the API Management certificates blade as below  
 
-Client Certificate  
+**Client Certificate**  
 
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/apim-certificates-client-certificate.png">
 
