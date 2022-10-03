@@ -612,8 +612,8 @@ Network Watcher will be automatically enabled when the VNet is created in a part
 
 # References
 
-• Define your naming convention - Cloud Adoption Framework | Microsoft Docs<br>
-• Recommended abbreviations for Azure resource types - Cloud Adoption Framework | Microsoft Docs
+• [Define your naming convention - Cloud Adoption Framework | Microsoft Docs<br>](https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Fcloud-adoption-framework%2Fready%2Fazure-best-practices%2Fresource-naming&data=04%7C01%7Cdipendra.bantawa%40avanade.com%7Cd6f8de788c2846444adc08d90b3e77ec%7Ccf36141cddd745a7b073111f66d0b30c%7C0%7C0%7C637553185199215772%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&sdata=mRHq5qx8CtGbcDYZvE1bISx5RzBOZ5RaMKSNLtxl9%2B8%3D&reserved=0)
+• [Recommended abbreviations for Azure resource types - Cloud Adoption Framework | Microsoft Docs](https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Fcloud-adoption-framework%2Fready%2Fazure-best-practices%2Fresource-abbreviations&data=04%7C01%7Cdipendra.bantawa%40avanade.com%7Cd6f8de788c2846444adc08d90b3e77ec%7Ccf36141cddd745a7b073111f66d0b30c%7C0%7C0%7C637553185199215772%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&sdata=LNDgNE56wVaVvkYcKzCrqBm9%2BeDVKKEBnyZtu%2Fb%2F4KI%3D&reserved=0)
 	
 # Appendix- A
 
@@ -621,10 +621,10 @@ This section lists the links to documentation sources referred during design dis
 
 |S. No.|Topic|	Link|
 |---|---|---|
-|A.1|Azure Best Practices for Resource Naming Convention|[Define your naming convention] (https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming)|
-|A.2|Naming rules and restrictions for Azure resources|[Naming rules and restrictions] (https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules#:~:text=Azure%20virtual%20machines%20have%20two%20distinct%20names%3A%20resource,to%2064%20characters.%20Lowercase%20letters%2C%20numbers%2C%20and%20hyphens)| 
-|A.3|Azure subscription and service limits, quotas, and constraints|[Azure Subscription Service Limits] (https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) |
-|A.4|Azure geographies|[Regions] (https://azure.microsoft.com/regions/)|
-|A.5|What is Azure Active Directory?|[Azure Active Directory] (https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis) |
-|A.6|Virtual network service endpoints for Azure Key Vault – Trusted Services|[Virtual network service endpoints for Azure Key Vault] (https://docs.microsoft.com/en-us/azure/key-vault/general/overview-vnet-service-endpoints#trusted-services) |
-|A.7|Cloud Adoption Framework|[Microsoft Cloud Adoption Framework] (https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Fcloud-adoption-framework%2F&data=04%7C01%7Cdipendra.bantawa%40avanade.com%7Cd6f8de788c2846444adc08d90b3e77ec%7Ccf36141cddd745a7b073111f66d0b30c%7C0%7C0%7C637553185199195856%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&sdata=gGhb5%2BK7MQXGrEKaoAvF1WOV89o5afQi%2BDBILCr1Wsc%3D&reserved=0)|
+|A.1|Azure Best Practices for Resource Naming Convention|[Define your naming convention](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming)|
+|A.2|Naming rules and restrictions for Azure resources|[Naming rules and restrictions](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules#:~:text=Azure%20virtual%20machines%20have%20two%20distinct%20names%3A%20resource,to%2064%20characters.%20Lowercase%20letters%2C%20numbers%2C%20and%20hyphens)| 
+|A.3|Azure subscription and service limits, quotas, and constraints|[Azure Subscription Service Limits]https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) |
+|A.4|Azure geographies|[Regions](https://azure.microsoft.com/regions/)|
+|A.5|What is Azure Active Directory?|[Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis) |
+|A.6|Virtual network service endpoints for Azure Key Vault – Trusted Services|[Virtual network service endpoints for Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/general/overview-vnet-service-endpoints#trusted-services) |
+|A.7|Cloud Adoption Framework|[Microsoft Cloud Adoption Framework](https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Fcloud-adoption-framework%2F&data=04%7C01%7Cdipendra.bantawa%40avanade.com%7Cd6f8de788c2846444adc08d90b3e77ec%7Ccf36141cddd745a7b073111f66d0b30c%7C0%7C0%7C637553185199195856%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&sdata=gGhb5%2BK7MQXGrEKaoAvF1WOV89o5afQi%2BDBILCr1Wsc%3D&reserved=0)|
