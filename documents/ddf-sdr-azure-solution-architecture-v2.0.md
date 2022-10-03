@@ -75,7 +75,7 @@ Azure API Management endpoints are the only set of interfaces that are called by
 The following principles define how APIs, and the Integration services are built and applied to the wider solution:<br>
 •	Access to the services layer is always via the API management layer. This is a fundamental architecture principle as it enables security, billing, and endpoint publication.<br>
 •	The depth of API and Integration service chaining should be kept to a minimum<br>
-•	APIs would adhere to Open API Standards as defined by CDISC here
+•	APIs would adhere to Open API Standards as defined by CDISC [here](https://wiki.cdisc.org/display/TEAMDDF/RA+Development+Dashboard?preview=/129041036/144539804/DDF%20CDISC%20RA%20GGG%20-%20Architecture_Principles%20-%202021-02-23.pdf#12904103643deca2cd34e44bcb5155acb61d3e4db)
 
 ### Authentication and Authorization
 The Solution Architecture for SDR Reference Implementation adopts Microsoft’s cloud-based identity and access management service Azure Active Directory for authenticating the users as well as authorization. Azure AD is to be the identity provider for generating access tokens using OAuth2.0 standards which are the main method of authentication. Additionally, certificate-based authentication is enabled on APIM service. Managed Identities (MSI) is the primary method of authentication between APIM and backend Azure services. Authorization is implemented using the App roles on Azure App Registrations. 
@@ -130,7 +130,7 @@ Data architecture is dependent on multiple factors mainly associated with how da
 
 <p align="center"> <img width="382" alt=""  src="images/azure-solution-architecture/uml-diagram-for-clinical-study.png">
  
-Open attached link(https://github.com/transcelerate/ddf-sdr-platform/blob/platform-user-guide-markdownfile/documents/images/azure-solution-architecture/sdr-cdisc-uml-v1.0.png) for better viewing experience of UML Diagram.
+Open attached [link](https://github.com/transcelerate/ddf-sdr-platform/blob/platform-user-guide-markdownfile/documents/images/azure-solution-architecture/sdr-cdisc-uml-v1.0.png) for better viewing experience of UML Diagram.
  
 ## Data Sources 
 
