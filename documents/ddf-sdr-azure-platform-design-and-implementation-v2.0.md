@@ -623,7 +623,7 @@ This section lists the links to documentation sources referred during design dis
 |---|---|---|
 |A.1|Azure Best Practices for Resource Naming Convention|[Define your naming convention](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming)|
 |A.2|Naming rules and restrictions for Azure resources|[Naming rules and restrictions](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules#:~:text=Azure%20virtual%20machines%20have%20two%20distinct%20names%3A%20resource,to%2064%20characters.%20Lowercase%20letters%2C%20numbers%2C%20and%20hyphens)| 
-|A.3|Azure subscription and service limits, quotas, and constraints|[Azure Subscription Service Limits]https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) |
+|A.3|Azure subscription and service limits, quotas, and constraints|[Azure Subscription Service Limits](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) |
 |A.4|Azure geographies|[Regions](https://azure.microsoft.com/regions/)|
 |A.5|What is Azure Active Directory?|[Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis) |
 |A.6|Virtual network service endpoints for Azure Key Vault – Trusted Services|[Virtual network service endpoints for Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/general/overview-vnet-service-endpoints#trusted-services) |
