@@ -49,7 +49,7 @@ The architecture for the SDR Reference Implementation has been designed to achie
 •	Open API Specifications with REST endpoints to maximize system interoperability and promote collaboration.
 
 ## Architectural Assumptions and Decisions
-The SDR Reference Implementation will leverage Microsoft Azure Cloud Components and services for development and deployment. The choice of solution components, however, has been made to achieve key architectural goals and objects listed in section 2.1 above. Following are some of the key architectural decisions made for the SDR Reference Implementation. 
+The SDR Reference Implementation will leverage Microsoft Azure Cloud Components and services for development and deployment. The choice of solution components, however, has been made to achieve key architectural goals and objects listed in section [Architecture Goals and Constraints](#architecture-goals-and-constraints) above. Following are some of the key architectural decisions made for the SDR Reference Implementation. 
 #### Table 1 - Architectural Decisions
 |Area	|Decision|
 |---|---|
