@@ -1,34 +1,34 @@
 - [Introduction](#introduction)
-- [Definitions and Acronyms](#definitions-and-acronyms)
-- [Document Scope](#document-scope)
-- [Out of Scope](#out-of-scope)
-- [Audience](#audience)
-- [Pre-Requisites](#pre-requisites)
+  - [Definitions and Acronyms](#definitions-and-acronyms)
+  - [Document Scope](#document-scope)
+  - [Out of Scope](#out-of-scope)
+  - [Audience](#audience)
+  - [Pre-Requisites](#pre-requisites)
 - [Azure Infrastructure](#azure-infrastructure)
-- [Resource Provider Registration](#resource-provider-registration)
-- [Create Azure AD Groups](#create-azure-ad-groups)
-- [Create Users](#create-users)
-- [Role Based Access Controls (RBAC)](#role-based-access-controls-rbac)
-- [Storage Account and Service Principal Configuration in Azure](#storage-account-and-service-principal-configuration-in-azure)
-- [Adding Secrets in GitHub](#adding-secrets-in-github)
-- [Execute GitHub Action for IaC deployment](#execute-github-action-for-iac-deployment)
-- [Manual Configuration Changes on Azure Platform](#manual-configuration-changes-on-azure-platform)
-- [PaaS Setup – OAuth 2.0 Configuration for SDR UI Application](#paas-setup--oauth-20-configuration-for-sdr-ui-application )
-- [UI App Path Mapping](#ui-app-path-mapping)
-- [Key Vault](#key-vault)
+  - [Resource Provider Registration](#resource-provider-registration)
+  - [Create Azure AD Groups](#create-azure-ad-groups)
+  - [Create Users](#create-users)
+  - [Role Based Access Controls (RBAC)](#role-based-access-controls-rbac)
+  - [Storage Account and Service Principal Configuration in Azure](#storage-account-and-service-principal-configuration-in-azure)
+  - [Adding Secrets in GitHub](#adding-secrets-in-github)
+  - [Execute GitHub Action for IaC deployment](#execute-github-action-for-iac-deployment)
+  - [Manual Configuration Changes on Azure Platform](#manual-configuration-changes-on-azure-platform)
+    - [PaaS Setup – OAuth 2.0 Configuration for SDR UI Application](#paas-setup--oauth-20-configuration-for-sdr-ui-application )
+    - [UI App Path Mapping](#ui-app-path-mapping)
+    - [Key Vault](#key-vault)
 - [Resource Validation](#resource-validation)
-- [Low-Level Design Document](#low-level-design-document)
-- [Virtual Network](#virtual-network)
-- [Subnet](#subnet)
-- [Delegated Subnet](#delegated-subnet)
-- [Other Resources](#other-resources)
+  - [Low-Level Design Document](#low-level-design-document)
+  - [Virtual Network](#virtual-network)
+  - [Subnet](#subnet)
+  - [Delegated Subnet](#delegated-subnet)
+  - [Other Resources](#other-resources)
 - [Application Code Deployment](#application-code-deployment)
-- [GitHub Secrets used in WorkFlow](#github-secrets-used-in-workflow)
-- [Deploy the UI Application](#deploy-the-ui-application)
-- [Deploy Back-End API](#deploy-the-ui-application)
-- [Deployment Verification](#deployment-verification)
+  - [GitHub Secrets used in WorkFlow](#github-secrets-used-in-workflow)
+  - [Deploy the UI Application](#deploy-the-ui-application)
+  - [Deploy Back-End API](#deploy-the-ui-application)
+  - [Deployment Verification](#deployment-verification)
 - [PaaS Setup](#paas-setup)
-- [PaaS Setup for APIM](#paas-setup-for-apim)
+  - [PaaS Setup for APIM](#paas-setup-for-apim)
  
 # Introduction
 This document details the steps required to set up a new environment for the Study Definition Repository – Reference Implementation (MVP release) on Microsoft Azure Cloud Platform. It provides details for Infrastructure setup, environment validation, deploying the Web Application for User Interface and Application Programming Interface. 
@@ -65,18 +65,18 @@ This document is organized sequentially including Infrastructure, PaaS, UI and A
 This document assumes a good understanding of Azure concepts and services. The audience for this document includes Azure Administrators, DevOps Engineers, Developers with experience in Angular and .NET development.
 ## Pre-Requisites
 •	Access to the low-level design document and basic understanding on how to use it.<br> 
-•	Access to the [azure portal](https://portal.azure.com/#home) with required permissions (detailed in upcoming sections).<br> 
+•	Access to the [Azure portal](https://portal.azure.com/#home) with required permissions (detailed in upcoming sections).<br> 
 •	Azure CLI Refer to [Install CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)<br> 
 •	An Active Azure Tenant and Subscription. To setup Azure subscription please follow the below Microsoft Documentation<br> 
 [Create your initial Azure subscriptions - Cloud Adoption Framework | Microsoft Docs](https://urldefense.proofpoint.com/v2/url?u=https-3A__docs.microsoft.com_en-2Dus_azure_cloud-2Dadoption-2Dframework_ready_azure-2Dbest-2Dpractices_initial-2Dsubscriptions&d=DwMFAg&c=eIGjsITfXP_y-DLLX0uEHXJvU8nOHrUK8IrwNKOtkVU&r=ymlYAgLatobOHqDseh52aLn4thnuuisuycD8yBsPG5-wMw4-VtvvXLUcUwJ4p0kY&m=b4Hw4tRqR53jf9l9cLauC04FAB2DhUu2z71iVWDXao1jCdAxvGkVN-rl_RPyxEIJ&s=RZzDYj4Ra_Gtb9Gou6aWnTwF_Krr1l-dpKP6si39Y1Q&e=)
 
 # Azure Infrastructure
 ## Resource Provider Registration
-### GOAL:
+#### GOAL:
 The Resource Provider Registration configures the Azure subscription to work with the resource provider.
-### PRE-REQUISITES:
+#### PRE-REQUISITES:
 Global Admin or Subscription Owner level of access to Azure.
-### STEPS:
+#### STEPS:
 i.	Sign into the Azure portal.<br> 
 ii.	On the Azure portal menu<br> 
 •	Search for Subscriptions.<br> 
@@ -104,13 +104,12 @@ The Providers to be registered are:<br>
 <p align="center"> <img width="382" alt="registering-resource-providers"  src=" images/azure-platform-setup-and-deployment-guide/registering-resource-providers.png">
  
 ## Create Azure AD Groups
-### GOAL:
+#### GOAL:
 Create Azure AD groups to manage Role Based Access Controls (RBAC) on resources for team members.
-### PRE-REQUISITES:
+#### PRE-REQUISITES:
 •	Global administrator/Owner/User Administrator level of access at Active Directory Level.<br> 
 Below are the groups and role assignments created and managed for SDR Reference Implementation.
 
-#### Table 1: Group and Role Assignments
 |RBAC Group Name| 	Azure Built-In Role| 	Scope| 	Usage|
 |-----|-----|-----|-----|
 |GlobalAdmin_Group|	Global Administrator|	Azure Active Directory|	Can manage all aspects of Azure AD and Microsoft services that use Azure AD identities.| 
@@ -127,7 +126,7 @@ Below are the groups and role assignments created and managed for SDR Reference 
 
 **Note:**  To assign Azure AD roles to groups required Azure AD Premium P1 or P2 license, since this solution is part of MVP leveraged Azure AD Free plan. Follow the [Microsoft](https://docs.microsoft.com/en-us/azure/active-directory/roles/groups-assign-role) Doc to assign Azure AD role to groups.
 
-### STEPS:
+#### STEPS:
 i.	Login to Azure portal<br>
 ii.	Search for Azure Active Directory<br>
 iii.	Click on the Groups on the left panel in AAD.<br>
@@ -139,11 +138,11 @@ iv.	Click on New group tab on the top as shown below, add the security group and
 <p align="center"> <img width="382" alt="add-new-group"  src=" images/azure-platform-setup-and-deployment-guide/add-new-group.png">
  
 ## Create Users
-### GOAL:
+#### GOAL:
  Create users for provisioning access to the resources on Azure Portal.
-### PRE-REQUISITES: 
+#### PRE-REQUISITES: 
 • Global administrator/User Administrator level of access at Active Directory Level.
-### STEPS: 
+#### STEPS: 
 i.	Login to Azure portal<br>
 ii.	Search for Azure Active Directory (AAD)<br>
 iii.	Click on the users on the left panel in AAD.<br>
@@ -152,11 +151,11 @@ iv.	Click on New User tab on the top, add the user and save the changes.
 <p align="center"> <img width="382" alt="create-new-user"  src=" images/azure-platform-setup-and-deployment-guide/create-new-user.png">
  
 ## Role Based Access Controls (RBAC)
-### GOAL:
+#### GOAL:
  Providing access and assigning roles to Azure AD groups for them to access the resources.
-### PRE-REQUISITES: 
+#### PRE-REQUISITES: 
 • Contributor and User Administrator level of access at Subscription and Active Directory Level respectively. 
-### STEPS:
+#### STEPS:
 Access Control (IAM) is to limit access and assign roles to groups at the subscription, resource group, and resource level. 
 At subscription level<br>
 i.	Go to the subscription.<br>
@@ -181,16 +180,15 @@ v.	To view the roles assigned to a particular group navigate to Role assignments
 The same procedure should be followed to provide access/assign roles to any resource in the Azure portal.
 
 ## Storage Account and Service Principal Configuration in Azure
-### GOAL:
+#### GOAL:
 Setup storage account and service principal in Azure to enable deployment from GitHub.
-### PRE-REQUISITES:
+#### PRE-REQUISITES:
 •	Contributor level of access at Active Directory Level. 
 #### STORING THE TERRAFORM STATE FILE REMOTELY:
 When deploying resources with Terraform, a state file must be stored; this file is used by Terraform to map Azure Resources to the configuration that you want to deploy, keeps track of meta data, and can also help with improving performance for larger Azure Resource deployments.<br>
 i.	Create Storage Account and Blob Container for storing State file remotely.<br>
 ii.	Perform the below commands on Azure CLI for storage Account creation.
 
-#### Table 2: Azure CLI Code Snippet - Create Storage Account
 ```
 # Create Resource Group
 az group create -n ResourceGroupName -l eastus2
@@ -198,7 +196,7 @@ az group create -n ResourceGroupName -l eastus2
 # Create Storage Account
 az storage account create -n StorageAccountName -g ResourceGroupName -l eastus2 --sku Standard_LRS
 
- # Create Storage Account Container
+# Create Storage Account Container
 az storage container create -n StorageBlobContainerName --account-name StorageAccountName --auth-mode login
 ```
 # AZURE SERVICE PRINCIPAL:
@@ -206,7 +204,6 @@ Create a service principal that will be used by Terraform to authenticate to Azu
 i.	Perform the below command on Azure CLI and capture the JSON output and create an AZURE_SP secret on GitHub and provide the captured output as value for the secret.<br>
 ii.	Provide User Administrator access on Azure AD and User Access administrator access on Azure Subscription.
 
-#### Table 3: Azure CLI Code Snippet - Create Azure Service Principal
 ```
 # Create Service Principal 
 
@@ -227,13 +224,12 @@ Service Principal Sample JSON output:
 }
 ```
 ## Adding Secrets in GitHub
-### GOAL:
+#### GOAL:
 Configure secrets in GitHub used by GitHub Actions during deployment workflow execution.
-### PRE-REQUISITES:
+#### PRE-REQUISITES:
 •	Repo Admin level of access on GitHub Repository<br>
 •	Capture below secret values based on environment design decisions and storage account, service principal details from Section (Storage Account and Service Principal Configuration in Azure)
 
-#### Table 4 GitHub Secrets
 |Secret Name|	Values|
 |-----|-----|
 |AZURE_SP	|The Service Principal details in JSON format.|
@@ -258,7 +254,7 @@ Configure secrets in GitHub used by GitHub Actions during deployment workflow ex
 |ADgroup3|	Provide the name of the Azure AD Group for Reader access on App & Core Resource Groups.|
 |Serviceprincipal|Provide the name of the Service principal that was created for the Git connection;it will provide key vault secret user access and access policies for secrets on Key Vault for the Service Principal.|
 
-### STEPS:
+#### STEPS:
 Add GitHub Secrets entries for all the secrets captured in the pre-requisites.<br>
 i.	Go to repository settings.<br>
 ii.	On the lower left-hand side of the screen, click on Secrets.<br>
@@ -272,31 +268,30 @@ v.	After clicking New Repository Secret, fill the details of the secret (name an
 <p align="center"> <img width="382" alt="add-new-github-action-secret"  src=" images/azure-platform-setup-and-deployment-guide/add-new-github-action-secret.png">
  
 ## Execute GitHub Action for IaC deployment 
-### GOAL:
+#### GOAL:
 Execute the GitHub actions to deploy the Azure resources using IaC code.
-### PRE-REQUISITES:
+#### PRE-REQUISITES:
 •	Repo Admin level of access on GitHub Repository<br>
 •	For setting up the actions in GitHub, user must have Write permission on repos
-### DEPLOYMENT:
+#### DEPLOYMENT:
 The folder `.github/workflows` in the IaC Repository on GitHub contains the GitHub Actions yaml script (main.yml) for deploying the Terraform IaC code on Microsoft Azure Platform.
 
-### main.yml:
+#### main.yml:
 
 The yaml file is a multi-job script that will perform security checks on IaC code as well as the deployment of resources to the target environment on Microsoft Azure Platform.
 
-### STEPS:
+#### STEPS:
 i.	Go to GitHub Actions and under the list of workflows click on CI.<br>
 ii.	In this workflow click Run Workflow to trigger the Deployment Action.<br>
 iii.	Once the workflow completes successfully, the SDR Solution resources should have been deployed to Azure platform.
 
 # Manual Configuration Changes on Azure Platform
 ## PaaS Setup – OAuth 2.0 Configuration for SDR UI Application
-### GOAL:
+#### GOAL:
 Azure AD Client Application Registration and OAuth 2.0 configuration for SDR UI application. 
-### PRE-REQUISITES: 
+#### PRE-REQUISITES: 
 •	Global Administrator level of access at Active Directory level.
-### STEPS:
-#### SDR UI APP REGISTRATION:
+#### STEPS TO CREATE SDR UI APP REGISTRATION:
 i.	Go To Azure AD → App Registrations→→Select UI App Registration
 
 <p align="center"> <img width="382" alt="azure-ad-app-registration"  src=" images/azure-platform-setup-and-deployment-guide/azure-ad-app-registration.png">
@@ -332,11 +327,11 @@ The Azure AD App registration for UI has been created successfully.
 Note: All the users added at AD level will have access to the SDR UI Application by default.
 ```
 ## UI App Path Mapping
-### GOAL:
+#### GOAL:
 Update the Path Mapping of UI Azure App Service.
-### PRE-REQUISITES: 
+#### PRE-REQUISITES: 
 •	Contributor access at Resource Group level.
-### STEPS:
+#### STEPS:
 i.	Navigate to UI App Service instance in App resource group.<br>
 ii.	Go to Configuration → Path Mappings<br>
 iii.	Change the Physical Path from site\wwwroot to site\wwwroot\SDR-WebApp for accessing the app URL.
@@ -344,14 +339,13 @@ iii.	Change the Physical Path from site\wwwroot to site\wwwroot\SDR-WebApp for a
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/app-service-path-mapping.png">
  
 ## Key Vault
-### GOAL:
+#### GOAL:
 •	Add access policy and enable Azure Key Vault Administrator User to manage secrets.<br>
 •	To create secrets in Azure Key Vault
-### PRE-REQUISITES: 
+#### PRE-REQUISITES: 
 •	Contributor level of access for Resource Group.<br>
 •	Capture below secret values from the deployed resources.
 
-#### Table 5 KeyVault Secrets
 |Secret Name	|Secret Value|
 |-----|-----|
 |Apim-BaseUrl|	Provide API Management URL as key value (E.g., https://apim-sdr-qa-eastus.azure-api.net/studydefinitionrepository/v1/)|
@@ -374,7 +368,7 @@ iii.	Change the Physical Path from site\wwwroot to site\wwwroot\SDR-WebApp for a
 |isGroupFilterEnabled|	true|
 |StudyHistory--DateRange	|30|
 
-### STEPS FOR ADDING ACCESS POLICY:
+#### STEPS FOR ADDING ACCESS POLICY:
 The steps for adding Key Vault Administrator to Key Vault access policies for creating secrets are listed below.
 i.	Go to → Key Vault → Select Access Policies → Click on Add Access Policy
 
@@ -388,7 +382,7 @@ iii.	Select Principal → Add Azure Key Vault Administrator User (select the use
 
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/select-principal-(list-of-users)in-key-vault-access-policy.png">
  
-### STEPS FOR ADDING KEY VAULT SECRETS:
+#### STEPS FOR ADDING KEY VAULT SECRETS:
 Add Key Vault entries for all the secrets captured in the pre-requisites.<br>
 i.	Go to → Key Vault → Select Secrets → Click Generate/Import
 
@@ -403,7 +397,7 @@ Validate all resources from Azure Portal to ensure that the resource configurati
 ## Low-Level Design Document
 The low-level design document contains all the settings and configurations that have been configured on Terraform IaC code.
  
- [ddf-sdr-azure-platform-setup-and-depolment-guide-v3.0.xlsx](https://github.com/transcelerate/ddf-sdr-platform/blob/platform-user-guide-markdownfile/documents/ddf-sdr-azure-platform-setup-and-depolment-guide-v3.0.xlsx)
+ [ddf-sdr-azure-platform-setup-and-depolment-guide-v3.0.xlsx](ddf-sdr-azure-platform-setup-and-depolment-guide-v3.0.xlsx)
  
 Naming Convention followed for all the resources is as below -<br> 
 •	Resource type: vnet, subnet, rg, etc.<br>
@@ -422,10 +416,10 @@ Naming Convention followed for all the resources is as below -<br>
  
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/vnet-configurations.png">
  
-### PRE-REQUISITES: 
+#### PRE-REQUISITES: 
 •	Reader access at Resource group level
 •	SDR Reference Implementation Low Level Design Document (LLD) document 
- ### STEPS: 
+#### STEPS: 
 i.	Login to Azure Portal<br>
 ii.	Click on the Resource Groups tab<br>
 iii.	Select the Resource group for VNet configuration<br>
@@ -461,10 +455,10 @@ x.	Go to the Diagnostic Settings Tab and verify that the below settings are as p
  
 ## Subnet 
 Validation of Virtual Subnet configuration.
-### PRE-REQUISITES: 
+#### PRE-REQUISITES: 
 •	Reader level of access at Resource group level<br>
 •	SDR Reference Implementation Low Level Design Document (LLD) document 
-### STEPS:
+#### STEPS:
 i.	Login to Azure Portal<br>
 ii.	Click on the Resource Groups tab<br>
 iii.	Select the Resource group for VNet configuration<br>
@@ -484,9 +478,9 @@ iv.	Verify that the below basic details are as per the LLD<br>
  
 ## Delegated Subnet
 Validation of Delegated Subnet configuration.        	
-### PRE-REQUISITES: 
+#### PRE-REQUISITES: 
 •	Reader level of access at Resource group Level. 
-### STEPS:
+#### STEPS:
 i.	Login to Azure Portal<br>
 ii.	Click on the Resource Groups tab<br>
 iii.	Select the Resource group for VNet configuration<br>
@@ -522,11 +516,11 @@ The similar steps mentioned in previous sections for VNet & Subnet resources ver
 
 # Application Code Deployment 
 ## GitHub Secrets used in WorkFlow
-### PRE-REQUISITES
+#### PRE-REQUISITES:
 •	Read access to fetch Key Vault secrets in Azure Portal<br>
 •	User Should have access policies set to read/retrieve secrets from Azure Key Vault in Azure Portal<br>
 •	User Should have Repo Admin level of access to add/replace the GitHub secrets in GitHub<br>
-#### Step to be followed:
+#### STEPS:
 •	Login to azure portal, select resource group section<br>
 •	Navigate to the deployed KeyVault resource and copy the KeyVault URL from Overview blade<br>
 •	This will be the KEYVAULT_NAME secret value. It will be the same for both UI and API<br>
@@ -537,9 +531,9 @@ The similar steps mentioned in previous sections for VNet & Subnet resources ver
 •	Login to GitHub and navigate to ddf-sdr-ui → Settings → Secrets → Actions and add/replace values for AZURE_SP, AZURE_WEBAPP_NAME and KEYVAULT_NAME by clicking on Update.
 
 ## Deploy the UI Application
-### PRE-REQUISITES
+#### PRE-REQUISITES:
 •	Contributor level of access at Resource Group level. 
-### DEPLOYMENT STEPS:
+#### DEPLOYMENT STEPS:
 i.	Go to https://github.com/transceleratebiopharmainc, GitHub URL.
 
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/transcelerate-github-project.png">
@@ -568,9 +562,9 @@ vi.	The build logs can be seen on clicking the active/running action.
 vii.	On completion of the workflow, the UI application will be deployed to Azure App Service.                           
 
 ## Deploy Back-End API
-### PRE-REQUISITES
+#### PRE-REQUISITES:
 •	Contributor access at Resource group Level. 
-### DEPLOYMENT STEPS: 
+#### DEPLOYMENT STEPS: 
 i.	Go to https://github.com/transceleratebiopharmainc, GitHub URL.
 
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/transcelerate-github-project-1.png">
@@ -630,10 +624,10 @@ The same steps as mentioned above for SDR UI Application verification can be fol
 
 # PaaS Setup
 ## PaaS Setup for APIM
-### GOAL: 
+#### GOAL: 
 •	Secure APIs using client certificate authentication in API Management<br>
 •	.API Management uses client certificates to secure API access (i.e., client to API Management). It will validate certificates presented by the connecting client and compare certificate properties to desired values using policy expressions.
-### PRE-REQUISITES: 
+#### PRE-REQUISITES: 
 •	Contributor access at Resource Group level.
 #### CREATE CLIENT CERTIFICATE:
 i.	Create self-signed certificate for authentication.<br>
