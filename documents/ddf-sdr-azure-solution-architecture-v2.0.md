@@ -1,31 +1,31 @@
 - [Solution Overview](#solution-overview)
-- [High Level Solution Architecture](#high-level-solution-architecture)
+  - [High Level Solution Architecture](#high-level-solution-architecture)
 - [Architecture Goals and Constraints](#architecture-goals-and-constraints)
-- [Architecture Goals/Objectives](#architecture-goalsobjectives)
-- [Architectural Assumptions and Decisions](#architectural-assumptions-and-decisions)
-- [Solution Architecture Attributes](#solution-architecture-attributes)
-- [Tools and Technologies](#tools-and-technologies)
-- [Patterns](#patterns)
-- [Authentication and Authorization](#authentication-and-authorization)
-- [Portability](#portability)
-- [Diagnostics and Logging](#diagnostics-and-logging)
-- [Alerting](#alerting)
+  - [Architecture Goals/Objectives](#architecture-goalsobjectives)
+  - [Architectural Assumptions and Decisions](#architectural-assumptions-and-decisions)
+  - [Solution Architecture Attributes](#solution-architecture-attributes)
+    - [Tools and Technologies](#tools-and-technologies)
+    - [Patterns](#patterns)
+    - [Authentication and Authorization](#authentication-and-authorization)
+    - [Portability](#portability)
+    - [Diagnostics and Logging](#diagnostics-and-logging)
+    - [Alerting](#alerting)
 - [Application Architecture](#application-architecture)
-- [Front End Application (UI)](#front-end-application-ui)
-- [API Layer](#api-layer)
-- [API Service Specifications](#api-service-specifications)
-- [API Architectural Style](#api-architectural-style)
-- [API Component Model](#api-component-model)
+  - [Front End Application (UI)](#front-end-application-ui)
+  - [API Layer](#api-layer)
+  - [API Service Specifications](#api-service-specifications)
+  - [API Architectural Style](#api-architectural-style)
+  - [API Component Model](#api-component-model)
 - [Data Architecture](#data-architecture)
-- [Conceptual/Logical Data Model](#conceptuallogical-data-model)
-- [Data Sources](#data-sources)
-- [Data Dictionary](#data-dictionary)
+  - [Conceptual/Logical Data Model](#conceptuallogical-data-model)
+  - [Data Sources](#data-sources)
+  - [Data Dictionary](#data-dictionary)
 - [Security Architecture](#security-architecture)
-- [Security Solution Overview](#security-solution-overview)
+  - [Security Solution Overview](#security-solution-overview)
 - [Infrastructure](#infrastructure)
-- [Azure Platform Components](#azure-platform-components)
-- [Environment Strategy for SDR](#environment-strategy-for-sdr)
-- [Deployment Models](#deployment-models)
+  - [Azure Platform Components](#azure-platform-components)
+  - [Environment Strategy for SDR](#environment-strategy-for-sdr)
+  - [Deployment Models](#deployment-models)
 - [Appendix A - Key Terms](#appendix-a---key-terms)
 
 # Solution Overview
@@ -49,8 +49,8 @@ The architecture for the SDR Reference Implementation has been designed to achie
 •	Open API Specifications with REST endpoints to maximize system interoperability and promote collaboration.
 
 ## Architectural Assumptions and Decisions
-The SDR Reference Implementation will leverage Microsoft Azure Cloud Components and services for development and deployment. The choice of solution components, however, has been made to achieve key architectural goals and objects listed in section [Architecture Goals and Constraints](#architecture-goals-and-constraints) above. Following are some of the key architectural decisions made for the SDR Reference Implementation. 
-#### Table 1 - Architectural Decisions
+The SDR Reference Implementation will leverage Microsoft Azure Cloud Components and services for development and deployment. The choice of solution components, however, has been made to achieve key architectural goals and objects listed in previous section [Architecture Goals/Objectives](#architecture-goalsobjectives). Following are some of the key architectural decisions made for the SDR Reference Implementation. 
+
 |Area	|Decision|
 |---|---|
 |Connectivity|	OAS compliant RESTful API interfaces operate on a Push / Pull model – the upstream vendor is responsible for pushing data into the SDR and the downstream vendor is responsible for pulling data from the SDR. Import and Export functionality within the SDR will be considered for future release.  Event based notifications and/or support for GraphQL will be considered in future releases.|
@@ -64,10 +64,10 @@ The SDR Reference Implementation will leverage Microsoft Azure Cloud Components 
 ### Tools and Technologies
 The SDR Reference Implementation is built on Azure technology, however, the application components are designed keeping in mind portability and interoperability to other systems or cloud environments such as Amazon Web Services (AWS), Google Cloud Platform (GCP) etc.
 Below is the list of Tools and Technologies adopted in designing & developing the DDF SDR Reference Implementation.
-#### Table 2 - Tools and Technologies
-|Cloud Services (Azure)|Front End UI Application|Backend API Application	|Dev ops|	Testing|
+
+|Cloud Services (Azure)|Front End UI Application|Backend API Application	|DevOps|	Testing|
 |---|---|---|---|---|
-|•	Azure Subscription (ACP)<br>&nbsp;&nbsp;&nbsp;•	Azure AD (OAUTH 2.0) for Authentication/Security <br>&nbsp;&nbsp;&nbsp;•	Azure API Management <br>&nbsp;&nbsp;&nbsp;•	Azure App Service <br>&nbsp;&nbsp;&nbsp;•	Azure Cosmos DB (Mongo API) <br>&nbsp;&nbsp;&nbsp;•	Azure Key Vault <br>&nbsp;&nbsp;&nbsp;•	Azure Monitor <br>|Angular 11 <br>&nbsp;&nbsp;&nbsp;Bootstrap <br>&nbsp;&nbsp;&nbsp;HTML5 <br>|.Net 6<br>&nbsp;&nbsp;&nbsp; .Net Entity Framework 5  <br>|Terraform<br>&nbsp;&nbsp;&nbsp;GitHub<br>|Functional Testing:<br>&nbsp;&nbsp;&nbsp;•	NUnit Testing<br>&nbsp;&nbsp;&nbsp;•	Postman for API Testing<br>&nbsp;&nbsp;&nbsp;•	SDR UI - Manual <br>&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;Non-Functional Testing:<br>&nbsp;&nbsp;&nbsp;•	JMeter for performance testing<br>|
+|•	Azure Subscription (ACP)<br>•	Azure AD (OAUTH 2.0) for Authentication/Security <br>•	Azure API Management <br>•	Azure App Service <br>•	Azure Cosmos DB (Mongo API) <br>•	Azure Key Vault <br>•	Azure Monitor <br>|Angular 11 <br>Bootstrap <br>HTML5 <br>|.Net 6<br>.Net Entity Framework 5  <br>|Terraform<br>GitHub<br>|Functional Testing:<br>&nbsp;&nbsp;&nbsp;•	NUnit Testing<br>&nbsp;&nbsp;&nbsp;•	Postman for API Testing<br>&nbsp;&nbsp;&nbsp;•	SDR UI - Manual <br>&nbsp;&nbsp;&nbsp;<br>Non-Functional Testing:<br>&nbsp;&nbsp;&nbsp;•	JMeter for performance testing<br>|
 
 ### Patterns
 Azure API Management endpoints are the only set of interfaces that are called by external apps and other services/ systems. The architecture design prevents apps from calling integration services directly, instead all web service requests are channelled through the API Management layer.
@@ -128,9 +128,9 @@ Data architecture is dependent on multiple factors mainly associated with how da
 
 ## Conceptual/Logical Data Model
 
-<p align="center"> <img width="382" alt=""  src="images/azure-solution-architecture/uml-diagram-for-clinical-study.png">
+<p align="center"> <img width="382" alt=""  src="images/azure-solution-architecture/sdr-cdisc-uml-v1.0.png">
  
-Open attached [link](https://github.com/transcelerate/ddf-sdr-platform/blob/platform-user-guide-markdownfile/documents/images/azure-solution-architecture/sdr-cdisc-uml-v1.0.png) for better viewing experience of UML Diagram.
+Open the image file using [link](images/azure-solution-architecture/sdr-cdisc-uml-v1.0.png) for better viewing experience of UML Diagram.
  
 ## Data Sources 
 
@@ -152,7 +152,7 @@ The infrastructure section provides a description of the Azure resources that ar
 ## 	Azure Platform Components
 The reference Architecture for SDR is being deployed in Microsoft’s public cloud platform, Azure. A single tenant single subscription model has been configured to house application code and data for delivering application functionality.<br>
 Below is the list of different Azure components and services utilized in the reference implementation of SDR.
-#### Table 3 - Azure Platform Components
+
 |Architecture Area	|Configuration Items|Azure Component|
 |---|---|---|
 |Governance	|Tagging	|Azure Tags|
@@ -167,7 +167,7 @@ Below is the list of different Azure components and services utilized in the ref
 |Identity|	Identity Provider	|Azure AD|
 ||	Users|	Active Directory Users |
 ||	Groups	|AAD Security Groups|
-||	Service Principals|	AAD SP \
+||	Service Principals|	AAD SP |
 ||Managed Identity	|Azure Managed Identities|
 ||	RBAC	|AAD & Subscription roles|
 |Security|	Security Monitoring|	Azure Defender|
@@ -180,7 +180,7 @@ Below is the list of different Azure components and services utilized in the ref
 
 ## Environment Strategy for SDR
 For SDR Reference Architecture, 3-tier environment model is recommended as mentioned in below. 
-#### Table 4 - Environment Details
+
 |Environment	|Details|
 |---|---|
 |Dev|	Development of SDR (This env is only accessible to SDR development/testing teams)|
@@ -198,7 +198,7 @@ The Deployment Models section describes different ways of deploying the Azure Pl
 
 # Appendix A - Key Terms
 Table A below provides definitions and explanations for terms and acronyms relevant to the content presented within this document.
-#### Table 5 - Appendix A: Key Terms
+
 |Term	|Definition|
 |---|---|
 |DDF	|Digital Data Flow|
