@@ -199,7 +199,7 @@ az storage account create -n StorageAccountName -g ResourceGroupName -l eastus2 
 # Create Storage Account Container
 az storage container create -n StorageBlobContainerName --account-name StorageAccountName --auth-mode login
 ```
-# AZURE SERVICE PRINCIPAL:
+# AZURE SERVICE PRINCIPAL
 Create a service principal that will be used by Terraform to authenticate to Azure and assign role to this newly created service principal (RBAC) to the required subscription.<br>
 i.	Perform the below command on Azure CLI and capture the JSON output and create an AZURE_SP secret on GitHub and provide the captured output as value for the secret.<br>
 ii.	Provide User Administrator access on Azure AD and User Access administrator access on Azure Subscription.
@@ -369,7 +369,7 @@ iii.	Change the Physical Path from site\wwwroot to site\wwwroot\SDR-WebApp for a
 |StudyHistory--DateRange	|30|
 
 #### STEPS FOR ADDING ACCESS POLICY:
-The steps for adding Key Vault Administrator to Key Vault access policies for creating secrets are listed below.
+The steps for adding Key Vault Administrator to Key Vault access policies for creating secrets are listed below.<br>
 i.	Go to → Key Vault → Select Access Policies → Click on Add Access Policy
 
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/add-key-vault-access-policy.png">
@@ -395,9 +395,7 @@ ii.	Provide Secret Name and Value → Select Create
 # Resource Validation
 Validate all resources from Azure Portal to ensure that the resource configurations have been deployed in accordance with the low-level design document (LLD).
 ## Low-Level Design Document
-The low-level design document contains all the settings and configurations that have been configured on Terraform IaC code.
- 
- [ddf-sdr-azure-platform-setup-and-depolment-guide-v3.0.xlsx](ddf-sdr-azure-platform-setup-and-depolment-guide-v3.0.xlsx)
+The [low-level design document](ddf-sdr-azure-platform-setup-and-depolment-guide-v3.0.xlsx) contains all the settings and configurations that have been configured on Terraform IaC code.
  
 Naming Convention followed for all the resources is as below -<br> 
 - Resource type: vnet, subnet, rg, etc.<br>
@@ -409,8 +407,9 @@ Naming Convention followed for all the resources is as below -<br>
 
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/sdr-resource-naming-convention.png">
 
-**Note:** For Resource Naming Convention best practices please refer [Azure Resource Naming Conventions](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming)
-
+```
+Note: For Resource Naming Convention best practices please refer [Azure Resource Naming Conventions](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming)
+```
 ## Virtual Network
  Validation of Virtual Network (VNet) configuration
  
@@ -650,9 +649,7 @@ ii.	Upload the password protected Client certificate (.pfx) format as shown belo
 
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/apim-certificates-client-certificates.png">
  
-iii.	Once the certificate is uploaded it should be visible on the API Management certificates blade as below  
-
-**Client Certificate**  
+iii.	Once the certificate is uploaded it should be visible on the API Management certificates blade as mentioned below.  
 
 <p align="center"> <img width="382" alt=""  src=" images/azure-platform-setup-and-deployment-guide/apim-certificates-client-certificate.png">
 
