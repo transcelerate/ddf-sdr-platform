@@ -375,6 +375,21 @@ module "module_appservice02_diagsettings"{
 
 }
 
+################################ Function App ########################################
+
+module "module_functionapp" {
+
+    source                         = "./modules/function_app"
+    functionapp_name               = "funapp-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}"
+    storageaccount_name            = "fappsa${var.subscription_acronym}${var.env_acronym}${var.location}"
+    resource_group_name            =  module.module_resource_group.rg_name
+    location                       =  module.module_resource_group.rg_location
+    service_plan_id                =  module.module_appserviceplan2.app_service_plan_id
+       
+
+  
+}
+
 ########################### RBAC role assignments ####################################
 module "module_adgroup_data_rgapp"{
     
