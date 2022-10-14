@@ -165,6 +165,7 @@ module "module_cosmosdb"{
     collectionname                      = var.collectionname
     collectionname2                     = var.collectionname2
     collectionname3                     = var.collectionname3
+    collectionname4                     = var.collectionname4
     index1                              = var.index1
     index2                              = var.index2
     index3                              = var.index3
@@ -350,7 +351,7 @@ module "module_appservice2"{
     apparname                               = var.apparname2
     priority                                = var.priority2
     action                                  = var.action2
-    depends_on                              = [module.module_deligatedsubnet2,module.module_subnet]   
+    depends_on                              = [module.module_deligatedsubnet2,module.module_subnet,module.module_virtualnetwork]   
     app_service_tags                = {
 
         Environment = var.env_acronym
@@ -379,15 +380,31 @@ module "module_appservice02_diagsettings"{
 
 module "module_functionapp" {
 
-    source                         = "./modules/function_app"
-    functionapp_name               = "funapp-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}"
-    storageaccount_name            = "fappsa${var.subscription_acronym}${var.env_acronym}${var.location}"
-    resource_group_name            =  module.module_resource_group.rg_name
-    location                       =  module.module_resource_group.rg_location
-    service_plan_id                =  module.module_appserviceplan2.app_service_plan_id
-       
+    source                                  = "./modules/function_app"
+    functionapp_name                        = "funapp-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}"
+    storageaccount_name                     = "fappsa${var.subscription_acronym}${var.env_acronym}${var.location}"
+    resource_group_name                     =  module.module_resource_group.rg_name
+    location                                =  module.module_resource_group.rg_location
+    service_plan_id                         =  module.module_appserviceplan2.app_service_plan_id
+    AzureServiceBusConnectionString         =  "Endpoint=sb://${module.module_servicebus.sbname}.servicebus.windows.net/;SharedAccessKeyName=${module.module_servicebus.sbqueuearn};SharedAccessKey=${module.module_servicebus.sbqueue_authidps}"
+    AzureServiceBusQueueName                =  module.module_servicebus.sbqueue_name
+    KeyVaultName                            =  module.module_keyvault.keyvault_uri
+    subnet_id                               =  module.module_deligatedsubnet2.Dsubnet_ID
+    application_insights_key                =  module.module_app_insights.instrumentation_key
+    application_insights_connection_string  =  module.module_app_insights.connection_string
+    depends_on                              = [module.module_deligatedsubnet2,module.module_virtualnetwork,module.module_servicebus]
+}
 
-  
+############################## Service Bus ############################################
+
+module "module_servicebus" {
+
+    source                          =   "./modules/service_bus"
+    servicebus_name                 =   "asb-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}"
+    resource_group_name             =   module.module_resource_group.rg_name
+    location                        =   module.module_resource_group.rg_location
+    sbqueue_name                    =   var.sbqueue_name
+
 }
 
 ########################### RBAC role assignments ####################################

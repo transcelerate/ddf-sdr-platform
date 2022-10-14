@@ -34,9 +34,11 @@ resource "azurerm_windows_function_app" "functionapp" {
 
   app_settings = {
 
-    AzureServiceBusConnectionString = var.AzureServiceBusConnectionString
-    AzureServiceBusQueueName        = var.AzureServiceBusQueueName
-    KeyVaultName                    = var.KeyVaultName
+    AzureServiceBusConnectionString         = var.AzureServiceBusConnectionString
+    AzureServiceBusQueueName                = var.AzureServiceBusQueueName
+    KeyVaultName                            = var.KeyVaultName
+    application_insights_key                = var.application_insights_key  
+    application_insights_connection_string  = var.application_insights_connection_string
   }
 
 }
