@@ -101,3 +101,18 @@ index {keys = var.index7}
 index {keys = var.index8}
 index {keys = var.index9}
 }
+
+resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection4" {
+
+  name = var.collectionname4
+  resource_group_name = var.rg_name
+  account_name = azurerm_cosmosdb_account.acc.name
+  database_name = azurerm_cosmosdb_mongo_database.mongodb.name
+  shard_key = "_id"
+  autoscale_settings {
+
+    max_throughput = 4000
+    
+  }
+index {keys = var.index1}
+}

@@ -656,6 +656,11 @@ variable "collectionname3" {
 
 }
 
+variable "collectionname4" {
+
+    default = "ChangeAudit"
+
+}
 
 ###################### Cosmos DB End  ########################################################
 
@@ -815,3 +820,11 @@ variable "claimname" {
 }
 
 ########################### Azure AD UI App Registration variables End ####################################
+
+################################### Service Bus variables  #########################################
+
+variable "sbqueue_name" {
+
+    default = "changeauditsbqueue"
+  
+}
