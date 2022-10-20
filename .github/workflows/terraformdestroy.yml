@@ -18,8 +18,9 @@ jobs:
   
   Check_Validation:
     runs-on: ubuntu-latest
+    environment: TEST
     # The agent type used to build and deploy
-    env:
+    env: 
       # Environment variables used in different stages, all are defined globally to be used
       RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCEGROUP }}
       STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGEACCOUNT }}
@@ -119,8 +120,8 @@ jobs:
     # needs is passed here so that this job run after Check_Validation job
     runs-on: ubuntu-latest
     # The agent type used to build and deploy
-    environment:
-      name: Test   #Env_Variable
+    environment: TEST
+    
     env:
       # Environment variables used in different stages, all are defined globally to be used
       RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCEGROUP }}
