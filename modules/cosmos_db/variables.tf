@@ -93,6 +93,10 @@ variable "collectionname3" {
   
 }
 
+variable "collectionname4" {
+  
+}
+
 variable "index1" {
   
 }
