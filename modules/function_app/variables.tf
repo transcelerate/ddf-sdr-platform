@@ -34,7 +34,7 @@ variable "subnet_id" {
   
 }
 
-variable "application_insights_key " {
+variable "application_insights_key" {
   
 }
 
