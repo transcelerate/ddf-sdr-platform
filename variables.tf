@@ -124,6 +124,16 @@ variable "service_endpoints2" {
 
 ####################### Delegated Subnet 2 Variable Begin   #####################################################
 
+####################### Delegated Subnet 3 Variable Begin   #####################################################
+
+variable "dsaddress_prefix3" {
+
+    default = ["#{Subnet-Dsaddress3}#"]
+  
+}
+
+####################### Delegated Subnet 3 Variable Begin   #####################################################
+
 ####################### Resource Group Begin #####################################################
 
 
@@ -434,16 +444,6 @@ variable "application_type" {
 
 
 ######################APP Service Begin  ###################################################
-variable "current_stack" {
-
-    default = "node"
-}
-
-variable "current_stack2" {
-
-    default = "dotnet"
-}
-
 
 variable "https_only" {
 
@@ -529,13 +529,19 @@ variable "action2" {
 ######################APP Service Plan Begin  ###################################################
 
 variable "os_type"{
-    default        = "Windows"
+
+    default        = "Linux"
 }
 
 variable "sku_name_asp" {
 
     default = "S1"
   
+}
+
+variable "funasp_os_type"{
+
+    default        = "Windows"
 }
 
 
