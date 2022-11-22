@@ -30,9 +30,12 @@ resource "azurerm_cosmosdb_account" "acc" {
     retention_in_hours = var.interval_hours
   }
 
-  virtual_network_rule {
-        id = var.subnet_id
-  }
+  dynamic virtual_network_rule {
+    for_each = var.subnet_id
+    content {
+        id = virtual_network_rule.value.id
+    }
+      }
 }
 
 resource "azurerm_cosmosdb_mongo_database" "mongodb" {

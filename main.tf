@@ -167,7 +167,7 @@ module "module_cosmosdb"{
     backup_type                         = var.backup_type
     interval_minutes                    = var.interval_minutes 
     interval_hours                      = var.interval_hours
-    subnet_id                           = [module.module_deligatedsubnet2.Dsubnet_ID,module.module_deligatedsubnet3.Dsubnet_ID]
+    subnet_id                           = [{id = module.module_deligatedsubnet2.Dsubnet_ID},{id = module.module_deligatedsubnet3.Dsubnet_ID}]
     container_name                      = var.container_name
     throughput                          = var.throughput
     is_virtual_network_filter_enabled   = var.is_virtual_network_filter_enabled
