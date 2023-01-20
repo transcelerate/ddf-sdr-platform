@@ -80,6 +80,9 @@ This folder contains all the modularized code for the resources listed below.
 | data_adgrouprole_assignments data_sprole_assignments |                               |       Code for reading **Azure AD Groups** and **Service Principal** for RBAC       |
 |                   role_assignment                    |                               |           Code for granting access and RBAC role assignment to resources            |
 | azuread_appregistration |             |  Code for creating **App Registration** to enable authentication for SDR Application
+| azure_container_registry |            |  Code for creating **Azure Container Registry** 
+| function_app  |                       |  Code for creating **Azure Function App**
+| service_bus   |                       |  Code for creating **Azure Service Bus**
 
 ## main.tf
 
@@ -148,6 +151,7 @@ Terraform will use these secret values (from GitHub Secrets) to login to the Mic
      - Subnet-IP         : Provide the Subnet Address Space
      - Subnet-Dsaddress1 : Provide the Delegated Subnet1 Address Space
      - Subnet-Dsaddress2 : Provide the Delegated Subnet2 Address Space
+     - Subnet-Dsaddress3 : Provide the Delegated Subnet3 Address Space
      - subscription      : Provide the short form of the subscription name; this will be added to the resource naming convention.
      - Publisher-Name    : Provide the publisher name for API Management Resource.
      - Publisher-Email   : Provide the publisher email id for API Management Resource.

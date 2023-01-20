@@ -280,11 +280,32 @@ variable "apioperations" {
         url_template = "/v1/studydefinitions"
     },
     {
+        operation_id = "post-study-definition-v2"
+        api_name     = "sdr-api"
+        display_name = "Post Study Definition V2"
+        method       = "POST"
+        url_template = "/v2/studydefinitions"
+    },
+    {
+        operation_id = "put-study-definition-v2"
+        api_name     = "sdr-api"
+        display_name = "Put Study Definition V2"
+        method       = "PUT"
+        url_template = "/v2/studydefinitions"
+    },
+    {
         operation_id = "study-designs"
         api_name     = "sdr-api"
         display_name = "Study Designs"
         method       = "GET"
         url_template = "/v1/studydesigns"
+    },
+    {
+        operation_id = "study-designs-v2"
+        api_name     = "sdr-api"
+        display_name = "Study Designs V2"
+        method       = "GET"
+        url_template = "/v2/studydesigns"
     },
     {
         operation_id = "study-history"
@@ -402,11 +423,75 @@ variable "apioperations_tp" {
         tempname     = "studyId"
     },
     {
+        operation_id = "audit-trail-v2"
+        api_name     = "sdr-api"
+        display_name = "Audit Trail V2"
+        method       = "GET"
+        url_template = "/v2/audittrail/{studyId}"
+        tempname     = "studyId"
+    },
+    {
         operation_id = "get-study-definition"
         api_name     = "sdr-api"
         display_name = "Get Study Definition"
         method       = "GET"
         url_template = "/v1/studydefinitions/{studyid}"
+        tempname     = "studyid"
+    },
+    {
+        operation_id = "get-study-definition-v2"
+        api_name     = "sdr-api"
+        display_name = "Get Study Definition V2"
+        method       = "GET"
+        url_template = "/v2/studydefinitions/{studyid}"
+        tempname     = "studyid"
+    },
+    {
+        operation_id = "delete-study-id-v2"
+        api_name     = "sdr-api"
+        display_name = "Delete Study ID V2"
+        method       = "DELETE"
+        url_template = "/v2/studydefinitions/{studyId}"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "change-audit-study-id-v2"
+        api_name     = "sdr-api"
+        display_name = "Change Audit Study ID V2"
+        method       = "GET"
+        url_template = "/v2/changeaudit/{study_uuid}"
+        tempname     = "study_uuid"
+    },
+        {
+        operation_id = "sdrui-audit-trail"
+        api_name     = "sdr-ui-api"
+        display_name = "SDRUI Audit Trail"
+        method       = "GET"
+        url_template = "/v1/audittrail/{studyId}"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "sdrui-audit-trail-v2"
+        api_name     = "sdr-ui-api"
+        display_name = "SDRUI Audit Trail V2"
+        method       = "GET"
+        url_template = "/v2/audittrail/{studyId}"
+        tempname     = "studyId"
+    },
+        {
+        operation_id = "sdrui-get-study-definition"
+        api_name     = "sdr-ui-api"
+        display_name = "SDRUI Get Study Definition"
+        method       = "GET"
+        url_template = "/v1/studydefinitions/{studyid}"
+        tempname     = "studyid"
+    },
+    {
+        operation_id = "sdrui-get-study-definition-v2"
+        api_name     = "sdr-ui-api"
+        display_name = "SDRUI Get Study Definition V2"
+        method       = "GET"
+        url_template = "/v2/studydefinitions/{studyid}"
         tempname     = "studyid"
     }
     ]

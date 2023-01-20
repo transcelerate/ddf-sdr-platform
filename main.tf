@@ -228,7 +228,7 @@ module "module_apimanagement"{
       azurerm_application_insights_id   = module.module_app_insights.app_insights_id
       appinsights_instrumentation_key   = module.module_app_insights.instrumentation_key  
       identity_type                     = var.identity_type
-      host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
+    #   host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
       service_url                       = "https://${module.module_appservice2.appservice_name}"
       apiendpoints                      = var.apiendpoints
       apioperations                     = var.apioperations
