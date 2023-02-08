@@ -25,6 +25,15 @@ resource "azurerm_windows_function_app" "functionapp" {
     dotnet_version = "6"
   
     }
+    ip_restriction {
+      
+      ip_address                = var.ip_address
+      virtual_network_subnet_id = var.virtual_network_subnet_id
+      name                      = var.apparname
+      priority                  = var.priority
+      action                    = var.action
+        
+    }
   }
 
   identity {

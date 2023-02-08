@@ -33,6 +33,26 @@ variable "KeyVaultName" {
 variable "subnet_id" {
   
 }
+variable "virtual_network_subnet_id" {
+  
+}
+
+variable "ip_address" {
+  
+
+  
+}
+variable "apparname" {
+  
+}
+
+variable "priority" {
+  
+}
+
+variable "action" {
+  
+}
 
 variable "application_insights_key" {
   
