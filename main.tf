@@ -84,6 +84,18 @@ module "module_deligatedsubnet2" {
     depends_on                  = [module.module_virtualnetwork]      
 }
 
+module "module_deligatedsubnet3" {
+    source                      = "./modules/delegated_subnet"
+    subnet_name                 = "dsnetfunapp-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-002"
+    vnet_name                   = module.module_virtualnetwork.vnet_name
+    address_prefix              = var.dsaddress_prefix3
+    rg_name                     = module.module_resource_group_2.rg_name
+    service_delegation          = var.service_delegation
+    service_endpoints           = var.service_endpoints2
+    delegation_name             = var.delegation_name
+    depends_on                  = [module.module_virtualnetwork]      
+}
+
 ################################## Log Analytics Workspace ################################################
 
 module "module_loganalytics_workspace"{
@@ -155,7 +167,7 @@ module "module_cosmosdb"{
     backup_type                         = var.backup_type
     interval_minutes                    = var.interval_minutes 
     interval_hours                      = var.interval_hours
-    subnet_id                           = module.module_deligatedsubnet2.Dsubnet_ID
+    subnet_id                           = [{id = module.module_deligatedsubnet2.Dsubnet_ID},{id = module.module_deligatedsubnet3.Dsubnet_ID}]
     container_name                      = var.container_name
     throughput                          = var.throughput
     is_virtual_network_filter_enabled   = var.is_virtual_network_filter_enabled
@@ -165,6 +177,7 @@ module "module_cosmosdb"{
     collectionname                      = var.collectionname
     collectionname2                     = var.collectionname2
     collectionname3                     = var.collectionname3
+    collectionname4                     = var.collectionname4
     index1                              = var.index1
     index2                              = var.index2
     index3                              = var.index3
@@ -215,7 +228,7 @@ module "module_apimanagement"{
       azurerm_application_insights_id   = module.module_app_insights.app_insights_id
       appinsights_instrumentation_key   = module.module_app_insights.instrumentation_key  
       identity_type                     = var.identity_type
-      host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
+    #   host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
       service_url                       = "https://${module.module_appservice2.appservice_name}"
       apiendpoints                      = var.apiendpoints
       apioperations                     = var.apioperations
@@ -252,6 +265,16 @@ module "module_app_insights"{
     }
 }
 
+###############################  Azure Container Registry ########################################
+
+module "acr"{
+
+    source              = "./modules/azure_container_registry"
+    acrname             = "acr${var.subscription_acronym}${var.env_acronym}${var.location}"
+    resource_group_name = module.module_resource_group.rg_name
+    location            = module.module_resource_group.rg_location
+}
+    
 ##################################  App Service Plan ########################################
 module "module_appserviceplan" {
   source              = "./modules/app_service_plan"
@@ -282,6 +305,21 @@ module "module_appserviceplan2" {
     }
 
 }
+
+module "module_appserviceplan3" {
+  source              = "./modules/app_service_plan"
+  app_service_plan_name  = "funasp-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-003"
+  rg_name                = module.module_resource_group.rg_name
+  rg_location            = module.module_resource_group.rg_location
+  os_type                = var.funasp_os_type 
+  sku_name               = var.sku_name_asp  
+    app_service_plan_tags  = {
+
+            Environment = var.env_acronym
+            App_Layer   = var.App_Layer_BE
+    }
+
+}
 ########################### AppService plan Diagonostic settings#######################################
 module "module_appserviceplan01_diagsettings"{
     source                         = "./modules/app_service_plan_diagsettings"
@@ -302,6 +340,16 @@ module "module_appserviceplan02_diagsettings"{
 
 }
 
+module "module_appserviceplan03_diagsettings"{
+    source                         = "./modules/app_service_plan_diagsettings"
+    app_service_plan_diag_name     = "diags-funasp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-003"
+    target_resource_id             = module.module_appserviceplan3.app_service_plan_id
+    log_analytics_workspace_id     = module.module_loganalytics_workspace.log_analytics_id
+    /* enable_metric_retention_policy = "true"
+    metric_retention_days          = "7" */
+
+}
+
 ############################ App Service ################################################
 module "module_appservice"{
     source                       = "./modules/app_service"
@@ -314,7 +362,7 @@ module "module_appservice"{
     https_only                              = var.https_only
     ftps_state                              = var.ftps_state
     use_32_bit_worker                       = var.use_32_bit_worker
-    current_stack                           = var.current_stack
+    docker_image                            = module.acr.acrurl
     identity                                = var.identity
     http2_enabled                           = var.http2_enabled
     subnet_id                               = module.module_deligatedsubnet1.Dsubnet_ID
@@ -341,7 +389,7 @@ module "module_appservice2"{
     https_only                              = var.https_only
     ftps_state                              = var.ftps_state
     use_32_bit_worker                       = var.use_32_bit_worker
-    current_stack                           = var.current_stack2
+    docker_image                            = module.acr.acrurl
     identity                                = var.identity
     http2_enabled                           = var.http2_enabled
     subnet_id                               = module.module_deligatedsubnet2.Dsubnet_ID
@@ -350,7 +398,7 @@ module "module_appservice2"{
     apparname                               = var.apparname2
     priority                                = var.priority2
     action                                  = var.action2
-    depends_on                              = [module.module_deligatedsubnet2,module.module_subnet]   
+    depends_on                              = [module.module_deligatedsubnet2,module.module_subnet,module.module_virtualnetwork]   
     app_service_tags                = {
 
         Environment = var.env_acronym
@@ -372,6 +420,42 @@ module "module_appservice02_diagsettings"{
     target_resource_id             = module.module_appservice2.app_service_id
     log_analytics_workspace_id     = module.module_loganalytics_workspace.log_analytics_id
     enable_log                    = var.enable_log
+
+}
+
+################################ Function App ########################################
+
+module "module_functionapp" {
+
+    source                                  = "./modules/function_app"
+    functionapp_name                        = "funapp-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}"
+    storageaccount_name                     = "fappsa${var.subscription_acronym}${var.env_acronym}${var.location}"
+    resource_group_name                     =  module.module_resource_group.rg_name
+    location                                =  module.module_resource_group.rg_location
+    service_plan_id                         =  module.module_appserviceplan3.app_service_plan_id
+    AzureServiceBusConnectionString         =  "Endpoint=sb://${module.module_servicebus.sbname}.servicebus.windows.net/;SharedAccessKeyName=${module.module_servicebus.sbqueuearn};SharedAccessKey=${module.module_servicebus.sbqueue_authidps}"
+    AzureServiceBusQueueName                =  module.module_servicebus.sbqueue_name
+    KeyVaultName                            =  module.module_keyvault.keyvault_uri
+    subnet_id                               =  module.module_deligatedsubnet3.Dsubnet_ID
+    virtual_network_subnet_id               = module.module_subnet.subnet_id
+    ip_address                              = var.ip_address3
+    apparname                               = var.apparname3
+    priority                                = var.priority3
+    action                                  = var.action3
+    application_insights_key                =  module.module_app_insights.instrumentation_key
+    application_insights_connection_string  =  module.module_app_insights.connection_string
+    depends_on                              = [module.module_deligatedsubnet3,module.module_subnet,module.module_virtualnetwork,module.module_servicebus]
+}
+
+############################## Service Bus ############################################
+
+module "module_servicebus" {
+
+    source                          =   "./modules/service_bus"
+    servicebus_name                 =   "asb-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}"
+    resource_group_name             =   module.module_resource_group.rg_name
+    location                        =   module.module_resource_group.rg_location
+    sbqueue_name                    =   var.sbqueue_name
 
 }
 
