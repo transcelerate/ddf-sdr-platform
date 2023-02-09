@@ -437,9 +437,14 @@ module "module_functionapp" {
     AzureServiceBusQueueName                =  module.module_servicebus.sbqueue_name
     KeyVaultName                            =  module.module_keyvault.keyvault_uri
     subnet_id                               =  module.module_deligatedsubnet3.Dsubnet_ID
+    virtual_network_subnet_id               = module.module_subnet.subnet_id
+    ip_address                              = var.ip_address3
+    apparname                               = var.apparname3
+    priority                                = var.priority3
+    action                                  = var.action3
     application_insights_key                =  module.module_app_insights.instrumentation_key
     application_insights_connection_string  =  module.module_app_insights.connection_string
-    depends_on                              = [module.module_deligatedsubnet3,module.module_virtualnetwork,module.module_servicebus]
+    depends_on                              = [module.module_deligatedsubnet3,module.module_subnet,module.module_virtualnetwork,module.module_servicebus]
 }
 
 ############################## Service Bus ############################################

@@ -623,6 +623,29 @@ variable "action2" {
     default = "Allow"
   
 }
+variable "ip_address3" {
+   
+   default = null
+
+}
+
+variable "apparname3" {
+
+    default = "AllowVnetTraffic"
+  
+}
+
+variable "priority3" {
+
+    default = "100"
+  
+}
+
+variable "action3" {
+
+    default = "Allow"
+  
+}
 
 
 ######################APP Service End  ###################################################
