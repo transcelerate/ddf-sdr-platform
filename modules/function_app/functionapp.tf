@@ -5,6 +5,7 @@ resource "azurerm_storage_account" "funappstorageaccount" {
   location                 = var.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+  
 }
 
 
@@ -13,6 +14,7 @@ resource "azurerm_windows_function_app" "functionapp" {
   name                = var.functionapp_name
   resource_group_name = var.resource_group_name
   location            = var.location
+  tags                = var.functionapp_tags
 
   storage_account_name       = azurerm_storage_account.funappstorageaccount.name
   storage_account_access_key = azurerm_storage_account.funappstorageaccount.primary_access_key

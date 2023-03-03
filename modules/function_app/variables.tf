@@ -13,6 +13,11 @@ variable "location" {
 variable "functionapp_name" {
   
 }
+variable "functionapp_tags" {
+  
+  type = map(string)
+
+}
 
 variable "service_plan_id" {
   
