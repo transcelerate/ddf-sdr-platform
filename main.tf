@@ -448,6 +448,7 @@ module "module_functionapp" {
   storageaccount_name                    = "fappsa${var.subscription_acronym}${var.env_acronym}${var.location}"
   resource_group_name                    = module.module_resource_group.rg_name
   location                               = module.module_resource_group.rg_location
+  functionapp_id                         = module.module_functionapp_functioapp_id
   service_plan_id                        = module.module_appserviceplan3.app_service_plan_id
   AzureServiceBusConnectionString        = "Endpoint=sb://${module.module_servicebus.sbname}.servicebus.windows.net/;SharedAccessKeyName=${module.module_servicebus.sbqueuearn};SharedAccessKey=${module.module_servicebus.sbqueue_authidps}"
   AzureServiceBusQueueName               = module.module_servicebus.sbqueue_name
