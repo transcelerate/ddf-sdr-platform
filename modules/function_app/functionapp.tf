@@ -15,6 +15,7 @@ resource "azurerm_windows_function_app" "functionapp" {
   resource_group_name = var.resource_group_name
   location            = var.location
   tags                = var.functionapp_tags
+  https_only          = var.https_only
 
   storage_account_name       = azurerm_storage_account.funappstorageaccount.name
   storage_account_access_key = azurerm_storage_account.funappstorageaccount.primary_access_key
@@ -22,7 +23,6 @@ resource "azurerm_windows_function_app" "functionapp" {
   
   site_config {
     ftps_state  = "Disabled"
-    https_only  = var.https_only
     application_stack {
       
     dotnet_version = "6"
