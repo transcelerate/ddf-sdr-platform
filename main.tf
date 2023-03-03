@@ -430,6 +430,14 @@ module "module_appservice02_diagsettings" {
   enable_log                 = var.enable_log
 
 }
+module "module_functionapp_diagsettings" {
+  source                     = "./modules/functionapp_service_diagsettings"
+  app_service_diag_name      = "diags-apps-${var.subscription_acronym}-${var.env_acronym}-${var.location}-003"
+  target_resource_id         = module.module_functionapp.functionapp_id
+  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+  enable_log                 = var.enable_log
+
+}
 
 ################################ Function App ########################################
 
