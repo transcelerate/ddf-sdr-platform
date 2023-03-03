@@ -22,6 +22,7 @@ resource "azurerm_windows_function_app" "functionapp" {
   
   site_config {
     ftps_state  = "Disabled"
+    https_only  = var.https_only
     application_stack {
       
     dotnet_version = "6"

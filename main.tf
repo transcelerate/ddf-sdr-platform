@@ -452,6 +452,7 @@ module "module_functionapp" {
   action                                 = var.action3
   application_insights_key               = module.module_app_insights.instrumentation_key
   application_insights_connection_string = module.module_app_insights.connection_string
+  https_only                             = var.https_only
   depends_on                             = [module.module_deligatedsubnet3, module.module_subnet, module.module_virtualnetwork, module.module_servicebus]
   functionapp_tags = {
 

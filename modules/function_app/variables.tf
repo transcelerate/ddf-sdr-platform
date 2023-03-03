@@ -66,3 +66,6 @@ variable "application_insights_key" {
 variable "application_insights_connection_string" {
   
 }
+variable "https_only" {
+  
+}
