@@ -178,6 +178,7 @@ module "module_cosmosdb" {
   collectionname2                    = var.collectionname2
   collectionname3                    = var.collectionname3
   collectionname4                    = var.collectionname4
+  collectionname5                    = var.collectionname5
   index1                             = var.index1
   index2                             = var.index2
   index3                             = var.index3
@@ -187,6 +188,7 @@ module "module_cosmosdb" {
   index7                             = var.index7
   index8                             = var.index8
   index9                             = var.index9
+  index10                            = var.index10
   cosmosdb_tags = {
 
     Environment = var.env_acronym
