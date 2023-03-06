@@ -5,7 +5,15 @@ resource "azurerm_servicebus_namespace" "servicebus" {
   resource_group_name = var.resource_group_name
   sku                 = "Basic"
   tags                = var.servicebus_tags
-  min_tls_version    = "TLS1_2"
+  site_config {
+    security {
+
+      minimum_tls_version = "Version 1.2"
+
+    }
+
+  }
+
 }
 
 resource "azurerm_servicebus_queue" "sbqueue" {
