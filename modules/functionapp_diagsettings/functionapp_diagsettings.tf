@@ -1,4 +1,4 @@
-resource "azurerm_monitor_diagnostic_setting" "function_app_diag_set" {
+resource "azurerm_monitor_diagnostic_setting" "functionapp_diag_set" {
   name                       = var.functionapp_diag_name
   target_resource_id         = var.target_resource_id
   log_analytics_workspace_id = var.log_analytics_workspace_id
