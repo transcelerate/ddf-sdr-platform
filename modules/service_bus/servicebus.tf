@@ -5,10 +5,7 @@ resource "azurerm_servicebus_namespace" "servicebus" {
   resource_group_name = var.resource_group_name
   sku                 = "Basic"
   tags                = var.servicebus_tags
-  }
-
 }
-
 resource "azurerm_servicebus_queue" "sbqueue" {
   name         = var.sbqueue_name
   namespace_id = azurerm_servicebus_namespace.servicebus.id
