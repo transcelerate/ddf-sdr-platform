@@ -608,7 +608,7 @@ module "module_keyvault_access_policy_appservice_api" {
   secret_permissions      = var.secret_permissions
   certificate_permissions = var.certificate_permissions
 }
-module "module_keyvault_access_policy_functionapp_funapp" {
+module "module_keyvault_access_policy_function_app_funapp" {
   source                  = "./modules/key_vault_accesspolicy"
   key_vault_id            = module.module_keyvault.keyvault_id
   tenant_id               = module.module_keyvault.tenant_id
