@@ -433,7 +433,7 @@ module "module_appservice02_diagsettings" {
 module "module_functionapp_diagsettings" {
   source                     = "./modules/functionapp_diagsettings"
   functionapp_diag_name      = "diags-funapp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-003"
-  target_resource_id         = module.module_function_app.function_app_id
+  target_resource_id         = module.module_functionapp.function_app_id
   log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
   enable_log                 = var.enable_log
 
