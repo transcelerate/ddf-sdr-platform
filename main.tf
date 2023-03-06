@@ -430,14 +430,14 @@ module "module_appservice02_diagsettings" {
   enable_log                 = var.enable_log
 
 }
-module "module_functionapp_diagsettings" {
-  source                     = "./modules/functionapp_diagsettings"
-  functionapp_diag_name      = "diags-funapp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-003"
-  target_resource_id         = module.module_functionapp.functionapp_id
-  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
-  enable_log                 = var.enable_log
+# module "module_functionapp_diagsettings" {
+#   source                     = "./modules/functionapp_diagsettings"
+#   functionapp_diag_name      = "diags-funapp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-003"
+#   target_resource_id         = module.module_function_app.function_app_id
+#   log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+#   enable_log                 = var.enable_log
 
-}
+# }
 
 ################################ Function App ########################################
 
@@ -448,7 +448,6 @@ module "module_functionapp" {
   storageaccount_name                    = "fappsa${var.subscription_acronym}${var.env_acronym}${var.location}"
   resource_group_name                    = module.module_resource_group.rg_name
   location                               = module.module_resource_group.rg_location
-  functionapp_id                         = module.module_functionapp_functioapp_id
   service_plan_id                        = module.module_appserviceplan3.app_service_plan_id
   AzureServiceBusConnectionString        = "Endpoint=sb://${module.module_servicebus.sbname}.servicebus.windows.net/;SharedAccessKeyName=${module.module_servicebus.sbqueuearn};SharedAccessKey=${module.module_servicebus.sbqueue_authidps}"
   AzureServiceBusQueueName               = module.module_servicebus.sbqueue_name

@@ -22,9 +22,6 @@ variable "functionapp_tags" {
 variable "service_plan_id" {
 
 }
-variable "functionapp_id" {
-  type = string
-}
 variable "AzureServiceBusConnectionString" {
 
 }

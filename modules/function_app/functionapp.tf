@@ -14,7 +14,6 @@ resource "azurerm_windows_function_app" "functionapp" {
   name                = var.functionapp_name
   resource_group_name = var.resource_group_name
   location            = var.location
-  functionapp_id      = var.functionapp_id
   tags                = var.functionapp_tags
   https_only          = var.https_only
 

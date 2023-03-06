@@ -1,4 +1,4 @@
-variable functionapp_diag_name {
+variable function_app_diag_name {
   
 }
 variable target_resource_id{

@@ -5,6 +5,7 @@ resource "azurerm_servicebus_namespace" "servicebus" {
   resource_group_name = var.resource_group_name
   sku                 = "Basic"
   tags                = var.servicebus_tags
+  minimum_tls_version = "Version 1.2"
 
 }
 
