@@ -4,6 +4,7 @@ resource "azurerm_monitor_diagnostic_setting" "functionapp_diag_set" {
   log_analytics_workspace_id = var.log_analytics_workspace_id
   log {
     category = "FunctionApplicationLogs"
+    enabled  = var.enable_log
   }
   metric {
     category = "AllMetrics"
