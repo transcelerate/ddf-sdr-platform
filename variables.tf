@@ -774,6 +774,10 @@ variable "index9" {
 
     default =  ["clinicalStudy.studyIdentifiers.studyIdentifierScope.organisationType.decode"]
 }
+variable "index10" {
+
+    default =  ["auditTrail.usdm-version"]
+}
 
 variable "collectionname2" {
 
@@ -790,6 +794,11 @@ variable "collectionname3" {
 variable "collectionname4" {
 
     default = "ChangeAudit"
+
+}
+variable "collectionname5" {
+
+  default = "StudyDefinitions"
 
 }
 
