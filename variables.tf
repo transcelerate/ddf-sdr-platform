@@ -312,7 +312,7 @@ variable "apioperations" {
         api_name     = "sdr-api"
         display_name = "V2 Put Study Definitions"
         method       = "PUT"
-        url_template = "/v2/studydefinitions"
+        url_template = "/v2/studydefinitions/{studyid}"
     },
     {
         operation_id = "check-group-name"
