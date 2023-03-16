@@ -312,7 +312,7 @@ variable "apioperations" {
         api_name     = "sdr-api"
         display_name = "V2 Put Study Definitions"
         method       = "PUT"
-        url_template = "/v2/studydefinitions"
+        url_template = "/v2/studydefinitions/{studyid}"
     },
     {
         operation_id = "check-group-name"
@@ -774,6 +774,10 @@ variable "index9" {
 
     default =  ["clinicalStudy.studyIdentifiers.studyIdentifierScope.organisationType.decode"]
 }
+variable "index10" {
+
+    default =  ["auditTrail.usdm-version"]
+}
 
 variable "collectionname2" {
 
@@ -790,6 +794,11 @@ variable "collectionname3" {
 variable "collectionname4" {
 
     default = "ChangeAudit"
+
+}
+variable "collectionname5" {
+
+  default = "StudyDefinitions"
 
 }
 

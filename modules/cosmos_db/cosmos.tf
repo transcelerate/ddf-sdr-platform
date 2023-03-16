@@ -119,3 +119,21 @@ resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection4" {
   }
 index {keys = var.index1}
 }
+resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection5" {
+
+  name = var.collectionname5
+  resource_group_name = var.rg_name
+  account_name = azurerm_cosmosdb_account.acc.name
+  database_name = azurerm_cosmosdb_mongo_database.mongodb.name
+  shard_key = "_id"
+  autoscale_settings {
+
+    max_throughput = 4000
+    
+  }
+index {keys = var.index1}
+index {keys = var.index2}
+index {keys = var.index3}
+index {keys = var.index4}
+index {keys = var.index10}
+}
