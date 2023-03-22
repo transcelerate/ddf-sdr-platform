@@ -14,8 +14,8 @@
     - [Variables.tf Secret Variables](#variablestf-secret-variables)
   - [Deployment Actions](#deployment-actions)
     - [main.yml](#mainyml)
-- [Infrastructure changes for Release V2.0](#infrastructure-changes-for-release-V2.0)
-    - [Deployment process for Release V2.0](#deployment-process-for-release-V2.0)
+- [Infrastructure Changes for Release V2.0](#infrastructure-changes-for-release-V2.0)
+    - [Deployment Process for Release V2.0](#deployment-process-for-release-V2.0)
 
 
 # Introduction
@@ -176,12 +176,12 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 - **Step 3 :** Once the workflow completes successfully, refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](https://github.com/transcelerate/ddf-sdr-platform/raw/main/documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v3.0.pdf)** for additional manual configuration updates to the deployed resources and further deploy SDR Reference Implementation (RI) Application Code
 
 **Important Note :** GitHub Actions does not allow multi-environment deployment setup with Free Pricing Plan. To Deploy to different environments, the GitHub secret values have to be updated with values of the target Azure Environment.
-## Infrastructure changes for Release V2.0
+# Infrastructure Changes for Release V2.0
 
 - The steps required to migrate SDR infrastructure from Version 0.5 to Version 2.0 for users who have set up their own SDR instance for the Study Definition Repository – Reference Implementation on Azure Cloud Platform. It provides details for deploying the new resources using azure portal. Additionally, it provides details of containerized deployment for the SDR API and UI applications.
 - The UI and API builds have been containerized as a part of SDR Release V2.0. The same has impacted the App Services on which the SDR Application is hosted. This section details the steps to enable containerized build and deployment. 
 - This is an optional step. To continue with existing way of deployment of SDR use current App Service and Service Plan configuration and B&D scripts for UI and API for deployment as mentioned in Infra Migration Guide section 3.4.2.
 
-## Deployment process for Release V2.0
+## Deployment Process for Release V2.0
 
 **Important Note:** Refer to the **[DDF SDR Infra Migration Guide (Release V2.0)](documents/DDF_SDR_Infra-Migration-guide (Release V2.0.pdf))** documents before following the below steps. 
