@@ -190,14 +190,14 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 - Minimum Contributor level of access at Subscription Level.
 - Optionally, basic understanding of containerized deployments
 
-    **Step 1 :** Resources Configurations for Change Audit Feature
-    **Step 2 :**  Configuration for USDM Versioning
-    **Step 3 :**  Additional Cloud Configurations
-    **Step 4 :**  Build and Deployment Updates
+   - **Step 1 :** Resources Configurations for Change Audit Feature
+   - **Step 2 :**  Configuration for USDM Versioning
+   - **Step 3 :**  Additional Cloud Configurations
+   - **Step 4 :**  Build and Deployment Updates
 ## Containerized Deployment 
 - The UI and API builds have been containerized as a part of SDR Release V2.0. The same has impacted the App Services on which the SDR Application is hosted. This section details the steps to enable containerized build and deployment. 
 - This is an optional step. To continue with existing way of deployment of SDR use current App Service and Service Plan configuration and B&D scripts for UI and API for deployment as mentioned in section 3.4.2
 
-    **Step 1 :**  Recreate App Service Plans and App Services
-    **Step 2 :**  Azure Container Registry 
-    **Step 3 :**  GitHub Actions/YAML/Build & Deploy Script Updates
+  - **Step 1 :**  Recreate App Service Plans and App Services
+  - **Step 2 :**  Azure Container Registry 
+  - **Step 3 :**  GitHub Actions/YAML/Build & Deploy Script Updates
