@@ -14,9 +14,10 @@
     - [Variables.tf Secret Variables](#variablestf-secret-variables)
   - [Deployment Actions](#deployment-actions)
     - [main.yml](#mainyml)
-- [Infrastructure Changes for Release V2.0](#infrastructure-changes-for-release-V2.0)
-    - [Deployment Process for Release V2.0](#deployment-process-for-release-V2.0)
-
+- [Infrastructure Changes for Release V2.0](#infrastructure-changes-for-release-v20)
+  - [Deployment Process for Release V2.0](#deployment-process-for-release-v20)
+    - [Steps to Migrate](#steps-to-migrate)
+    - [Containerized Deployment](#containerized-deployment)
 
 # Introduction
 
@@ -179,9 +180,24 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 # Infrastructure Changes for Release V2.0
 
 - The steps required to migrate SDR infrastructure from Version 0.5 to Version 2.0 for users who have set up their own SDR instance for the Study Definition Repository – Reference Implementation on Azure Cloud Platform. It provides details for deploying the new resources using azure portal. Additionally, it provides details of containerized deployment for the SDR API and UI applications.
-- The UI and API builds have been containerized as a part of SDR Release V2.0. The same has impacted the App Services on which the SDR Application is hosted. This section details the steps to enable containerized build and deployment. 
-- This is an optional step. To continue with existing way of deployment of SDR use current App Service and Service Plan configuration and B&D scripts for UI and API for deployment as mentioned in Infra Migration Guide section 3.4.2.
+
+**Important Note:** Refer to the **[DDF SDR Infra Migration Guide (Release V2.0)](documents/DDF_SDR_Infra-Migration-guide (Release V2.0.pdf))** document before following the below steps. 
 
 ## Deployment Process for Release V2.0
+## Steps to Migrate
+**PRE-REQUISITES :**
+- SDR Running instance on Azure (SDR Release V0.5).
+- Minimum Contributor level of access at Subscription Level.
+- Optionally, basic understanding of containerized deployments
 
-**Important Note:** Refer to the **[DDF SDR Infra Migration Guide (Release V2.0)](documents/DDF_SDR_Infra-Migration-guide (Release V2.0.pdf))** documents before following the below steps. 
+### Resources Configurations for Change Audit Feature
+### Resources Configuration for USDM Versioning
+### Additional Cloud Configurations
+### Build and Deployment Updates
+## Containerized Deployment 
+- The UI and API builds have been containerized as a part of SDR Release V2.0. The same has impacted the App Services on which the SDR Application is hosted. This section details the steps to enable containerized build and deployment. 
+- This is an optional step. To continue with existing way of deployment of SDR use current App Service and Service Plan configuration and B&D scripts for UI and API for deployment as mentioned in section 3.4.2
+
+### Recreate App Service Plans and App Services
+### Create Azure Container Registry 
+### GitHub Actions/YAML/Build & Deploy Script Updates
