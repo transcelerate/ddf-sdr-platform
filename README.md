@@ -14,8 +14,8 @@
     - [Variables.tf Secret Variables](#variablestf-secret-variables)
   - [Deployment Actions](#deployment-actions)
     - [main.yml](#mainyml)
-- [Infrastrycture changes for Release V2.0](#Infrastructure-changes-for-Release-V2.0)
-    - [Deployment process for Release V2.0](#Deployment-process-for-Release-V2.0)
+- [Infrastructure changes for Release V2.0](#infrastructure-changes-for-release-V2.0)
+    - [Deployment process for Release V2.0](#deployment-process-for-release-V2.0)
 
 
 # Introduction
