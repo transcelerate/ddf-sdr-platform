@@ -14,6 +14,9 @@
     - [Variables.tf Secret Variables](#variablestf-secret-variables)
   - [Deployment Actions](#deployment-actions)
     - [main.yml](#mainyml)
+-  [Infrastrycture changes for Release V2.0 ](#Infrastrycture-changes-for-Release-V2.0)
+    - [Deployment process for Release V2.0](#deployment-process-for-Release-V2.0)
+
 
 # Introduction
 
@@ -146,19 +149,19 @@ Terraform will use these secret values (from GitHub Secrets) to login to the Mic
 
   These variables are environment-specific. Define IP address space for VNets and Subnets, Azure AD Groups and Service Principal for RBAC, and environment and subscription acronyms for resource naming conventions in the secrets section.
 
-     - Env               : Provide the name of the environment (for example, Dev or QA), which will be added to the resource naming convention.
-     - Vnet-IP           : Provide the VNet Address Space
-     - Subnet-IP         : Provide the Subnet Address Space
-     - Subnet-Dsaddress1 : Provide the Delegated Subnet1 Address Space
-     - Subnet-Dsaddress2 : Provide the Delegated Subnet2 Address Space
-     - Subnet-Dsaddress3 : Provide the Delegated Subnet3 Address Space
-     - subscription      : Provide the short form of the subscription name; this will be added to the resource naming convention.
-     - Publisher-Name    : Provide the publisher name for API Management Resource.
-     - Publisher-Email   : Provide the publisher email id for API Management Resource.
-     - ADgroup1          : Provide the name of the Azure AD Group for contributor access to the App Resource Group (Admin Group).
-     - ADgroup2          : Provide the name of the Azure AD Group for contributor access to the App Resource Group (DevelopmentTeam_Group).
-     - ADgroup3          : Provide the name of the Azure AD Group for Reader access on App & Core Resource Groups.
-     - Serviceprincipal  : Provide the name of the Service principal that was created for the Git connection; it will provide key vault secret user access and access policies for secrets on Key Vault for the Service Principal.
+     - ENV               : Provide the name of the environment (for example, Dev or QA), which will be added to the resource naming convention.
+     - VNET-IP           : Provide the VNet Address Space
+     - SUBNET-IP         : Provide the Subnet Address Space
+     - SUBNET_DSADDRESS1 : Provide the Delegated Subnet1 Address Space
+     - SUBNET_DSADDRESS2 : Provide the Delegated Subnet2 Address Space
+     - SUBNET_DSADDRESS3 : Provide the Delegated Subnet3 Address Space
+     - SUBSCRIPTION      : Provide the short form of the subscription name; this will be added to the resource naming convention.
+     - PUBLISHER_NAME    : Provide the publisher name for API Management Resource.
+     - PUBLISHER_EMAIL   : Provide the publisher email id for API Management Resource.
+     - ADGROUP1          : Provide the name of the Azure AD Group for contributor access to the App Resource Group (Admin Group).
+     - ADGROUP2          : Provide the name of the Azure AD Group for contributor access to the App Resource Group (DevelopmentTeam_Group).
+     - ADGROUP3          : Provide the name of the Azure AD Group for Reader access on App & Core Resource Groups.
+     - SERVICEPRINCIPAL  : Provide the name of the Service principal that was created for the Git connection; it will provide key vault secret user access and access policies for secrets on Key Vault for the Service Principal.
 
 ## Deployment Actions
 
@@ -173,3 +176,11 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 - **Step 3 :** Once the workflow completes successfully, refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](https://github.com/transcelerate/ddf-sdr-platform/raw/main/documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v3.0.pdf)** for additional manual configuration updates to the deployed resources and further deploy SDR Reference Implementation (RI) Application Code
 
 **Important Note :** GitHub Actions does not allow multi-environment deployment setup with Free Pricing Plan. To Deploy to different environments, the GitHub secret values have to be updated with values of the target Azure Environment.
+## Infrastrycture changes for Release V2.0
+- The steps required to migrate SDR infrastructure from Version 0.5 to Version 2.0 for users who have set up their own SDR instance for the Study Definition Repository – Reference Implementation on Azure Cloud Platform. It provides details for deploying the new resources using azure portal. Additionally, it provides details of containerized deployment for the SDR API and UI applications.
+- The UI and API builds have been containerized as a part of SDR Release V2.0. The same has impacted the App Services on which the SDR Application is hosted. This section details the steps to enable containerized build and deployment. 
+- This is an optional step. To continue with existing way of deployment of SDR use current App Service and Service Plan configuration and B&D scripts for UI and API for deployment as mentioned in Infra Migration Guide section 3.4.2.
+
+# Deployment Process for Release V2.0
+
+**Important Note:** Refer to the **[DDF SDR Infra Migration Guide (Release V2.0)](documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v3.0.pdf)** documents before following the below steps. 
