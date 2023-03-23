@@ -166,7 +166,7 @@ Terraform will use these secret values (from GitHub Secrets) to login to the Mic
 
 ## Deployment Actions
 
-The folder .github/workflows contains the GitHub Actions yaml script (main.yml) for deploying the Terraform IaC code on Microsoft Azure Platform.
+The folder .github/workflows contains the GitHub Actions yaml script (main.yml) for deploying the Terraform IaC code on Microsoft Azure Platform.Below tasks are added to main.yml file.
 
   **name: Terraform Install**
   - task will install the terraform and it's dependencies on microsoft hosted agents to deploy the resources
