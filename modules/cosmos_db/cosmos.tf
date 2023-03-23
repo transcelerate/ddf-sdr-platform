@@ -30,9 +30,12 @@ resource "azurerm_cosmosdb_account" "acc" {
     retention_in_hours = var.interval_hours
   }
 
-  virtual_network_rule {
-        id = var.subnet_id
-  }
+  dynamic virtual_network_rule {
+    for_each = var.subnet_id
+    content {
+        id = virtual_network_rule.value.id
+    }
+      }
 }
 
 resource "azurerm_cosmosdb_mongo_database" "mongodb" {
@@ -100,4 +103,37 @@ index {keys = var.index6}
 index {keys = var.index7}
 index {keys = var.index8}
 index {keys = var.index9}
+}
+
+resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection4" {
+
+  name = var.collectionname4
+  resource_group_name = var.rg_name
+  account_name = azurerm_cosmosdb_account.acc.name
+  database_name = azurerm_cosmosdb_mongo_database.mongodb.name
+  shard_key = "_id"
+  autoscale_settings {
+
+    max_throughput = 4000
+    
+  }
+index {keys = var.index1}
+}
+resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection5" {
+
+  name = var.collectionname5
+  resource_group_name = var.rg_name
+  account_name = azurerm_cosmosdb_account.acc.name
+  database_name = azurerm_cosmosdb_mongo_database.mongodb.name
+  shard_key = "_id"
+  autoscale_settings {
+
+    max_throughput = 4000
+    
+  }
+index {keys = var.index1}
+index {keys = var.index2}
+index {keys = var.index3}
+index {keys = var.index4}
+index {keys = var.index10}
 }
