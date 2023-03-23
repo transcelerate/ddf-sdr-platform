@@ -167,6 +167,26 @@ Terraform will use these secret values (from GitHub Secrets) to login to the Mic
 ## Deployment Actions
 
 The folder .github/workflows contains the GitHub Actions yaml script (main.yml) for deploying the Terraform IaC code on Microsoft Azure Platform.
+  - name: Terraform Install
+      # task will install the terraform and it's dependencies on microsoft hosted agents to deploy the resources
+      uses: hashicorp/setup-terraform@v1
+      with:
+         terraform_version: 0.14.11
+         
+    - name: Terraform Init
+      # initializes the terrafrom configuration files
+      run:  terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP"  -backend-config="key=$Blob_Key" 
+      
+    - name: Terraform Plan
+      # task creates an execution plan which lets us to review the changes made to the environment before applying the changes
+      run: terraform plan
+      
+#     - name: Run tmate
+#       uses: mxschmitt/action-tmate@v2  
+       
+    - name: Terraform Apply
+      # task execute the actions proposed in the terraform plan
+      run: terraform apply -auto-approve
 
 ### main.yml
 
@@ -199,5 +219,5 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 - This is an optional step. To continue with existing way of deployment of SDR use current App Service and Service Plan configuration and B&D scripts for UI and API for deployment as mentioned in section 3.4.2
 
   - **Step 1 :**  Recreate App Service Plans and App Services
-  - **Step 2 :**  Azure Container Registry 
+  - **Step 2 :**  Create Azure Container Registry 
   - **Step 3 :**  GitHub Actions/YAML/Build & Deploy Script Updates
