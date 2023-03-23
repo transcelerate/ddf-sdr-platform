@@ -23,6 +23,11 @@
 
 Study Definition Repository (SDR) Reference Implementation is TransCelerate’s vision to catalyze industry-level transformation, enabling digital exchange of study definition information by collaborating with technology providers and standards bodies to create a sustainable open-source Study Definition Repository.
 
+The below documents provide a high level overview of the SDR Reference Implementation.
+- [DDF SDR Azure Solution Architecture Document](documents/ddf-sdr-azure-solution-architecture-v2.0.pdf)
+- [DDF SDR Azure Platform Design and Implementation Plan](documents/ddf-sdr-azure-platform-design-and-implementation-v2.0.pdf)** 
+- [DDF SDR Process Flows Document](documents/ddf-sdr-process-flows-v3.0.pdf)
+
 **NOTES:** 
 - These materials and information are provided by TransCelerate Biopharma Inc. AS IS.  Any party using or relying on this information and these materials do so entirely at their own risk.  Neither TransCelerate nor its members will bear any responsibility or liability for any harm, including indirect or consequential harm, that a user may incur from use or misuse of this information or materials.
 - Please be aware that any information you put into the provided tools (including the UI or API) will be visible to all users, so we recommend not using commercially sensitive or confidential information.  You and/or your employer bear all responsibility for anything you share with this project.  TransCelerate, its member companies and any vendors affiliated with the DDF project are not responsible for any harm or loss you occur as a result of uploading any information or code: commercially sensitive, confidential or otherwise.  
@@ -42,23 +47,17 @@ NOTE: Keep a copy for your records.
 
 # Intended Audience
 
-The content in this repository assumes a good understanding of Azure concepts and services. The audience for this document is:
+The contents in this repository allows users to deploy SDR Reference Implementation Infrastructure onto their Azure Cloud Subscription via their own GitHub Repos and Workflows. The deployment scripts (YAML Scripts) can be configured and executed from GitHub Actions, leveraging GitHub Secrets to configure target environment specific values.
 
-- User should have basic understanding of Terraform
-- User should be aware of how to use Azure portal and basic understanding of Microsoft Azure Platform
-- User should have basic understanding of GitHub Actions & Yaml
+It assumes a good understanding of Azure concepts and services. The audience for this document should:
+- have basic understanding of Terraform
+- be aware of how to use Azure portal and basic understanding of Azure Cloud Platform
+- have basic understanding of GitHub Actions, Secrets & Yaml Scripts
 
-There are documents to provide a high level overview of the SDR Reference Implementation.
-- [Azure Solution Architecture Document](documents/ddf-sdr-azure-solution-architecture-v2.0.pdf)
-- [Process Flows Document](documents/ddf-sdr-process-flows-v3.0.pdf)
 
 # Overview
 
- This repository contains Terraform IaC code and configuration for Deploying SDR Infrastructure resources to Microsoft Azure Platform.
-
- Terraform : Terraform is an infrastructure-as-code tool that greatly reduces the amount of time needed to implement and scale the infrastructure. It is provider agnostic.
-
- The folder structure of the IaC code is shown below.
+ This repository contains Terraform IaC code and configuration for deploying SDR Infrastructure resources to Azure Cloud Platform.
 
 - modules - Contains code for all the resources which can be reusable. 
 - main.tf - Contains modules for all the resources which can be reusable.
@@ -90,20 +89,18 @@ This folder contains all the modularized code for the resources listed below.
 
 ## main.tf
 
-- This file contains the resource configuration code. This file invokes the modules for the specific resources to be deployed on the Microsoft Azure Platform.
+- This file contains the resource configuration code. This file invokes the modules for the specific resources to be deployed on the Azure Cloud Platform.
 - Single module can be called multiple times to create the same set of resources with different naming conventions and configurations.
 
 ## Variables.tf
 
-- Variables that are repeated / parameterized / environment specific, can be declared in variables.tf.
+- Variables that are repeated / parameterized / environment specific, are declared in variables.tf.
 
 # Deployment Process
 
-**Important Note:** Refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v3.0.pdf)** and **[DDF SDR Azure Platform Design and Implementation Guide](documents/ddf-sdr-azure-platform-design-and-implementation-v2.0.pdf)** documents before following the below steps. 
+**Important Note:** Refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v3.0.pdf) document for setting up a running instance of SDR on your own Azure Cloud Subscription. Additionally, below instructional videos provide a step-by-step run of the setup. 
 
-## Instructional Vidoes
-
-Several videos have been created to show steps a user would need to go through to provision a new instance of the SDR in their organization's local Azure environment.
+Below videos guide user to create a new instance of the SDR in their local Azure Cloud Subscription.
 1. [Environment Creation for SDR on Azure](https://www.youtube.com/watch?v=z_W-sOW7Kdk)
 2. [Deploying SDR code on Azure DevOps](https://www.youtube.com/watch?v=nsYb33Jq6Qo&list=PLMXS-Xt7Ou1KNUF-HQKQRRzqfPQEXWb1u&index=2)
 3. [Azure PaaS Configurations](https://www.youtube.com/watch?v=koYWS-DikIY)
@@ -121,7 +118,7 @@ Several videos have been created to show steps a user would need to go through t
 
 ### main.yml Secret Variables
 
-Terraform will use these secret values (from GitHub Secrets) to login to the Microsoft Azure Platform and deploy the resources according to the configuration defined in the IaC code.
+Terraform will use these secret values (from GitHub Secrets) to login to the Azure Cloud Platform and deploy the resources according to the configuration defined in the IaC code.
 
     - AZURE_SP              : The Service Principal details in JSON format.
     Service Principal Sample JSON :
@@ -166,10 +163,14 @@ Terraform will use these secret values (from GitHub Secrets) to login to the Mic
 
 ## Deployment Actions
 
-The folder .github/workflows contains the GitHub Actions yaml script (main.yml) for deploying the Terraform IaC code on Microsoft Azure Platform.Below tasks are added to main.yml file.
+The folder .github/workflows contains the GitHub Actions yaml script (main.yml) for deploying the Terraform IaC code on Azure Cloud Platform. 
+
+### main.yml
+
+The yaml file is a multi-job script that will perform security checks on IaC code as well as the deployment of resources to the target environment on Azure Cloud Platform. Below tasks are in the main.yml file.
 
   **name: Terraform Install**
-  - task will install the terraform and it's dependencies on microsoft hosted agents to deploy the resources
+  - task will install the terraform and it's dependencies on hosted agents to deploy the resources
     - uses: hashicorp/setup-terraform@v1
     - with:
         - terraform_version: 0.14.11
@@ -185,37 +186,15 @@ The folder .github/workflows contains the GitHub Actions yaml script (main.yml) 
   **name: Terraform Apply**
   - task execute the actions proposed in the terraform plan
     - run: terraform apply -auto-approve
-
-### main.yml
-
-The yaml file is a multi-job script that will perform security checks on IaC code as well as the deployment of resources to the target environment on Microsoft Azure Platform.
-
-- **Step 1 :** Go to GitHub Actions and under the list of workflows click on CI
-- **Step 2 :** In this workflow click Run Workflow to trigger the Deployment Action
-- **Step 3 :** Once the workflow completes successfully, refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](https://github.com/transcelerate/ddf-sdr-platform/raw/main/documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v3.0.pdf)** for additional manual configuration updates to the deployed resources and further deploy SDR Reference Implementation (RI) Application Code
+### Running GitHub Workflows
+- **Step 1 :** Go to GitHub Actions and under the list of workflows click on CI.
+- **Step 2 :** In this workflow click Run Workflow to trigger the Deployment Action.
+- **Step 3 :** Once the workflow completes successfully, refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](https://github.com/transcelerate/ddf-sdr-platform/raw/main/documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v3.0.pdf)** for additional manual configuration updates to the deployed resources and further deploy SDR Reference Implementation (RI) Application Code.
 
 **Important Note :** GitHub Actions does not allow multi-environment deployment setup with Free Pricing Plan. To Deploy to different environments, the GitHub secret values have to be updated with values of the target Azure Environment.
-# Infrastructure Changes for Release V2.0
+
+# Infrastructure Changes for Release V2.0 (March 2023)
 
 - The steps required to migrate SDR infrastructure from Version 0.5 to Version 2.0 for users who have set up their own SDR instance for the Study Definition Repository – Reference Implementation on Azure Cloud Platform. It provides details for deploying the new resources using azure portal. Additionally, it provides details of containerized deployment for the SDR API and UI applications.
 
-**Important Note:** Refer to the **[DDF SDR Infra Migration Guide (Release V2.0)](documents/DDF_SDR_Infra-Migration-guide (Release V2.0.pdf))** document before following the below steps. 
-
-## Deployment Process for Release V2.0
-## Steps to Migrate
-**PRE-REQUISITES :**
-- SDR Running instance on Azure (SDR Release V0.5).
-- Minimum Contributor level of access at Subscription Level.
-- Optionally, basic understanding of containerized deployments
-
-   - **Step 1 :** Resources Configurations for Change Audit Feature
-   - **Step 2 :**  Configuration for USDM Versioning
-   - **Step 3 :**  Additional Cloud Configurations
-   - **Step 4 :**  Build and Deployment Updates
-## Containerized Deployment 
-- The UI and API builds have been containerized as a part of SDR Release V2.0. The same has impacted the App Services on which the SDR Application is hosted. This section details the steps to enable containerized build and deployment. 
-- This is an optional step. To continue with existing way of deployment of SDR use current App Service and Service Plan configuration and B&D scripts for UI and API for deployment as mentioned in section 3.4.2
-
-  - **Step 1 :**  Recreate App Service Plans and App Services
-  - **Step 2 :**  Create Azure Container Registry 
-  - **Step 3 :**  GitHub Actions/YAML/Build & Deploy Script Updates
+**Important Note:** Refer to the **[DDF SDR Infra Migration Guide (Release V2.0)](documents/DDF_SDR_Infra-Migration-guide (Release V2.0.pdf))** for upgrading to SDR Release V2.0.
