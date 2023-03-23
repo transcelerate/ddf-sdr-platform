@@ -167,23 +167,24 @@ Terraform will use these secret values (from GitHub Secrets) to login to the Mic
 ## Deployment Actions
 
 The folder .github/workflows contains the GitHub Actions yaml script (main.yml) for deploying the Terraform IaC code on Microsoft Azure Platform.
+
   **name: Terraform Install**
   - task will install the terraform and it's dependencies on microsoft hosted agents to deploy the resources
-      uses: hashicorp/setup-terraform@v1
-      with:
-         terraform_version: 0.14.11
+    - uses: hashicorp/setup-terraform@v1
+    - with:
+        - terraform_version: 0.14.11
          
   **name: Terraform Init**
   - initializes the terrafrom configuration files
-      run:  terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP"  -backend-config="key=$Blob_Key" 
+    - run:  terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT"    -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP"  -backend-config="key=$Blob_Key" 
       
   **name: Terraform Plan**
   - task creates an execution plan which lets us to review the changes made to the environment before applying the changes
-      run: terraform plan
+    - run: terraform plan
            
   **name: Terraform Apply**
   - task execute the actions proposed in the terraform plan
-      run: terraform apply -auto-approve
+    - run: terraform apply -auto-approve
 
 ### main.yml
 
