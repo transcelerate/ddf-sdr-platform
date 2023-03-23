@@ -1,4 +1,4 @@
-resource "azurerm_linux_web_app" "appservice" {
+resource "azurerm_windows_web_app" "appservice" {
   name                = var.app_service_name
   location            = var.rg_location
   resource_group_name = var.rg_name
@@ -19,8 +19,7 @@ resource "azurerm_linux_web_app" "appservice" {
 
     application_stack  {
 
-    docker_image = var.docker_image
-    docker_image_tag = "latest"
+    current_stack = var.current_stack
 
   }
   
@@ -66,6 +65,6 @@ resource "azurerm_linux_web_app" "appservice" {
 }
 
 resource "azurerm_app_service_virtual_network_swift_connection" "Vnet_Integration" {
-  app_service_id = azurerm_linux_web_app.appservice.id
+  app_service_id = azurerm_windows_web_app.appservice.id
   subnet_id      = var.subnet_id
 }
