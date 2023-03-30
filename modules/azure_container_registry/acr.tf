@@ -5,4 +5,4 @@ resource "azurerm_container_registry" "acr" {
   sku                 = "Basic"
   tags                = var.acr_tags
   admin_enabled       = true
-}
+} 

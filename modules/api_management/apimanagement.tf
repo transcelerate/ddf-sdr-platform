@@ -39,7 +39,7 @@ resource "azurerm_api_management" "apimanagement" {
 
 # resource "azurerm_api_management_custom_domain" "example" {
 
-#   api_management_id = azurerm_api_management.apimanagement.id
+#  api_management_id = azurerm_api_management.apimanagement.id
   
 
 #   gateway {

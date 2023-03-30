@@ -112,7 +112,7 @@ variable "index2" {
 
 variable "index3" {
   
-}
+} 
 
 variable "index4" {
   

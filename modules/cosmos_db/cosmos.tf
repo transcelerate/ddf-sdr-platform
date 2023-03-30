@@ -118,7 +118,7 @@ resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection4" {
     
   }
 index {keys = var.index1}
-}
+} 
 resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection5" {
 
   name = var.collectionname5

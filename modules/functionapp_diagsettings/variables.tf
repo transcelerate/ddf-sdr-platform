@@ -9,4 +9,4 @@ variable log_analytics_workspace_id{
 }
 variable enable_log{
     
-}
+} 

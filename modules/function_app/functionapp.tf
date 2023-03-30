@@ -9,7 +9,7 @@ resource "azurerm_storage_account" "funappstorageaccount" {
 }
 
 
-
+ 
 resource "azurerm_windows_function_app" "functionapp" {
   name                = var.functionapp_name
   resource_group_name = var.resource_group_name
