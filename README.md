@@ -7,17 +7,13 @@
     - [main.tf](#maintf)
     - [Variables.tf](#variablestf)
 - [Deployment Process](#deployment-process)
-  - [Instructional Videos](#instructional-vidoes)
   - [Pre-Requisites](#pre-requisites)
   - [Secrets](#secrets)
     - [main.yml Secret Variables](#mainyml-secret-variables)
     - [Variables.tf Secret Variables](#variablestf-secret-variables)
   - [Deployment Actions](#deployment-actions)
     - [main.yml](#mainyml)
-- [Infrastructure Changes for Release V2.0](#infrastructure-changes-for-release-v20)
-  - [Deployment Process for Release V2.0](#deployment-process-for-release-v20)
-    - [Steps to Migrate](#steps-to-migrate)
-    - [Containerized Deployment](#containerized-deployment)
+- [Infrastructure Changes for Release V2.0 (March 2023)](#infrastructure-changes-for-release-v20-march-2023)
 
 # Introduction
 
