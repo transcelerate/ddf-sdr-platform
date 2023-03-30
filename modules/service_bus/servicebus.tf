@@ -11,7 +11,7 @@ resource "azurerm_servicebus_queue" "sbqueue" {
   namespace_id = azurerm_servicebus_namespace.servicebus.id
 
   enable_partitioning = false
-}
+} 
 
 resource "azurerm_servicebus_queue_authorization_rule" "sbqueueaccessrule" {
   name     = "funappaccessrule"

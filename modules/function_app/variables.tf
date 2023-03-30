@@ -28,7 +28,7 @@ variable "AzureServiceBusConnectionString" {
 
 variable "AzureServiceBusQueueName" {
 
-}
+} 
 
 variable "KeyVaultName" {
 

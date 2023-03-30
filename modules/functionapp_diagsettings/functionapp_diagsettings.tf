@@ -9,4 +9,4 @@ resource "azurerm_monitor_diagnostic_setting" "functionapp_diag_set" {
   metric {
     category = "AllMetrics"
   }
-}
+} 
