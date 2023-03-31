@@ -252,7 +252,7 @@ module "module_api_management_diagsettings" {
   log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
   enable_log                 = var.enable_log
 }
-##################################  App Insights ########################################
+##################################  App Insights #########################################
 
 module "module_app_insights" {
   source                     = "./modules/app_insights"
