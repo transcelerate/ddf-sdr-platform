@@ -22,7 +22,7 @@ variable "app_service_tags" {
 
 }
 
-variable "current_stack" {
+variable "docker_image" {
 
   
 }
@@ -80,4 +80,5 @@ variable "priority" {
 variable "action" {
   
 }
+
 

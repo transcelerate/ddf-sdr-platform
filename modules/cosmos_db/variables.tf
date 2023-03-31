@@ -14,7 +14,9 @@ variable "cosmos_db_account_name" {
     description = "Cosmos DB Account Name"
 }
 variable "subnet_id" {
-  type        = string
+  type = list(object({
+    id   = string
+  }))
 }
 
 variable "offer_type"{
@@ -93,6 +95,13 @@ variable "collectionname3" {
   
 }
 
+variable "collectionname4" {
+  
+}
+variable "collectionname5" {
+  
+}
+
 variable "index1" {
   
 }
@@ -126,6 +135,9 @@ variable "index8" {
 }
 
 variable "index9" {
+  
+}
+variable "index10" {
   
 }
 
