@@ -6,7 +6,7 @@ resource "azurerm_linux_web_app" "appservice" {
   tags                = var.app_service_tags
   https_only          = var.https_only
   
-  #checkov:skip=CKV_AZURE_88:Using log analytics workspace for logs
+  #checkov:skip=CKV_AZURE_88:Using log analytics workspace for logs 
   #checkov:skip=CKV_AZURE_17:Not Using certificate base authentication
 
   identity {

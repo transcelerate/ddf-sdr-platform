@@ -53,7 +53,7 @@ variable "identity" {
 
 variable "http2_enabled" {
   
-} 
+}  
 
 variable "subnet_id" {
   

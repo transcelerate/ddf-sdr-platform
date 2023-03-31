@@ -4,7 +4,7 @@ output "sb_id" {
 
 output "sbqueue_id" {
   value = azurerm_servicebus_queue.sbqueue.id
-}
+} 
 
 output "sbqueue_authid" {
   value = azurerm_servicebus_queue_authorization_rule.sbqueueaccessrule.primary_connection_string

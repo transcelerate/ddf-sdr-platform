@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 jobs:
   
-  ############################-----------------Validation Stage--------------------##################################
+  ############################-----------------Validation Stage--------------------###################################
   
   Check_Validation:
     runs-on: ubuntu-latest
@@ -32,7 +32,7 @@ jobs:
       Blob_Key: ${{ secrets.AZURE_RMKEY}}
       
       # group refers to the name of the env which we need to create in azure portal
-      group: Test
+      group: PRE_PROD
     steps:
       # Step to Login to Azure Portal
     - uses: actions/checkout@v2
@@ -121,8 +121,8 @@ jobs:
     # needs is passed here so that this job run after Check_Validation job
     runs-on: ubuntu-latest
     # The agent type used to build and deploy
-    environment: TEST
-    
+    environment:
+      name: TEST   #Env_Variable
     env:
       # Environment variables used in different stages, all are defined globally to be used
       RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCEGROUP }}
