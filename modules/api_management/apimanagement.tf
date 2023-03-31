@@ -37,19 +37,19 @@ resource "azurerm_api_management" "apimanagement" {
   }
 }
 
-resource "azurerm_api_management_custom_domain" "example" {
+# resource "azurerm_api_management_custom_domain" "example" {
 
-  api_management_id = azurerm_api_management.apimanagement.id
+#  api_management_id = azurerm_api_management.apimanagement.id
   
 
-  gateway {
+#   gateway {
 
-    host_name    = var.host_name
-    negotiate_client_certificate = true
+#     host_name    = var.host_name
+#     negotiate_client_certificate = true
     
-  }
-}
-
+#   }
+# }
+ 
 resource "azurerm_api_management_api" "apiendpoint" {
   for_each              = {for endpoint in var.apiendpoints : endpoint.name => endpoint}
   name                  = each.value.name
