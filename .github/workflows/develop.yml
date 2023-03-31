@@ -35,7 +35,7 @@ jobs:
       Blob_Key: ${{ secrets.AZURE_RMKEY}}
       
       # group refers to the name of the env which we need to create in azure portal
-      group: Test
+      group: DEV
     steps:
       # Step to Login to Azure Portal
     - uses: actions/checkout@v2
