@@ -49,7 +49,7 @@ resource "azurerm_api_management" "apimanagement" {
     
 #   }
 # }
-
+ 
 resource "azurerm_api_management_api" "apiendpoint" {
   for_each              = {for endpoint in var.apiendpoints : endpoint.name => endpoint}
   name                  = each.value.name
