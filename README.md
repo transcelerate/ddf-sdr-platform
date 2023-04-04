@@ -20,9 +20,9 @@
 Study Definition Repository (SDR) Reference Implementation is TransCelerate’s vision to catalyze industry-level transformation, enabling digital exchange of study definition information by collaborating with technology providers and standards bodies to create a sustainable open-source Study Definition Repository.
 
 The below documents provide a high level overview of the SDR Reference Implementation.
-- [DDF SDR Azure Solution Architecture Document](documents/ddf-sdr-azure-solution-architecture-v2.0.pdf)
-- [DDF SDR Azure Platform Design and Implementation Plan](documents/ddf-sdr-azure-platform-design-and-implementation-v2.0.pdf)** 
-- [DDF SDR Process Flows Document](documents/ddf-sdr-process-flows-v3.0.pdf)
+- [DDF SDR RI Solution Architecture Document](documents/sdr-release-v2.0/ddf-sdr-ri-solution-architecture-v3.0.pdf)
+- [DDF SDR RI High Level Design](documents/sdr-release-v2.0/ddf-sdr-ri-high-level-design.pdf)
+- [DDF SDR RI Process Flows Document](documents/sdr-release-v2.0/ddf-sdr-ri-process-flows-v4.0.pdf)
 
 **NOTES:** 
 - These materials and information are provided by TransCelerate Biopharma Inc. AS IS.  Any party using or relying on this information and these materials do so entirely at their own risk.  Neither TransCelerate nor its members will bear any responsibility or liability for any harm, including indirect or consequential harm, that a user may incur from use or misuse of this information or materials.
@@ -95,14 +95,14 @@ This folder contains all the modularized code for the resources listed below.
 
 # Deployment Process
 
-**Important Note:** Refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v3.0.pdf) document for setting up a running instance of SDR on your own Azure Cloud Subscription. Additionally, below instructional videos provide a step-by-step run of the setup. 
+**Important Note:** Refer to the [DDF SDR RI Platform Setup and Deployment Guide](documents/sdr-release-v2.0/ddf-sdr-ri-platform-setup-and-deployment-guide-v4.0.pdf) document for setting up a running instance of SDR on your own Azure Cloud Subscription. Additionally, below instructional videos provide a step-by-step run of the setup. 
 
-Below videos guide user to create a new instance of the SDR in their local Azure Cloud Subscription.
-1. [Environment Creation for SDR on Azure](https://www.youtube.com/watch?v=z_W-sOW7Kdk)
-2. [Deploying SDR code on Azure DevOps](https://www.youtube.com/watch?v=nsYb33Jq6Qo&list=PLMXS-Xt7Ou1KNUF-HQKQRRzqfPQEXWb1u&index=2)
-3. [Azure PaaS Configurations](https://www.youtube.com/watch?v=koYWS-DikIY)
-4. [Application Data Setup and Smoke Test](https://www.youtube.com/watch?v=q0eg_Xji9RQ)
-5. [SonarQube Integration with Azure](https://www.youtube.com/watch?v=WF42UIxhSd0&list=PLMXS-Xt7Ou1KNUF-HQKQRRzqfPQEXWb1u&index=5)
+Below videos guide user to create a new instance of the SDR in their local Azure Cloud Subscription. The videos are available [here](https://www.youtube.com/playlist?list=PLMXS-Xt7Ou1KNUF-HQKQRRzqfPQEXWb1u)
+1. Environment Creation for SDR on Azure
+2. Deploying SDR code on Azure DevOps
+3. Azure PaaS Configurations
+4. Application Data Setup and Smoke Test
+5. SonarQube Integration with Azure
 
 ## Pre-Requisites
 
@@ -186,7 +186,7 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 ### Running GitHub Workflows
 - **Step 1 :** Go to GitHub Actions and under the list of workflows click on CI.
 - **Step 2 :** In this workflow click Run Workflow to trigger the Deployment Action.
-- **Step 3 :** Once the workflow completes successfully, refer to the **[DDF SDR Azure Platform Setup and Deployment Guide](https://github.com/transcelerate/ddf-sdr-platform/raw/main/documents/ddf-sdr-azure-platform-setup-and-deployment-guide-v3.0.pdf)** for additional manual configuration updates to the deployed resources and further deploy SDR Reference Implementation (RI) Application Code.
+- **Step 3 :** Once the workflow completes successfully, refer to the **[DDF SDR RI Platform Setup and Deployment Guide](documents/sdr-release-v2.0/ddf-sdr-ri-platform-setup-and-deployment-guide-v4.0.pdf)** for additional manual configuration updates to the deployed resources and further deploy SDR Reference Implementation (RI) Application Code.
 
 **Important Note :** GitHub Actions does not allow multi-environment deployment setup with Free Pricing Plan. To Deploy to different environments, the GitHub secret values have to be updated with values of the target Azure Environment.
 
@@ -194,4 +194,4 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 
 - The steps required to migrate SDR infrastructure from Version 0.5 to Version 2.0 for users who have set up their own SDR instance for the Study Definition Repository – Reference Implementation on Azure Cloud Platform. It provides details for deploying the new resources using azure portal. Additionally, it provides details of containerized deployment for the SDR API and UI applications.
 
-**Important Note:** Refer to the **[DDF SDR Infra Migration Guide (Release V2.0)](documents/DDF_SDR_Infra-Migration-guide (Release V2.0.pdf))** for upgrading to SDR Release V2.0.
+**Important Note:** Refer to the **[DDF SDR RI Infra Migration Guide (Release V2.0)](documents/sdr-release-v2.0/ddf-sdr-ri-infra-migration-guide.pdf)** for upgrading to SDR Release V2.0.
