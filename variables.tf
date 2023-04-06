@@ -399,11 +399,11 @@ variable "apioperations_tp" {
         tempname     = "studyId"
     },
     {
-        operation_id = "common-get-audit-trail"
+        operation_id = "common-get-revision-history"
         api_name     = "sdr-api"   
-        display_name = "Common - Get Audit Trail"
+        display_name = "Common - Get Revision History"
         method       = "GET"
-        url_template = "/studydefinitions/{studyId}/audittrail"
+        url_template = "/studydefinitions/{studyId}/revisionhistory"
         tempname     = "studyId"
     },
     {
@@ -471,11 +471,11 @@ variable "apioperations_tp" {
     #     tempname     = ["studyId","studydesignId"]
     # },
     {
-        operation_id = "common-get-audit-trail-sdruiapi"
+        operation_id = "common-get-revision-history-sdruiapi"
         api_name     = "sdr-ui-api"   
-        display_name = "Common - Get Audit Trail"
+        display_name = "Common - Get Revision History"
         method       = "GET"
-        url_template = "/studydefinitions/{studyId}/audittrail"
+        url_template = "/studydefinitions/{studyId}/revisionhistory"
         tempname     = "studyId"
     },
     {
