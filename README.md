@@ -194,4 +194,4 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 
 - The steps required to migrate SDR infrastructure from Version 0.5 to Version 2.0 for users who have set up their own SDR instance for the Study Definition Repository – Reference Implementation on Azure Cloud Platform. It provides details for deploying the new resources using azure portal. Additionally, it provides details of containerized deployment for the SDR API and UI applications.
 
-**Important Note:** Refer to the **[DDF SDR RI Infra Migration Guide (Release V2.0)](documents/sdr-release-v2.0/ddf-sdr-ri-infra-migration-guide.pdf)** for upgrading to SDR Release V2.0.
+**Important Note:** Refer to the **[DDF SDR RI Infra Migration Guide (Release V2.0)](documents/sdr-release-v2.0/ddf-sdr-ri-infra-migration-guide-v1.1.pdf)** for upgrading to SDR Release V2.0.
