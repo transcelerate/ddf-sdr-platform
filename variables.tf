@@ -265,13 +265,7 @@ variable "apioperations" {
         method       = "GET"
         url_template = "/versions"
     },
-    {
-        operation_id = "common-token"
-        api_name     = "sdr-api"
-        display_name = "Common - Token"
-        method       = "POST"
-        url_template = "/auth/token"
-    },
+  
     {
         operation_id = "v1-post-study-definition"
         api_name     = "sdr-api"
@@ -307,13 +301,7 @@ variable "apioperations" {
         method       = "POST"
         url_template = "/v2/studydefinitions"
     },
-    {
-        operation_id = "v2-put-study-definitions"
-        api_name     = "sdr-api"
-        display_name = "V2 Put Study Definitions"
-        method       = "PUT"
-        url_template = "/v2/studydefinitions/{studyid}"
-    },
+    
     {
         operation_id = "check-group-name"
         api_name     = "sdr-ui-admin"
@@ -507,6 +495,14 @@ variable "apioperations_tp" {
         api_name     = "sdr-ui-api"   
         display_name = "V2 Get Study Definition"
         method       = "GET"
+        url_template = "/v2/studydefinitions/{studyid}"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "v2-put-study-definitions"
+        api_name     = "sdr-api"
+        display_name = "V2 Put Study Definitions"
+        method       = "PUT"
         url_template = "/v2/studydefinitions/{studyid}"
         tempname     = "studyId"
     }
