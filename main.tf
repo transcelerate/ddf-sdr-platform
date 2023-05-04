@@ -2,7 +2,7 @@
 terraform {
   backend "azurerm" {}
   required_providers {
-    azurerm = "=3.1.0"
+    azurerm = "=3.49.0"
   }
 }
 locals {

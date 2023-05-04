@@ -25,7 +25,7 @@ resource "azurerm_windows_function_app" "functionapp" {
     ftps_state  = "Disabled"
     application_stack {
       
-    dotnet_version = "6"
+    dotnet_version = "v6.0"
   
     }
     ip_restriction {
