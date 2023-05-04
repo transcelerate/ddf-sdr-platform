@@ -23,6 +23,7 @@ resource "azurerm_windows_function_app" "functionapp" {
   
   site_config {
     ftps_state  = "Disabled"
+    always_on   = "true"
     application_stack {
       
     dotnet_version = "v6.0"
