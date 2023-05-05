@@ -371,7 +371,15 @@ variable "apioperations" {
         display_name = "Usage Reports"
         method       = "POST"
         url_template = "/reports/usage"
-    }]
+    },
+    {
+        operation_id = "common-get-api-versions-sdruiapi"
+        api_name     = "sdr-ui-api"
+        display_name = "Common - Get API Versions"
+        method       = "GET"
+        url_template = "/versions"
+    }
+    ]
   
 }
 
@@ -504,6 +512,22 @@ variable "apioperations_tp" {
         display_name = "V2 Put Study Definitions"
         method       = "PUT"
         url_template = "/v2/studydefinitions/{studyid}"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "v3-get-study-design-soa"
+        api_name     = "sdr-api"   
+        display_name = "V3 Get Study Design SOA"
+        method       = "GET"
+        url_template = "/v3/studydefinitions/{studyId}/studydesigns/soa"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "v3-get-study-design-soa"
+        api_name     = "sdr-ui-api"   
+        display_name = "V3 Get Study Design SOA"
+        method       = "GET"
+        url_template = "/v3/studydefinitions/{studyId}/studydesigns/soa"
         tempname     = "studyId"
     }
     ]
