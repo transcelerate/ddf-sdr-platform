@@ -9,7 +9,21 @@ resource "azuread_application" "spn_ui_test" {
   display_name     = var.display_name
   owners           = [data.azuread_client_config.current.object_id]
   sign_in_audience = var.sign_in_audience
+api {
+    mapped_claims_enabled          = true
+    requested_access_token_version = 2
 
+    oauth2_permission_scope {
+      admin_consent_description  = "Allow the application to access example on behalf of the signed-in user."
+      admin_consent_display_name = "ui-access"
+      enabled                    = true
+      id                         = "96183846-204b-4b43-82e1-5d2222eb4b9b"
+      type                       = "User"
+      user_consent_description   = "Allow the application to access example on your behalf."
+      user_consent_display_name  = "ui-access"
+      value                      = "ui-access"
+    }
+  }
 
   app_role {
     allowed_member_types = ["User"]
@@ -75,4 +89,9 @@ resource "azuread_service_principal" "example" {
     enterprise = true
     gallery    = false
   }
+}
+resource "azuread_application_password" "example" {
+  application_object_id = azuread_application.spn_ui_test.object_id
+  display_name          = "client secret"
+  end_date_relative     = "4320h" # expire in 6 months
 }
