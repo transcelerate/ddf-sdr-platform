@@ -515,7 +515,7 @@ variable "apioperations_tp" {
         tempname     = "studyId"
     },
     {
-        operation_id = "v3-get-study-design-soa"
+        operation_id = "v3-get-study-design-soa-sdrapi"
         api_name     = "sdr-api"   
         display_name = "V3 Get Study Design SOA"
         method       = "GET"
@@ -523,7 +523,7 @@ variable "apioperations_tp" {
         tempname     = "studyId"
     },
     {
-        operation_id = "v3-get-study-design-soa"
+        operation_id = "v3-get-study-design-soa-sdruiapi"
         api_name     = "sdr-ui-api"   
         display_name = "V3 Get Study Design SOA"
         method       = "GET"
