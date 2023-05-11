@@ -392,6 +392,13 @@ variable "apioperations" {
         display_name = "V3 Post Study Definition"
         method       = "POST"
         url_template = "/v3/studydefinitions"
+    },
+    {
+        operation_id = "v3-validate-usdm-conformance"
+        api_name     = "sdr-api"
+        display_name = "V3 Validate USDM Conformance"
+        method       = "POST"
+        url_template = "/v3/studydefinitions/validate-usdm-conformance"
     }
     ]
   
