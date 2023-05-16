@@ -8,4 +8,9 @@ resource "azurerm_application_insights" "app_insights" {
     tags = var.app_insights_tags
     disable_ip_masking = false
 }
+resource "azurerm_application_insights_api_key" "read_telemetry" {
+  name                    = "logs access"
+  application_insights_id = azurerm_application_insights.app_insights.id
+  read_permissions        = ["aggregate", "api", "draft", "extendqueries", "search"]
+}
 

@@ -378,6 +378,27 @@ variable "apioperations" {
         display_name = "Common - Get API Versions"
         method       = "GET"
         url_template = "/versions"
+    },
+     {
+        operation_id = "v3-get-study-design"
+        api_name     = "sdr-api"
+        display_name = "V3 Get Study Design"
+        method       = "GET"
+        url_template = "/v3/studydesigns"
+    },
+    {
+        operation_id = "v3-post-study-definition"
+        api_name     = "sdr-api"
+        display_name = "V3 Post Study Definition"
+        method       = "POST"
+        url_template = "/v3/studydefinitions"
+    },
+    {
+        operation_id = "v3-validate-usdm-conformance"
+        api_name     = "sdr-api"
+        display_name = "V3 Validate USDM Conformance"
+        method       = "POST"
+        url_template = "/v3/studydefinitions/validate-usdm-conformance"
     }
     ]
   
@@ -411,11 +432,11 @@ variable "apioperations_tp" {
         tempname     = "studyId"
     },
     {
-        operation_id = "common-get-ecpt"
-        api_name     = "sdr-api"   
-        display_name = "Common - Get eCPT"
+        operation_id = "v2-get-ecpt"
+        api_name     = "sdr-api"
+        display_name = "V2 Get eCPT"
         method       = "GET"
-        url_template = "/studyDefinitions/{studyId}/studydesigns/ecpt"
+        url_template = "/v2/studyDefinitions/{studyId}/studydesigns/ecpt"
         tempname     = "studyId"
     },
     {
@@ -515,7 +536,7 @@ variable "apioperations_tp" {
         tempname     = "studyId"
     },
     {
-        operation_id = "v3-get-study-design-soa"
+        operation_id = "v3-get-study-design-soa-sdrapi"
         api_name     = "sdr-api"   
         display_name = "V3 Get Study Design SOA"
         method       = "GET"
@@ -523,11 +544,43 @@ variable "apioperations_tp" {
         tempname     = "studyId"
     },
     {
-        operation_id = "v3-get-study-design-soa"
+        operation_id = "v3-get-study-design-soa-sdruiapi"
         api_name     = "sdr-ui-api"   
         display_name = "V3 Get Study Design SOA"
         method       = "GET"
         url_template = "/v3/studydefinitions/{studyId}/studydesigns/soa"
+        tempname     = "studyId"
+    },
+     {
+        operation_id = "v3-get-ecpt"
+        api_name     = "sdr-api"
+        display_name = "V3 Get eCPT"
+        method       = "GET"
+        url_template = "/v3/studyDefinitions/{studyId}/studydesigns/ecpt"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "v3-get-study-definition-sdrapi"
+        api_name     = "sdr-api"   
+        display_name = "V3 Get Study Definition"
+        method       = "GET"
+        url_template = "/v3/studydefinitions/{studyid}"
+        tempname     = "studyId"
+    },
+      {
+        operation_id = "v3-put-study-definitions"
+        api_name     = "sdr-api"
+        display_name = "V3 Put Study Definitions"
+        method       = "PUT"
+        url_template = "/v3/studydefinitions/{studyid}"
+        tempname     = "studyId"
+    },
+     {
+        operation_id = "v3-get-study-definition-sdruiapi"
+        api_name     = "sdr-ui-api"   
+        display_name = "V3 Get Study Definition"
+        method       = "GET"
+        url_template = "/v3/studydefinitions/{studyid}"
         tempname     = "studyId"
     }
     ]

@@ -625,7 +625,7 @@ module "module_app_registration" {
   display_name     = "spn_${var.subscription_acronym}_${var.env_acronym}_${var.fe_acronym}"
   sign_in_audience = var.sign_in_audience
   claimname        = var.claimname
-  redirect_uris    = ["https://${module.module_appservice.appservice_name}/"]
+  redirect_uris    = ["https://${module.module_appservice.appservice_name}/","https://${module.module_appservice.appservice_name}/home","http://localhost:4200/","https://localhost:4200/","http://localhost:4200/home","https://localhost:4200/home"]
   depends_on       = [module.module_appservice]
 
 }
