@@ -1,15 +1,15 @@
 
 resource "azurerm_storage_account" "funappstorageaccount" {
   name                     = var.storageaccount_name
-  resource_group_name      = var.resource_group_name 
+  resource_group_name      = var.resource_group_name
   location                 = var.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-  
+
 }
 
 
- 
+
 resource "azurerm_windows_function_app" "functionapp" {
   name                = var.functionapp_name
   resource_group_name = var.resource_group_name
@@ -20,38 +20,39 @@ resource "azurerm_windows_function_app" "functionapp" {
   storage_account_name       = azurerm_storage_account.funappstorageaccount.name
   storage_account_access_key = azurerm_storage_account.funappstorageaccount.primary_access_key
   service_plan_id            = var.service_plan_id
-  
+
   site_config {
-    ftps_state  = "Disabled"
-    always_on   = "true"
+    ftps_state = "Disabled"
+    always_on  = "true"
     application_stack {
-      
-    dotnet_version = "v6.0"
-  
+
+      dotnet_version = "v7.0"
+
     }
     ip_restriction {
-      
+
       ip_address                = var.ip_address
       virtual_network_subnet_id = var.virtual_network_subnet_id
       name                      = var.apparname
       priority                  = var.priority
       action                    = var.action
-        
+
     }
   }
 
   identity {
-    
+
     type = "SystemAssigned"
   }
 
   app_settings = {
 
-    AzureServiceBusConnectionString         = var.AzureServiceBusConnectionString
-    AzureServiceBusQueueName                = var.AzureServiceBusQueueName
-    KeyVaultName                            = var.KeyVaultName
-    application_insights_key                = var.application_insights_key  
-    application_insights_connection_string  = var.application_insights_connection_string
+    AzureServiceBusConnectionString        = var.AzureServiceBusConnectionString
+    AzureServiceBusQueueName               = var.AzureServiceBusQueueName
+    KeyVaultName                           = var.KeyVaultName
+    application_insights_key               = var.application_insights_key
+    application_insights_connection_string = var.application_insights_connection_string
+    FUNCTIONS_WORKER_RUNTIME               = "dotnet-isolated"
   }
 
 }
