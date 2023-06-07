@@ -1,21 +1,26 @@
 resource "azurerm_api_management" "apimanagement" {
-  name                    = var.apim_name
-  location                = var.rg_location
-  resource_group_name     = var.rg_name
-  publisher_name          = var.publisher_name
-  publisher_email         = var.publisher_email 
-  sku_name                = var.sku_name
-  virtual_network_type    = var.virtual_network_type
+  name                 = var.apim_name
+  location             = var.rg_location
+  resource_group_name  = var.rg_name
+  publisher_name       = var.publisher_name
+  publisher_email      = var.publisher_email
+  sku_name             = var.sku_name
+  virtual_network_type = var.virtual_network_type
   tags                 = var.apimanagement_tags
+  timeouts {
+    create = "120m"
+    update = "120m"
+    delete = "60m"
+  }
 
-    virtual_network_configuration {
-    
+  virtual_network_configuration {
+
     subnet_id = var.subnet_id
 
   }
 
   identity {
-    
+
     type = var.identity_type
 
   }
@@ -26,32 +31,32 @@ resource "azurerm_api_management" "apimanagement" {
   }
 
   security {
-    
-    enable_backend_ssl30        = var.enable_backend_ssl30
-    enable_backend_tls10        = var.enable_backend_tls10
-    enable_backend_tls11        = var.enable_backend_tls11
-    enable_frontend_ssl30       = var.enable_frontend_ssl30
-    enable_frontend_tls10       = var.enable_frontend_tls10
-    enable_frontend_tls11       = var.enable_frontend_tls11
-#    enable_triple_des_ciphers   = var.enable_triple_des_ciphers
+
+    enable_backend_ssl30  = var.enable_backend_ssl30
+    enable_backend_tls10  = var.enable_backend_tls10
+    enable_backend_tls11  = var.enable_backend_tls11
+    enable_frontend_ssl30 = var.enable_frontend_ssl30
+    enable_frontend_tls10 = var.enable_frontend_tls10
+    enable_frontend_tls11 = var.enable_frontend_tls11
+    #    enable_triple_des_ciphers   = var.enable_triple_des_ciphers
   }
 }
 
 # resource "azurerm_api_management_custom_domain" "example" {
 
 #  api_management_id = azurerm_api_management.apimanagement.id
-  
+
 
 #   gateway {
 
 #     host_name    = var.host_name
 #     negotiate_client_certificate = true
-    
+
 #   }
 # }
- 
+
 resource "azurerm_api_management_api" "apiendpoint" {
-  for_each              = {for endpoint in var.apiendpoints : endpoint.name => endpoint}
+  for_each              = { for endpoint in var.apiendpoints : endpoint.name => endpoint }
   name                  = each.value.name
   resource_group_name   = var.rg_name
   api_management_name   = azurerm_api_management.apimanagement.name
@@ -61,10 +66,15 @@ resource "azurerm_api_management_api" "apiendpoint" {
   protocols             = ["https"]
   subscription_required = false
   service_url           = var.service_url
+  timeouts {
+    create = "120m"
+    update = "120m"
+    delete = "60m"
+  }
 }
 
 resource "azurerm_api_management_api_operation" "apioperations" {
-  for_each            = {for api in var.apioperations : api.operation_id => api}
+  for_each            = { for api in var.apioperations : api.operation_id => api }
   operation_id        = each.value.operation_id
   api_name            = each.value.api_name
   api_management_name = azurerm_api_management.apimanagement.name
@@ -74,6 +84,11 @@ resource "azurerm_api_management_api_operation" "apioperations" {
   url_template        = each.value.url_template
   description         = "SDR API's"
   depends_on          = [azurerm_api_management_api.apiendpoint]
+  timeouts {
+    create = "120m"
+    update = "120m"
+    delete = "60m"
+  }
 
   response {
     status_code = 200
@@ -81,7 +96,7 @@ resource "azurerm_api_management_api_operation" "apioperations" {
 }
 
 resource "azurerm_api_management_api_operation" "apioperations_tp" {
-  for_each            = {for api in var.apioperations_tp : api.operation_id => api}
+  for_each            = { for api in var.apioperations_tp : api.operation_id => api }
   operation_id        = each.value.operation_id
   api_name            = each.value.api_name
   api_management_name = azurerm_api_management.apimanagement.name
@@ -91,10 +106,15 @@ resource "azurerm_api_management_api_operation" "apioperations_tp" {
   url_template        = each.value.url_template
   description         = "SDR API's"
   depends_on          = [azurerm_api_management_api.apiendpoint]
+  timeouts {
+    create = "120m"
+    update = "120m"
+    delete = "60m"
+  }
 
   template_parameter {
-    name    = each.value.tempname
-    type    = "string"
+    name     = each.value.tempname
+    type     = "string"
     required = false
   }
 
@@ -118,7 +138,7 @@ resource "azurerm_api_management_logger" "apimanagement_log" {
 }
 
 resource "azurerm_api_management_api_diagnostic" "example" {
-  for_each                 = {for api in var.apiname : api.api_name => api}
+  for_each                 = { for api in var.apiname : api.api_name => api }
   identifier               = "applicationinsights"
   resource_group_name      = var.rg_name
   api_management_name      = azurerm_api_management.apimanagement.name
