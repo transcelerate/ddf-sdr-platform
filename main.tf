@@ -2,7 +2,7 @@
 terraform {
   backend "azurerm" {}
   required_providers {
-    azurerm = "=3.1.0"
+    azurerm = "=3.49.0"
   }
 }
 locals {
@@ -430,14 +430,14 @@ module "module_appservice02_diagsettings" {
   enable_log                 = var.enable_log
 
 }
-# module "module_functionapp_diagsettings" {
-#   source                     = "./modules/functionapp_diagsettings"
-#   functionapp_diag_name      = "diags-funapp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-003"
-#   target_resource_id         = module.module_functionapp.function_app_id
-#   log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
-#   enable_log                 = var.enable_log
+module "module_functionapp_diagsettings" {
+  source                     = "./modules/functionapp_diagsettings"
+  functionapp_diag_name      = "diags-funapp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-003"
+  target_resource_id         = module.module_functionapp.function_app_id
+  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+  enable_log                 = var.enable_log
 
-# }
+}
 
 ################################ Function App ########################################
 
@@ -625,7 +625,7 @@ module "module_app_registration" {
   display_name     = "spn_${var.subscription_acronym}_${var.env_acronym}_${var.fe_acronym}"
   sign_in_audience = var.sign_in_audience
   claimname        = var.claimname
-  redirect_uris    = ["https://${module.module_appservice.appservice_name}/"]
+  redirect_uris    = ["https://${module.module_appservice.appservice_name}/","https://${module.module_appservice.appservice_name}/home","http://localhost:4200/","https://localhost:4200/","http://localhost:4200/home","https://localhost:4200/home"]
   depends_on       = [module.module_appservice]
 
 }
