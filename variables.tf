@@ -225,11 +225,12 @@ variable "identity_type" {
 
 variable "apiendpoints" {
 
-    default = [{
-        name         = "sdr-mvp"
-        display_name = "SDR MVP"
-        path         = "studydefinitionrepository/v1"
-    },
+    default = [
+    #     {
+    #     name         = "sdr-mvp"
+    #     display_name = "SDR MVP"
+    #     path         = "studydefinitionrepository/v1"
+    # },
     {
         name         = "sdr-api"
         display_name = "SDR API"
@@ -251,13 +252,13 @@ variable "apiendpoints" {
 variable "apioperations" {
 
     default = [
-    {
-        operation_id = "mvp-post-study-definition"
-        api_name     = "sdr-mvp"
-        display_name = "MVP - Post Study Definition"
-        method       = "POST"
-        url_template = "/study"
-    },
+    # {
+    #     operation_id = "mvp-post-study-definition"
+    #     api_name     = "sdr-mvp"
+    #     display_name = "MVP - Post Study Definition"
+    #     method       = "POST"
+    #     url_template = "/study"
+    # },
     {
         operation_id = "common-get-api-versions"
         api_name     = "sdr-api"
@@ -371,7 +372,36 @@ variable "apioperations" {
         display_name = "Usage Reports"
         method       = "POST"
         url_template = "/reports/usage"
-    }]
+    },
+    {
+        operation_id = "common-get-api-versions-sdruiapi"
+        api_name     = "sdr-ui-api"
+        display_name = "Common - Get API Versions"
+        method       = "GET"
+        url_template = "/versions"
+    },
+     {
+        operation_id = "v3-get-study-design"
+        api_name     = "sdr-api"
+        display_name = "V3 Get Study Design"
+        method       = "GET"
+        url_template = "/v3/studydesigns"
+    },
+    {
+        operation_id = "v3-post-study-definition"
+        api_name     = "sdr-api"
+        display_name = "V3 Post Study Definition"
+        method       = "POST"
+        url_template = "/v3/studydefinitions"
+    },
+    {
+        operation_id = "v3-validate-usdm-conformance"
+        api_name     = "sdr-api"
+        display_name = "V3 Validate USDM Conformance"
+        method       = "POST"
+        url_template = "/v3/studydefinitions/validate-usdm-conformance"
+    }
+    ]
   
 }
 
@@ -387,11 +417,11 @@ variable "apioperations_tp" {
         tempname     = "studyId"
     },
     {
-        operation_id = "common-get-audit-trail"
+        operation_id = "common-get-revision-history"
         api_name     = "sdr-api"   
-        display_name = "Common - Get Audit Trail"
+        display_name = "Common - Get Revision History"
         method       = "GET"
-        url_template = "/studydefinitions/{studyId}/audittrail"
+        url_template = "/studydefinitions/{studyId}/revisionhistory"
         tempname     = "studyId"
     },
     {
@@ -403,11 +433,11 @@ variable "apioperations_tp" {
         tempname     = "studyId"
     },
     {
-        operation_id = "common-get-ecpt"
-        api_name     = "sdr-api"   
-        display_name = "Common - Get eCPT"
+        operation_id = "v2-get-ecpt"
+        api_name     = "sdr-api"
+        display_name = "V2 Get eCPT"
         method       = "GET"
-        url_template = "/studyDefinitions/{studyId}/studydesigns/ecpt"
+        url_template = "/v2/studyDefinitions/{studyId}/studydesigns/ecpt"
         tempname     = "studyId"
     },
     {
@@ -442,14 +472,14 @@ variable "apioperations_tp" {
         url_template = "/v2/studydefinitions/{studyId}/studydesigns/soa"
         tempname     = "studyId"
     },
-    {
-        operation_id = "mvp-get-study-definition"
-        api_name     = "sdr-mvp"   
-        display_name = "MVP - Get Study Definition"
-        method       = "GET"
-        url_template = "/study/{studyId}"
-        tempname     = "studyId"
-    },
+    # {
+    #     operation_id = "mvp-get-study-definition"
+    #     api_name     = "sdr-mvp"   
+    #     display_name = "MVP - Get Study Definition"
+    #     method       = "GET"
+    #     url_template = "/study/{studyId}"
+    #     tempname     = "studyId"
+    # },
     # {
     #     operation_id = "mvp-get-study-design"
     #     api_name     = "sdr-mvp"   
@@ -459,11 +489,11 @@ variable "apioperations_tp" {
     #     tempname     = ["studyId","studydesignId"]
     # },
     {
-        operation_id = "common-get-audit-trail-sdruiapi"
+        operation_id = "common-get-revision-history-sdruiapi"
         api_name     = "sdr-ui-api"   
-        display_name = "Common - Get Audit Trail"
+        display_name = "Common - Get Revision History"
         method       = "GET"
-        url_template = "/studydefinitions/{studyId}/audittrail"
+        url_template = "/studydefinitions/{studyId}/revisionhistory"
         tempname     = "studyId"
     },
     {
@@ -474,14 +504,14 @@ variable "apioperations_tp" {
         url_template = "/studydefinitions/{studyId}/links"
         tempname     = "studyId"
     },
-    {
-        operation_id = "mvp-get-study-definition-sdruiapi"
-        api_name     = "sdr-ui-api"   
-        display_name = "MVP - Get Study Definition"
-        method       = "GET"
-        url_template = "/study/{studyId}"
-        tempname     = "studyId"
-    },
+    # {
+    #     operation_id = "mvp-get-study-definition-sdruiapi"
+    #     api_name     = "sdr-ui-api"   
+    #     display_name = "MVP - Get Study Definition"
+    #     method       = "GET"
+    #     url_template = "/study/{studyId}"
+    #     tempname     = "studyId"
+    # },
     {
         operation_id = "v1-get-study-definition-sdruiapi"
         api_name     = "sdr-ui-api"   
@@ -505,6 +535,70 @@ variable "apioperations_tp" {
         method       = "PUT"
         url_template = "/v2/studydefinitions/{studyid}"
         tempname     = "studyId"
+    },
+    {
+        operation_id = "v3-get-study-design-soa-sdrapi"
+        api_name     = "sdr-api"   
+        display_name = "V3 Get Study Design SOA"
+        method       = "GET"
+        url_template = "/v3/studydefinitions/{studyId}/studydesigns/soa"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "v3-get-study-design-soa-sdruiapi"
+        api_name     = "sdr-ui-api"   
+        display_name = "V3 Get Study Design SOA"
+        method       = "GET"
+        url_template = "/v3/studydefinitions/{studyId}/studydesigns/soa"
+        tempname     = "studyId"
+    },
+     {
+        operation_id = "v3-get-ecpt"
+        api_name     = "sdr-api"
+        display_name = "V3 Get eCPT"
+        method       = "GET"
+        url_template = "/v3/studyDefinitions/{studyId}/studydesigns/ecpt"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "v3-get-study-definition-sdrapi"
+        api_name     = "sdr-api"   
+        display_name = "V3 Get Study Definition"
+        method       = "GET"
+        url_template = "/v3/studydefinitions/{studyid}"
+        tempname     = "studyId"
+    },
+      {
+        operation_id = "v3-put-study-definitions"
+        api_name     = "sdr-api"
+        display_name = "V3 Put Study Definitions"
+        method       = "PUT"
+        url_template = "/v3/studydefinitions/{studyid}"
+        tempname     = "studyId"
+    },
+     {
+        operation_id = "v3-get-study-definition-sdruiapi"
+        api_name     = "sdr-ui-api"   
+        display_name = "V3 Get Study Definition"
+        method       = "GET"
+        url_template = "/v3/studydefinitions/{studyid}"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "v3-version-comparison"
+        api_name     = "sdr-api"   
+        display_name = "V3 Version Comparison "
+        method       = "GET"
+        url_template = "/v3/studydefinitions/{studyId}/version-comparison"
+        tempname     = "studyId"
+    },
+        {
+        operation_id = "v2-get-study-design-soa-sdruiapi"
+        api_name     = "sdr-ui-api"   
+        display_name = "V2 Get Study Design SOA"
+        method       = "GET"
+        url_template = "/v2/studydefinitions/{studyId}/studydesigns/soa"
+        tempname     = "studyId"
     }
     ]
 
@@ -514,9 +608,9 @@ variable "apioperations_tp" {
 variable "apiname" {
   
   default = [
-    {
-        api_name = "sdr-mvp"
-    },
+    # {
+    #     api_name = "sdr-mvp"
+    # },
     {
         api_name = "sdr-api"
     },
@@ -772,7 +866,7 @@ variable "index9" {
 }
 variable "index10" {
 
-    default =  ["auditTrail.usdm-version"]
+    default =  ["auditTrail.usdmVersion"]
 }
 
 variable "collectionname2" {
