@@ -13,16 +13,16 @@
     - [Variables.tf Secret Variables](#variablestf-secret-variables)
   - [Deployment Actions](#deployment-actions)
     - [main.yml](#mainyml)
-- [Infrastructure Changes for Release V2.0.1 (July 2023)](#infrastructure-changes-for-release-v201-july-2023)
+- [Infrastructure Changes for Release V2.0.2 (October 2023)](#infrastructure-changes-for-release-v202-october-2023)
 
 # Introduction
 
 Study Definition Repository (SDR) Reference Implementation is TransCelerate’s vision to catalyze industry-level transformation, enabling digital exchange of study definition information by collaborating with technology providers and standards bodies to create a sustainable open-source Study Definition Repository.
 
 The below documents provide a high level overview of the SDR Reference Implementation.
-- [DDF SDR RI Solution Architecture Document](documents/sdr-release-v2.0.1/ddf-sdr-ri-solution-architecture-v4.0.pdf)
-- [DDF SDR RI High Level Design](documents/sdr-release-v2.0.1/ddf-sdr-ri-high-level-design.pdf)
-- [DDF SDR RI Process Flows Document](documents/sdr-release-v2.0.1/ddf-sdr-ri-process-flows-v4.0.pdf)
+- [DDF SDR RI Solution Architecture Document](documents/sdr-release-v2.0.2/ddf-sdr-ri-solution-architecture-v5.0.pdf)
+- [DDF SDR RI High Level Design](documents/sdr-release-v2.0.2/ddf-sdr-ri-high-level-design.pdf)
+- [DDF SDR RI Process Flows Document](documents/sdr-release-v2.0.2/ddf-sdr-ri-process-flows-v4.0.pdf)
 
 **NOTES:** 
 - These materials and information are provided by TransCelerate Biopharma Inc. AS IS.  Any party using or relying on this information and these materials do so entirely at their own risk.  Neither TransCelerate nor its members will bear any responsibility or liability for any harm, including indirect or consequential harm, that a user may incur from use or misuse of this information or materials.
@@ -96,7 +96,7 @@ This folder contains all the modularized code for the resources listed below.
 
 # Deployment Process
 
-**Important Note:** Refer to the [DDF SDR RI Platform Setup and Deployment Guide](documents/sdr-release-v2.0.1/ddf-sdr-ri-platform-setup-and-deployment-guide-v5.0.pdf) document for setting up a running instance of SDR on your own Azure Cloud Subscription. Additionally, below instructional videos provide a step-by-step run of the setup. 
+**Important Note:** Refer to the [DDF SDR RI Platform Setup and Deployment Guide](documents/sdr-release-v2.0.2/ddf-sdr-ri-platform-setup-and-deployment-guide-v6.0.pdf) document for setting up a running instance of SDR on your own Azure Cloud Subscription. Additionally, below instructional videos provide a step-by-step run of the setup. 
 
 Below videos guide user to create a new instance of the SDR in their local Azure Cloud Subscription. The videos are available [here](https://www.youtube.com/playlist?list=PLMXS-Xt7Ou1KNUF-HQKQRRzqfPQEXWb1u)
 1. Environment Creation for SDR on Azure
@@ -187,12 +187,12 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 ### Running GitHub Workflows
 - **Step 1 :** Go to GitHub Actions and under the list of workflows click on CI.
 - **Step 2 :** In this workflow click Run Workflow to trigger the Deployment Action.
-- **Step 3 :** Once the workflow completes successfully, refer to the **[DDF SDR RI Platform Setup and Deployment Guide](documents/sdr-release-v2.0.1/ddf-sdr-ri-platform-setup-and-deployment-guide-v5.0.pdf)** for additional manual configuration updates to the deployed resources and further deploy SDR Reference Implementation (RI) Application Code.
+- **Step 3 :** Once the workflow completes successfully, refer to the **[DDF SDR RI Platform Setup and Deployment Guide](documents/sdr-release-v2.0.2/ddf-sdr-ri-platform-setup-and-deployment-guide-v6.0.pdf)** for additional manual configuration updates to the deployed resources and further deploy SDR Reference Implementation (RI) Application Code.
 
 **Important Note :** GitHub Actions does not allow multi-environment deployment setup with Free Pricing Plan. To Deploy to different environments, the GitHub secret values have to be updated with values of the target Azure Environment.
 
-# Infrastructure Changes for Release V2.0.1 (July 2023)
+# Infrastructure Changes for Release V2.0.2 (October 2023)
 
-- The steps required to migrate SDR infrastructure from Version 0.5 to Version 2.0.1 for users who have set up their own SDR instance for the Study Definition Repository – Reference Implementation on Azure Cloud Platform. It provides details for deploying the new resources using azure portal. Additionally, it provides details of containerized deployment for the SDR API and UI applications.
+- The steps required to migrate SDR infrastructure from Version 0.5 to Version 2.0.2 for users who have set up their own SDR instance for the Study Definition Repository – Reference Implementation on Azure Cloud Platform. It provides details for deploying the new resources using azure portal. Additionally, it provides details of containerized deployment for the SDR API and UI applications.
 
-**Important Note:** Refer to the **[DDF SDR RI Infra Migration Guide (Release V2.0.1)](documents/sdr-release-v2.0.1/ddf-sdr-ri-infra-migration-guide-v1.0.pdf)** for upgrading to SDR Release V2.0.1.
+**Important Note:** Refer to the **[DDF SDR RI Infra Migration Guide (Release V2.0.2)](documents/sdr-release-v2.0.2/ddf-sdr-ri-infra-migration-guide-v1.0.pdf)** for upgrading to SDR Release V2.0.2.
