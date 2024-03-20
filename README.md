@@ -14,6 +14,7 @@
   - [Deployment Actions](#deployment-actions)
     - [main.yml](#mainyml)
 - [Infrastructure Changes for Release V2.0.2 (October 2023)](#infrastructure-changes-for-release-v202-october-2023)
+- [Support](#support)
 
 # Introduction
 
@@ -196,3 +197,9 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 - The steps required to migrate SDR infrastructure from Version 0.5 to Version 2.0.2 for users who have set up their own SDR instance for the Study Definition Repository – Reference Implementation on Azure Cloud Platform. It provides details for deploying the new resources using azure portal. Additionally, it provides details of containerized deployment for the SDR API and UI applications.
 
 **Important Note:** Refer to the **[DDF SDR RI Infra Migration Guide (Release V2.0.2)](documents/sdr-release-v2.0.2/ddf-sdr-ri-infra-migration-guide-v1.0.pdf)** for upgrading to SDR Release V2.0.2.
+
+# Support
+
+- For any technical queries on SDR Platform repository, please create an issue [DDF SDR Support](https://github.com/transcelerate/ddf-sdr-support/issues/new?assignees=sdr-support&labels=techSupport&template=TechSupport.yml&title=%5BTechSupport%5D%3A).
+- [Raise Incident](https://github.com/transcelerate/ddf-sdr-support/issues/new?assignees=sdr-support&labels=incident&template=Incident.yml&title=%5BIncident%5D%3A+) faced in the SDR RI Demo Environment.
+- For any other support on DDF SDR RI, reach out to [SDR.Support@accenture.com](mailto:sdr.support@accenture.com).
