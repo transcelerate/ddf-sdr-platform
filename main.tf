@@ -50,22 +50,10 @@ module "module_vnet_diagsettings" {
 }
 ################################# Network Security Group ########################################
 module "module_network_security_group" {
-###  source              = "./modules/network_security_group"
-  name                = "nsg-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-  resource_group_name = module.module_resource_group.rg_name
-  location            = module.module_resource_group.rg_location
-
-  security_rule {
-    name                       = "AllowAnyCustom3443Inbound"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "3443"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
+  source      = "./modules/network_security_group"
+  nsg_name    = "nsg-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  rg_name     = module.module_resource_group.rg_name
+  rg_location = module.module_resource_group.rg_location
 }
 ################################## Subnet #######################################################
 module "module_subnet" {
@@ -117,8 +105,9 @@ module "module_deligatedsubnet3" {
 
 ################################# Network Security Group - Subnet Association ########################################
 module "module_subnet_network_security_group_association" {
+  source                    = "./modules/module_network_security_group"
   subnet_id                 = module.module_subnet.subnet_id
-  network_security_group_id = module.module_network_security_group.id
+  network_security_group_id = module.module_network_security_group.network_security_group_id
 }
 
 ##################################### API Management ####################################
