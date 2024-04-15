@@ -105,43 +105,58 @@ module "module_deligatedsubnet3" {
 
 ################################# Network Security Group - Subnet Association ########################################
 module "module_subnet_network_security_group_association" {
-  source                    = "./modules/subnet_nsg_association"
+  source      = "./modules/subnet_nsg_association"
   subnet_id   = module.module_subnet.subnet_id
   nsg_id      = module.module_network_security_group.network_security_group_id
 }
 
+##################################### Public IP #########################################
+module "module_public_ip" {
+  source              = "./modules/public_ip"
+  ip_name				      = "pip-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  rg_name             = module.module_resource_group.rg_name
+  rg_location         = module.module_resource_group.rg_location
+  domain_name_label	  = "pip-${var.subscription_acronym}-${var.env_acronym}"
+  allocation_method	  = "Static"
+  sku					        = "Standard"
+  protection_mode		  = "Enabled"
+}
+
+
 ##################################### API Management ####################################
-#module "module_apimanagement" {
-#  source                = "./modules/api_management"
-#  apim_name             = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-#  rg_name               = module.module_resource_group.rg_name
-#  rg_location           = module.module_resource_group.rg_location
-#  publisher_name        = var.publisher_name
-#  publisher_email       = var.publisher_email
-#  sku_name              = var.sku_name_api
-#  virtual_network_type  = var.virtual_network_type
-#  subnet_id             = module.module_subnet.subnet_id
-#  enable_http2          = var.enable_http2
-#  enable_backend_ssl30  = var.enable_backend_ssl30
-#  enable_backend_tls10  = var.enable_backend_tls10
-#  enable_backend_tls11  = var.enable_backend_tls11
-#  enable_frontend_ssl30 = var.enable_frontend_ssl30
-#  enable_frontend_tls10 = var.enable_frontend_tls10
-#  enable_frontend_tls11 = var.enable_frontend_tls11
-#  #      enable_triple_des_ciphers         = var.enable_triple_des_ciphers
+module "module_apimanagement" {
+  source                = "./modules/api_management"
+  apim_name             = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  rg_name               = module.module_resource_group.rg_name
+  rg_location           = module.module_resource_group.rg_location
+  publisher_name        = var.publisher_name
+  publisher_email       = var.publisher_email
+  sku_name              = var.sku_name_api
+  virtual_network_type  = var.virtual_network_type
+  public_ip             = module.module_public_ip.public_ip_id
+  subnet_id             = module.module_subnet.subnet_id
+  enable_http2          = var.enable_http2
+  enable_backend_ssl30  = var.enable_backend_ssl30
+  enable_backend_tls10  = var.enable_backend_tls10
+  enable_backend_tls11  = var.enable_backend_tls11
+  enable_frontend_ssl30 = var.enable_frontend_ssl30
+  enable_frontend_tls10 = var.enable_frontend_tls10
+  enable_frontend_tls11 = var.enable_frontend_tls11
+  #      enable_triple_des_ciphers         = var.enable_triple_des_ciphers
 #  apimanagement_log               = var.apimanagement_log
 #  azurerm_application_insights_id = module.module_app_insights.app_insights_id
 #  appinsights_instrumentation_key = module.module_app_insights.instrumentation_key
-#  identity_type                   = var.identity_type
+  identity_type                   = var.identity_type
 #  #   host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
 #  service_url      = "https://${module.module_appservice2.appservice_name}"
 #  apiendpoints     = var.apiendpoints
 #  apioperations    = var.apioperations
 #  apioperations_tp = var.apioperations_tp
 #  apiname          = var.apiname
-#  apimanagement_tags = {
-#
-#    Environment = var.env_acronym
-#    App_Layer   = var.App_Layer_NA
-#  }
-#}
+  apimanagement_tags = {
+
+    Environment = var.env_acronym
+    App_Layer   = var.App_Layer_NA
+  }
+}
+

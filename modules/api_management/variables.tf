@@ -133,3 +133,7 @@ variable "apiname" {
     type = list(object({api_name = string}))
   
 }
+
+variable "public_ip" {
+  
+}

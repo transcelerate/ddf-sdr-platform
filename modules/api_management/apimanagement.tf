@@ -6,6 +6,7 @@ resource "azurerm_api_management" "apimanagement" {
   publisher_email      = var.publisher_email
   sku_name             = var.sku_name
   virtual_network_type = var.virtual_network_type
+  public_ip_address_id = var.public_ip
   tags                 = var.apimanagement_tags
   timeouts {
     create = "120m"
@@ -55,101 +56,102 @@ resource "azurerm_api_management" "apimanagement" {
 #   }
 # }
 
-resource "azurerm_api_management_api" "apiendpoint" {
-  for_each              = { for endpoint in var.apiendpoints : endpoint.name => endpoint }
-  name                  = each.value.name
-  resource_group_name   = var.rg_name
-  api_management_name   = azurerm_api_management.apimanagement.name
-  revision              = "1"
-  display_name          = each.value.display_name
-  path                  = each.value.path
-  protocols             = ["https"]
-  subscription_required = false
-  service_url           = var.service_url
-  timeouts {
-    create = "120m"
-    update = "120m"
-    delete = "60m"
-  }
-}
-
-resource "azurerm_api_management_api_operation" "apioperations" {
-  for_each            = { for api in var.apioperations : api.operation_id => api }
-  operation_id        = each.value.operation_id
-  api_name            = each.value.api_name
-  api_management_name = azurerm_api_management.apimanagement.name
-  resource_group_name = var.rg_name
-  display_name        = each.value.display_name
-  method              = each.value.method
-  url_template        = each.value.url_template
-  description         = "SDR API's"
-  depends_on          = [azurerm_api_management_api.apiendpoint]
-  timeouts {
-    create = "120m"
-    update = "120m"
-    delete = "60m"
-  }
-
-  response {
-    status_code = 200
-  }
-}
-
-resource "azurerm_api_management_api_operation" "apioperations_tp" {
-  for_each            = { for api in var.apioperations_tp : api.operation_id => api }
-  operation_id        = each.value.operation_id
-  api_name            = each.value.api_name
-  api_management_name = azurerm_api_management.apimanagement.name
-  resource_group_name = var.rg_name
-  display_name        = each.value.display_name
-  method              = each.value.method
-  url_template        = each.value.url_template
-  description         = "SDR API's"
-  depends_on          = [azurerm_api_management_api.apiendpoint]
-  timeouts {
-    create = "120m"
-    update = "120m"
-    delete = "60m"
-  }
-
-  template_parameter {
-    name     = each.value.tempname
-    type     = "string"
-    required = false
-  }
-
-  response {
-    status_code = 200
-  }
-}
-
-resource "azurerm_api_management_logger" "apimanagement_log" {
-
-  name                = var.apimanagement_log
-  api_management_name = azurerm_api_management.apimanagement.name
-  resource_group_name = var.rg_name
-  resource_id         = var.azurerm_application_insights_id
-
-  application_insights {
-
-    instrumentation_key = var.appinsights_instrumentation_key
-
-  }
-}
-
-resource "azurerm_api_management_api_diagnostic" "example" {
-  for_each                 = { for api in var.apiname : api.api_name => api }
-  identifier               = "applicationinsights"
-  resource_group_name      = var.rg_name
-  api_management_name      = azurerm_api_management.apimanagement.name
-  api_name                 = each.value.api_name
-  api_management_logger_id = azurerm_api_management_logger.apimanagement_log.id
-  depends_on               = [azurerm_api_management_api.apiendpoint]
-
-  sampling_percentage       = 100.0
-  always_log_errors         = true
-  log_client_ip             = false
-  verbosity                 = "information"
-  http_correlation_protocol = "W3C"
-
-}
+#resource "azurerm_api_management_api" "apiendpoint" {
+#  for_each              = { for endpoint in var.apiendpoints : endpoint.name => endpoint }
+#  name                  = each.value.name
+#  resource_group_name   = var.rg_name
+#  api_management_name   = azurerm_api_management.apimanagement.name
+#  revision              = "1"
+#  display_name          = each.value.display_name
+#  path                  = each.value.path
+#  protocols             = ["https"]
+#  subscription_required = false
+#  service_url           = var.service_url
+#  timeouts {
+#    create = "120m"
+#    update = "120m"
+#    delete = "60m"
+#  }
+#}
+#
+#resource "azurerm_api_management_api_operation" "apioperations" {
+#  for_each            = { for api in var.apioperations : api.operation_id => api }
+#  operation_id        = each.value.operation_id
+#  api_name            = each.value.api_name
+#  api_management_name = azurerm_api_management.apimanagement.name
+#  resource_group_name = var.rg_name
+#  display_name        = each.value.display_name
+#  method              = each.value.method
+#  url_template        = each.value.url_template
+#  description         = "SDR API's"
+#  depends_on          = [azurerm_api_management_api.apiendpoint]
+#  timeouts {
+#    create = "120m"
+#    update = "120m"
+#    delete = "60m"
+#  }
+#
+#  response {
+#    status_code = 200
+#  }
+#}
+#
+#resource "azurerm_api_management_api_operation" "apioperations_tp" {
+#  for_each            = { for api in var.apioperations_tp : api.operation_id => api }
+#  operation_id        = each.value.operation_id
+#  api_name            = each.value.api_name
+#  api_management_name = azurerm_api_management.apimanagement.name
+#  resource_group_name = var.rg_name
+#  display_name        = each.value.display_name
+#  method              = each.value.method
+#  url_template        = each.value.url_template
+#  description         = "SDR API's"
+#  depends_on          = [azurerm_api_management_api.apiendpoint]
+#  timeouts {
+#    create = "120m"
+#    update = "120m"
+#    delete = "60m"
+#  }
+#
+#  template_parameter {
+#    name     = each.value.tempname
+#    type     = "string"
+#    required = false
+#  }
+#
+#  response {
+#    status_code = 200
+#  }
+#}
+#
+#resource "azurerm_api_management_logger" "apimanagement_log" {
+#
+#  name                = var.apimanagement_log
+#  api_management_name = azurerm_api_management.apimanagement.name
+#  resource_group_name = var.rg_name
+#  resource_id         = var.azurerm_application_insights_id
+#
+#  application_insights {
+#
+#    instrumentation_key = var.appinsights_instrumentation_key
+#
+#  }
+#}
+#
+#resource "azurerm_api_management_api_diagnostic" "example" {
+#  for_each                 = { for api in var.apiname : api.api_name => api }
+#  identifier               = "applicationinsights"
+#  resource_group_name      = var.rg_name
+#  api_management_name      = azurerm_api_management.apimanagement.name
+#  api_name                 = each.value.api_name
+#  api_management_logger_id = azurerm_api_management_logger.apimanagement_log.id
+#  depends_on               = [azurerm_api_management_api.apiendpoint]
+#
+#  sampling_percentage       = 100.0
+#  always_log_errors         = true
+#  log_client_ip             = false
+#  verbosity                 = "information"
+#  http_correlation_protocol = "W3C"
+#
+#}
+#
