@@ -137,3 +137,9 @@ variable "apiname" {
 variable "public_ip" {
   
 }
+
+variable "apim_depends_on" {
+  
+  type    = any
+  default = []
+}

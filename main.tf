@@ -108,6 +108,7 @@ module "module_subnet_network_security_group_association" {
   source      = "./modules/subnet_nsg_association"
   subnet_id   = module.module_subnet.subnet_id
   nsg_id      = module.module_network_security_group.network_security_group_id
+  depends_on  = [module.module_subnet]
 }
 
 ##################################### Public IP #########################################
@@ -173,6 +174,7 @@ module "module_apimanagement" {
     Environment = var.env_acronym
     App_Layer   = var.App_Layer_NA
   }
+  depends_on = [module.module_subnet_network_security_group_association, module.module_public_ip]
 }
 
 

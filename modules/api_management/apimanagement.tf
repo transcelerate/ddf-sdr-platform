@@ -41,6 +41,7 @@ resource "azurerm_api_management" "apimanagement" {
     enable_frontend_tls11 = var.enable_frontend_tls11
     #    enable_triple_des_ciphers   = var.enable_triple_des_ciphers
   }
+  depends_on   = [var.apim_depends_on]
 }
 
 # resource "azurerm_api_management_custom_domain" "example" {
