@@ -191,6 +191,20 @@ module "module_app_insights" {
   }
 }
 
+###############################  Azure Container Registry ########################################
+
+module "acr" {
+
+  source              = "./modules/azure_container_registry"
+  acrname             = "acr${var.subscription_acronym}${var.env_acronym}${var.location}"
+  resource_group_name = module.module_resource_group.rg_name
+  location            = module.module_resource_group.rg_location
+  acr_tags = {
+
+    Environment = var.env_acronym
+
+  }
+}
 
 ##################################  App Service Plan ########################################
 
