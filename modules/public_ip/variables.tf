@@ -20,6 +20,6 @@ variable allocation_method {
 variable sku {
   
 }
-variable ddos_protection_mode {
+variable protection_mode {
   
 }
