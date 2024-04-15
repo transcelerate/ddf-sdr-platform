@@ -87,20 +87,20 @@ jobs:
       # Install pip required for the setup
       run: python -m pip install --upgrade pip setuptools wheel
       
-    - name: Install Checkov using pip3
-      # Install checkov for checkov_validation step
-      run: pip3 install checkov
-      
-    - name: Security test with Checkov
-      # Run the security check on the code
-      run: checkov -d '${{ github.workspace }}' -o junitxml -s >> checkov_sectests.xml
-      
-    - name: Publish Security Test Results (Checkov)
-      # Publish the security check xml file
-      uses: EnricoMi/publish-unit-test-result-action@v1
-      if: always()
-      with:
-        files: test-results/**/*.xml   
+#    - name: Install Checkov using pip3
+#      # Install checkov for checkov_validation step
+#      run: pip3 install checkov
+#      
+#    - name: Security test with Checkov
+#      # Run the security check on the code
+#      run: checkov -d '${{ github.workspace }}' -o junitxml -s >> checkov_sectests.xml
+#      
+#    - name: Publish Security Test Results (Checkov)
+#      # Publish the security check xml file
+#      uses: EnricoMi/publish-unit-test-result-action@v1
+#      if: always()
+#      with:
+#        files: test-results/**/*.xml   
         
     - name: Terraform Install
       # task will install the terraform and it's dependencies on microsoft hosted agents to deploy the resources

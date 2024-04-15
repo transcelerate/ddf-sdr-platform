@@ -6,6 +6,7 @@ resource "azurerm_api_management" "apimanagement" {
   publisher_email      = var.publisher_email
   sku_name             = var.sku_name
   virtual_network_type = var.virtual_network_type
+  public_ip_address_id = var.public_ip
   tags                 = var.apimanagement_tags
   timeouts {
     create = "120m"
@@ -40,6 +41,7 @@ resource "azurerm_api_management" "apimanagement" {
     enable_frontend_tls11 = var.enable_frontend_tls11
     #    enable_triple_des_ciphers   = var.enable_triple_des_ciphers
   }
+  depends_on   = [var.apim_depends_on]
 }
 
 # resource "azurerm_api_management_custom_domain" "example" {

@@ -41,12 +41,19 @@ module "module_virtualnetwork" {
   }
 }
 ################################## VNET Diagonostic Settings ###################################
-module "module_vnet_diagsettings" {
-  source                     = "./modules/vnet_diagsettings"
-  vnet_diag_name             = "diags-vnet-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-  target_resource_id         = module.module_virtualnetwork.vnet_id
-  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
-  disable_log                = var.disable_log
+#module "module_vnet_diagsettings" {
+#  source                     = "./modules/vnet_diagsettings"
+#  vnet_diag_name             = "diags-vnet-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+#  target_resource_id         = module.module_virtualnetwork.vnet_id
+#  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+#  disable_log                = var.disable_log
+#}
+################################# Network Security Group ########################################
+module "module_network_security_group" {
+  source      = "./modules/network_security_group"
+  nsg_name    = "nsg-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  rg_name     = module.module_resource_group.rg_name
+  rg_location = module.module_resource_group.rg_location
 }
 ################################## Subnet #######################################################
 module "module_subnet" {
@@ -96,6 +103,26 @@ module "module_deligatedsubnet3" {
   depends_on         = [module.module_virtualnetwork]
 }
 
+################################# Network Security Group - Subnet Association ########################################
+module "module_subnet_network_security_group_association" {
+  source      = "./modules/subnet_nsg_association"
+  subnet_id   = module.module_subnet.subnet_id
+  nsg_id      = module.module_network_security_group.network_security_group_id
+  depends_on  = [module.module_subnet]
+}
+
+##################################### Public IP #########################################
+module "module_public_ip" {
+  source              = "./modules/public_ip"
+  ip_name				      = "pip-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  rg_name             = module.module_resource_group.rg_name
+  rg_location         = module.module_resource_group.rg_location
+  domain_name_label	  = "pip-${var.subscription_acronym}-${var.env_acronym}"
+  allocation_method	  = var.pip_allocation_method
+  sku					        = var.pip_sku
+  protection_mode		  = var.pip_protection_mode
+}
+
 ################################## Log Analytics Workspace ################################################
 
 module "module_loganalytics_workspace" {
@@ -111,6 +138,7 @@ module "module_loganalytics_workspace" {
     App_Layer   = var.App_Layer_NA
   }
 }
+
 ################################ Log Analytics Diagonostic settings #############################
 module "module_log_analytics_diagsettings" {
   source                     = "./modules/log_analy_diagsettings"
@@ -119,6 +147,7 @@ module "module_log_analytics_diagsettings" {
   log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
   enable_log                 = var.enable_log
 }
+
 ################################## Key Vault ################################################
 
 module "module_keyvault" {
@@ -207,6 +236,7 @@ module "module_cosmosdb_diagsettings" {
   enable_log                 = var.enable_log
   disable_log                = var.disable_log
 }
+
 ##################################### API Management ####################################
 module "module_apimanagement" {
   source                = "./modules/api_management"
@@ -217,6 +247,7 @@ module "module_apimanagement" {
   publisher_email       = var.publisher_email
   sku_name              = var.sku_name_api
   virtual_network_type  = var.virtual_network_type
+  public_ip             = module.module_public_ip.public_ip_id
   subnet_id             = module.module_subnet.subnet_id
   enable_http2          = var.enable_http2
   enable_backend_ssl30  = var.enable_backend_ssl30
@@ -241,8 +272,8 @@ module "module_apimanagement" {
     Environment = var.env_acronym
     App_Layer   = var.App_Layer_NA
   }
+  depends_on = [module.module_subnet_network_security_group_association, module.module_public_ip]
 }
-
 
 ####################################API Management Diagnostic Settings###########################
 module "module_api_management_diagsettings" {
@@ -252,6 +283,7 @@ module "module_api_management_diagsettings" {
   log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
   enable_log                 = var.enable_log
 }
+
 ##################################  App Insights #########################################
 
 module "module_app_insights" {
@@ -282,8 +314,8 @@ module "acr" {
   }
 }
 
-
 ##################################  App Service Plan ########################################
+
 module "module_appserviceplan" {
   source                = "./modules/app_service_plan"
   app_service_plan_name = "asp-${var.subscription_acronym}${var.fe_acronym}-${var.env_acronym}-${var.location}-001"
@@ -328,7 +360,10 @@ module "module_appserviceplan3" {
   }
 
 }
+
+
 ########################### AppService plan Diagonostic settings#######################################
+
 module "module_appserviceplan01_diagsettings" {
   source                     = "./modules/app_service_plan_diagsettings"
   app_service_plan_diag_name = "diags-asp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-001"
@@ -413,6 +448,7 @@ module "module_appservice2" {
     App_Layer   = var.App_Layer_BE
   }
 }
+
 ########################### App Service Diagonostic Settings ####################################
 module "module_appservice01_diagsettings" {
   source                     = "./modules/app_service_diagsettings"
@@ -430,6 +466,7 @@ module "module_appservice02_diagsettings" {
   enable_log                 = var.enable_log
 
 }
+
 module "module_functionapp_diagsettings" {
   source                     = "./modules/functionapp_diagsettings"
   functionapp_diag_name      = "diags-funapp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-003"

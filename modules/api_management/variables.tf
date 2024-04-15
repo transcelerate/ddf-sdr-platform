@@ -133,3 +133,13 @@ variable "apiname" {
     type = list(object({api_name = string}))
   
 }
+
+variable "public_ip" {
+  
+}
+
+variable "apim_depends_on" {
+  
+  type    = any
+  default = []
+}
