@@ -266,22 +266,7 @@ variable "apioperations" {
         method       = "GET"
         url_template = "/studydefinitions/history"
     },
-    {
-        operation_id = "v2-get-study-design"
-        api_name     = "sdr-api"
-        display_name = "V2 Get Study Design"
-        method       = "GET"
-        url_template = "/v2/studydesigns"
-    },
-    {
-        operation_id = "v2-post-study-definition"
-        api_name     = "sdr-api"
-        display_name = "V2 Post Study Definition"
-        method       = "POST"
-        url_template = "/v2/studydefinitions"
-    },
-    
-    {
+	{
         operation_id = "check-group-name"
         api_name     = "sdr-ui-admin"
         display_name = "Check Group Name"
@@ -358,6 +343,20 @@ variable "apioperations" {
         method       = "GET"
         url_template = "/versions"
     },
+    {
+        operation_id = "v2-get-study-design"
+        api_name     = "sdr-api"
+        display_name = "V2 Get Study Design"
+        method       = "GET"
+        url_template = "/v2/studydesigns"
+    },
+    {
+        operation_id = "v2-post-study-definition"
+        api_name     = "sdr-api"
+        display_name = "V2 Post Study Definition"
+        method       = "POST"
+        url_template = "/v2/studydefinitions"
+    },
      {
         operation_id = "v3-get-study-design"
         api_name     = "sdr-api"
@@ -431,20 +430,20 @@ variable "apioperations_tp" {
         url_template = "/studydefinitions/{studyId}/changeaudit"
         tempname     = "studyId"
     },
+	{
+        operation_id = "common-get-study-raw-data"
+        api_name     = "sdr-api"   
+        display_name = "Common - Get Study Raw Data"
+        method       = "GET"
+        url_template = "/studydefinitions/{studyId}/rawdata"
+        tempname     = "studyId"
+    },
     {
         operation_id = "v2-get-ecpt"
         api_name     = "sdr-api"
         display_name = "V2 Get eCPT"
         method       = "GET"
         url_template = "/v2/studyDefinitions/{studyId}/studydesigns/ecpt"
-        tempname     = "studyId"
-    },
-    {
-        operation_id = "common-get-study-raw-data"
-        api_name     = "sdr-api"   
-        display_name = "Common - Get Study Raw Data"
-        method       = "GET"
-        url_template = "/studydefinitions/{studyId}/rawdata"
         tempname     = "studyId"
     },
     {
@@ -455,15 +454,7 @@ variable "apioperations_tp" {
         url_template = "/v2/studydefinitions/{studyid}"
         tempname     = "studyId"
     },
-    {
-        operation_id = "v2-get-study-design-soa"
-        api_name     = "sdr-api"   
-        display_name = "V2 Get Study Design SOA"
-        method       = "GET"
-        url_template = "/v2/studydefinitions/{studyId}/studydesigns/soa"
-        tempname     = "studyId"
-    },
-    {
+	{
         operation_id = "common-get-revision-history-sdruiapi"
         api_name     = "sdr-ui-api"   
         display_name = "Common - Get Revision History"
@@ -477,6 +468,30 @@ variable "apioperations_tp" {
         display_name = "Get Study Links"
         method       = "GET"
         url_template = "/studydefinitions/{studyId}/links"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "v2-get-study-design-soa"
+        api_name     = "sdr-api"   
+        display_name = "V2 Get Study Design SOA"
+        method       = "GET"
+        url_template = "/v2/studydefinitions/{studyId}/studydesigns/soa"
+        tempname     = "studyId"
+    },
+	{
+        operation_id = "v2-get-study-design-soa-sdruiapi"
+        api_name     = "sdr-ui-api"   
+        display_name = "V2 Get Study Design SOA"
+        method       = "GET"
+        url_template = "/v2/studydefinitions/{studyId}/studydesigns/soa"
+        tempname     = "studyId"
+    },
+	{
+        operation_id = "v2-get-ecpt"
+        api_name     = "sdr-api"
+        display_name = "V2 Get eCPT"
+        method       = "GET"
+        url_template = "/v2/studyDefinitions/{studyId}/studydesigns/ecpt"
         tempname     = "studyId"
     },
     {
@@ -511,7 +526,7 @@ variable "apioperations_tp" {
         url_template = "/v3/studydefinitions/{studyId}/studydesigns/soa"
         tempname     = "studyId"
     },
-     {
+    {
         operation_id = "v3-get-ecpt"
         api_name     = "sdr-api"
         display_name = "V3 Get eCPT"
@@ -551,28 +566,20 @@ variable "apioperations_tp" {
         url_template = "/v3/studydefinitions/{studyId}/version-comparison"
         tempname     = "studyId"
     },
-        {
-        operation_id = "v2-get-study-design-soa-sdruiapi"
-        api_name     = "sdr-ui-api"   
-        display_name = "V2 Get Study Design SOA"
-        method       = "GET"
-        url_template = "/v2/studydefinitions/{studyId}/studydesigns/soa"
-        tempname     = "studyId"
-    },
 	{
-        operation_id = "v3-get-study-design-soa-sdrapi"
+        operation_id = "v4-get-study-design-soa-sdrapi"
         api_name     = "sdr-api"   
-        display_name = "V3 Get Study Design SOA"
+        display_name = "V4 Get Study Design SOA"
         method       = "GET"
-        url_template = "/v3/studydefinitions/{studyId}/studydesigns/soa"
+        url_template = "/v4/studydefinitions/{studyId}/studydesigns/soa"
         tempname     = "studyId"
     },
     {
-        operation_id = "v3-get-study-design-soa-sdruiapi"
+        operation_id = "v4-get-study-design-soa-sdruiapi"
         api_name     = "sdr-ui-api"   
-        display_name = "V3 Get Study Design SOA"
+        display_name = "V4 Get Study Design SOA"
         method       = "GET"
-        url_template = "/v3/studydefinitions/{studyId}/studydesigns/soa"
+        url_template = "/v4/studydefinitions/{studyId}/studydesigns/soa"
         tempname     = "studyId"
     },
     {
@@ -618,7 +625,6 @@ variable "apioperations_tp" {
     ]
 
 }
-
 
 variable "apiname" {
   
