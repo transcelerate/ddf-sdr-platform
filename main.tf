@@ -122,6 +122,21 @@ module "module_public_ip" {
   protection_mode		  = "Enabled"
 }
 
+################################## Log Analytics Workspace ################################################
+
+module "module_loganalytics_workspace" {
+  source                       = "./modules/log_analytics_workspace"
+  log_analytics_workspace_name = "law-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  rg_location                  = module.module_resource_group_2.rg_location
+  rg_name                      = module.module_resource_group_2.rg_name
+  sku                          = var.log_analytics_sku
+  retention_in_days            = var.log_analytics_retention
+  log_analytics_tags = {
+
+    Environment = var.env_acronym
+    App_Layer   = var.App_Layer_NA
+  }
+}
 
 ##################################### API Management ####################################
 module "module_apimanagement" {
@@ -160,3 +175,89 @@ module "module_apimanagement" {
   }
 }
 
+
+##################################  App Insights #########################################
+
+module "module_app_insights" {
+  source                     = "./modules/app_insights"
+  app_insights_name          = "appin-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  rg_name                    = module.module_resource_group.rg_name
+  rg_location                = module.module_resource_group.rg_location
+  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+  application_type           = var.application_type
+  app_insights_tags = {
+    Environment = var.env_acronym
+    App_Layer   = var.App_Layer_NA
+  }
+}
+
+
+##################################  App Service Plan ########################################
+
+module "module_appserviceplan2" {
+  source                = "./modules/app_service_plan"
+  app_service_plan_name = "asp-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-002"
+  rg_name               = module.module_resource_group.rg_name
+  rg_location           = module.module_resource_group.rg_location
+  os_type               = var.os_type
+  sku_name              = var.sku_name_asp
+  app_service_plan_tags = {
+
+    Environment = var.env_acronym
+    App_Layer   = var.App_Layer_BE
+  }
+
+}
+
+
+########################### AppService plan Diagonostic settings#######################################
+
+module "module_appserviceplan02_diagsettings" {
+  source                     = "./modules/app_service_plan_diagsettings"
+  app_service_plan_diag_name = "diags-asp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-002"
+  target_resource_id         = module.module_appserviceplan2.app_service_plan_id
+  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+  /* enable_metric_retention_policy = "true"
+    metric_retention_days          = "7" */
+
+}
+
+
+############################ App Service ################################################
+
+module "module_appservice2" {
+  source                                = "./modules/app_service"
+  app_service_name                      = "apps-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-002"
+  rg_name                               = module.module_resource_group.rg_name
+  rg_location                           = module.module_resource_group.rg_location
+  app_service_plan_id                   = module.module_appserviceplan2.app_service_plan_id
+  APPINSIGHTS_INSTRUMENTATIONKEY        = module.module_app_insights.instrumentation_key
+  APPLICATIONINSIGHTS_CONNECTION_STRING = module.module_app_insights.connection_string
+  https_only                            = var.https_only
+  ftps_state                            = var.ftps_state
+  use_32_bit_worker                     = var.use_32_bit_worker
+  docker_image                          = module.acr.acrurl
+  identity                              = var.identity
+  http2_enabled                         = var.http2_enabled
+  subnet_id                             = module.module_deligatedsubnet2.Dsubnet_ID
+  virtual_network_subnet_id             = module.module_subnet.subnet_id
+  ip_address                            = var.ip_address2
+  apparname                             = var.apparname2
+  priority                              = var.priority2
+  action                                = var.action2
+  depends_on                            = [module.module_deligatedsubnet2, module.module_subnet, module.module_virtualnetwork]
+  app_service_tags = {
+
+    Environment = var.env_acronym
+    App_Layer   = var.App_Layer_BE
+  }
+}
+
+module "module_appservice02_diagsettings" {
+  source                     = "./modules/app_service_diagsettings"
+  app_service_diag_name      = "diags-apps-${var.subscription_acronym}-${var.env_acronym}-${var.location}-002"
+  target_resource_id         = module.module_appservice2.app_service_id
+  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+  enable_log                 = var.enable_log
+
+}
