@@ -81,6 +81,18 @@ variable "sub_service_endpoints" {
 
 ####################### Subnet End   #####################################################
 
+####################### Public IP Begin #####################################################
+variable pip_allocation_method {
+    default = "Static"
+}
+variable pip_sku {
+    default = "Standard"
+}
+variable pip_protection_mode {
+    default = "Enabled"
+}
+####################### Public IP End #####################################################
+
 ####################### Delegated Subnet 1 Variable Begin   #####################################################
 
 variable "dsaddress_prefix" {
