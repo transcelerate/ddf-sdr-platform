@@ -438,22 +438,6 @@ variable "apioperations_tp" {
         url_template = "/studydefinitions/{studyId}/rawdata"
         tempname     = "studyId"
     },
-    {
-        operation_id = "v2-get-ecpt"
-        api_name     = "sdr-api"
-        display_name = "V2 Get eCPT"
-        method       = "GET"
-        url_template = "/v2/studyDefinitions/{studyId}/studydesigns/ecpt"
-        tempname     = "studyId"
-    },
-    {
-        operation_id = "v2-get-study-definition"
-        api_name     = "sdr-api"   
-        display_name = "V2 Get Study Definition"
-        method       = "GET"
-        url_template = "/v2/studydefinitions/{studyid}"
-        tempname     = "studyId"
-    },
 	{
         operation_id = "common-get-revision-history-sdruiapi"
         api_name     = "sdr-ui-api"   
@@ -486,7 +470,7 @@ variable "apioperations_tp" {
         url_template = "/v2/studydefinitions/{studyId}/studydesigns/soa"
         tempname     = "studyId"
     },
-	{
+    {
         operation_id = "v2-get-ecpt"
         api_name     = "sdr-api"
         display_name = "V2 Get eCPT"
@@ -495,8 +479,8 @@ variable "apioperations_tp" {
         tempname     = "studyId"
     },
     {
-        operation_id = "v2-get-study-definition-sdruiapi"
-        api_name     = "sdr-ui-api"   
+        operation_id = "v2-get-study-definition"
+        api_name     = "sdr-api"   
         display_name = "V2 Get Study Definition"
         method       = "GET"
         url_template = "/v2/studydefinitions/{studyid}"
@@ -507,6 +491,14 @@ variable "apioperations_tp" {
         api_name     = "sdr-api"
         display_name = "V2 Put Study Definitions"
         method       = "PUT"
+        url_template = "/v2/studydefinitions/{studyid}"
+        tempname     = "studyId"
+    },
+    {
+        operation_id = "v2-get-study-definition-sdruiapi"
+        api_name     = "sdr-ui-api"   
+        display_name = "V2 Get Study Definition"
+        method       = "GET"
         url_template = "/v2/studydefinitions/{studyid}"
         tempname     = "studyId"
     },
@@ -542,7 +534,7 @@ variable "apioperations_tp" {
         url_template = "/v3/studydefinitions/{studyid}"
         tempname     = "studyId"
     },
-      {
+    {
         operation_id = "v3-put-study-definitions"
         api_name     = "sdr-api"
         display_name = "V3 Put Study Definitions"
@@ -550,7 +542,7 @@ variable "apioperations_tp" {
         url_template = "/v3/studydefinitions/{studyid}"
         tempname     = "studyId"
     },
-     {
+    {
         operation_id = "v3-get-study-definition-sdruiapi"
         api_name     = "sdr-ui-api"   
         display_name = "V3 Get Study Definition"
@@ -598,7 +590,7 @@ variable "apioperations_tp" {
         url_template = "/v4/studydefinitions/{studyid}"
         tempname     = "studyId"
     },
-      {
+    {
         operation_id = "v4-put-study-definitions"
         api_name     = "sdr-api"
         display_name = "V4 Put Study Definitions"
@@ -606,7 +598,7 @@ variable "apioperations_tp" {
         url_template = "/v4/studydefinitions/{studyid}"
         tempname     = "studyId"
     },
-     {
+    {
         operation_id = "v4-get-study-definition-sdruiapi"
         api_name     = "sdr-ui-api"   
         display_name = "V4 Get Study Definition"
