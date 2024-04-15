@@ -106,8 +106,8 @@ module "module_deligatedsubnet3" {
 ################################# Network Security Group - Subnet Association ########################################
 module "module_subnet_network_security_group_association" {
   source                    = "./modules/subnet_nsg_association"
-  subnet_id                 = module.module_subnet.subnet_id
-  network_security_group_id = module.module_network_security_group.network_security_group_id
+  subnet_id   = module.module_subnet.subnet_id
+  nsg_id      = module.module_network_security_group.network_security_group_id
 }
 
 ##################################### API Management ####################################
