@@ -41,13 +41,13 @@ module "module_virtualnetwork" {
   }
 }
 ################################## VNET Diagonostic Settings ###################################
-module "module_vnet_diagsettings" {
-  source                     = "./modules/vnet_diagsettings"
-  vnet_diag_name             = "diags-vnet-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-  target_resource_id         = module.module_virtualnetwork.vnet_id
-  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
-  disable_log                = var.disable_log
-}
+#module "module_vnet_diagsettings" {
+#  source                     = "./modules/vnet_diagsettings"
+#  vnet_diag_name             = "diags-vnet-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+#  target_resource_id         = module.module_virtualnetwork.vnet_id
+#  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+#  disable_log                = var.disable_log
+#}
 ################################# Network Security Group ########################################
 module "module_network_security_group" {
   source      = "./modules/network_security_group"
