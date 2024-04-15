@@ -143,16 +143,16 @@ module "module_apimanagement" {
   enable_frontend_tls10 = var.enable_frontend_tls10
   enable_frontend_tls11 = var.enable_frontend_tls11
   #      enable_triple_des_ciphers         = var.enable_triple_des_ciphers
-#  apimanagement_log               = var.apimanagement_log
-#  azurerm_application_insights_id = module.module_app_insights.app_insights_id
-#  appinsights_instrumentation_key = module.module_app_insights.instrumentation_key
+  apimanagement_log               = var.apimanagement_log
+  azurerm_application_insights_id = module.module_app_insights.app_insights_id
+  appinsights_instrumentation_key = module.module_app_insights.instrumentation_key
   identity_type                   = var.identity_type
-#  #   host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
-#  service_url      = "https://${module.module_appservice2.appservice_name}"
-#  apiendpoints     = var.apiendpoints
-#  apioperations    = var.apioperations
-#  apioperations_tp = var.apioperations_tp
-#  apiname          = var.apiname
+  #   host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
+  service_url      = "https://${module.module_appservice2.appservice_name}"
+  apiendpoints     = var.apiendpoints
+  apioperations    = var.apioperations
+  apioperations_tp = var.apioperations_tp
+  apiname          = var.apiname
   apimanagement_tags = {
 
     Environment = var.env_acronym
