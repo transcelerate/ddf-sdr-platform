@@ -75,7 +75,7 @@ variable "address_prefix"{
 
 variable "sub_service_endpoints" {
 
-    default = ["Microsoft.Web"]
+    default = ["Microsoft.Web","Microsoft.Storage","Microsoft.KeyVault"]
   
 }
 
