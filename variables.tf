@@ -768,11 +768,6 @@ variable "product_api_name" {
     default = "sdr-api"
 }
 
-variable "group_developer_portal" {
-  
-  default = "#{ADGroup_Developer_Portal}#"
-}
-
 variable "management_group_name" {
   default = "sdr-apim-developer-portal-user-group"
 }
@@ -782,7 +777,7 @@ variable "management_group_display_name" {
 }
 
 variable "developer_portal_ad_group" {
-    
+    default = "#{ADGroup_Developer_Portal}#"
 }
 
 ######################API Management Variables End #############################################
