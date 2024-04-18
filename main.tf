@@ -50,11 +50,12 @@ module "module_virtualnetwork" {
 #}
 ################################# Network Security Group ########################################
 module "module_network_security_group" {
-  source      = "./modules/network_security_group"
-  nsg_name    = "nsg-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-  rg_name     = module.module_resource_group.rg_name
-  rg_location = module.module_resource_group.rg_location
-  network_security_rules = var.network_security_rules
+  source                            = "./modules/network_security_group"
+  nsg_name                          = "nsg-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  rg_name                           = module.module_resource_group.rg_name
+  rg_location                       = module.module_resource_group.rg_location
+  network_security_rules            = var.network_security_rules
+  network_security_rules_multiport  = var.network_security_rules_multiport
 }
 ################################### Subnet #######################################################
 #module "module_subnet" {
