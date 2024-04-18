@@ -177,17 +177,6 @@ variable "network_security_rules" {
         destination_address_prefix  = "AzureKeyVault"
     },
     {
-        name                        = "AllowTagCustom1886-443Outbound-KV"
-        priority                    = "130"
-        direction                   = "Outbound"
-        access                      = "Allow"
-        protocol                    = "Tcp"
-        source_port_range           = "*"
-        destination_port_ranges     = ["1886","443"]
-        source_address_prefix       = "VirtualNetwork"
-        destination_address_prefix  = "AzureMonitor"
-    },
-    {
         name                        = "DenyAnyCustomOutbound"
         priority                    = "4096"
         direction                   = "Outbound"
@@ -200,6 +189,24 @@ variable "network_security_rules" {
     }
     ]
 }
+
+variable "network_security_rules_multiport" {
+
+    default = [
+        {
+        name                        = "AllowTagCustom1886-443Outbound-KV"
+        priority                    = "130"
+        direction                   = "Outbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_ranges     = ["1886","443"]
+        source_address_prefix       = "VirtualNetwork"
+        destination_address_prefix  = "AzureMonitor"
+    }
+    ]
+}
+
 
 ####################### Network Security Rules - End ##################################################
 
