@@ -194,7 +194,7 @@ variable "network_security_rules_multiport" {
 
     default = [
         {
-        name                        = "AllowTagCustom1886-443Outbound-KV"
+        name                        = "AllowTagCustom1886-443Outbound"
         priority                    = "130"
         direction                   = "Outbound"
         access                      = "Allow"
