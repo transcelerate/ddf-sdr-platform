@@ -183,7 +183,7 @@ variable "network_security_rules" {
         access                      = "Allow"
         protocol                    = "Tcp"
         source_port_range           = "*"
-        destination_port_range      = "1886,443"
+        destination_port_ranges     = ["1886","443"]
         source_address_prefix       = "VirtualNetwork"
         destination_address_prefix  = "AzureMonitor"
     },
