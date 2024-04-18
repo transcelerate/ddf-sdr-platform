@@ -13,7 +13,7 @@
     - [Variables.tf Secret Variables](#variablestf-secret-variables)
   - [Deployment Actions](#deployment-actions)
     - [main.yml](#mainyml)
-- [Infrastructure Changes for Release V2.0.2 (October 2023)](#infrastructure-changes-for-release-v202-october-2023)
+- [Infrastructure Changes for Release V3.0 (May 2024)](#infrastructure-changes-for-release-v30-may-2024)
 - [Support](#support)
 
 # Introduction
@@ -30,7 +30,7 @@ The below documents provide a high level overview of the SDR Reference Implement
 - Please be advised that if you implement the code as written, the functionality is designed to collect and store certain personal data (user credentials, email address, IP address) for authentication and audit log purposes. None of this information will be shared with TransCelerate or Accenture for any purpose. Neither TransCelerate nor Accenture bears any responsibility for any collection, use or misuse of personal data that occurs from any implementation of this source code. If you or your organization employ any of the features that collect personal data, you are responsible for compliance with any relevant privacy laws or regulations in any applicable jurisdiction.
 - Please be aware that any information you put into the provided tools (including the UI or API) will be visible to all users, so we recommend not using commercially sensitive or confidential information.  You and/or your employer bear all responsibility for anything you share with this project.  TransCelerate, its member companies and any vendors affiliated with the DDF project are not responsible for any harm or loss you occur as a result of uploading any information or code: commercially sensitive, confidential or otherwise. 
 - To the extent that the SDR Reference Implementation incorporates or relies on any specific branded products or services, such as Azure, this resulted out of the practical necessities associated with making a reference implementation available to demonstrate the SDR’s capabilities.  Users are free to download the source code for the SDR from GitHub and design their own implementations.  Those implementations can be in an environment of the user’s choice, and do not have to be on Azure. 
-- As of October 2023, the DDF initiative is still the process of setting up operations, and any pull requests submitted will not be triaged at this point in time. 
+- As of May 2024, the DDF initiative is still the process of setting up operations, and any pull requests submitted will not be triaged at this point in time. 
 
 ## Requirements to Contribute and Propose Changes
 Before participating, you must acknowledge the Contribution License Agreement (CLA).
@@ -77,6 +77,9 @@ This folder contains all the modularized code for the resources listed below.
 |           key_vault key_vault_accesspolicy           |     keyvault_diagsettings     |          Code for creating **Key Vault** and enabling diagnostic settings           |
 |                         vnet                         |       vnet_diagsettings       |    Code for creating **Virtual Network (VNet)** and enabling diagnostic settings    |
 |                        subnet                        |                               |                            Code for creating **Subnet**                             |
+|                network_security_group                |                               |                  Code for creating **Network Security Group**                       |
+|                subnet_nsg_association                |                               |         Code for associating **Subnet** and **Network Security Group**              |
+|                      public_ip                       |                               |   Code for creating **Public IP** resource for associating with API Management      | 
 |                   delegated_subnet                   |                               |                       Code for creating **Delegated Subnet**                        |
 |                     app_insights                     |                               | Code for creating **Application Insights** resource for collecting Application logs |
 | data_adgrouprole_assignments data_sprole_assignments |                               |       Code for reading **Azure AD Groups** and **Service Principal** for RBAC       |
@@ -192,11 +195,11 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 
 **Important Note :** GitHub Actions does not allow multi-environment deployment setup with Free Pricing Plan. To Deploy to different environments, the GitHub secret values have to be updated with values of the target Azure Environment.
 
-# Infrastructure Changes for Release V2.0.2 (October 2023)
+# Infrastructure Changes for Release V3.0 (May 2024)
 
-- The steps required to migrate SDR infrastructure from Version 0.5 to Version 2.0.2 for users who have set up their own SDR instance for the Study Definition Repository – Reference Implementation on Azure Cloud Platform. It provides details for deploying the new resources using azure portal. Additionally, it provides details of containerized deployment for the SDR API and UI applications.
+- The steps required to migrate SDR infrastructure from Version 0.5 to Version 3.0 for users who have set up their own SDR instance for the Study Definition Repository – Reference Implementation on Azure Cloud Platform. It provides details for deploying the new resources using azure portal and migration of API Management resource to stv2 platform. Additionally, it provides details of containerized deployment for the SDR API and UI applications.
 
-**Important Note:** Refer to the **[DDF SDR RI Infra Migration Guide (Release V2.0.2)](documents/sdr-release-v2.0.2/ddf-sdr-ri-infra-migration-guide-v1.0.pdf)** for upgrading to SDR Release V2.0.2.
+**Important Note:** Refer to the **[DDF SDR RI Infra Migration Guide (Release V2.0.2)](documents/sdr-release-v2.0.2/ddf-sdr-ri-infra-migration-guide-v1.0.pdf)** for upgrading to SDR Release V3.0.
 
 # Support
 
