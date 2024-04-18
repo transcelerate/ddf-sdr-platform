@@ -93,6 +93,50 @@ variable pip_protection_mode {
 }
 ####################### Public IP End #####################################################
 
+
+####################### Network Security Rules - Begin #############################################
+
+variable "network_security_rules" {
+
+    default = [
+    {
+        name                        = "AllowTagCustom3443Inbound"
+        priority                    = "100"
+        direction                   = "Inbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "3443"
+        source_address_prefix       = "ApiManagement"
+        destination_address_prefix  = "VirtualNetwork"
+    },
+    {
+         name                       = "AllowTagCustom443Outbound"
+        priority                    = "100"
+        direction                   = "Outbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "443"
+        source_address_prefix       = "VirtualNetwork"
+        destination_address_prefix  = "Storage"
+    },
+    {
+         name                       = "DenyAnyCustomOutbound"
+        priority                    = "4096"
+        direction                   = "Outbound"
+        access                      = "Deny"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "*"
+        source_address_prefix       = "Any"
+        destination_address_prefix  = "Any"
+    }
+    ]
+}
+
+####################### Network Security Rules - End ##################################################
+
 ####################### Delegated Subnet 1 Variable Begin   #####################################################
 
 variable "dsaddress_prefix" {
