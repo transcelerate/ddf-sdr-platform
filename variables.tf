@@ -93,6 +93,123 @@ variable pip_protection_mode {
 }
 ####################### Public IP End #####################################################
 
+
+####################### Network Security Rules - Begin #############################################
+
+variable "network_security_rules" {
+
+    default = [
+    {
+        name                        = "AllowTagCustom3443Inbound"
+        priority                    = "100"
+        direction                   = "Inbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "3443"
+        source_address_prefix       = "ApiManagement"
+        destination_address_prefix  = "VirtualNetwork"
+    },
+    {
+        name                        = "AllowTagCustom443Inbound"
+        priority                    = "110"
+        direction                   = "Inbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "443"
+        source_address_prefix       = "Internet"
+        destination_address_prefix  = "VirtualNetwork"
+    },
+    {
+        name                        = "AllowTagCustom6390Inbound"
+        priority                    = "120"
+        direction                   = "Inbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "6390"
+        source_address_prefix       = "AzureLoadBalancer"
+        destination_address_prefix  = "VirtualNetwork"
+    },
+    {
+        name                        = "AllowTagCustom443Inbound-ATM"
+        priority                    = "130"
+        direction                   = "Inbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "443"
+        source_address_prefix       = "AzureTrafficManager"
+        destination_address_prefix  = "VirtualNetwork"
+    },
+    {
+        name                        = "AllowTagCustom443Outbound"
+        priority                    = "100"
+        direction                   = "Outbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "443"
+        source_address_prefix       = "VirtualNetwork"
+        destination_address_prefix  = "Storage"
+    },
+    {
+        name                        = "AllowTagCustom1443Outbound"
+        priority                    = "110"
+        direction                   = "Outbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "1443"
+        source_address_prefix       = "VirtualNetwork"
+        destination_address_prefix  = "Sql"
+    },
+    {
+        name                        = "AllowTagCustom443Outbound-KV"
+        priority                    = "120"
+        direction                   = "Outbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "443"
+        source_address_prefix       = "VirtualNetwork"
+        destination_address_prefix  = "AzureKeyVault"
+    },
+    {
+        name                        = "DenyAnyCustomOutbound"
+        priority                    = "4096"
+        direction                   = "Outbound"
+        access                      = "Deny"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "*"
+        source_address_prefix       = "*"
+        destination_address_prefix  = "*"
+    }
+    ]
+}
+
+variable "network_security_rules_multiport" {
+
+    default = [
+        {
+        name                        = "AllowTagCustom1886-443Outbound"
+        priority                    = "130"
+        direction                   = "Outbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_ranges     = ["1886","443"]
+        source_address_prefix       = "VirtualNetwork"
+        destination_address_prefix  = "AzureMonitor"
+    }
+    ]
+}
+
+
+####################### Network Security Rules - End ##################################################
+
 ####################### Delegated Subnet 1 Variable Begin   #####################################################
 
 variable "dsaddress_prefix" {

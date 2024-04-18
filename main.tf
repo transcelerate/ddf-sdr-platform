@@ -41,19 +41,21 @@ module "module_virtualnetwork" {
   }
 }
 ################################## VNET Diagonostic Settings ###################################
-#module "module_vnet_diagsettings" {
-#  source                     = "./modules/vnet_diagsettings"
-#  vnet_diag_name             = "diags-vnet-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-#  target_resource_id         = module.module_virtualnetwork.vnet_id
-#  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
-#  disable_log                = var.disable_log
-#}
+module "module_vnet_diagsettings" {
+  source                     = "./modules/vnet_diagsettings"
+  vnet_diag_name             = "diags-vnet-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  target_resource_id         = module.module_virtualnetwork.vnet_id
+  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+  disable_log                = var.disable_log
+}
 ################################# Network Security Group ########################################
 module "module_network_security_group" {
-  source      = "./modules/network_security_group"
-  nsg_name    = "nsg-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-  rg_name     = module.module_resource_group.rg_name
-  rg_location = module.module_resource_group.rg_location
+  source                            = "./modules/network_security_group"
+  nsg_name                          = "nsg-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  rg_name                           = module.module_resource_group.rg_name
+  rg_location                       = module.module_resource_group.rg_location
+  network_security_rules            = var.network_security_rules
+  network_security_rules_multiport  = var.network_security_rules_multiport
 }
 ################################## Subnet #######################################################
 module "module_subnet" {
