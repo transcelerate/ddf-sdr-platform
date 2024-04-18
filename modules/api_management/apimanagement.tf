@@ -125,6 +125,38 @@ resource "azurerm_api_management_api_operation" "apioperations_tp" {
   }
 }
 
+resource "azurerm_api_management_product" "apimanagement_product" {
+  product_id            = var.product_id
+  api_management_name   = azurerm_api_management.apimanagement.name
+  resource_group_name   = var.rg_name
+  display_name          = var.product_display_name
+  subscription_required = true
+  published             = true
+}
+
+resource "azurerm_api_management_product_api" "apimanagement_product_api" {
+  api_name            = var.product_api_name
+  product_id          = azurerm_api_management_product.apimanagement_product.product_id
+  api_management_name = azurerm_api_management.apimanagement.name
+  resource_group_name = var.rg_name
+}
+
+resource "azurerm_api_management_group" "apimanagement_group" {
+  name                = var.management_group_name
+  resource_group_name = var.rg_name
+  api_management_name = azurerm_api_management.apimanagement.name
+  display_name        = var.management_group_display_name
+  external_id         = var.developer_portal_ad_group
+  type                = "external"
+}
+
+resource "azurerm_api_management_product_group" "apimanagement_product_group" {
+  product_id          = azurerm_api_management_product.apimanagement_product.product_id
+  group_name          = azurerm_api_management_group.apimanagement_group.name
+  api_management_name = azurerm_api_management.apimanagement.name
+  resource_group_name = var.rg_name
+}
+
 resource "azurerm_api_management_logger" "apimanagement_log" {
 
   name                = var.apimanagement_log

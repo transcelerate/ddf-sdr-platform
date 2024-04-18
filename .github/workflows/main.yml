@@ -62,6 +62,7 @@ jobs:
         find variables.tf -type f -exec sed -i ''s/#{ADgroup1}#/${{ secrets.ADgroup1 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADgroup2}#/${{ secrets.ADgroup2 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADgroup3}#/${{ secrets.ADgroup3 }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{ADGroup_Developer_Portal}#/${{ secrets.ADGROUP_DEVELOPER_PORTAL }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{subscription}#/${{ secrets.subscription  }}/g'' {} \;
         
       

@@ -355,11 +355,6 @@ variable "identity_type" {
 variable "apiendpoints" {
 
     default = [
-    #     {
-    #     name         = "sdr-mvp"
-    #     display_name = "SDR MVP"
-    #     path         = "studydefinitionrepository/v1"
-    # },
     {
         name         = "sdr-api"
         display_name = "SDR API"
@@ -375,7 +370,6 @@ variable "apiendpoints" {
         display_name = "SDR UI API"
         path         = "api/ui"
     }]
-  
 }
 
 variable "apioperations" {
@@ -750,9 +744,6 @@ variable "apioperations_tp" {
 variable "apiname" {
   
   default = [
-    # {
-    #     api_name = "sdr-mvp"
-    # },
     {
         api_name = "sdr-api"
     },
@@ -763,6 +754,35 @@ variable "apiname" {
         api_name = "sdr-ui-api"
     }
  ]
+}
+
+variable "product_id" {
+    default = "sdr-api-product"
+}
+
+variable "product_display_name" {
+    default = "SDR API Product"
+}
+
+variable "product_api_name" {
+    default = "sdr-api"
+}
+
+variable "group_developer_portal" {
+  
+  default = "#{ADGroup_Developer_Portal}#"
+}
+
+variable "management_group_name" {
+  default = "sdr-apim-developer-portal-user-group"
+}
+
+variable "management_group_display_name" {
+  default = "SDR API Developer Portal Access"
+}
+
+variable "developer_portal_ad_group" {
+    
 }
 
 ######################API Management Variables End #############################################

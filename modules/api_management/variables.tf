@@ -134,6 +134,30 @@ variable "apiname" {
   
 }
 
+variable "product_id" {
+  
+}
+
+variable "product_display_name" {
+  
+}
+
+variable "product_api_name" {
+  
+}
+
+variable "management_group_name" {
+  
+}
+
+variable "management_group_display_name" {
+  
+}
+
+variable "developer_portal_ad_group" {
+    
+}
+
 variable "public_ip" {
   
 }
