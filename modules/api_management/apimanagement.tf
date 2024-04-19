@@ -127,12 +127,6 @@ resource "azurerm_api_management_product" "apimanagement_product" {
   subscription_required = true
   published             = true
 
-  timeouts {
-    create = "120m"
-    update = "120m"
-    delete = "60m"
-  }
-
 }
 
 resource "azurerm_api_management_product_api" "apimanagement_product_api" {
@@ -140,12 +134,6 @@ resource "azurerm_api_management_product_api" "apimanagement_product_api" {
   product_id          = azurerm_api_management_product.apimanagement_product.product_id
   api_management_name = azurerm_api_management.apimanagement.name
   resource_group_name = var.rg_name
-
-  timeouts {
-    create = "120m"
-    update = "120m"
-    delete = "60m"
-  }
 }
 
 resource "azurerm_api_management_group" "apimanagement_group" {
@@ -155,12 +143,6 @@ resource "azurerm_api_management_group" "apimanagement_group" {
   display_name        = var.management_group_display_name
   external_id         = var.developer_portal_ad_group
   type                = "external"
-
-  timeouts {
-    create = "120m"
-    update = "120m"
-    delete = "60m"
-  }
 }
 
 resource "azurerm_api_management_product_group" "apimanagement_product_group" {
@@ -168,12 +150,6 @@ resource "azurerm_api_management_product_group" "apimanagement_product_group" {
   group_name          = azurerm_api_management_group.apimanagement_group.name
   api_management_name = azurerm_api_management.apimanagement.name
   resource_group_name = var.rg_name
-
-  timeouts {
-    create = "120m"
-    update = "120m"
-    delete = "60m"
-  }
 }
 
 resource "azurerm_api_management_logger" "apimanagement_log" {
