@@ -116,7 +116,7 @@ module "module_subnet_network_security_group_association" {
 ##################################### Public IP #########################################
 module "module_public_ip" {
   source              = "./modules/public_ip"
-  ip_name				      = "pip-${var.subscription_acronym}-${var.env_acronym}-${var.public_ip_location}"
+  ip_name				      = "pip-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
   rg_name             = module.module_resource_group.rg_name
   rg_location         = module.module_resource_group.rg_location
   domain_name_label	  = "pip-${var.subscription_acronym}-${var.env_acronym}"
@@ -466,14 +466,14 @@ module "module_apimanagement" {
 #  enable_log                 = var.enable_log
 #
 #}
-module "module_appservice02_diagsettings" {
-  source                     = "./modules/app_service_diagsettings"
-  app_service_diag_name      = "diags-apps-${var.subscription_acronym}-${var.env_acronym}-${var.location}-002"
-  target_resource_id         = module.module_appservice2.app_service_id
-  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
-  enable_log                 = var.enable_log
+#module "module_appservice02_diagsettings" {
+#  source                     = "./modules/app_service_diagsettings"
+#  app_service_diag_name      = "diags-apps-${var.subscription_acronym}-${var.env_acronym}-${var.location}-002"
+#  target_resource_id         = module.module_appservice2.app_service_id
+#  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+#  enable_log                 = var.enable_log
 
-}
+#}
 
 #module "module_functionapp_diagsettings" {
 #  source                     = "./modules/functionapp_diagsettings"
