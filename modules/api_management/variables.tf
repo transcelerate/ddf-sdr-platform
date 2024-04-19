@@ -69,17 +69,17 @@ variable "enable_frontend_tls11" {
   
 } */
 
-variable "apimanagement_log" {
-  
-}
+#variable "apimanagement_log" {
+#  
+#}
 
-variable "azurerm_application_insights_id" {
-  
-}
-
-variable "appinsights_instrumentation_key" {
-  
-}
+#kvariable "azurerm_application_insights_id" {
+#  
+#}
+#
+#variable "appinsights_instrumentation_key" {
+#  
+#}
 
 variable "identity_type" {
   
@@ -89,74 +89,74 @@ variable "identity_type" {
   
 # } 
 
-variable "service_url" {
-  
-}
-
-variable "apiendpoints" {
-
-    type = list(object({
-        name         = string
-        display_name = string
-        path         = string
-    }))
-  
-}
-
-variable "apioperations" {
-
-    type = list(object({
-        operation_id = string
-        api_name     = string   
-        display_name = string
-        method       = string
-        url_template = string  
-    }))
-  
-}
-
-variable "apioperations_tp" {
-
-    type = list(object({
-        operation_id = string
-        api_name     = string   
-        display_name = string
-        method       = string
-        url_template = string
-        tempname     = string
-    }))
-  
-}
-
-variable "apiname" {
-
-    type = list(object({api_name = string}))
-  
-}
-
-variable "product_id" {
-  
-}
-
-variable "product_display_name" {
-  
-}
-
-variable "product_api_name" {
-  
-}
-
-variable "management_group_name" {
-  
-}
-
-variable "management_group_display_name" {
-  
-}
-
-variable "developer_portal_ad_group" {
-    
-}
+#variable "service_url" {
+#  
+#}
+#
+#variable "apiendpoints" {
+#
+#    type = list(object({
+#        name         = string
+#        display_name = string
+#        path         = string
+#    }))
+#  
+#}
+#
+#variable "apioperations" {
+#
+#    type = list(object({
+#        operation_id = string
+#        api_name     = string   
+#        display_name = string
+#        method       = string
+#        url_template = string  
+#    }))
+#  
+#}
+#
+#variable "apioperations_tp" {
+#
+#    type = list(object({
+#        operation_id = string
+#        api_name     = string   
+#        display_name = string
+#        method       = string
+#        url_template = string
+#        tempname     = string
+#    }))
+#  
+#}
+#
+#variable "apiname" {
+#
+#    type = list(object({api_name = string}))
+#  
+#}
+#
+#variable "product_id" {
+#  
+#}
+#
+#variable "product_display_name" {
+#  
+#}
+#
+#variable "product_api_name" {
+#  
+#}
+#
+#variable "management_group_name" {
+#  
+#}
+#
+#variable "management_group_display_name" {
+#  
+#}
+#
+#variable "developer_portal_ad_group" {
+#    
+#}
 
 variable "public_ip" {
   
