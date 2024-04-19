@@ -26,12 +26,6 @@ variable "location" {
   
 }
 
-variable "public_ip_location" {
-
-    default = "eastus2"
-  
-}
-
 variable "App_Layer_FE" {
 
     default = "Frontend"
@@ -81,7 +75,7 @@ variable "address_prefix"{
 
 variable "sub_service_endpoints" {
 
-    default = ["Microsoft.Web","Microsoft.Storage","Microsoft.KeyVault"]
+    default = ["Microsoft.Web"]
   
 }
 

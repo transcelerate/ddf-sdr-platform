@@ -118,7 +118,7 @@ module "module_public_ip" {
   source              = "./modules/public_ip"
   ip_name				      = "pip-${var.subscription_acronym}-${var.env_acronym}-${var.public_ip_location}"
   rg_name             = module.module_resource_group.rg_name
-  rg_location         = var.public_ip_location
+  rg_location         = module.module_resource_group.rg_location
   domain_name_label	  = "pip-${var.subscription_acronym}-${var.env_acronym}"
   allocation_method	  = var.pip_allocation_method
   sku					        = var.pip_sku
