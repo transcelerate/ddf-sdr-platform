@@ -114,12 +114,6 @@ resource "azurerm_api_management_api_operation" "apioperations_tp" {
     delete = "60m"
   }
 
-  template_parameter {
-    name     = each.value.tempname
-    type     = "string"
-    required = false
-  }
-
   response {
     status_code = 200
   }
@@ -138,13 +132,6 @@ resource "azurerm_api_management_product" "apimanagement_product" {
     update = "120m"
     delete = "60m"
   }
-
-  template_parameter {
-    name     = each.value.tempname
-    type     = "string"
-    required = false
-  }
-
   response {
     status_code = 200
   }
@@ -160,12 +147,6 @@ resource "azurerm_api_management_product_api" "apimanagement_product_api" {
     create = "120m"
     update = "120m"
     delete = "60m"
-  }
-
-  template_parameter {
-    name     = each.value.tempname
-    type     = "string"
-    required = false
   }
 
   response {
@@ -187,12 +168,6 @@ resource "azurerm_api_management_group" "apimanagement_group" {
     delete = "60m"
   }
 
-  template_parameter {
-    name     = each.value.tempname
-    type     = "string"
-    required = false
-  }
-
   response {
     status_code = 200
   }
@@ -208,12 +183,6 @@ resource "azurerm_api_management_product_group" "apimanagement_product_group" {
     create = "120m"
     update = "120m"
     delete = "60m"
-  }
-
-  template_parameter {
-    name     = each.value.tempname
-    type     = "string"
-    required = false
   }
 
   response {
