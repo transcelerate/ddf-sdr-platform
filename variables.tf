@@ -26,6 +26,12 @@ variable "location" {
   
 }
 
+variable "public_ip_location" {
+
+    default = "eastus2"
+  
+}
+
 variable "App_Layer_FE" {
 
     default = "Frontend"
