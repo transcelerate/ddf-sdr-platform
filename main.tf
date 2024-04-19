@@ -123,6 +123,7 @@ module "module_public_ip" {
   allocation_method	  = var.pip_allocation_method
   sku					        = var.pip_sku
   protection_mode		  = var.pip_protection_mode
+  zones               = var.public_ip_zones
 }
 
 ################################## Log Analytics Workspace ################################################

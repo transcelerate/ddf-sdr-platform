@@ -23,3 +23,9 @@ variable sku {
 variable protection_mode {
   
 }
+
+variable "zones" {
+  
+  type = list(string)
+  
+}

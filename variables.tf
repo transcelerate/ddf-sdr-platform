@@ -91,6 +91,12 @@ variable pip_sku {
 variable pip_protection_mode {
     default = "Enabled"
 }
+
+variable "public_ip_zones" {
+
+    default = ["2","1","3"]
+  
+}
 ####################### Public IP End #####################################################
 
 

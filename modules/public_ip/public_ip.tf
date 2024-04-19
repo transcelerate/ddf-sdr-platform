@@ -6,4 +6,5 @@ resource "azurerm_public_ip" "public_ip" {
   allocation_method    = var.allocation_method
   sku                  = var.sku
   ddos_protection_mode = var.protection_mode
+  zones                = var.zones
 }
