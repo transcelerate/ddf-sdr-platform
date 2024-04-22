@@ -116,10 +116,10 @@ module "module_subnet_network_security_group_association" {
 ##################################### Public IP #########################################
 module "module_public_ip" {
   source              = "./modules/public_ip"
-  ip_name				      = "pip-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  ip_name				      = "pip-${var.subscription_acronym}-${var.env_acronym}-${var.location}-2"
   rg_name             = module.module_resource_group.rg_name
   rg_location         = module.module_resource_group.rg_location
-  domain_name_label	  = "pip-${var.subscription_acronym}-${var.env_acronym}"
+  domain_name_label	  = "pip-${var.subscription_acronym}-${var.env_acronym}-2"
   allocation_method	  = var.pip_allocation_method
   sku					        = var.pip_sku
   protection_mode		  = var.pip_protection_mode
