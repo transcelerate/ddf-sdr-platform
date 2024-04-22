@@ -75,7 +75,7 @@ variable "address_prefix"{
 
 variable "sub_service_endpoints" {
 
-    default = ["Microsoft.Web"]
+    default = ["Microsoft.Web","Microsoft.KeyVault","Microsoft.Storage"]
   
 }
 
@@ -161,8 +161,19 @@ variable "network_security_rules" {
         destination_address_prefix  = "Storage"
     },
     {
-        name                        = "AllowTagCustom1443Outbound"
+        name                        = "AllowTagCustom443Outbound-App"
         priority                    = "110"
+        direction                   = "Outbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "443"
+        source_address_prefix       = "VirtualNetwork"
+        destination_address_prefix  = "VirtualNetwork"
+    },
+    {
+        name                        = "AllowTagCustom1443Outbound"
+        priority                    = "120"
         direction                   = "Outbound"
         access                      = "Allow"
         protocol                    = "Tcp"
@@ -173,7 +184,7 @@ variable "network_security_rules" {
     },
     {
         name                        = "AllowTagCustom443Outbound-KV"
-        priority                    = "120"
+        priority                    = "130"
         direction                   = "Outbound"
         access                      = "Allow"
         protocol                    = "Tcp"
@@ -183,11 +194,22 @@ variable "network_security_rules" {
         destination_address_prefix  = "AzureKeyVault"
     },
     {
+        name                        = "AllowAnyCustom433Outbound"
+        priority                    = "150"
+        direction                   = "Outbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "443"
+        source_address_prefix       = "*"
+        destination_address_prefix  = "*"
+    },
+    {
         name                        = "DenyAnyCustomOutbound"
         priority                    = "4096"
         direction                   = "Outbound"
         access                      = "Deny"
-        protocol                    = "Tcp"
+        protocol                    = "*"
         source_port_range           = "*"
         destination_port_range      = "*"
         source_address_prefix       = "*"
@@ -201,7 +223,7 @@ variable "network_security_rules_multiport" {
     default = [
         {
         name                        = "AllowTagCustom1886-443Outbound"
-        priority                    = "130"
+        priority                    = "140"
         direction                   = "Outbound"
         access                      = "Allow"
         protocol                    = "Tcp"
