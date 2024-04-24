@@ -73,7 +73,7 @@ variable "apimanagement_log" {
   
 }
 
-kvariable "azurerm_application_insights_id" {
+variable "azurerm_application_insights_id" {
  
 }
 
