@@ -107,6 +107,11 @@ resource "azurerm_api_management_api_operation" "apioperations_tp" {
   method              = each.value.method
   url_template        = each.value.url_template
   description         = "SDR API's"
+  template_parameter {
+    name     = each.value.tempname
+    type     = "string"
+    required = true
+  }
   depends_on          = [azurerm_api_management_api.apiendpoint]
   timeouts {
     create = "120m"
