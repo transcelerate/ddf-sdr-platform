@@ -948,7 +948,7 @@ variable "os_type"{
 
 variable "sku_name_asp" {
 
-    default = "S1"
+    default = "B1"
   
 }
 
