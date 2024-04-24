@@ -2,6 +2,7 @@ resource "azurerm_network_security_group" "network_security_group" {
   name                = var.nsg_name
   resource_group_name = var.rg_name
   location            = var.rg_location
+  tags                = var.nsg_tags
 }
 
 resource "azurerm_network_security_rule" "networksecurityrule" {

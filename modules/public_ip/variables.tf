@@ -29,3 +29,7 @@ variable "zones" {
   type = list(string)
   
 }
+
+variable "publicip_tags" {
+  
+}
