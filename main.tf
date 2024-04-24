@@ -3,8 +3,18 @@ terraform {
   backend "azurerm" {}
   required_providers {
     azurerm = "=3.99.0"
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "2.48.0"
+    }
   }
 }
+provider "azuread" {
+  client_id     = var.client_id
+  client_secret = var.client_secret
+  tenant_id     = var.tenant_id
+}
+
 locals {
   common_tags = {
     Environment = var.env_acronym

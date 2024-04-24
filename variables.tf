@@ -2,6 +2,19 @@
 variable "alias_name"{
     default = "providerblock"
 }
+
+variable "client_id"{
+    default = "#{CLIENT_ID}#"
+}
+
+variable "client_secret"{
+    default = "#{CLIENT_SECRET}#"
+}
+
+variable "tenant_id"{
+    default = "#{TENANT_ID}#"
+}
+
 variable "env_acronym" {
 
     default = "#{Env}#"

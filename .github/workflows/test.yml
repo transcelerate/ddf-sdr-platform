@@ -64,7 +64,10 @@ jobs:
         find variables.tf -type f -exec sed -i ''s/#{ADgroup3}#/${{ secrets.ADgroup3 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADGroup_Developer_Portal}#/${{ secrets.ADGROUP_DEVELOPER_PORTAL }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{subscription}#/${{ secrets.subscription  }}/g'' {} \;
-        echo ${{secrets.ADGROUP_DEVELOPER_PORTAL}} | sed 's/./& /g' 
+        find variables.tf -type f -exec sed -i ''s/#{CLIENT_ID}#/${{ secrets.AZURE_CLIENT_ID  }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{CLIENT_SECRET}#/${{ secrets.AZURE_CLIENT_SECRET  }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{TENANT_ID}#/${{ secrets.AZURE_TENANT_ID  }}/g'' {} \;
+        
 #     - name: Find and Replace User Name - Using Build Variable
 #       # This step will replace all the variables in parameters.yml file while fetching the value from secrets
 
