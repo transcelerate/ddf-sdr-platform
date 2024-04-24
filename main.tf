@@ -56,6 +56,10 @@ module "module_network_security_group" {
   rg_location                       = module.module_resource_group.rg_location
   network_security_rules            = var.network_security_rules
   network_security_rules_multiport  = var.network_security_rules_multiport
+  nsg_tags    = {
+              Environment = var.env_acronym
+              App_Layer   = var.App_Layer_NA
+            }
 }
 ################################## Subnet #######################################################
 module "module_subnet" {
@@ -110,10 +114,6 @@ module "module_subnet_network_security_group_association" {
   source      = "./modules/subnet_nsg_association"
   subnet_id   = module.module_subnet.subnet_id
   nsg_id      = module.module_network_security_group.network_security_group_id
-  nsg_tags    = {
-                Environment = var.env_acronym
-                App_Layer   = var.App_Layer_NA
-              }
   depends_on  = [module.module_subnet]
 }
 
