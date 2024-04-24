@@ -298,7 +298,7 @@ module "module_apimanagement" {
   product_api_name = var.product_api_name
   management_group_name = var.management_group_name
   management_group_display_name = var.management_group_display_name
-  developer_portal_ad_group = "aad://acp200520a.onmicrosoft.com/groups/e35b0c8e-a55a-44e1-855f-3e4f77783a18"
+  developer_portal_ad_group = var.developer_portal_ad_group
   depends_on = [module.module_subnet_network_security_group_association, module.module_public_ip]
 }
 
