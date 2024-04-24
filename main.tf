@@ -438,7 +438,7 @@ module "module_appserviceplan2" {
 #  }
 #}
 
-#module "module_appservice2" {
+module "module_appservice2" {
   source                                = "./modules/app_service"
   app_service_name                      = "apps-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-002"
   rg_name                               = module.module_resource_group.rg_name
