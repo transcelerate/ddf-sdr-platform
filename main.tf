@@ -3,16 +3,7 @@ terraform {
   backend "azurerm" {}
   required_providers {
     azurerm = "=3.99.0"
-    azuread = {
-      source  = "hashicorp/azuread"
-      version = "2.48.0"
-    }
   }
-}
-provider "azuread" {
-  client_id     = var.client_id
-  client_secret = var.client_secret
-  tenant_id     = var.tenant_id
 }
 
 locals {
@@ -299,6 +290,9 @@ module "module_apimanagement" {
   management_group_name = var.management_group_name
   management_group_display_name = var.management_group_display_name
   developer_portal_ad_group = var.developer_portal_ad_group
+  client_id = var.client_id
+  client_secret = var.client_secret
+  tenant_id = var.tenant_id
   depends_on = [module.module_subnet_network_security_group_association, module.module_public_ip]
 }
 
