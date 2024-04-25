@@ -167,3 +167,15 @@ variable "apim_depends_on" {
   type    = any
   default = []
 }
+
+variable "client_id" {
+
+}
+
+variable "client_secret" {
+    
+}
+
+variable "tenant_id" {
+    
+}

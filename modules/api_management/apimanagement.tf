@@ -143,23 +143,32 @@ resource "azurerm_api_management_product_api" "apimanagement_product_api" {
   depends_on          = [azurerm_api_management_product.apimanagement_product]
 }
 
-#resource "azurerm_api_management_group" "apimanagement_group" {
-#  name                = var.management_group_name
-#  resource_group_name = var.rg_name
-#  api_management_name = azurerm_api_management.apimanagement.name
-#  display_name        = var.management_group_display_name
-#  external_id         = var.developer_portal_ad_group
-#  type                = "external"
-#  depends_on          = [azurerm_api_management_product_api.apimanagement_product_api]
-#}
+resource "azurerm_api_management_identity_provider_aad" "apimanagement_identity_provider_aad" {
+  resource_group_name = azurerm_resource_group.example.name
+  api_management_name = azurerm_api_management.example.name
+  client_id           = var.client_id
+  client_secret       = var.client_secret
+  allowed_tenants     = [var.tenant_id]
+  depends_on          = [azurerm_api_management_product_api.apimanagement_product_api]
+}
 
-#resource "azurerm_api_management_product_group" "apimanagement_product_group" {
-#  product_id          = azurerm_api_management_product.apimanagement_product.product_id
-#  group_name          = azurerm_api_management_group.apimanagement_group.name
-#  api_management_name = azurerm_api_management.apimanagement.name
-#  resource_group_name = var.rg_name
-#  depends_on          = [azurerm_api_management_group.apimanagement_group]
-#}
+resource "azurerm_api_management_group" "apimanagement_group" {
+  name                = var.management_group_name
+  resource_group_name = var.rg_name
+  api_management_name = azurerm_api_management.apimanagement.name
+  display_name        = var.management_group_display_name
+  external_id         = var.developer_portal_ad_group
+  type                = "external"
+  depends_on          = [azurerm_api_management_identity_provider_aad.apimanagement_identity_provider_aad]
+}
+
+resource "azurerm_api_management_product_group" "apimanagement_product_group" {
+  product_id          = azurerm_api_management_product.apimanagement_product.product_id
+  group_name          = azurerm_api_management_group.apimanagement_group.name
+  api_management_name = azurerm_api_management.apimanagement.name
+  resource_group_name = var.rg_name
+  depends_on          = [azurerm_api_management_group.apimanagement_group]
+}
 
 resource "azurerm_api_management_logger" "apimanagement_log" {
 
