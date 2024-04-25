@@ -457,7 +457,7 @@ module "module_appservice2" {
   identity                              = var.identity
   http2_enabled                         = var.http2_enabled
   subnet_id                             = module.module_deligatedsubnet2.Dsubnet_ID
-  virtual_network_subnet_id             = module.module_subnet.subnet_id
+  virtual_network_subnet_id             = null
   ip_address                            = null
   enable_public_network_access          = false
   apparname                             = var.apparname2
