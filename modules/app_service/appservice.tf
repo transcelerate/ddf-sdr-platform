@@ -28,6 +28,7 @@ resource "azurerm_linux_web_app" "appservice" {
     ftps_state                = var.ftps_state
     http2_enabled             = var.http2_enabled
     default_documents         = [ "index.html" ]
+    public_network_access_enabled = var.enable_public_network_access
     ip_restriction {
       
       ip_address                = var.ip_address

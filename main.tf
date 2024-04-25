@@ -432,6 +432,7 @@ module "module_appserviceplan2" {
 #  subnet_id                             = module.module_deligatedsubnet1.Dsubnet_ID
 #  virtual_network_subnet_id             = null
 #  ip_address                            = var.ip_address
+#  enable_public_network_access          = true
 #  apparname                             = var.apparname
 #  priority                              = var.priority
 #  action                                = var.action
@@ -458,7 +459,8 @@ module "module_appservice2" {
   http2_enabled                         = var.http2_enabled
   subnet_id                             = module.module_deligatedsubnet2.Dsubnet_ID
   virtual_network_subnet_id             = module.module_subnet.subnet_id
-  ip_address                            = var.ip_address2
+  ip_address                            = null
+  enable_public_network_access          = false
   apparname                             = var.apparname2
   priority                              = var.priority2
   action                                = var.action2
