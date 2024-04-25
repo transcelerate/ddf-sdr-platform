@@ -4,15 +4,15 @@ variable "alias_name"{
 }
 
 variable "client_id"{
-    default = "#{CLIENT_ID}#"
+    default = "#{Client-ID}#"
 }
 
 variable "client_secret"{
-    default = "#{CLIENT_SECRET}#"
+    default = "#{Client-Secret}#"
 }
 
 variable "tenant_id"{
-    default = "#{TENANT_ID}#"
+    default = "#{Tenant-ID}#"
 }
 
 variable "env_acronym" {
