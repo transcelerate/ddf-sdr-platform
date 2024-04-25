@@ -300,36 +300,36 @@ module "module_api_management_diagsettings" {
   enable_log                 = var.enable_log
 }
 
-####################################  App Insights #########################################
-#
-#module "module_app_insights" {
-#  source                     = "./modules/app_insights"
-#  app_insights_name          = "appin-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-#  rg_name                    = module.module_resource_group.rg_name
-#  rg_location                = module.module_resource_group.rg_location
-#  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
-#  application_type           = var.application_type
-#  app_insights_tags = {
-#    Environment = var.env_acronym
-#    App_Layer   = var.App_Layer_NA
-#  }
-#}
-#
-#################################  Azure Container Registry ########################################
-#
-#module "acr" {
-#
-#  source              = "./modules/azure_container_registry"
-#  acrname             = "acr${var.subscription_acronym}${var.env_acronym}${var.location}"
-#  resource_group_name = module.module_resource_group.rg_name
-#  location            = module.module_resource_group.rg_location
-#  acr_tags = {
-#
-#    Environment = var.env_acronym
-#
-#  }
-#}
-#
+###################################  App Insights #########################################
+
+module "module_app_insights" {
+  source                     = "./modules/app_insights"
+  app_insights_name          = "appin-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  rg_name                    = module.module_resource_group.rg_name
+  rg_location                = module.module_resource_group.rg_location
+  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+  application_type           = var.application_type
+  app_insights_tags = {
+    Environment = var.env_acronym
+    App_Layer   = var.App_Layer_NA
+  }
+}
+
+################################  Azure Container Registry ########################################
+
+module "acr" {
+
+  source              = "./modules/azure_container_registry"
+  acrname             = "acr${var.subscription_acronym}${var.env_acronym}${var.location}"
+  resource_group_name = module.module_resource_group.rg_name
+  location            = module.module_resource_group.rg_location
+  acr_tags = {
+
+    Environment = var.env_acronym
+
+  }
+}
+
 ##################################  App Service Plan ########################################
 #
 #module "module_appserviceplan" {
@@ -347,21 +347,21 @@ module "module_api_management_diagsettings" {
 #
 #}
 #
-#module "module_appserviceplan2" {
-#  source                = "./modules/app_service_plan"
-#  app_service_plan_name = "asp-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-002"
-#  rg_name               = module.module_resource_group.rg_name
-#  rg_location           = module.module_resource_group.rg_location
-#  os_type               = var.os_type
-#  sku_name              = var.sku_name_asp
-#  app_service_plan_tags = {
-#
-#    Environment = var.env_acronym
-#    App_Layer   = var.App_Layer_BE
-#  }
-#
-#}
-#
+module "module_appserviceplan2" {
+  source                = "./modules/app_service_plan"
+  app_service_plan_name = "asp-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-002"
+  rg_name               = module.module_resource_group.rg_name
+  rg_location           = module.module_resource_group.rg_location
+  os_type               = var.os_type
+  sku_name              = var.sku_name_asp
+  app_service_plan_tags = {
+
+    Environment = var.env_acronym
+    App_Layer   = var.App_Layer_BE
+  }
+
+}
+
 #module "module_appserviceplan3" {
 #  source                = "./modules/app_service_plan"
 #  app_service_plan_name = "funasp-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-003"
@@ -389,16 +389,16 @@ module "module_api_management_diagsettings" {
 #    metric_retention_days          = "7" */
 #
 #}
-#module "module_appserviceplan02_diagsettings" {
-#  source                     = "./modules/app_service_plan_diagsettings"
-#  app_service_plan_diag_name = "diags-asp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-002"
-#  target_resource_id         = module.module_appserviceplan2.app_service_plan_id
-#  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
-#  /* enable_metric_retention_policy = "true"
-#    metric_retention_days          = "7" */
-#
-#}
-#
+module "module_appserviceplan02_diagsettings" {
+  source                     = "./modules/app_service_plan_diagsettings"
+  app_service_plan_diag_name = "diags-asp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-002"
+  target_resource_id         = module.module_appserviceplan2.app_service_plan_id
+  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+  /* enable_metric_retention_policy = "true"
+    metric_retention_days          = "7" */
+
+}
+
 #module "module_appserviceplan03_diagsettings" {
 #  source                     = "./modules/app_service_plan_diagsettings"
 #  app_service_plan_diag_name = "diags-funasp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-003"
@@ -438,46 +438,46 @@ module "module_api_management_diagsettings" {
 #  }
 #}
 #
-#module "module_appservice2" {
-#  source                                = "./modules/app_service"
-#  app_service_name                      = "apps-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-002"
-#  rg_name                               = module.module_resource_group.rg_name
-#  rg_location                           = module.module_resource_group.rg_location
-#  app_service_plan_id                   = module.module_appserviceplan2.app_service_plan_id
-#  APPINSIGHTS_INSTRUMENTATIONKEY        = module.module_app_insights.instrumentation_key
-#  APPLICATIONINSIGHTS_CONNECTION_STRING = module.module_app_insights.connection_string
-#  https_only                            = var.https_only
-#  ftps_state                            = var.ftps_state
-#  use_32_bit_worker                     = var.use_32_bit_worker
-#  docker_image                          = module.acr.acrurl
-#  identity                              = var.identity
-#  http2_enabled                         = var.http2_enabled
-#  subnet_id                             = module.module_deligatedsubnet2.Dsubnet_ID
-#  virtual_network_subnet_id             = null
-#  ip_address                            = var.ip_address
-#  enable_public_network_access          = false
-#  apparname                             = var.apparname2
-#  priority                              = var.priority2
-#  action                                = var.action2
-#  depends_on                            = [module.module_deligatedsubnet2, module.module_subnet, module.module_virtualnetwork]
-#  app_service_tags = {
-#
-#    Environment = var.env_acronym
-#    App_Layer   = var.App_Layer_BE
-#  }
-#}
-#
-############################ App Service Private endpoint ####################################
-#module "module_appservice2_private_endpoint" {
-#  source                = "./modules/app_service_private_endpoint"
-#  rg_name               = module.module_resource_group_2.rg_name
-#  rg_location           = module.module_resource_group.rg_location
-#  vnet_id               = module.module_virtualnetwork.vnet_id
-#  private_endpoint_name = "pe-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-#  subnet_id             = module.module_subnet.subnet_id
-#  app_service_id        = module.module_appservice2.app_service_id
-#  depends_on            = [module.module_appservice2]
-#}
+module "module_appservice2" {
+  source                                = "./modules/app_service"
+  app_service_name                      = "apps-${var.subscription_acronym}${var.be_acronym}-${var.env_acronym}-${var.location}-002"
+  rg_name                               = module.module_resource_group.rg_name
+  rg_location                           = module.module_resource_group.rg_location
+  app_service_plan_id                   = module.module_appserviceplan2.app_service_plan_id
+  APPINSIGHTS_INSTRUMENTATIONKEY        = module.module_app_insights.instrumentation_key
+  APPLICATIONINSIGHTS_CONNECTION_STRING = module.module_app_insights.connection_string
+  https_only                            = var.https_only
+  ftps_state                            = var.ftps_state
+  use_32_bit_worker                     = var.use_32_bit_worker
+  docker_image                          = module.acr.acrurl
+  identity                              = var.identity
+  http2_enabled                         = var.http2_enabled
+  subnet_id                             = module.module_deligatedsubnet2.Dsubnet_ID
+  virtual_network_subnet_id             = null
+  ip_address                            = var.ip_address
+  enable_public_network_access          = false
+  apparname                             = var.apparname2
+  priority                              = var.priority2
+  action                                = var.action2
+  depends_on                            = [module.module_deligatedsubnet2, module.module_subnet, module.module_virtualnetwork]
+  app_service_tags = {
+
+    Environment = var.env_acronym
+    App_Layer   = var.App_Layer_BE
+  }
+}
+
+########################### App Service Private endpoint ####################################
+module "module_appservice2_private_endpoint" {
+  source                = "./modules/app_service_private_endpoint"
+  rg_name               = module.module_resource_group_2.rg_name
+  rg_location           = module.module_resource_group.rg_location
+  vnet_id               = module.module_virtualnetwork.vnet_id
+  private_endpoint_name = "pe-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  subnet_id             = module.module_subnet.subnet_id
+  app_service_id        = module.module_appservice2.app_service_id
+  depends_on            = [module.module_appservice2]
+}
 
 
 ########################### App Service Diagonostic Settings ####################################
@@ -489,15 +489,15 @@ module "module_api_management_diagsettings" {
 #  enable_log                 = var.enable_log
 #
 #}
-#module "module_appservice02_diagsettings" {
-#  source                     = "./modules/app_service_diagsettings"
-#  app_service_diag_name      = "diags-apps-${var.subscription_acronym}-${var.env_acronym}-${var.location}-002"
-#  target_resource_id         = module.module_appservice2.app_service_id
-#  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
-#  enable_log                 = var.enable_log
-#
-#}
-#
+module "module_appservice02_diagsettings" {
+  source                     = "./modules/app_service_diagsettings"
+  app_service_diag_name      = "diags-apps-${var.subscription_acronym}-${var.env_acronym}-${var.location}-002"
+  target_resource_id         = module.module_appservice2.app_service_id
+  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+  enable_log                 = var.enable_log
+
+}
+
 #module "module_functionapp_diagsettings" {
 #  source                     = "./modules/functionapp_diagsettings"
 #  functionapp_diag_name      = "diags-funapp-${var.subscription_acronym}-${var.env_acronym}-${var.location}-003"
