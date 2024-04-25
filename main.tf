@@ -249,61 +249,61 @@ module "module_log_analytics_diagsettings" {
 #  disable_log                = var.disable_log
 #}
 
-##################################### API Management ####################################
-module "module_apimanagement" {
-  source                = "./modules/api_management"
-  apim_name             = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-  rg_name               = module.module_resource_group.rg_name
-  rg_location           = module.module_resource_group.rg_location
-  publisher_name        = var.publisher_name
-  publisher_email       = var.publisher_email
-  sku_name              = var.sku_name_api
-  virtual_network_type  = var.virtual_network_type
-  public_ip             = module.module_public_ip.public_ip_id
-  subnet_id             = module.module_subnet.subnet_id
-  enable_http2          = var.enable_http2
-  enable_backend_ssl30  = var.enable_backend_ssl30
-  enable_backend_tls10  = var.enable_backend_tls10
-  enable_backend_tls11  = var.enable_backend_tls11
-  enable_frontend_ssl30 = var.enable_frontend_ssl30
-  enable_frontend_tls10 = var.enable_frontend_tls10
-  enable_frontend_tls11 = var.enable_frontend_tls11
-  #      enable_triple_des_ciphers         = var.enable_triple_des_ciphers
-  apimanagement_log               = var.apimanagement_log
-  azurerm_application_insights_id = module.module_app_insights.app_insights_id
-  appinsights_instrumentation_key = module.module_app_insights.instrumentation_key
-  identity_type                   = var.identity_type
-  #   	host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
-  service_url      = "https://${module.module_appservice2.appservice_name}"
-  apiendpoints     = var.apiendpoints
-  apioperations    = var.apioperations
-  apioperations_tp = var.apioperations_tp
-  apiname          = var.apiname
-  apimanagement_tags = {
-
-    Environment = var.env_acronym
-    App_Layer   = var.App_Layer_NA
-  }
-  product_id = var.product_id
-  product_display_name = var.product_display_name
-  product_api_name = var.product_api_name
-  management_group_name = var.management_group_name
-  management_group_display_name = var.management_group_display_name
-  developer_portal_ad_group = var.developer_portal_ad_group
-  client_id = var.client_id
-  client_secret = var.client_secret
-  tenant_id = var.tenant_id
-  depends_on = [module.module_subnet_network_security_group_association, module.module_public_ip]
-}
-
-#####################################API Management Diagnostic Settings###########################
-module "module_api_management_diagsettings" {
-  source                     = "./modules/api_management_diagsettings"
-  apim_diag_name             = "diags-apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
-  target_resource_id         = module.module_apimanagement.api_management_id
-  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
-  enable_log                 = var.enable_log
-}
+###################################### API Management ####################################
+#module "module_apimanagement" {
+#  source                = "./modules/api_management"
+#  apim_name             = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+#  rg_name               = module.module_resource_group.rg_name
+#  rg_location           = module.module_resource_group.rg_location
+#  publisher_name        = var.publisher_name
+#  publisher_email       = var.publisher_email
+#  sku_name              = var.sku_name_api
+#  virtual_network_type  = var.virtual_network_type
+#  public_ip             = module.module_public_ip.public_ip_id
+#  subnet_id             = module.module_subnet.subnet_id
+#  enable_http2          = var.enable_http2
+#  enable_backend_ssl30  = var.enable_backend_ssl30
+#  enable_backend_tls10  = var.enable_backend_tls10
+#  enable_backend_tls11  = var.enable_backend_tls11
+#  enable_frontend_ssl30 = var.enable_frontend_ssl30
+#  enable_frontend_tls10 = var.enable_frontend_tls10
+#  enable_frontend_tls11 = var.enable_frontend_tls11
+#  #      enable_triple_des_ciphers         = var.enable_triple_des_ciphers
+#  apimanagement_log               = var.apimanagement_log
+#  azurerm_application_insights_id = module.module_app_insights.app_insights_id
+#  appinsights_instrumentation_key = module.module_app_insights.instrumentation_key
+#  identity_type                   = var.identity_type
+#  #   	host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
+#  service_url      = "https://${module.module_appservice2.appservice_name}"
+#  apiendpoints     = var.apiendpoints
+#  apioperations    = var.apioperations
+#  apioperations_tp = var.apioperations_tp
+#  apiname          = var.apiname
+#  apimanagement_tags = {
+#
+#    Environment = var.env_acronym
+#    App_Layer   = var.App_Layer_NA
+#  }
+#  product_id = var.product_id
+#  product_display_name = var.product_display_name
+#  product_api_name = var.product_api_name
+#  management_group_name = var.management_group_name
+#  management_group_display_name = var.management_group_display_name
+#  developer_portal_ad_group = var.developer_portal_ad_group
+#  client_id = var.client_id
+#  client_secret = var.client_secret
+#  tenant_id = var.tenant_id
+#  depends_on = [module.module_subnet_network_security_group_association, module.module_public_ip]
+#}
+#
+######################################API Management Diagnostic Settings###########################
+#module "module_api_management_diagsettings" {
+#  source                     = "./modules/api_management_diagsettings"
+#  apim_diag_name             = "diags-apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+#  target_resource_id         = module.module_apimanagement.api_management_id
+#  log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
+#  enable_log                 = var.enable_log
+#}
 
 ###################################  App Insights #########################################
 
@@ -469,6 +469,19 @@ module "module_appservice2" {
     App_Layer   = var.App_Layer_BE
   }
 }
+
+########################### App Service Private endpoint ####################################
+module "module_appservice2_private_endpoint" {
+  source                = "./modules/app_service_private_endpoint"
+  rg_name               = module.module_resource_group_2.rg_name
+  rg_location           = module.module_resource_group.rg_location
+  vnet_id               = module.module_virtualnetwork.vnet_id
+  private_endpoint_name = "pe-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  subnet_id             = module.module_subnet.subnet_id
+  app_service_id        = module.module_appservice2.app_service_id
+  depends_on            = [module.module_appservice2]
+}
+
 
 ########################### App Service Diagonostic Settings ####################################
 #module "module_appservice01_diagsettings" {

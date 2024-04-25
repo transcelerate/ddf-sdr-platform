@@ -157,8 +157,7 @@ resource "azurerm_api_management_group" "apimanagement_group" {
   resource_group_name = var.rg_name
   api_management_name = azurerm_api_management.apimanagement.name
   display_name        = var.management_group_display_name
-  #external_id         = var.developer_portal_ad_group
-  external_id         = "aad://acp200520a.onmicrosoft.com/groups/e35b0c8e-a55a-44e1-855f-3e4f77783a18"
+  external_id         = var.developer_portal_ad_group
   type                = "external"
   depends_on          = [azurerm_api_management_identity_provider_aad.apimanagement_identity_provider_aad]
 }
