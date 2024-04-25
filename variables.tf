@@ -1013,11 +1013,6 @@ variable "access_key_metadata_writes_enabled" {
     default = "false"
 }
 
-variable "collectionname" {
-
-    default = "study"
-}
-
 variable "index1" {
 
     default = ["_id"]
@@ -1030,61 +1025,46 @@ variable "index2" {
 
 variable "index3" {
 
-    default =  ["clinicalStudy.studyTitle"]
+    default =  ["auditTrail.entryDateTime"]
 }
 
 variable "index4" {
 
-    default =  ["auditTrail.entryDateTime"]
+    default =  ["clinicalStudy.studyTitle"]
 }
 
 variable "index5" {
 
-    default =  ["clinicalStudy.uuid"]
+    default =  ["auditTrail.usdmVersion"]
 }
 
 variable "index6" {
 
-    default =  ["clinicalStudy.studyPhase.decode"]
+    default =  ["study.studyId"]
 }
 
 variable "index7" {
 
-    default =  ["clinicalStudy.studyDesign.interventionModel.decode"]
+    default =  ["study.Id"]
 }
 
 variable "index8" {
 
-    default =  ["clinicalStudy.studyDesign.studyIndications.indicationDesc"]
+    default =  ["study.studyTitle"]
 }
 
-variable "index9" {
-
-    default =  ["clinicalStudy.studyIdentifiers.studyIdentifierScope.organisationType.decode"]
-}
-variable "index10" {
-
-    default =  ["auditTrail.usdmVersion"]
-}
-
-variable "collectionname2" {
+variable "collectionname1" {
 
     default = "Groups"
 
 }
 
-variable "collectionname3" {
-
-    default = "StudyDefinitionsV1"
-
-}
-
-variable "collectionname4" {
+variable "collectionname2" {
 
     default = "ChangeAudit"
 
 }
-variable "collectionname5" {
+variable "collectionname3" {
 
   default = "StudyDefinitions"
 

@@ -214,11 +214,9 @@ module "module_cosmosdb" {
   enable_automatic_failover          = var.enable_automatic_failover
   enable_free_tier                   = var.enable_free_tier
   access_key_metadata_writes_enabled = var.access_key_metadata_writes_enabled
-  collectionname                     = var.collectionname
+  collectionname1                    = var.collectionname1
   collectionname2                    = var.collectionname2
   collectionname3                    = var.collectionname3
-  collectionname4                    = var.collectionname4
-  collectionname5                    = var.collectionname5
   index1                             = var.index1
   index2                             = var.index2
   index3                             = var.index3
@@ -227,8 +225,6 @@ module "module_cosmosdb" {
   index6                             = var.index6
   index7                             = var.index7
   index8                             = var.index8
-  index9                             = var.index9
-  index10                            = var.index10
   cosmosdb_tags = {
 
     Environment = var.env_acronym

@@ -83,22 +83,14 @@ variable "access_key_metadata_writes_enabled" {
   
 }
 
-variable "collectionname" {
+variable "collectionname1" {
   
 }
 
 variable "collectionname2" {
   
 }
-
 variable "collectionname3" {
-  
-}
-
-variable "collectionname4" {
-  
-}
-variable "collectionname5" {
   
 }
 
@@ -133,11 +125,3 @@ variable "index7" {
 variable "index8" {
   
 }
-
-variable "index9" {
-  
-}
-variable "index10" {
-  
-}
-
