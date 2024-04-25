@@ -144,8 +144,8 @@ resource "azurerm_api_management_product_api" "apimanagement_product_api" {
 }
 
 resource "azurerm_api_management_identity_provider_aad" "apimanagement_identity_provider_aad" {
-  resource_group_name = azurerm_resource_group.example.name
-  api_management_name = azurerm_api_management.example.name
+  resource_group_name = var.rg_name
+  api_management_name = azurerm_api_management.apimanagement.name
   client_id           = var.client_id
   client_secret       = var.client_secret
   allowed_tenants     = [var.tenant_id]
