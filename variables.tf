@@ -896,7 +896,7 @@ variable "ip_address2" {
 
 variable "apparname2" {
 
-    default = "AllowVnetTraffic"
+    default = "DenyAll"
   
 }
 
@@ -908,7 +908,7 @@ variable "priority2" {
 
 variable "action2" {
 
-    default = "Allow"
+    default = "Deny"
   
 }
 variable "ip_address3" {
