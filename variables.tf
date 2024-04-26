@@ -21,12 +21,6 @@ variable "env_acronym" {
   
 }
 
-variable "test_tag" {
-
-    default = "#{Test-Tag}#"
-  
-}
-
 variable "fe_acronym" {
 
     default = "ui"
