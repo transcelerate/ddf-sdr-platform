@@ -62,21 +62,11 @@ jobs:
         find variables.tf -type f -exec sed -i ''s/#{ADgroup1}#/${{ secrets.ADgroup1 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADgroup2}#/${{ secrets.ADgroup2 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADgroup3}#/${{ secrets.ADgroup3 }}/g'' {} \;
-        find variables.tf -type f -exec sed -i ''s/#{ADGroup_Developer_Portal}#/${{ secrets.ADGROUP_DEVELOPER_PORTAL }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{ADGroup_Developer_Portal}#/"${{ secrets.ADGROUP_DEVELOPER_PORTAL }}"/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{subscription}#/${{ secrets.subscription  }}/g'' {} \;
-        
-#     - name: Find and Replace User Name - Using Build Variable
-#       # This step will replace all the variables in parameters.yml file while fetching the value from secrets
-
-#       run: |
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Env}#/${{ secrets.Env }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{BackendService-Arm}#/${{ secrets.BackendService_Arm }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ResourceGroup}#/${{ secrets.Azure_ResourceGroup }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-StorageAccount}#/${{ secrets.Azure_StorageAccount }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ContainerName}#/${{ secrets.Azure_ContainerName }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-RmKey}#/${{ secrets.Azure_RmKey }}/g'' {} \;
-
-    
+        find variables.tf -type f -exec sed -i ''s/#{Client-ID}#/${{ secrets.AZURE_CLIENT_ID  }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Client-Secret}#/${{ secrets.AZURE_CLIENT_SECRET  }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Tenant-ID}#/${{ secrets.AZURE_TENANT_ID  }}/g'' {} \;
       
     - name: Install Python 3.7
       # Install python required for the setup
@@ -156,21 +146,11 @@ jobs:
         find variables.tf -type f -exec sed -i ''s/#{ADgroup1}#/${{ secrets.ADgroup1 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADgroup2}#/${{ secrets.ADgroup2 }}/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{ADgroup3}#/${{ secrets.ADgroup3 }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{ADGroup_Developer_Portal}#/"${{ secrets.ADGROUP_DEVELOPER_PORTAL }}"/g'' {} \;
         find variables.tf -type f -exec sed -i ''s/#{subscription}#/${{ secrets.subscription  }}/g'' {} \;
-       
-  
-      
-#     - name: Find and Replace User Name - Using Build Variable
-#      # This step will replace all the variables in parameters.yml file while fetching the value from secrets
-#       run: |
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Env}#/${{ secrets.Env }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{BackendService-Arm}#/${{ secrets.BackendService_Arm }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ResourceGroup}#/${{ secrets.Azure_ResourceGroup }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-StorageAccount}#/${{ secrets.Azure_StorageAccount }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-ContainerName}#/${{ secrets.Azure_ContainerName }}/g'' {} \;
-#         find pipelines/parameters.yml -type f -exec sed -i ''s/#{Azure-RmKey}#/${{ secrets.Azure_RmKey }}/g'' {} \;
-       
-       
+        find variables.tf -type f -exec sed -i ''s/#{Client-ID}#/${{ secrets.AZURE_CLIENT_ID  }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Client-Secret}#/${{ secrets.AZURE_CLIENT_SECRET  }}/g'' {} \;
+        find variables.tf -type f -exec sed -i ''s/#{Tenant-ID}#/${{ secrets.AZURE_TENANT_ID  }}/g'' {} \;
      
     - name: Terraform Install
       # task will install the terraform and it's dependencies on microsoft hosted agents to deploy the resources
