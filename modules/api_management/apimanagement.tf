@@ -39,6 +39,7 @@ resource "azurerm_api_management" "apimanagement" {
     enable_frontend_ssl30 = var.enable_frontend_ssl30
     enable_frontend_tls10 = var.enable_frontend_tls10
     enable_frontend_tls11 = var.enable_frontend_tls11
+    tls_rsa_with_aes256_gcm_sha384_ciphers_enabled = true
     #    enable_triple_des_ciphers   = var.enable_triple_des_ciphers
   }
   depends_on   = [var.apim_depends_on]
