@@ -50,9 +50,9 @@ resource "azurerm_cosmosdb_mongo_database" "mongodb" {
 
 }
 
-resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection" {
+resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection1" {
 
-  name = var.collectionname
+  name = var.collectionname1
   resource_group_name = var.rg_name
   account_name = azurerm_cosmosdb_account.acc.name
   database_name = azurerm_cosmosdb_mongo_database.mongodb.name
@@ -63,9 +63,6 @@ resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection" {
     
   }
 index {keys = var.index1}
-index {keys = var.index2}
-index {keys = var.index3}
-index {keys = var.index4}
 }
 
 resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection2" {
@@ -81,8 +78,7 @@ resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection2" {
     
   }
 index {keys = var.index1}
-}
-
+} 
 resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection3" {
 
   name = var.collectionname3
@@ -96,44 +92,11 @@ resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection3" {
     
   }
 index {keys = var.index1}
-index {keys = var.index4}
+index {keys = var.index2}
 index {keys = var.index3}
+index {keys = var.index4}
 index {keys = var.index5}
 index {keys = var.index6}
 index {keys = var.index7}
 index {keys = var.index8}
-index {keys = var.index9}
-}
-
-resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection4" {
-
-  name = var.collectionname4
-  resource_group_name = var.rg_name
-  account_name = azurerm_cosmosdb_account.acc.name
-  database_name = azurerm_cosmosdb_mongo_database.mongodb.name
-  shard_key = "_id"
-  autoscale_settings {
-
-    max_throughput = 4000
-    
-  }
-index {keys = var.index1}
-} 
-resource "azurerm_cosmosdb_mongo_collection" "mongodbCollection5" {
-
-  name = var.collectionname5
-  resource_group_name = var.rg_name
-  account_name = azurerm_cosmosdb_account.acc.name
-  database_name = azurerm_cosmosdb_mongo_database.mongodb.name
-  shard_key = "_id"
-  autoscale_settings {
-
-    max_throughput = 4000
-    
-  }
-index {keys = var.index1}
-index {keys = var.index2}
-index {keys = var.index3}
-index {keys = var.index4}
-index {keys = var.index10}
 }

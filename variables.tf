@@ -2,6 +2,19 @@
 variable "alias_name"{
     default = "providerblock"
 }
+
+variable "client_id"{
+    default = "#{Client-ID}#"
+}
+
+variable "client_secret"{
+    default = "#{Client-Secret}#"
+}
+
+variable "tenant_id"{
+    default = "#{Tenant-ID}#"
+}
+
 variable "env_acronym" {
 
     default = "#{Env}#"
@@ -75,7 +88,7 @@ variable "address_prefix"{
 
 variable "sub_service_endpoints" {
 
-    default = ["Microsoft.Web"]
+    default = ["Microsoft.Web","Microsoft.KeyVault","Microsoft.Storage"]
   
 }
 
@@ -90,6 +103,12 @@ variable pip_sku {
 }
 variable pip_protection_mode {
     default = "Enabled"
+}
+
+variable "public_ip_zones" {
+
+    default = ["2","1","3"]
+  
 }
 ####################### Public IP End #####################################################
 
@@ -155,19 +174,30 @@ variable "network_security_rules" {
         destination_address_prefix  = "Storage"
     },
     {
-        name                        = "AllowTagCustom1443Outbound"
+        name                        = "AllowTagCustom443Outbound-App"
         priority                    = "110"
         direction                   = "Outbound"
         access                      = "Allow"
         protocol                    = "Tcp"
         source_port_range           = "*"
-        destination_port_range      = "1443"
+        destination_port_range      = "443"
+        source_address_prefix       = "VirtualNetwork"
+        destination_address_prefix  = "VirtualNetwork"
+    },
+    {
+        name                        = "AllowTagCustom1443Outbound"
+        priority                    = "120"
+        direction                   = "Outbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "1433"
         source_address_prefix       = "VirtualNetwork"
         destination_address_prefix  = "Sql"
     },
     {
         name                        = "AllowTagCustom443Outbound-KV"
-        priority                    = "120"
+        priority                    = "130"
         direction                   = "Outbound"
         access                      = "Allow"
         protocol                    = "Tcp"
@@ -177,11 +207,22 @@ variable "network_security_rules" {
         destination_address_prefix  = "AzureKeyVault"
     },
     {
+        name                        = "AllowAnyCustom433Outbound"
+        priority                    = "150"
+        direction                   = "Outbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "443"
+        source_address_prefix       = "*"
+        destination_address_prefix  = "*"
+    },
+    {
         name                        = "DenyAnyCustomOutbound"
         priority                    = "4096"
         direction                   = "Outbound"
         access                      = "Deny"
-        protocol                    = "Tcp"
+        protocol                    = "*"
         source_port_range           = "*"
         destination_port_range      = "*"
         source_address_prefix       = "*"
@@ -195,7 +236,7 @@ variable "network_security_rules_multiport" {
     default = [
         {
         name                        = "AllowTagCustom1886-443Outbound"
-        priority                    = "130"
+        priority                    = "140"
         direction                   = "Outbound"
         access                      = "Allow"
         protocol                    = "Tcp"
@@ -355,11 +396,6 @@ variable "identity_type" {
 variable "apiendpoints" {
 
     default = [
-    #     {
-    #     name         = "sdr-mvp"
-    #     display_name = "SDR MVP"
-    #     path         = "studydefinitionrepository/v1"
-    # },
     {
         name         = "sdr-api"
         display_name = "SDR API"
@@ -375,7 +411,6 @@ variable "apiendpoints" {
         display_name = "SDR UI API"
         path         = "api/ui"
     }]
-  
 }
 
 variable "apioperations" {
@@ -620,7 +655,7 @@ variable "apioperations_tp" {
         api_name     = "sdr-api"
         display_name = "V2 Put Study Definitions"
         method       = "PUT"
-        url_template = "/v2/studydefinitions/{studyid}"
+        url_template = "/v2/studydefinitions/{studyId}"
         tempname     = "studyId"
     },
     {
@@ -628,7 +663,7 @@ variable "apioperations_tp" {
         api_name     = "sdr-ui-api"   
         display_name = "V2 Get Study Definition"
         method       = "GET"
-        url_template = "/v2/studydefinitions/{studyid}"
+        url_template = "/v2/studydefinitions/{studyId}"
         tempname     = "studyId"
     },
     {
@@ -668,7 +703,7 @@ variable "apioperations_tp" {
         api_name     = "sdr-api"
         display_name = "V3 Put Study Definitions"
         method       = "PUT"
-        url_template = "/v3/studydefinitions/{studyid}"
+        url_template = "/v3/studydefinitions/{studyId}"
         tempname     = "studyId"
     },
     {
@@ -676,7 +711,7 @@ variable "apioperations_tp" {
         api_name     = "sdr-ui-api"   
         display_name = "V3 Get Study Definition"
         method       = "GET"
-        url_template = "/v3/studydefinitions/{studyid}"
+        url_template = "/v3/studydefinitions/{studyId}"
         tempname     = "studyId"
     },
     {
@@ -716,7 +751,7 @@ variable "apioperations_tp" {
         api_name     = "sdr-api"   
         display_name = "V4 Get Study Definition"
         method       = "GET"
-        url_template = "/v4/studydefinitions/{studyid}"
+        url_template = "/v4/studydefinitions/{studyId}"
         tempname     = "studyId"
     },
     {
@@ -724,7 +759,7 @@ variable "apioperations_tp" {
         api_name     = "sdr-api"
         display_name = "V4 Put Study Definitions"
         method       = "PUT"
-        url_template = "/v4/studydefinitions/{studyid}"
+        url_template = "/v4/studydefinitions/{studyId}"
         tempname     = "studyId"
     },
     {
@@ -732,7 +767,7 @@ variable "apioperations_tp" {
         api_name     = "sdr-ui-api"   
         display_name = "V4 Get Study Definition"
         method       = "GET"
-        url_template = "/v4/studydefinitions/{studyid}"
+        url_template = "/v4/studydefinitions/{studyId}"
         tempname     = "studyId"
     },
     {
@@ -750,9 +785,6 @@ variable "apioperations_tp" {
 variable "apiname" {
   
   default = [
-    # {
-    #     api_name = "sdr-mvp"
-    # },
     {
         api_name = "sdr-api"
     },
@@ -763,6 +795,30 @@ variable "apiname" {
         api_name = "sdr-ui-api"
     }
  ]
+}
+
+variable "product_id" {
+    default = "sdr-api-product"
+}
+
+variable "product_display_name" {
+    default = "SDR API Product"
+}
+
+variable "product_api_name" {
+    default = "sdr-api"
+}
+
+variable "management_group_name" {
+  default = "sdr-apim-developer-portal-user-group"
+}
+
+variable "management_group_display_name" {
+  default = "SDR API Developer Portal Access"
+}
+
+variable "developer_portal_ad_group" {
+    default = "#{ADGroup_Developer_Portal}#"
 }
 
 ######################API Management Variables End #############################################
@@ -840,7 +896,7 @@ variable "ip_address2" {
 
 variable "apparname2" {
 
-    default = "AllowVnetTraffic"
+    default = "DenyAll"
   
 }
 
@@ -852,7 +908,7 @@ variable "priority2" {
 
 variable "action2" {
 
-    default = "Allow"
+    default = "Deny"
   
 }
 variable "ip_address3" {
@@ -892,7 +948,7 @@ variable "os_type"{
 
 variable "sku_name_asp" {
 
-    default = "S1"
+    default = "B1"
   
 }
 
@@ -957,11 +1013,6 @@ variable "access_key_metadata_writes_enabled" {
     default = "false"
 }
 
-variable "collectionname" {
-
-    default = "study"
-}
-
 variable "index1" {
 
     default = ["_id"]
@@ -974,61 +1025,46 @@ variable "index2" {
 
 variable "index3" {
 
-    default =  ["clinicalStudy.studyTitle"]
+    default =  ["auditTrail.entryDateTime"]
 }
 
 variable "index4" {
 
-    default =  ["auditTrail.entryDateTime"]
+    default =  ["clinicalStudy.studyTitle"]
 }
 
 variable "index5" {
 
-    default =  ["clinicalStudy.uuid"]
+    default =  ["auditTrail.usdmVersion"]
 }
 
 variable "index6" {
 
-    default =  ["clinicalStudy.studyPhase.decode"]
+    default =  ["study.studyId"]
 }
 
 variable "index7" {
 
-    default =  ["clinicalStudy.studyDesign.interventionModel.decode"]
+    default =  ["study.Id"]
 }
 
 variable "index8" {
 
-    default =  ["clinicalStudy.studyDesign.studyIndications.indicationDesc"]
+    default =  ["study.studyTitle"]
 }
 
-variable "index9" {
-
-    default =  ["clinicalStudy.studyIdentifiers.studyIdentifierScope.organisationType.decode"]
-}
-variable "index10" {
-
-    default =  ["auditTrail.usdmVersion"]
-}
-
-variable "collectionname2" {
+variable "collectionname1" {
 
     default = "Groups"
 
 }
 
-variable "collectionname3" {
-
-    default = "StudyDefinitionsV1"
-
-}
-
-variable "collectionname4" {
+variable "collectionname2" {
 
     default = "ChangeAudit"
 
 }
-variable "collectionname5" {
+variable "collectionname3" {
 
   default = "StudyDefinitions"
 

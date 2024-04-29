@@ -39,6 +39,7 @@ resource "azurerm_api_management" "apimanagement" {
     enable_frontend_ssl30 = var.enable_frontend_ssl30
     enable_frontend_tls10 = var.enable_frontend_tls10
     enable_frontend_tls11 = var.enable_frontend_tls11
+    tls_rsa_with_aes256_gcm_sha384_ciphers_enabled = true
     #    enable_triple_des_ciphers   = var.enable_triple_des_ciphers
   }
   depends_on   = [var.apim_depends_on]
@@ -107,6 +108,11 @@ resource "azurerm_api_management_api_operation" "apioperations_tp" {
   method              = each.value.method
   url_template        = each.value.url_template
   description         = "SDR API's"
+  template_parameter {
+    name     = each.value.tempname
+    type     = "string"
+    required = true
+  }
   depends_on          = [azurerm_api_management_api.apiendpoint]
   timeouts {
     create = "120m"
@@ -114,15 +120,55 @@ resource "azurerm_api_management_api_operation" "apioperations_tp" {
     delete = "60m"
   }
 
-  template_parameter {
-    name     = each.value.tempname
-    type     = "string"
-    required = false
-  }
-
   response {
     status_code = 200
   }
+}
+
+resource "azurerm_api_management_product" "apimanagement_product" {
+  product_id            = var.product_id
+  api_management_name   = azurerm_api_management.apimanagement.name
+  resource_group_name   = var.rg_name
+  display_name          = var.product_display_name
+  subscription_required = true
+  published             = true
+  depends_on          = [azurerm_api_management_api.apiendpoint]
+
+}
+
+resource "azurerm_api_management_product_api" "apimanagement_product_api" {
+  api_name            = var.product_api_name
+  product_id          = azurerm_api_management_product.apimanagement_product.product_id
+  api_management_name = azurerm_api_management.apimanagement.name
+  resource_group_name = var.rg_name
+  depends_on          = [azurerm_api_management_product.apimanagement_product]
+}
+
+resource "azurerm_api_management_identity_provider_aad" "apimanagement_identity_provider_aad" {
+  resource_group_name = var.rg_name
+  api_management_name = azurerm_api_management.apimanagement.name
+  client_id           = var.client_id
+  client_secret       = var.client_secret
+  allowed_tenants     = [var.tenant_id]
+  depends_on          = [azurerm_api_management_product_api.apimanagement_product_api]
+}
+
+resource "azurerm_api_management_group" "apimanagement_group" {
+  name                = var.management_group_name
+  resource_group_name = var.rg_name
+  api_management_name = azurerm_api_management.apimanagement.name
+  display_name        = var.management_group_display_name
+  external_id         = var.developer_portal_ad_group
+  type                = "external"
+  depends_on          = [azurerm_api_management_identity_provider_aad.apimanagement_identity_provider_aad]
+}
+
+resource "azurerm_api_management_product_group" "apimanagement_product_group" {
+  product_id          = azurerm_api_management_product.apimanagement_product.product_id
+  group_name          = azurerm_api_management_group.apimanagement_group.name
+  api_management_name = azurerm_api_management.apimanagement.name
+  resource_group_name = var.rg_name
+  depends_on          = [azurerm_api_management_group.apimanagement_group]
 }
 
 resource "azurerm_api_management_logger" "apimanagement_log" {

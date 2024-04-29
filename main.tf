@@ -1,10 +1,10 @@
-
 terraform {
   backend "azurerm" {}
   required_providers {
-    azurerm = "=3.49.0"
+    azurerm = "=3.99.0"
   }
 }
+
 locals {
   common_tags = {
     Environment = var.env_acronym
@@ -56,6 +56,10 @@ module "module_network_security_group" {
   rg_location                       = module.module_resource_group.rg_location
   network_security_rules            = var.network_security_rules
   network_security_rules_multiport  = var.network_security_rules_multiport
+  nsg_tags    = {
+              Environment = var.env_acronym
+              App_Layer   = var.App_Layer_NA
+            }
 }
 ################################## Subnet #######################################################
 module "module_subnet" {
@@ -123,6 +127,11 @@ module "module_public_ip" {
   allocation_method	  = var.pip_allocation_method
   sku					        = var.pip_sku
   protection_mode		  = var.pip_protection_mode
+  zones               = var.public_ip_zones
+  publicip_tags       = {
+                          Environment = var.env_acronym
+                          App_Layer   = var.App_Layer_NA
+                        }
 }
 
 ################################## Log Analytics Workspace ################################################
@@ -141,7 +150,7 @@ module "module_loganalytics_workspace" {
   }
 }
 
-################################ Log Analytics Diagonostic settings #############################
+############################### Log Analytics Diagonostic settings #############################
 module "module_log_analytics_diagsettings" {
   source                     = "./modules/log_analy_diagsettings"
   log_analytics_diag_name    = "diags-law-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
@@ -163,7 +172,6 @@ module "module_keyvault" {
   enabled_for_template_deployment = var.enabled_for_template_deployment
   enabled_for_deployment          = var.enabled_for_deployment
   purge_protection_enabled        = var.purge_protection_enabled
-  #    soft_delete_enabled             = var.soft_delete_enabled
   soft_delete_retention_days = var.soft_delete_retention_days
   key_vault_tags = {
 
@@ -205,11 +213,9 @@ module "module_cosmosdb" {
   enable_automatic_failover          = var.enable_automatic_failover
   enable_free_tier                   = var.enable_free_tier
   access_key_metadata_writes_enabled = var.access_key_metadata_writes_enabled
-  collectionname                     = var.collectionname
+  collectionname1                    = var.collectionname1
   collectionname2                    = var.collectionname2
   collectionname3                    = var.collectionname3
-  collectionname4                    = var.collectionname4
-  collectionname5                    = var.collectionname5
   index1                             = var.index1
   index2                             = var.index2
   index3                             = var.index3
@@ -218,8 +224,6 @@ module "module_cosmosdb" {
   index6                             = var.index6
   index7                             = var.index7
   index8                             = var.index8
-  index9                             = var.index9
-  index10                            = var.index10
   cosmosdb_tags = {
 
     Environment = var.env_acronym
@@ -258,12 +262,10 @@ module "module_apimanagement" {
   enable_frontend_ssl30 = var.enable_frontend_ssl30
   enable_frontend_tls10 = var.enable_frontend_tls10
   enable_frontend_tls11 = var.enable_frontend_tls11
-  #      enable_triple_des_ciphers         = var.enable_triple_des_ciphers
   apimanagement_log               = var.apimanagement_log
   azurerm_application_insights_id = module.module_app_insights.app_insights_id
   appinsights_instrumentation_key = module.module_app_insights.instrumentation_key
   identity_type                   = var.identity_type
-  #   host_name                         = "apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}.azure-api.net"
   service_url      = "https://${module.module_appservice2.appservice_name}"
   apiendpoints     = var.apiendpoints
   apioperations    = var.apioperations
@@ -274,10 +276,19 @@ module "module_apimanagement" {
     Environment = var.env_acronym
     App_Layer   = var.App_Layer_NA
   }
+  product_id = var.product_id
+  product_display_name = var.product_display_name
+  product_api_name = var.product_api_name
+  management_group_name = var.management_group_name
+  management_group_display_name = var.management_group_display_name
+  developer_portal_ad_group = var.developer_portal_ad_group
+  client_id = var.client_id
+  client_secret = var.client_secret
+  tenant_id = var.tenant_id
   depends_on = [module.module_subnet_network_security_group_association, module.module_public_ip]
 }
 
-####################################API Management Diagnostic Settings###########################
+#####################################API Management Diagnostic Settings###########################
 module "module_api_management_diagsettings" {
   source                     = "./modules/api_management_diagsettings"
   apim_diag_name             = "diags-apim-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
@@ -286,7 +297,7 @@ module "module_api_management_diagsettings" {
   enable_log                 = var.enable_log
 }
 
-##################################  App Insights #########################################
+###################################  App Insights #########################################
 
 module "module_app_insights" {
   source                     = "./modules/app_insights"
@@ -301,7 +312,7 @@ module "module_app_insights" {
   }
 }
 
-###############################  Azure Container Registry ########################################
+################################  Azure Container Registry ########################################
 
 module "acr" {
 
@@ -316,7 +327,7 @@ module "acr" {
   }
 }
 
-##################################  App Service Plan ########################################
+#################################  App Service Plan ########################################
 
 module "module_appserviceplan" {
   source                = "./modules/app_service_plan"
@@ -364,7 +375,7 @@ module "module_appserviceplan3" {
 }
 
 
-########################### AppService plan Diagonostic settings#######################################
+########################## AppService plan Diagonostic settings#######################################
 
 module "module_appserviceplan01_diagsettings" {
   source                     = "./modules/app_service_plan_diagsettings"
@@ -395,7 +406,7 @@ module "module_appserviceplan03_diagsettings" {
 
 }
 
-############################ App Service ################################################
+########################### App Service ################################################
 module "module_appservice" {
   source                                = "./modules/app_service"
   app_service_name                      = "apps-${var.subscription_acronym}${var.fe_acronym}-${var.env_acronym}-${var.location}-001"
@@ -413,6 +424,7 @@ module "module_appservice" {
   subnet_id                             = module.module_deligatedsubnet1.Dsubnet_ID
   virtual_network_subnet_id             = null
   ip_address                            = var.ip_address
+  enable_public_network_access          = true
   apparname                             = var.apparname
   priority                              = var.priority
   action                                = var.action
@@ -438,8 +450,9 @@ module "module_appservice2" {
   identity                              = var.identity
   http2_enabled                         = var.http2_enabled
   subnet_id                             = module.module_deligatedsubnet2.Dsubnet_ID
-  virtual_network_subnet_id             = module.module_subnet.subnet_id
-  ip_address                            = var.ip_address2
+  virtual_network_subnet_id             = null
+  ip_address                            = var.ip_address
+  enable_public_network_access          = false
   apparname                             = var.apparname2
   priority                              = var.priority2
   action                                = var.action2
@@ -451,7 +464,20 @@ module "module_appservice2" {
   }
 }
 
-########################### App Service Diagonostic Settings ####################################
+########################### App Service Private endpoint ####################################
+module "module_appservice2_private_endpoint" {
+  source                = "./modules/app_service_private_endpoint"
+  rg_name               = module.module_resource_group_2.rg_name
+  rg_location           = module.module_resource_group.rg_location
+  vnet_id               = module.module_virtualnetwork.vnet_id
+  private_endpoint_name = "pe-${var.subscription_acronym}-${var.env_acronym}-${var.location}"
+  subnet_id             = module.module_subnet.subnet_id
+  app_service_id        = module.module_appservice2.app_service_id
+  depends_on            = [module.module_appservice2]
+}
+
+
+########################## App Service Diagonostic Settings ####################################
 module "module_appservice01_diagsettings" {
   source                     = "./modules/app_service_diagsettings"
   app_service_diag_name      = "diags-apps-${var.subscription_acronym}-${var.env_acronym}-${var.location}-001"
@@ -466,8 +492,8 @@ module "module_appservice02_diagsettings" {
   target_resource_id         = module.module_appservice2.app_service_id
   log_analytics_workspace_id = module.module_loganalytics_workspace.log_analytics_id
   enable_log                 = var.enable_log
-
 }
+
 
 module "module_functionapp_diagsettings" {
   source                     = "./modules/functionapp_diagsettings"

@@ -42,3 +42,7 @@ variable "network_security_rules_multiport" {
     }))
   
 }
+
+variable "nsg_tags" {
+  
+}
