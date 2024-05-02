@@ -81,4 +81,8 @@ variable "action" {
   
 }
 
+variable "enable_public_network_access" {
+  
+}
+
 

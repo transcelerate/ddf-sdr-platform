@@ -74,7 +74,7 @@ variable "apimanagement_log" {
 }
 
 variable "azurerm_application_insights_id" {
-  
+ 
 }
 
 variable "appinsights_instrumentation_key" {
@@ -132,4 +132,50 @@ variable "apiname" {
 
     type = list(object({api_name = string}))
   
+}
+
+variable "product_id" {
+  
+}
+
+variable "product_display_name" {
+  
+}
+
+variable "product_api_name" {
+  
+}
+
+variable "management_group_name" {
+  
+}
+
+variable "management_group_display_name" {
+  
+}
+
+variable "developer_portal_ad_group" {
+    
+}
+
+variable "public_ip" {
+  
+}
+
+variable "apim_depends_on" {
+  
+  type    = any
+  default = []
+}
+
+variable "client_id" {
+
+}
+
+variable "client_secret" {
+    
+}
+
+variable "tenant_id" {
+    
 }
