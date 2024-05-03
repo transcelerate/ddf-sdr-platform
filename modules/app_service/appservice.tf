@@ -5,6 +5,7 @@ resource "azurerm_linux_web_app" "appservice" {
   service_plan_id     = var.app_service_plan_id
   tags                = var.app_service_tags
   https_only          = var.https_only
+  public_network_access_enabled = var.enable_public_network_access
   
   #checkov:skip=CKV_AZURE_88:Using log analytics workspace for logs 
   #checkov:skip=CKV_AZURE_17:Not Using certificate base authentication
@@ -28,6 +29,7 @@ resource "azurerm_linux_web_app" "appservice" {
     ftps_state                = var.ftps_state
     http2_enabled             = var.http2_enabled
     default_documents         = [ "index.html" ]
+
     ip_restriction {
       
       ip_address                = var.ip_address
