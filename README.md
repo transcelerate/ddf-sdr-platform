@@ -198,4 +198,3 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 # Support
 
 - For any technical queries on SDR Platform repository, please create an issue [DDF SDR Support](https://github.com/transcelerate/ddf-sdr-support/issues/new?assignees=sdr-support&labels=techSupport&template=TechSupport.yml&title=%5BTechSupport%5D%3A).
-- For any other support on DDF SDR RI, reach out to [DDF@transceleratebiopharmainc.com ](mailto:DDF@transceleratebiopharmainc.com ).
