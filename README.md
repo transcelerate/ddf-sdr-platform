@@ -54,7 +54,6 @@ It assumes a good understanding of Azure concepts and services. The audience for
 - be aware of how to use Azure portal and basic understanding of Azure Cloud Platform
 - have basic understanding of GitHub Actions, Secrets & Yaml Scripts
 
-
 # Overview
 
  This repository contains Terraform IaC code and configuration for deploying SDR Infrastructure resources to Azure Cloud Platform.
@@ -101,14 +100,7 @@ This folder contains all the modularized code for the resources listed below.
 
 # Deployment Process
 
-**Important Note:** Refer to the [DDF SDR RI Platform Setup and Deployment Guide](documents/sdr-release-v3.0/ddf-sdr-ri-platform-setup-and-deployment-guide-v7.0.pdf) document for setting up a running instance of SDR on your own Azure Cloud Subscription. Additionally, below instructional videos provide a step-by-step run of the setup. 
-
-Below videos guide user to create a new instance of the SDR in their local Azure Cloud Subscription. The videos are available [here](https://www.youtube.com/playlist?list=PLMXS-Xt7Ou1KNUF-HQKQRRzqfPQEXWb1u)
-1. Environment Creation for SDR on Azure
-2. Deploying SDR code on Azure DevOps
-3. Azure PaaS Configurations
-4. Application Data Setup and Smoke Test
-5. SonarQube Integration with Azure
+**Important Note:** Refer to the [DDF SDR RI Platform Setup and Deployment Guide](documents/sdr-release-v3.0/ddf-sdr-ri-platform-setup-and-deployment-guide-v7.0.pdf) document for setting up a running instance of SDR on your own Azure Cloud Subscription. 
 
 ## Pre-Requisites
 
@@ -189,6 +181,7 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
   **name: Terraform Apply**
   - task execute the actions proposed in the terraform plan
     - run: terraform apply -auto-approve
+
 ### Running GitHub Workflows
 - **Step 1 :** Go to GitHub Actions and under the list of workflows click on CI.
 - **Step 2 :** In this workflow click Run Workflow to trigger the Deployment Action.
@@ -205,5 +198,4 @@ The yaml file is a multi-job script that will perform security checks on IaC cod
 # Support
 
 - For any technical queries on SDR Platform repository, please create an issue [DDF SDR Support](https://github.com/transcelerate/ddf-sdr-support/issues/new?assignees=sdr-support&labels=techSupport&template=TechSupport.yml&title=%5BTechSupport%5D%3A).
-- [Raise Incident](https://github.com/transcelerate/ddf-sdr-support/issues/new?assignees=sdr-support&labels=incident&template=Incident.yml&title=%5BIncident%5D%3A+) faced in the SDR RI Demo Environment.
-- For any other support on DDF SDR RI, reach out to [SDR.Support@accenture.com](mailto:sdr.support@accenture.com).
+- For any other support on DDF SDR RI, reach out to [DDF@transceleratebiopharmainc.com ](mailto:DDF@transceleratebiopharmainc.com ).
