@@ -1,3 +1,0 @@
-variable "display_name" {
-  
-}
