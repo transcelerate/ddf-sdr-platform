@@ -1,0 +1,30 @@
+name: ddf-sdr-prod
+services:
+  mongodb:
+    container_name: ddf-sdr-db
+    image: mongo:latest
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASS}
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+    volumes:
+      - ./01-mongodb-setup.sh:/docker-entrypoint-initdb.d/01-mongodb-setup.sh
+      - mongodb_data:/data/db
+    ports:
+      - "27018:27017"
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  mongodb_data:
