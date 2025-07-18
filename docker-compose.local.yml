@@ -1,6 +1,12 @@
 name: ddf-sdr-local
 services:
   mongodb:
+    container_name: ddf-sdr-local-db
     volumes:
       - ./mongodb_dump:/mongodb_dump
       - ./02-mongodb-restore.sh:/docker-entrypoint-initdb.d/02-mongodb-restore.sh
+  api:
+    container_name: ddf-sdr-local-api
+    build:
+      context: ../ddf-sdr-api
+      dockerfile: Dockerfile

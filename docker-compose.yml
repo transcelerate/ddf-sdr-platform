@@ -1,4 +1,4 @@
-name: ddf-sdr-prod
+name: ddf-sdr
 services:
   mongodb:
     container_name: ddf-sdr-db
@@ -11,6 +11,7 @@ services:
     volumes:
       - ./01-mongodb-setup.sh:/docker-entrypoint-initdb.d/01-mongodb-setup.sh
       - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
     ports:
       - "27018:27017"
     networks:
@@ -22,9 +23,29 @@ services:
       retries: 3
       start_period: 30s
 
+  api:
+    container_name: ddf-sdr-api
+    image: ghcr.io/transcelerate/ddf-sdr-api:latest
+    restart: always
+    environment:
+      - ConnectionStrings__DefaultConnection=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASS}@mongodb:27018/${MONGO_DATABASE}?authSource=admin
+      - ConnectionStrings__DatabaseName=${MONGO_DATABASE}
+      - StudyHistory__DateRange=30
+      - ApiVersionUsdmVersionMapping=${API_VERSION_USDM_VERSION_MAPPING}
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8080:80"
+    networks:
+      - backend
+    depends_on:
+      mongodb:
+        condition: service_healthy
+        restart: true
+
 networks:
   backend:
     driver: bridge
 
 volumes:
   mongodb_data:
+  mongodb_config:
