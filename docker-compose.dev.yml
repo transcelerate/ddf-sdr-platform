@@ -1,0 +1,15 @@
+name: ddf-sdr-dev
+
+services:
+  cdisc-rules-engine:
+    build:
+      context: ./cdisc-rules-engine-mock
+      dockerfile: Dockerfile
+    volumes:
+      - ../ddf-sdr-api/cdisc-rules-engine/datasets:/app/datasets
+      - ../ddf-sdr-api/cdisc-rules-engine/output:/app/output
+
+  mongodb:
+    volumes:
+      - ./mongodb_dump:/mongodb_dump
+      - ./02-mongodb-restore.sh:/docker-entrypoint-initdb.d/02-mongodb-restore.sh

@@ -1,9 +1,18 @@
-name: ddf-sdr-prod
 services:
+  cdisc-rules-engine:
+    working_dir: /app
+    entrypoint: ["/bin/sh"]
+    command: ["-c", "mkdir -p /app/datasets /app/output && tail -f /dev/null"]
+    environment:
+      - DATASET_SIZE_THRESHOLD=0
+    volumes:
+      - cdisc-rules-engine-datasets:/app/datasets
+      - cdisc-rules-engine-output:/app/output
+    networks:
+      - backend
+
   mongodb:
-    container_name: ddf-sdr-db
     image: mongo:latest
-    restart: always
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASS}
@@ -28,3 +37,6 @@ networks:
 
 volumes:
   mongodb_data:
+  mongodb_config:
+  cdisc-rules-engine-datasets:
+  cdisc-rules-engine-output:
