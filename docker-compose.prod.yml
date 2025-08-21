@@ -3,7 +3,6 @@ name: ddf-sdr-prod
 services:
   api:
     depends_on:
-      - cdisc-rules-engine
       - mongodb
     image: ghcr.io/transcelerate/ddf-sdr-api:latest
     environment:
@@ -14,17 +13,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - isGroupFilterEnabled=false
       - isAuthEnabled=false
-    volumes:
-      - cdisc-rules-engine-datasets:/shared/datasets
-      - cdisc-rules-engine-output:/shared/output
     ports:
       - "8080:80"
     networks:
       - backend
-    restart: always
-
-  cdisc-rules-engine:
-    image: cdiscdocker/cdisc-rules-engine:latest
     restart: always
 
   mongodb:
