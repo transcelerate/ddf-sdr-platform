@@ -1,16 +1,14 @@
-name: ddf-sdr-prod
 services:
   mongodb:
-    container_name: ddf-sdr-db
     image: mongo:latest
-    restart: always
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASS}
       - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
     volumes:
-      - ./01-mongodb-setup.sh:/docker-entrypoint-initdb.d/01-mongodb-setup.sh
+      - ./01-mongodb-setup.js:/docker-entrypoint-initdb.d/01-mongodb-setup.js
       - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
     ports:
       - "27018:27017"
     networks:
@@ -28,3 +26,4 @@ networks:
 
 volumes:
   mongodb_data:
+  mongodb_config:

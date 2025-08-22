@@ -1,0 +1,23 @@
+name: ddf-sdr-prod
+
+services:
+  api:
+    depends_on:
+      - mongodb
+    image: ghcr.io/transcelerate/ddf-sdr-api:latest
+    environment:
+      - ConnectionStrings__ServerName=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASS}@mongodb:27018/${MONGO_DATABASE}?authSource=admin
+      - ConnectionStrings__DatabaseName=${MONGO_DATABASE}
+      - StudyHistory__DateRange=30
+      - ApiVersionUsdmVersionMapping=${API_VERSION_USDM_VERSION_MAPPING}
+      - ASPNETCORE_ENVIRONMENT=Production
+      - isGroupFilterEnabled=false
+      - isAuthEnabled=false
+    ports:
+      - "8080:80"
+    networks:
+      - backend
+    restart: always
+
+  mongodb:
+    restart: always
