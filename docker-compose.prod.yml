@@ -13,6 +13,11 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - isGroupFilterEnabled=false
       - isAuthEnabled=false
+      - CdiscRulesEngine=${CDISC_RULES_ENGINE}
+      - CdiscRulesEngineRelativeBinary=${CDISC_RULES_ENGINE_RELATIVE_BINARY}
+      - CdiscRulesEngineRelativeCache=${CDISC_RULES_ENGINE_RELATIVE_CACHE}
+    volumes:
+      - cdisc_rules_engine_cache:${CDISC_RULES_ENGINE}/${CDISC_RULES_ENGINE_RELATIVE_CACHE}
     ports:
       - "8080:80"
     networks:
@@ -21,3 +26,6 @@ services:
 
   mongodb:
     restart: always
+
+volumes:
+  cdisc_rules_engine_cache:
