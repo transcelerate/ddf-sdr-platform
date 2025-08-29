@@ -1,15 +1,29 @@
 name: ddf-sdr-dev
 
 services:
-  cdisc-rules-engine:
+  api:
+    depends_on:
+      - mongodb
     build:
-      context: ./cdisc-rules-engine-mock
+      context: ../ddf-sdr-api
       dockerfile: Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASS}@mongodb:27018/${MONGO_DATABASE}?authSource=admin
+      - ConnectionStrings__DatabaseName=${MONGO_DATABASE}
+      - StudyHistory__DateRange=30
+      - ApiVersionUsdmVersionMapping=${API_VERSION_USDM_VERSION_MAPPING}
+      - ASPNETCORE_ENVIRONMENT=Development
+      - isGroupFilterEnabled=false
+      - isAuthEnabled=false
+      - CdiscRulesEngine=${CDISC_RULES_ENGINE}
+      - CdiscRulesEngineRelativeBinary=${CDISC_RULES_ENGINE_RELATIVE_BINARY}
+      - CdiscRulesEngineRelativeCache=${CDISC_RULES_ENGINE_RELATIVE_CACHE}
     volumes:
-      - ../ddf-sdr-api/cdisc-rules-engine/datasets:/app/datasets
-      - ../ddf-sdr-api/cdisc-rules-engine/output:/app/output
+      - cdisc_rules_engine_cache:${CDISC_RULES_ENGINE}/${CDISC_RULES_ENGINE_RELATIVE_CACHE}
+    ports:
+      - "8080:80"
+    networks:
+      - backend
 
-  mongodb:
-    volumes:
-      - ./mongodb_dump:/mongodb_dump
-      - ./02-mongodb-restore.sh:/docker-entrypoint-initdb.d/02-mongodb-restore.sh
+volumes:
+  cdisc_rules_engine_cache:

@@ -1,16 +1,4 @@
 services:
-  cdisc-rules-engine:
-    working_dir: /app
-    entrypoint: ["/bin/sh"]
-    command: ["-c", "mkdir -p /app/datasets /app/output && tail -f /dev/null"]
-    environment:
-      - DATASET_SIZE_THRESHOLD=0
-    volumes:
-      - cdisc-rules-engine-datasets:/app/datasets
-      - cdisc-rules-engine-output:/app/output
-    networks:
-      - backend
-
   mongodb:
     image: mongo:latest
     environment:
@@ -18,8 +6,9 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASS}
       - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
     volumes:
-      - ./01-mongodb-setup.sh:/docker-entrypoint-initdb.d/01-mongodb-setup.sh
+      - ./01-mongodb-setup.js:/docker-entrypoint-initdb.d/01-mongodb-setup.js
       - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
     ports:
       - "27018:27017"
     networks:
@@ -38,5 +27,3 @@ networks:
 volumes:
   mongodb_data:
   mongodb_config:
-  cdisc-rules-engine-datasets:
-  cdisc-rules-engine-output:

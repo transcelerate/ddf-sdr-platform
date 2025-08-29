@@ -1,5 +1,2 @@
 # Configuration files
 .env
-
-# Database dump
-mongodb_dump/
