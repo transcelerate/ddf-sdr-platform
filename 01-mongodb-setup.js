@@ -6,7 +6,7 @@ print("Creating collections in " + process.env.MONGO_INITDB_DATABASE + " databas
 db = db.getSiblingDB(process.env.MONGO_INITDB_DATABASE);
 
 // List of collections to create
-const collectionsToCreate = ['StudyDefinitions', 'Groups', 'ChangeAudit'];
+const collectionsToCreate = ['StudyDefinitions', 'ChangeAudit'];
 
 // Get existing collections
 const existingCollections = db.getCollectionNames();
