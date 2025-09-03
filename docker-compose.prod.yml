@@ -6,7 +6,7 @@ services:
       - mongodb
     image: ghcr.io/transcelerate/ddf-sdr-api:latest
     environment:
-      - ConnectionStrings__DefaultConnection=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASS}@mongodb:27018/${MONGO_DATABASE}?authSource=admin
+      - ConnectionStrings__DefaultConnection=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASS}@mongodb:27017/${MONGO_DATABASE}?authSource=admin
       - ConnectionStrings__DatabaseName=${MONGO_DATABASE}
       - StudyHistory__DateRange=30
       - ApiVersionUsdmVersionMapping=${API_VERSION_USDM_VERSION_MAPPING}
@@ -18,6 +18,18 @@ services:
       - cdisc_rules_engine_cache:${CDISC_RULES_ENGINE}/${CDISC_RULES_ENGINE_RELATIVE_CACHE}
     ports:
       - "8080:80"
+    networks:
+      - backend
+    restart: always
+  
+  ui:
+    depends_on:
+      - api
+    image: ghcr.io/transcelerate/ddf-sdr-ui:latest
+    environment:
+      - PRODUCTION=true
+    ports:
+      - "4200:80"
     networks:
       - backend
     restart: always
