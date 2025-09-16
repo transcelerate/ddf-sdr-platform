@@ -19,7 +19,7 @@ services:
     volumes:
       - cdisc_rules_engine_cache:${CDISC_RULES_ENGINE}/${CDISC_RULES_ENGINE_RELATIVE_CACHE}
     ports:
-      - "${APP_API_PORT}:80"
+      - "8080:80"
     networks:
       - backend
   
@@ -32,10 +32,10 @@ services:
       args:
         ENV_NAME: Production
     environment:
-      - APP_API_BASE_URL=${APP_API_BASE_URL}
+      - APP_API_BASE_URL=http://localhost:8080/
       - PRODUCTION=true
     ports:
-      - "${APP_UI_PORT}:80"
+      - "4200:80"
     networks:
       - backend
 
