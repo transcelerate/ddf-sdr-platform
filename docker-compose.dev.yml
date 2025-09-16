@@ -30,9 +30,9 @@ services:
       context: ../ddf-sdr-ui
       dockerfile: Dockerfile
       args:
-        BASE_URL: http://localhost:8080/
         ENV_NAME: Production
     environment:
+      - APP_API_BASE_URL=http://localhost:8080/
       - PRODUCTION=true
     ports:
       - "4200:80"
