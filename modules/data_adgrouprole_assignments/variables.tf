@@ -1,3 +1,0 @@
-variable "groupdisplay_name" {
-  
-}
