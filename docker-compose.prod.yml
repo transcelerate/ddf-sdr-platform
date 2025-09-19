@@ -1,0 +1,42 @@
+name: ddf-sdr-prod
+
+services:
+  api:
+    depends_on:
+      - mongodb
+    image: ghcr.io/transcelerate/ddf-sdr-api:latest
+    environment:
+      - ConnectionStrings__DefaultConnection=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASS}@mongodb:27017/${MONGO_DATABASE}?authSource=admin
+      - ConnectionStrings__DatabaseName=${MONGO_DATABASE}
+      - StudyHistory__DateRange=30
+      - ApiVersionUsdmVersionMapping=${API_VERSION_USDM_VERSION_MAPPING}
+      - ASPNETCORE_ENVIRONMENT=Production
+      - CdiscRulesEngine=${CDISC_RULES_ENGINE}
+      - CdiscRulesEngineRelativeBinary=${CDISC_RULES_ENGINE_RELATIVE_BINARY}
+      - CdiscRulesEngineRelativeCache=${CDISC_RULES_ENGINE_RELATIVE_CACHE}
+    volumes:
+      - cdisc_rules_engine_cache:${CDISC_RULES_ENGINE}/${CDISC_RULES_ENGINE_RELATIVE_CACHE}
+    ports:
+      - "${APP_API_PORT}:80"
+    networks:
+      - backend
+    restart: always
+  
+  ui:
+    depends_on:
+      - api
+    image: ghcr.io/transcelerate/ddf-sdr-ui:latest
+    environment:
+      - APP_API_BASE_URL=${APP_API_BASE_URL}
+      - PRODUCTION=true
+    ports:
+      - "${APP_UI_PORT}:80"
+    networks:
+      - backend
+    restart: always
+
+  mongodb:
+    restart: always
+
+volumes:
+  cdisc_rules_engine_cache:
