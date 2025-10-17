@@ -92,15 +92,22 @@ To start the services using Docker Compose, use one of the following commands ba
 A development Docker Compose run will build the containers locally, from the `ddf-sdr-api` and `ddf-sdr-ui` repositories, when checked out alongside the `ddf-sdr-platform` repository.
 
 ```bash
-docker compose -f docker-compose.yml -f docker-compose.dev.yml --env-file .env up -d
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml --env-file .env up -d
 ```
+See the System Maintenance Guide for Docker and .env settings to ensure that the early release CORE binary is used.
 
 ### Production Environment
 
 The production Docker Compose runs using the published, prebuilt docker images of the API and UI:
 
 ```bash
-docker compose -f docker-compose.yml -f docker-compose.prod.yml --env-file .env up -d
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml --env-file .env up -d
+```
+
+For the above command to execute correctly with the prebuilt API container that contains the pre-release CORE binary, you will need to edit the .env file to ensure the following reference to the core binary is used:
+
+```bash
+CDISC_RULES_ENGINE_RELATIVE_BINARY=cdisc-core-20250903
 ```
 
 # Changes for Release V5.0 (September 2025)
