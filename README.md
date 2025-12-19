@@ -94,6 +94,7 @@ A development Docker Compose run will build the containers locally, from the `dd
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.dev.yml --env-file .env up -d
 ```
+See the System Maintenance Guide for Docker and .env settings to ensure that the early release CORE binary is used.
 
 See the System Maintenance Guide for Docker and .env settings to ensure that the early release CORE binary is used.
 
