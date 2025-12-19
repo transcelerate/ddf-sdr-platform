@@ -105,7 +105,6 @@ The production Docker Compose runs using the published, prebuilt docker images o
 docker compose -f docker-compose.yml -f docker-compose.prod.yml --env-file .env up -d
 ```
 
-
 # Changes for Release V5.0 (September 2025)
 
 SDR Release V5.0 marks a fundamental shift from previous versions by eliminating Azure dependencies from its architecture, more easily enabling platform-agnostic deployment capabilities across various environments.
