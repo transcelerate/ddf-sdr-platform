@@ -97,7 +97,6 @@ docker compose -f docker-compose.yml -f docker-compose.dev.yml --env-file .env u
 
 See the System Maintenance Guide for Docker and .env settings to ensure that the early release CORE binary is used.
 
-
 ### Production Environment
 
 The production Docker Compose runs using the published, prebuilt docker images of the API and UI:
@@ -105,7 +104,6 @@ The production Docker Compose runs using the published, prebuilt docker images o
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.prod.yml --env-file .env up -d
 ```
-
 
 # Changes for Release V5.0 (September 2025)
 
