@@ -92,8 +92,26 @@ To start the services using Docker Compose, use one of the following commands ba
 A development Docker Compose run will build the containers locally, from the `ddf-sdr-api` and `ddf-sdr-ui` repositories, when checked out alongside the `ddf-sdr-platform` repository.
 
 ```bash
+# Stop and remove existing containers
+docker compose -f docker-compose.yml -f docker-compose.dev.yml down
+
+# Remove all related images (optional - for complete rebuild)
+docker compose -f docker-compose.yml -f docker-compose.dev.yml down --rmi all
+
+# Remove all volumes (optional - will delete ALL persistent data)
+# docker compose -f docker-compose.yml -f docker-compose.dev.yml down --volumes
+
+# Remove CDISC Rules Engine Cache volume (optional - for core engine cache reset)
+docker volume rm ddf-sdr-dev_cdisc_rules_engine_cache
+
+# Build without cache
+docker compose -f docker-compose.yml -f docker-compose.dev.yml --env-file .env build --no-cache
+
+# Start containers
 docker compose -f docker-compose.yml -f docker-compose.dev.yml --env-file .env up -d
 ```
+See the System Maintenance Guide for Docker and .env settings to ensure that the early release CORE binary is used.
+
 See the System Maintenance Guide for Docker and .env settings to ensure that the early release CORE binary is used.
 
 ### Production Environment
